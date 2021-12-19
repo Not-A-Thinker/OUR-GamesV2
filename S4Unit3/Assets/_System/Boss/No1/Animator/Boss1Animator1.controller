@@ -186,7 +186,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
+  - m_ConditionMode: 2
     m_ConditionEvent: isTailAttack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -214,19 +214,19 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -9197128311185443369}
-    m_Position: {x: 450, y: 170, z: 0}
+    m_Position: {x: 360, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2650873866081250549}
-    m_Position: {x: 290, y: -10, z: 0}
+    m_Position: {x: 550, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7712311947788526483}
-    m_Position: {x: 630, y: 320, z: 0}
+    m_Position: {x: 630, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2974614587465755242}
-    m_Position: {x: 590, y: -10, z: 0}
+    m_Position: {x: 630, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1062605304653081039}
-    m_Position: {x: 310, y: 320, z: 0}
+    m_Position: {x: 550, y: 300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

@@ -372,7 +372,12 @@ public class BossAI_Wind : MonoBehaviour
 
         if (IsStage2)
         {
-            Debug.Log("Switch to stage2 with animation cutscene");
+            Debug.Log("Switch to stage2 with sth animation cutscene");
+        }
+
+        while (IsStage2 && aiEnable)
+        {
+
         }
     }
 
