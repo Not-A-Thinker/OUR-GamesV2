@@ -160,9 +160,18 @@ public class BossSkillDemo : MonoBehaviour
     {
         StartCoroutine(animationPlaytime("isTonado"));
         tornadoGattaiIsExisted = true;
-        int playerRan = Random.Range(1, 3);//Select one of the player to attack on
-        int id = 1;
 
+        //Select one of the player to attack on
+        int playerRan;
+        if (_Player1.GetComponent<PlayerState>().GetPlayerIsDead() && !_Player2.GetComponent<PlayerState>().GetPlayerIsDead())
+            playerRan = 2;
+        else if (!_Player1.GetComponent<PlayerState>().GetPlayerIsDead() && _Player2.GetComponent<PlayerState>().GetPlayerIsDead())
+            playerRan = 1;
+        else
+            playerRan = Random.Range(1, 3);
+
+        //Spawn some Small Tornado toward the selected player 
+        int id = 1;
         for (int i = 0; i < NumTornadoToSpawn; i++)
         {
             float ranX = Random.Range(transform.position.x - _range, transform.position.x + _range + 1);
