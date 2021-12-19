@@ -18,9 +18,11 @@ namespace HutongGames.PlayMaker.Actions
             YZ
         }
 
+        [Tooltip("Plane to map the 2d input to.")]
         public Mapping mapping;
 
         [UIHint(UIHint.Variable)]
+        [Tooltip("Store the Vector3 value.")]
         public FsmVector3 storeVector3;
 
         public override void Reset()

@@ -55,6 +55,7 @@ public class BossAI_Wind : MonoBehaviour
 
     void Update()
     {
+        //Press Left shift and 1 to change boss ai.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
             aiEnable = !aiEnable;
@@ -144,51 +145,99 @@ public class BossAI_Wind : MonoBehaviour
 
         int AIDecision = 0;
 
-        //This is use for detect who is the closest player to boss or is behind it.
-        //But now lookatp1 and lookatp2 are work in the same way.
-        if (lookAtP1)//While the Boss is watching Player1...
+        if (IsStage1)
         {
-            if (distP1 > 0 && distP1 < skillRange1)//if the distance between player1 and boss are less than skillRange1, then...
+            //This is use for detect who is the closest player to boss or is behind it.
+            //But now lookatp1 and lookatp2 are work in the same way.
+            if (lookAtP1)//While the Boss is watching Player1...
             {
-                AIDecision = 11;
+                if (distP1 > 0 && distP1 < skillRange1)//if the distance between player1 and boss are less than skillRange1, then...
+                {
+                    AIDecision = 11;
+                }
+                if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
+                {
+                    AIDecision = 12;
+                }
+                if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
+                {
+                    AIDecision = 13;
+                }
             }
-            if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
+            if (lookAtP2)//While the Boss is watching Player2...
             {
-                AIDecision = 12;
+                if (distP2 > 0 && distP2 < skillRange1)//if the distance between player2 and boss are less than skillRange1, then...
+                {
+                    AIDecision = 11;//should change back to 21 if we decide to have different attack move to player.
+                }
+                if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
+                {
+                    AIDecision = 12;//should change back to 22 if we decide to have different attack move to player.
+                }
+                if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
+                {
+                    AIDecision = 13;//should change back to 23 if we decide to have different attack move to player.
+                }
             }
-            if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
+            if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
             {
-                AIDecision = 13;
+                AIDecision = 31;
             }
-        }
-        if (lookAtP2)//While the Boss is watching Player2...
-        {
-            if (distP2 > 0 && distP2 < skillRange1)//if the distance between player2 and boss are less than skillRange1, then...
+            if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
             {
-                AIDecision = 11;//should change back to 21 if we decide to have different attack move to player.
+                AIDecision = 32;
             }
-            if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
+
+            //第一階大技
+            if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
             {
-                AIDecision = 12;//should change back to 22 if we decide to have different attack move to player.
+                AIDecision = 33;
+                //Debug.Log("I'm gonna spam the STA!");
             }
-            if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
-            {
-                AIDecision = 13;//should change back to 23 if we decide to have different attack move to player.
-            }
-        }
-        if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
-        {
-            AIDecision = 31;
-        }
-        if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
-        {
-            AIDecision = 32;
         }
 
-        if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+        if (IsStage2)
         {
-            AIDecision = 33;
-            //Debug.Log("I'm gonna spam the STA!");
+            //This is use for detect who is the closest player to boss or is behind it.
+            //But now lookatp1 and lookatp2 are work in the same way.
+            if (lookAtP1)//While the Boss is watching Player1...
+            {
+                if (distP1 > 0 && distP1 < skillRange1)//if the distance between player1 and boss are less than skillRange1, then...
+                {
+                    AIDecision = 41;
+                }
+                if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
+                {
+                    AIDecision = 42;
+                }
+                if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
+                {
+                    AIDecision = 43;
+                }
+            }
+            if (lookAtP2)//While the Boss is watching Player2...
+            {
+                if (distP2 > 0 && distP2 < skillRange1)//if the distance between player2 and boss are less than skillRange1, then...
+                {
+                    AIDecision = 41;//should change back to 51 if we decide to have different attack move to player.
+                }
+                if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
+                {
+                    AIDecision = 42;//should change back to 52 if we decide to have different attack move to player.
+                }
+                if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
+                {
+                    AIDecision = 43;//should change back to 53 if we decide to have different attack move to player.
+                }
+            }
+            if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
+            {
+                AIDecision = 61;
+            }
+            if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
+            {
+                AIDecision = 62;
+            }
         }
 
         Debug.Log("Skill is select!");
@@ -200,7 +249,8 @@ public class BossAI_Wind : MonoBehaviour
         int rndNum = Random.Range(0, 100);
         print("AI has select:" + num + "+" + rndNum);
 
-        //This is the attack alert animation.
+        //This is the attack alert animation,
+        //and will have to wait at least 0.4 sec to response(may need to change).
         attackAlert.SetTrigger("isAttacking");
         yield return new WaitForSeconds(0.4f);
 
@@ -251,6 +301,7 @@ public class BossAI_Wind : MonoBehaviour
                     BossSkill.TornadoAttack();
                 }
                 break;
+
             case 21:
                 if (rndNum < 50)
                 {
@@ -292,6 +343,7 @@ public class BossAI_Wind : MonoBehaviour
                     BossSkill.TornadoAttack();
                 }
                 break;
+
             case 31:
                 if (rndNum < 50)
                 {
@@ -320,6 +372,25 @@ public class BossAI_Wind : MonoBehaviour
                 //STA 龍龍彈珠台
                 BossSkill.TornadoSpecialAttack();
                 cameraControl.ChangeTargetWeight(3, 3);
+                break;
+
+            case 41:
+
+                break;
+            case 42:
+
+                break;
+            case 43:
+
+                break;
+            case 61:
+
+                break;
+            case 62:
+
+                break;
+            case 63:
+
                 break;
         }
         yield return null;
@@ -375,9 +446,17 @@ public class BossAI_Wind : MonoBehaviour
             Debug.Log("Switch to stage2 with sth animation cutscene");
         }
 
+        //They should play the same expect a AI movement decide will be added
         while (IsStage2 && aiEnable)
         {
-
+            PlayerDetect();
+            //yield return new WaitForSeconds(0.3f);
+            yield return new WaitUntil(() => isLockOn);
+            SkillSelection();
+            yield return coroutineAtk;
+            //Debug.Log("A rountine is FINISH!");
+            yield return new WaitForSeconds(aiReactTime);
+            //Debug.Log("Will Start Again...");
         }
     }
 

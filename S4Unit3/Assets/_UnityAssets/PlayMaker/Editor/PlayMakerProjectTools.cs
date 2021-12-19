@@ -116,12 +116,23 @@ namespace HutongGames.PlayMakerEditor
             }
             finally
             {
-                AssetDatabase.StopAssetEditing();
+                StopAssetEditing();
             }
 
             LoadScenes(loadedScenes);
 
             return report;
+        }
+
+        private static void StopAssetEditing()
+        {
+            if (EditorApplication.isUpdating)
+            {
+                EditorApplication.delayCall += StopAssetEditing;
+                return;
+            }
+            
+            AssetDatabase.StopAssetEditing();
         }
 
         /// <summary>
@@ -434,7 +445,7 @@ namespace HutongGames.PlayMakerEditor
 
                 ReSaveAllLoadedFSMs();
 
-                if (!EditorSceneManager.SaveOpenScenes())
+                if (!EditorApplication.isUpdating && !EditorSceneManager.SaveOpenScenes())
                 {
                     Debug.LogError("Could not save scene!");
                 }

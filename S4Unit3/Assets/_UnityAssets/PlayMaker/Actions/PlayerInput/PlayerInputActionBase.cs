@@ -105,11 +105,6 @@ namespace HutongGames.PlayMaker.Actions
             // force reset next time we enter
             m_playerInput = null;
         }
-
-        public override string ErrorCheck()
-        {
-            return "Action requires new Input System!";
-        }
     }
 }
 #endif

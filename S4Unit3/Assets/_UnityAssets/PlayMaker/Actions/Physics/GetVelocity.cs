@@ -54,7 +54,7 @@ namespace HutongGames.PlayMaker.Actions
 		    }		
 		}
 
-		public override void OnUpdate()
+		public override void OnFixedUpdate()
 		{
 			DoGetVelocity();
 		}

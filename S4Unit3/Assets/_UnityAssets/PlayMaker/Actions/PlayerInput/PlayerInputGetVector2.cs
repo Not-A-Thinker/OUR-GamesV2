@@ -11,12 +11,15 @@ namespace HutongGames.PlayMaker.Actions
 	public class PlayerInputGetVector2 : PlayerInputUpdateActionBase
     {
         [UIHint(UIHint.Variable)]
+        [Tooltip("Store the Vector2 value.")]
         public FsmVector2 storeVector2;
 
         [UIHint(UIHint.Variable)]
+        [Tooltip("Store the Vector2 x value.")]
         public FsmFloat storeX;
 
         [UIHint(UIHint.Variable)]
+        [Tooltip("Store the Vector2 y value.")]
         public FsmFloat storeY;
 
         public override void Reset()

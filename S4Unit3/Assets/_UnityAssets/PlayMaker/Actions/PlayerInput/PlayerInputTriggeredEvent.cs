@@ -8,11 +8,11 @@ namespace HutongGames.PlayMaker.Actions
 	[Tooltip("Sends an Event when an InputAction in a PlayerInput component is Triggered.")]
 	public class PlayerInputTriggeredEvent: PlayerInputActionBase
 	{
-        [Tooltip("The event to send on Input Triggered")]
+        [Tooltip("The event to send on Input Triggered.")]
         public FsmEvent sendEvent;
 
         [UIHint(UIHint.Variable)]
-        [Tooltip("store the input value")]
+        [Tooltip("Store the input value.")]
         public FsmBool storeValue;
 
         public override void Reset()
