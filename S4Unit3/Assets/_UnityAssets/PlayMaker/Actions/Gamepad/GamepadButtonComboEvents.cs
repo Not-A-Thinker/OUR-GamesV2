@@ -29,6 +29,7 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Time allowed for the next button press. Generally shorter for Same Time combos and longer for Sequences.")]
         public FsmFloat timeWindow;
 
+        [Tooltip("Use unscaled time for time window.")]
         public FsmBool realTime;
 
         [UIHint(UIHint.Variable)]
@@ -41,6 +42,7 @@ namespace HutongGames.PlayMaker.Actions
         [Tooltip("Event to send if the combo failed (started but timed-out).")]
         public FsmEvent failedEvent;
 
+        [Tooltip("Log Debug info to the Unity Console.")]
         public FsmBool debug;
 
         public override void Reset()

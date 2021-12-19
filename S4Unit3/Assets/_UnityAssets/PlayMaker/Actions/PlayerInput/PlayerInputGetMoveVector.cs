@@ -35,6 +35,7 @@ namespace HutongGames.PlayMaker.Actions
         public FsmFloat storeMagnitude;
 
         [UIHint(UIHint.Variable)]
+        [Tooltip("Store the move vector in a Vector3 variable.")]
         public FsmVector3 storeMoveVector;
 
         public override void Reset()

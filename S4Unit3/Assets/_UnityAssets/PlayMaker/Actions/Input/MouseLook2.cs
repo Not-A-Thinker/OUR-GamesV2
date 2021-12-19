@@ -9,6 +9,7 @@
 #define NEW_INPUT_SYSTEM_ONLY
 #endif
 
+using System;
 using UnityEngine;
 
 #if NEW_INPUT_SYSTEM_ONLY
@@ -21,6 +22,7 @@ namespace HutongGames.PlayMaker.Actions
 	/// Action version of Unity's builtin MouseLook behaviour.
 	/// TODO: Expose invert Y option.
 	/// </summary>
+	[Obsolete("Use MouseLook instead.")]
 	[ActionCategory(ActionCategory.Input)]
 	[Tooltip("NOTE: This is a duplicate action and will be removed in a future update. Please use Mouse Look instead." +
              "\nRotates a GameObject based on mouse movement. Minimum and Maximum values can be used to constrain the rotation.")]

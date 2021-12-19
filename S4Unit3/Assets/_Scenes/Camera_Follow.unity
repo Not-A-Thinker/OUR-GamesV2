@@ -347,10 +347,6 @@ PrefabInstance:
       propertyPath: UIcontrol
       value: 
       objectReference: {fileID: 4553678}
-    - target: {fileID: 500052817746688519, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -605,7 +601,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013359427, y: 49.052265, z: -68.798004}
+  m_LocalPosition: {x: 0.465346, y: 11.702312, z: -36.329433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2869,30 +2865,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Height
-      value: 3.7023582
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Radius
-      value: 1.8511791
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Center.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3547116887273196991, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: m_Center.z
-      value: -0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
 --- !u!4 &958826016 stripped
@@ -2953,7 +2925,7 @@ Camera:
     height: 1
   near clip plane: 0.001
   far clip plane: 400
-  field of view: 45
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2979,7 +2951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013359427, y: 49.052265, z: -68.798004}
+  m_LocalPosition: {x: 0.465346, y: 11.702312, z: -36.329433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6224,10 +6196,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1313674053510963525, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1860544260687256100, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: UIcontrol
       value: 

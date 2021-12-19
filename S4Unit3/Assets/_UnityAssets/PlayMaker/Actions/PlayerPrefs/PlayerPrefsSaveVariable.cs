@@ -5,7 +5,9 @@ using UnityEngine;
 namespace HutongGames.PlayMaker.Actions
 {
 	[ActionCategory("PlayerPrefs")]
-    [Tooltip("Save a variable value in PlayerPrefs. You can load the value later with {{PlayerPrefs Load Variable}}.")]
+    [Tooltip("Save a variable value in PlayerPrefs. " +
+             "You can load the value later with {{PlayerPrefs Load Variable}}.\n" +
+             "NOTE: You cannot save references to Scene Objects in PlayerPrefs!")]
     public class PlayerPrefsSaveVariable : FsmStateAction
 	{
 		[Tooltip("Case sensitive key.")]
