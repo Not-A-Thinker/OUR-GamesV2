@@ -28,7 +28,7 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(new Vector3(0, 1, 0) * rotateSpeed * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 1, 0) * -1 * rotateSpeed * Time.deltaTime);
 
 
         if (b_ShouldReturn)//May need to change due to whenever the boss if move

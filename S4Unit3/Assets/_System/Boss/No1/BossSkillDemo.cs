@@ -116,11 +116,11 @@ public class BossSkillDemo : MonoBehaviour
         {
             for (int j = 0; j < 16; j++)
             {
-                float angleValue = (22.5f * j + (22.5f / 2 * i)) % 360f;
+                float angleValue = (22.5f * j + (22.5f / 2 * i) + i) % 360f + 45;
 
                 Quaternion angle = Quaternion.AngleAxis(angleValue + transform.localEulerAngles.y, Vector3.up);
                 GameObject go = Instantiate(windBlade, instantiatePoint.transform.position, angle);
-                go.name = "WB_" + i + "," + j;
+                go.name = "WB_" + i + "," + j + "," + go.transform.localEulerAngles.y;
             }          
             yield return new WaitForSeconds(0.6f);
         }  
