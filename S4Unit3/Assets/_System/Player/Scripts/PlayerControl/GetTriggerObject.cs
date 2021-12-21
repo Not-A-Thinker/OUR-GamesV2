@@ -44,7 +44,7 @@ public class GetTriggerObject : MonoBehaviour
                 ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
 
-                Obj_rb.useGravity = false;       
+                //Obj_rb.useGravity = false;       
 
                 getedObject.transform.parent = ChipParent.transform;
 
@@ -62,7 +62,7 @@ public class GetTriggerObject : MonoBehaviour
                 ForceRepel_TopDown forceRepel_TopDown = GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
 
-                Obj_rb.useGravity = false;
+                //Obj_rb.useGravity = false;
                 //Debug.Log(Obj.name + "Trigger");             
                 if (getCube.objectParent.transform.childCount < 3)
                 {
@@ -70,7 +70,7 @@ public class GetTriggerObject : MonoBehaviour
                 }
                 else
                 {
-                    //Obj_rb.useGravity = true;
+                    Obj_rb.useGravity = true;
                 }
 
                 gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
