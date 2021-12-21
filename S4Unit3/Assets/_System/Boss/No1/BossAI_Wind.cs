@@ -32,6 +32,10 @@ public class BossAI_Wind : MonoBehaviour
     public bool IsStage1 = true;
     public bool IsStage2 = false;
 
+    [Header("Skills AI")]
+    public bool isMain;
+    public bool isStand;
+
     [Header("Skill Range")]
     [SerializeField] float skillRange1 = 5;
     [SerializeField] float skillRange2 = 10;
@@ -145,7 +149,7 @@ public class BossAI_Wind : MonoBehaviour
 
         int AIDecision = 0;
 
-        if (IsStage1)
+        if (IsStage1 || isStand)
         {
             //This is use for detect who is the closest player to boss or is behind it.
             //But now lookatp1 and lookatp2 are work in the same way.
@@ -196,7 +200,7 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
 
-        if (IsStage2)
+        if (IsStage2 && !isStand)
         {
             //This is use for detect who is the closest player to boss or is behind it.
             //But now lookatp1 and lookatp2 are work in the same way.
