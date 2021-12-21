@@ -50,8 +50,6 @@ public class BossSkillDemo : MonoBehaviour
         _Player2 = GameObject.Find("Player2");
 
         orgPos = transform.position;
-
-        //Ass
     }
 
     void Update()
