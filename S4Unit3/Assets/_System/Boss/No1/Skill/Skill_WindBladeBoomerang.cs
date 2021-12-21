@@ -23,7 +23,6 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     {
         orgPos = transform.position;
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
-        //fuck
     }
 
 
