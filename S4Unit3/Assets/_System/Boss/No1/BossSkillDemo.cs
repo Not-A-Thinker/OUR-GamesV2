@@ -34,6 +34,11 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Skill Tornado Gattai")]
     public bool tornadoGattaiIsExisted;
 
+    [Header("Skill Wind Hole")]
+    public GameObject windHole;
+    public LayerMask layerMask;
+    public Vector3[] otherPos = new Vector3[5];
+
     [Header("State")]
     [SerializeField] float _range = 20f;
     Vector3 orgPos;
@@ -101,8 +106,7 @@ public class BossSkillDemo : MonoBehaviour
         //The Update ends here.
     }
 
-    #region SkillSets
-
+    #region Stage1_SkillSets
     public void WindBlade()
     {
         StartCoroutine(animationPlaytime("isSwing"));
@@ -312,6 +316,60 @@ public class BossSkillDemo : MonoBehaviour
         transform.position = orgPos;
         isTeleported = false;
     }
+    //This is the end of stage1 skill sets.
+    #endregion
+
+    #region Stage2_SkillSets
+    public IEnumerator WindHole(int wave, int spawnNum)
+    {
+        for (int i = 0; i < wave; i++)
+        {
+            for (int p = 0; p < otherPos.Length; p++)
+            {
+                otherPos[p] = Vector3.zero;
+            }
+
+            for (int j = 0; j < spawnNum; j++)
+            {
+                float ranX = Random.Range(transform.position.x - _range + 1, transform.position.x + _range - 1);
+                float ranY = Random.Range(transform.position.z - _range + 1, transform.position.z + _range - 1);
+                Vector3 ranPos = new Vector3(ranX, 0.1f, ranY);
+
+                otherPos[j] = ranPos;
+                bool isPass = false;
+
+                RaycastHit cirHit;
+                if (!Physics.SphereCast(ranPos, 3, transform.up * .5f, out cirHit, 20, layerMask))
+                {
+
+                    for (int k = 0; k < otherPos.Length; k++)
+                    {
+                        Debug.Log(Vector3.Distance(otherPos[j], otherPos[k]));
+                        if (Vector3.Distance(otherPos[j], otherPos[k]) <= 3 && otherPos[j] != otherPos[k])
+                        {
+                            Debug.Log("Too Close!");
+                            isPass = true;
+                            break;
+                        }
+                    }
+
+                    if (!isPass)
+                    {
+                        Instantiate(windHole, ranPos, Quaternion.identity);
+                        Debug.Log("Spawn!");
+                        yield return new WaitForSeconds(0.15f);
+                    }
+                    else { j--; }
+
+                }
+                else { j--; }
+            }
+            yield return new WaitForSeconds(0.15f);
+        }
+        yield return null;
+    }
+
+    //This is the end of stage2 skill sets.
     #endregion
 
     private void OnDrawGizmos()
