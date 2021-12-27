@@ -109,7 +109,7 @@ public class BossSkillDemo : MonoBehaviour
     #region Stage1_SkillSets
     public void WindBlade()
     {
-        StartCoroutine(animationPlaytime("isSwing"));
+        Boss1Animator.SetTrigger("Skill_SwingAttack");
         Instantiate(windBlade, transform.position, transform.rotation);
     }
 
@@ -153,7 +153,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public void TornadoAttack()
     {
-        StartCoroutine(animationPlaytime("isTonado"));
+        //StartCoroutine(animationPlaytime("isTonado"));
+        Boss1Animator.SetTrigger("Skill_Tornado");
         //Vector3 rushPos = new Vector3(transform.position.x, transform.position.y, transform.position.z + 20);
         //_agent.SetDestination(rushPos);
 
@@ -162,7 +163,9 @@ public class BossSkillDemo : MonoBehaviour
 
     public void TornadoGattai()//Shoot out two tornado and will merge together
     {
-        StartCoroutine(animationPlaytime("isTonado"));
+        //StartCoroutine(animationPlaytime("isTonado"));
+        Boss1Animator.SetTrigger("Skill_Tornado");
+
         tornadoGattaiIsExisted = true;
 
         //Select one of the player to attack on
@@ -197,7 +200,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public IEnumerator TornadoGattaiTracktion()//May need to fix
     {
-        StartCoroutine(animationPlaytime("isTonado"));
+        //StartCoroutine(animationPlaytime("isTonado"));
+        Boss1Animator.SetTrigger("Skill_Tornado");
         if (GameObject.Find("tornadoSmall_1") == null)
             yield break;
         
@@ -215,7 +219,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public IEnumerator EightTornado(int wave)
     {
-        StartCoroutine(animationPlaytime("isTonado"));
+        //StartCoroutine(animationPlaytime("isTonado"));
+        Boss1Animator.SetTrigger("Skill_Tornado");
         for (int i = 0; i < wave; i++)//Wave to spawn
         {
             float SelfPosY = transform.rotation.y;
@@ -238,7 +243,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             case 1:
                 Vector3 forwardLeft = Quaternion.Euler(0, -60, 0) * transform.forward * _range;
-                StartCoroutine(animationPlaytime("isSwing"));
+                Boss1Animator.SetTrigger("Skill_SwingAttack");
                 for (int i = 0; i < 5; i++)
                 {
                     GameObject go_boomerang = Instantiate(windBladeBoomerang, transform.position, transform.rotation);
@@ -252,7 +257,7 @@ public class BossSkillDemo : MonoBehaviour
                 break;
             case 2:
                 int ran = Random.Range(1, 3);
-                StartCoroutine(animationPlaytime("isSwing"));
+                Boss1Animator.SetTrigger("Skill_SwingAttack");
                 GameObject go = Instantiate(windBladeBoomerang, instantiatePoint.transform.position, transform.rotation);
                 if (ran == 1)
                     go.GetComponent<Skill_WindBladeBoomerang>().tarPos = _Player1.transform.position;
@@ -264,7 +269,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public void TornadoSpecialAttack()
     {
-        StartCoroutine(animationPlaytime("isTonado"));
+        //StartCoroutine(animationPlaytime("isTonado"));
+        Boss1Animator.SetTrigger("Skill_Tornado");
         for (int i = 0; i < 4; i++)
         {
             int rnd = Random.Range(0, 360);
@@ -387,4 +393,5 @@ public class BossSkillDemo : MonoBehaviour
 
         Boss1Animator.SetBool(TriggerBool, false);
     }
+
 }

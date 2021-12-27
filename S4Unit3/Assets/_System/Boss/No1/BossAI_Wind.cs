@@ -251,7 +251,7 @@ public class BossAI_Wind : MonoBehaviour
     public IEnumerator AIOnAttack(int num)
     {
         int rndNum = Random.Range(0, 100);
-        print("AI has select:" + num + "+" + rndNum);
+        print("AI has select: " + num + "and rndNum is: " + rndNum);
 
         //This is the attack alert animation,
         //and will have to wait at least 0.4 sec to response(may need to change).
