@@ -142,7 +142,7 @@ public class Move : MonoBehaviour
             //Rotate Trash
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-            //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+            Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
 
             //if (RothorizontalInput < 0.3f && RothorizontalInput > -0.3f)
             //    RothorizontalInput = 0;
@@ -158,19 +158,16 @@ public class Move : MonoBehaviour
 
             //2
 
-            //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
+            Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
 
 
-            //if (angle != Vector2.zero)
-            //{
-            //    Quaternion toRotation = Quaternion.LookRotation(Vector3.up, angle);
-            //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            //}
+            if (angle != Vector2.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.up, angle);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
 
-
-
-
-            BossLockOn();
+            //BossLockOn();
 
             ////Aim
             //Plane plane = new Plane(Vector3.up, transform.position);
