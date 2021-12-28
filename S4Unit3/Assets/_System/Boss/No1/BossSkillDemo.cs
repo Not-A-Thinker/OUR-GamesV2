@@ -105,7 +105,7 @@ public class BossSkillDemo : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            StartCoroutine(WindHole(1, 5));
+            StartCoroutine(WindHole(1, 10));
         }
 
         //The Update ends here.
