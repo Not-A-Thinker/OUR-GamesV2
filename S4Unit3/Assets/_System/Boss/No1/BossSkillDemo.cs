@@ -103,6 +103,11 @@ public class BossSkillDemo : MonoBehaviour
             TornadoSpecialAttack();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            StartCoroutine(WindHole(1, 5));
+        }
+
         //The Update ends here.
     }
 
