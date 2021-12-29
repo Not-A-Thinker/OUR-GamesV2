@@ -1,0 +1,204 @@
+<!DOCTYPE html []>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="MarkdownViewer++" />
+    <title>CastVisualizer-Manual</title>
+    <style type="text/css">
+            
+/* Avoid page breaks inside the most common attributes, especially for exports (i.e. PDF) */
+td, h1, h2, h3, h4, h5, p, ul, ol, li {
+    page-break-inside: avoid; 
+}
+body {
+  width: 50%;
+  margin: auto;
+}
+
+table {
+  width: 100%;
+  margin-left: 20px;
+}
+
+td {
+  padding-right: 20px;
+}
+        </style>
+  </head>
+  <body>
+    <h1 id="cast-visualizer-for-unity-3d">Cast Visualizer for Unity 3D</h1>
+    <p>Tool extension for the Unity Editor that visualizes all casts and overlap tests in the scene view for fast debugging. It will also display the hit results and requires no code modifications.</p>
+    <p>
+      <strong>Table of Contents</strong>
+    </p>
+    <ol>
+      <li>
+        <a href="#support">Support</a>
+      </li>
+      <li>
+        <a href="#features">Features</a>
+        <br />
+2.1 <a href="#provided-visualizations">Provided visualizations</a></li>
+      <li>
+        <a href="#usage">Usage</a>
+        <br />
+3.1 <a href="#activate-deactivate-visualization">Activate/Deactivate visualization</a><br />
+3.2 <a href="#visualizations">Visualizations</a><br />
+3.3 <a href="#show-in-game-view">Show in game view</a></li>
+      <li>
+        <a href="#customization">Customization</a>
+        <br />
+4.1 <a href="#select-types-to-show">Select types to show</a><br />
+4.2 <a href="#colors">Colors</a><br />
+4.3 <a href="#volume-visualization-types">Volume visualization types</a></li>
+      <li>
+        <a href="#samples">Samples</a>
+      </li>
+      <li>
+        <a href="#technical-details">Technical details</a>
+        <br />
+6.1 <a href="#requirements">Requirements</a><br />
+6.2 <a href="#limitations">Limitations</a></li>
+    </ol>
+    <h1 id="support">1. Support <a name="support"></a></h1>
+    <p>
+      <a href="https://www.bgtools.de/post/castvisualizer/">Website</a> | <a href="mailto:support@bgtools.de">Mail</a> | <a href="https://discord.gg/8rcPZrD">Discord</a></p>
+    <h1 id="features">2. Features <a name="features"></a></h1>
+    <ul>
+      <li>Visualizes casts, overlap tests, and their results (hit points, colliders)</li>
+      <li>Works with standard Unity functions, no code modification required</li>
+      <li>Supports all cast types (check, cast, all, noAlloc)</li>
+      <li>Shows casts for the whole project, including not self-programmed like in external plugins</li>
+    </ul>
+    <h2 id="provided-visualizations">2.1 Provided visualizations <a name="provided-visualizations"></a></h2>
+    <p>A list of the supported visualizations for modules and there calls are listed below:</p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left;">Physics</th>
+          <th style="text-align: left;">Physics2D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">• Linecast</td>
+          <td style="text-align: left;">• Linecast</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• Raycast</td>
+          <td style="text-align: left;">• Raycast</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• Boxcast</td>
+          <td style="text-align: left;">• BoxCast</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• CapsuleCast</td>
+          <td style="text-align: left;">• CapsuleCast</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• SphereCast</td>
+          <td style="text-align: left;">• CircleCast</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• CheckBox</td>
+          <td style="text-align: left;">• OverlapBox</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• CheckSphere</td>
+          <td style="text-align: left;">• OverlapCircle</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• CheckCapsule</td>
+          <td style="text-align: left;">• OverlapCapsule</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• OverlapBox</td>
+          <td style="text-align: left;">• OverlapArea</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• OverlapSphere</td>
+          <td style="text-align: left;">• OverlapCollider</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">• OverlapCapsule</td>
+          <td style="text-align: left;">• OverlapPoint</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1 id="usage">3. Usage <a name="usage"></a></h1>
+    <p>The <em>Cast Visualizer</em> is located in the top menu at Tools/BG Tools/Cast Visualizer. It's a standard dockable window, so place it wherever it helps to be productive.<br />
+All functions will be controlled from this window.</p>
+    <p>
+      <img src="./Images/bgtools_cv_manual_layout.png" width="100%" style="max-width:400px" alt="Cast visualizer window layout" />
+    </p>
+    <p>The Cast Visualizer window displays:</p>
+    <ul>
+      <li>(A) Toggle buttons to enable/disable visualization</li>
+      <li>(B) Activate visualization for modules</li>
+      <li>(C) Customize colors</li>
+      <li>(D) Select the preferred cast volume visualization type</li>
+    </ul>
+    <h2 id="activatedeactivate-visualization">3.1 Activate/Deactivate visualization <a name="activate-deactivate-visualization"></a></h2>
+    <p>To activate/deactivate the visualization use the on/off buttons on top of the <em>CastVisualizer</em> window.
+This will show all casts and overlap tests that will be performed.</p>
+    <h2 id="visualizations">3.2 Visualizations <a name="visualizations"></a></h2>
+    <p>Below a description what will be shown as visualization for the cast and overlaps.</p>
+    <p>
+      <strong>Casts</strong>
+    </p>
+    <blockquote>
+      <p>Cast will be visualized with their cast geometry at the origin and the max distance. The connection between them can be configured, see 'Volume visualization types'.
+The hits are shown by displaying the cast's geometry at their location. Additionally the direct hit position will be marked with the cross indication if this data are available.</p>
+    </blockquote>
+    <p>
+      <strong>Overlaps</strong>
+    </p>
+    <blockquote>
+      <p>Get visualized over the overlap test geometry. All the overlapping colliders will be highlighted as hit.</p>
+    </blockquote>
+    <h2 id="show-in-game-view">3.3 Show in game view <a name="show-in-game-view"></a></h2>
+    <p>To show the visualization in the game view activate it with the 'Gizmos' button, as shown in the following image. It is deactivated by default.</p>
+    <p>
+      <img src="./Images/bgtools_cv_manual_gameView.png" width="100%" style="max-width:700px" alt="Game view window gizmos button" />
+    </p>
+    <h1 id="customization">4. Customization <a name="customization"></a></h1>
+    <p>Customize the visualization as you like for your needs. The configuration can be found in the <em>CastVisualizer</em> window too. Below a description of what can be configured.</p>
+    <h2 id="select-types-to-show">4.1 Select types to show <a name="select-types-to-show"></a></h2>
+    <p>Control what kind of types are shown with checking the required modules to keep focus of what you're working on.</p>
+    <h2 id="colors">4.2 Colors <a name="colors"></a></h2>
+    <p>Change the colors for the visualization of the module and the hits as you like.</p>
+    <h2 id="volume-visualization-types">4.3 Volume visualization types <a name="volume-visualization-types"></a></h2>
+    <p>Choose between two different types of visualizations for the cast volume:</p>
+    <ul>
+      <li>Line - Displays the cast direction as line</li>
+      <li>Wired Body - Connects the edges of the cast volume</li>
+    </ul>
+    <p>
+      <img src="./Images/bgtools_cv_manual_visu.png" width="100%" style="max-width:800px" alt="Volume visualization types" />
+    </p>
+    <h1 id="samples">5. Samples <a name="samples"></a></h1>
+    <p>This package includes two sample scenes for testing purposes:</p>
+    <p>
+      <strong>Physics</strong>
+    </p>
+    <blockquote>
+      <p>Contains all types of casts and overlap test from the physics module.</p>
+    </blockquote>
+    <p>
+      <strong>Physics2D</strong>
+    </p>
+    <blockquote>
+      <p>Contains all types of casts and overlap test from the physics2d module.</p>
+    </blockquote>
+    <h1 id="technical-details">6. Technical details <a name="technical-details"></a></h1>
+    <h2 id="requirements">6.1 Requirements <a name="requirements"></a></h2>
+    <p>This version of Cast Visualizer is compatible with the following versions of the Unity Editor:</p>
+    <blockquote>
+      <p>2018.4 or higher (recommended)</p>
+    </blockquote>
+    <h2 id="limitations">6.2 Limitations <a name="limitations"></a></h2>
+    <p>The visualization is only displayed in the editor. The plugin uses editor functions to draw all the visualization and they are not available on published builds.</p>
+    <p>Casts use infinite distance by default. Due to limitations of debug rendering in the editor, it is not possible to visualize this. The plugin uses a fixed distance to show infinity casts. But the internal check is already infinity.</p>
+  </body>
+</html>
