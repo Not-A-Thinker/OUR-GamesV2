@@ -157,15 +157,23 @@ public class Move : MonoBehaviour
             //}
 
             //2
+            //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
 
-            Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
 
+            //if (angle != Vector2.zero)
+            //{
+            //    Quaternion toRotation = Quaternion.LookRotation(Vector3.up, angle);
+            //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            //}
 
-            if (angle != Vector2.zero)
-            {
-                Quaternion toRotation = Quaternion.LookRotation(Vector3.up, angle);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            }
+            //3
+            //Vector3 relative = transform.InverseTransformPoint(target.position);
+            float angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+
+            ShootRot.transform.rotation = new Quaternion(0, angle, 0, 90);
+
+          
 
             //BossLockOn();
 
