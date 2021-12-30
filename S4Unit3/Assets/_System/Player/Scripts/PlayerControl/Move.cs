@@ -53,21 +53,23 @@ public class Move : MonoBehaviour
     public float DashUsed ;
     public float DashRestore;
 
-    
+    float angle;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
-        Boss = GameObject.Find("Boss");
-        
+        Boss = GameObject.Find("Boss");        
     }
 
+    private void FixedUpdate()
+    {
+        ShootRot.transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, angle, 0, 90), 5f * Time.deltaTime);
+    }
 
     void Update()
-    {
-        
+    {    
         if (characterController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...
@@ -77,21 +79,15 @@ public class Move : MonoBehaviour
         {
             DashBar = DashBar + DashRestore * Time.deltaTime;
         }
+
         if (isPlayer1)//wasd
         {
-
             if(inCC==false)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 //Move
                 float horizontalInput = Input.GetAxis("HorizontalP1");
                 float verticalInput = Input.GetAxis("VerticalP1");
-
-                //if (horizontalInput < 0.3f && horizontalInput > -0.3f)
-                //    horizontalInput = 0;
-
-                //if (verticalInput < 0.3f && verticalInput > -0.3f)
-                //    verticalInput = 0;
 
                 Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
 
@@ -109,12 +105,9 @@ public class Move : MonoBehaviour
                 {
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-                }
-
-                if (movementDirection != Vector3.zero)
-                {
                     _animation.PlayerWalk(true);
                 }
+
                 if (movementDirection == Vector3.zero)
                 {
                     _animation.PlayerWalk(false);
@@ -142,15 +135,19 @@ public class Move : MonoBehaviour
             //Rotate Trash
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-            Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+            //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+            angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+            Debug.Log(angle);
 
-            //if (RothorizontalInput < 0.3f && RothorizontalInput > -0.3f)
-            //    RothorizontalInput = 0;
-            //if (RotverticalInput < 0.3f && RotverticalInput > -0.3f)
-            //    RotverticalInput = 0;
+            //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
+            //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
+
+            //// Rotate the cube by converting the angles into a quaternion.
+            //Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
+            //// Dampen towards the target rotation
+            //ShootRot.transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5f);
 
             //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-
             //if (angle != Vector2.zero)
             //{
             //    characterController.transform.Rotate(transform.up * angle * (rotationSpeed * Time.deltaTime));
@@ -158,7 +155,6 @@ public class Move : MonoBehaviour
 
             //2
             //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-
 
             //if (angle != Vector2.zero)
             //{
@@ -168,13 +164,12 @@ public class Move : MonoBehaviour
 
             //3
             //Vector3 relative = transform.InverseTransformPoint(target.position);
-            float angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-            Debug.Log(angle);
+            //float angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+            //Debug.Log(angle);
 
-            ShootRot.transform.rotation = new Quaternion(0, angle, 0, 90);
-
-          
-
+            //ShootRot.transform.rotation = new Quaternion(0, angle, 0, 90);
+            //Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            //Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
             //BossLockOn();
 
             ////Aim
@@ -229,10 +224,6 @@ public class Move : MonoBehaviour
                 //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 //Debug.Log(angle);
 
-                //else
-                //{
-
-                //}
                 //Vector3 v_movement = characterController.transform.forward * verticalInput;
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
