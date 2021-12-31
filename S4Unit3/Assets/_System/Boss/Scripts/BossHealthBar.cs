@@ -25,11 +25,11 @@ public class BossHealthBar : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus))
         {
-            TakeDamage(30);
+            TakeDamage(100);
         }
-        if (Input.GetKeyDown(KeyCode.Minus))
+        if (Input.GetKeyDown(KeyCode.KeypadPlus)) 
         {
             Healing(40);
         }

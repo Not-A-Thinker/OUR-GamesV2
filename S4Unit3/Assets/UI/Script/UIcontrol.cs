@@ -13,6 +13,7 @@ public class UIcontrol : MonoBehaviour
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
+    [SerializeField] BossAI_Wind BossAI;
 
     [Header("Respawn")]
     [SerializeField] GameObject RespawnLoad;
@@ -35,7 +36,7 @@ public class UIcontrol : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (BossHP.value <= 0)
+        if (BossHP.value <= 0 && BossAI.IsStage2)
         {
             YouWin();
         }
