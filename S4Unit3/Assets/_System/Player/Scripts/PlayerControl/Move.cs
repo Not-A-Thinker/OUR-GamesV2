@@ -65,7 +65,7 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ShootRot.transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, angle, 0, 90), 5f * Time.deltaTime);
+        //ShootRot.transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
     void Update()
@@ -135,9 +135,16 @@ public class Move : MonoBehaviour
             //Rotate Trash
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-            //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-            angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-            Debug.Log(angle);
+
+            if(RothorizontalInput!=0&& RotverticalInput!=0)
+            {
+                //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                Quaternion target = Quaternion.Euler(0, angle, 0);
+                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                //Debug.Log(angle);
+            }
 
             //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
             //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
