@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-   
+
     [SerializeField] UIcontrol UIcontrol;
 
 
@@ -49,11 +49,11 @@ public class Move : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    public float DashBar=100f;
-    public float DashUsed ;
+    public float DashBar = 100f;
+    public float DashUsed;
     public float DashRestore;
 
-    
+    float angle;
 
     void Start()
     {
@@ -61,13 +61,15 @@ public class Move : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
-        
     }
 
+    private void FixedUpdate()
+    {
+        //ShootRot.transform.rotation = Quaternion.Euler(0, angle, 0);
+    }
 
     void Update()
     {
-        
         if (characterController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...
@@ -77,21 +79,15 @@ public class Move : MonoBehaviour
         {
             DashBar = DashBar + DashRestore * Time.deltaTime;
         }
+
         if (isPlayer1)//wasd
         {
-
-            if(inCC==false)
+            if (inCC == false)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 //Move
                 float horizontalInput = Input.GetAxis("HorizontalP1");
                 float verticalInput = Input.GetAxis("VerticalP1");
-
-                //if (horizontalInput < 0.3f && horizontalInput > -0.3f)
-                //    horizontalInput = 0;
-
-                //if (verticalInput < 0.3f && verticalInput > -0.3f)
-                //    verticalInput = 0;
 
                 Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
 
@@ -109,12 +105,9 @@ public class Move : MonoBehaviour
                 {
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-                }
-
-                if (movementDirection != Vector3.zero)
-                {
                     _animation.PlayerWalk(true);
                 }
+
                 if (movementDirection == Vector3.zero)
                 {
                     _animation.PlayerWalk(false);
@@ -142,24 +135,33 @@ public class Move : MonoBehaviour
             //Rotate Trash
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-            //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
 
-            //if (RothorizontalInput < 0.3f && RothorizontalInput > -0.3f)
-            //    RothorizontalInput = 0;
-            //if (RotverticalInput < 0.3f && RotverticalInput > -0.3f)
-            //    RotverticalInput = 0;
+            if (RothorizontalInput != 0 && RotverticalInput != 0)
+            {
+                //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                Quaternion target = Quaternion.Euler(0, angle, 0);
+                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                //Debug.Log(angle);
+            }
+
+            //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
+            //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
+
+            //// Rotate the cube by converting the angles into a quaternion.
+            //Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
+            //// Dampen towards the target rotation
+            //ShootRot.transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5f);
 
             //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-
             //if (angle != Vector2.zero)
             //{
             //    characterController.transform.Rotate(transform.up * angle * (rotationSpeed * Time.deltaTime));
             //}
 
             //2
-
             //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-
 
             //if (angle != Vector2.zero)
             //{
@@ -167,10 +169,15 @@ public class Move : MonoBehaviour
             //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             //}
 
+            //3
+            //Vector3 relative = transform.InverseTransformPoint(target.position);
+            //float angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+            //Debug.Log(angle);
 
-
-
-            BossLockOn();
+            //ShootRot.transform.rotation = new Quaternion(0, angle, 0, 90);
+            //Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            //Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
+            //BossLockOn();
 
             ////Aim
             //Plane plane = new Plane(Vector3.up, transform.position);
@@ -190,7 +197,7 @@ public class Move : MonoBehaviour
 
         if (isPlayer2)//arrows
         {
-            if(inCC==false)
+            if (inCC == false)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 float horizontalInput = Input.GetAxis("HorizontalP2");
@@ -207,10 +214,10 @@ public class Move : MonoBehaviour
                 // convert vel to displacement and Move the character:
                 characterController.Move(velocity * Time.deltaTime);
 
-               if(movementDirection!=Vector3.zero)
+                if (movementDirection != Vector3.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                    Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed*100f * Time.deltaTime);
+                    Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                 }
 
                 if (movementDirection != Vector3.zero)
@@ -224,10 +231,6 @@ public class Move : MonoBehaviour
                 //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 //Debug.Log(angle);
 
-                //else
-                //{
-
-                //}
                 //Vector3 v_movement = characterController.transform.forward * verticalInput;
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
@@ -311,20 +314,20 @@ public class Move : MonoBehaviour
     public IEnumerator GetFriendlyControl(Vector3 velocity)
     {
         if (isPlayer1)
-        {      
+        {
             inCC = true;
             velocity.y = 0;
             float startTime = Time.time;
 
             velocity = velocity - this.transform.position;
             velocity = velocity.normalized * 2f;
-      
+
             Debug.Log(velocity);
             //velocity = velocity.normalized;
 
             while (Time.time < startTime + dashTime)
             {
-                characterController.Move(velocity * 30 *Time.deltaTime);
+                characterController.Move(velocity * 30 * Time.deltaTime);
 
                 yield return null;
 
@@ -353,10 +356,10 @@ public class Move : MonoBehaviour
 
                 yield return null;
 
-                if(GetComponent<PlayerState>().isDead==false)
+                if (GetComponent<PlayerState>().isDead == false)
                 {
                     inCC = false;
-                }            
+                }
             }
             //yield return new WaitForSeconds(10);
         }
@@ -395,3 +398,4 @@ public class Move : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime);
     }
 }
+
