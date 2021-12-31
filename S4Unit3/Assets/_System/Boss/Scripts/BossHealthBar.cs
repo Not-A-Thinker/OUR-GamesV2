@@ -70,4 +70,9 @@ public class BossHealthBar : MonoBehaviour
     {
         health = value;
     }
+
+    public void Stage1ToStage2()
+    {
+        health = maxHealth;
+    }
 }
