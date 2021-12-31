@@ -87,7 +87,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
-            Debug.Log(hit.transform.name + "." + hit.transform.tag);
+            //Debug.Log(hit.transform.name + "." + hit.transform.tag);
             if (hit.transform.gameObject.layer == 6)
             {
                 if (savedObject == null)
