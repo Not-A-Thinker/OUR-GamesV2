@@ -15,9 +15,10 @@ public class ForceCast_TopDown : MonoBehaviour
 
     public GameObject rangeObj;
     Renderer rangeObjRed;
+   [SerializeField] GameObject RangeBigObj;
 
    [SerializeField] UIcontrol UIcontrol;
-   [SerializeField] GameObject ShootRot,Charitor;
+   [SerializeField] GameObject Charitor;
 
     float countFloat = 0;
 
@@ -39,6 +40,38 @@ public class ForceCast_TopDown : MonoBehaviour
         //Debug.DrawRay(selfPos, transform.forward * _range, Color.red);
         if (Input.GetButtonDown("Fire1"))
             OldQuate = Charitor.transform.rotation;
+
+        if (Input.GetButton("HelpFriendP1"))
+        {       
+            Vector3 startPos = transform.position;
+            Vector3 endPos = RangeBigObj.transform.forward;
+            RaycastHit isPlayerHit;
+
+            if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
+            {
+                //Debug.Log(isPlayerHit.transform.tag);
+                //Debug.DrawRay(startPos, endPos * _range);
+                //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
+                if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
+                {
+                    rangeObj.SetActive(true);
+                    if (isPlayerHit.transform.gameObject != gameObject)
+                    {
+                        //Debug.Log(isPlayerHit.transform.gameObject.name);
+                        Move move = isPlayerHit.transform.GetComponent<Move>();
+                        StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
+                        StartCoroutine(FriendCD(8));
+                        rangeObj.SetActive(false);
+                    }
+                }
+            }     
+        }
+
+        if (Input.GetButtonUp("HelpFriendP1"))
+        {
+            rangeObj.SetActive(false);
+        }
+
         if (Input.GetButton("Fire1"))
         {
             if(Shooted==false)
@@ -48,27 +81,6 @@ public class ForceCast_TopDown : MonoBehaviour
 
                 rangeObj.SetActive(true);
             }     
-            Vector3 startPos = transform.position;
-            Vector3 endPos = transform.forward;           
-
-            RaycastHit isPlayerHit;
-
-            if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
-            {
-                //Debug.Log(isPlayerHit.transform.tag);
-                Debug.DrawRay(startPos, endPos*_range);
-                //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
-                if (isPlayerHit.transform.tag == "Player" && friendPushed==false)
-                {
-                    if(isPlayerHit.transform.gameObject!=gameObject)
-                    {
-                        Debug.Log(isPlayerHit.transform.gameObject.name);
-                        Move move = isPlayerHit.transform.GetComponent<Move>();
-                        StartCoroutine(move.GetFriendlyControl(transform.forward));
-                        StartCoroutine(FriendCD(8));
-                    }                
-                }
-            }
         }
         if (Input.GetButtonUp("Fire1"))
         {
@@ -124,8 +136,6 @@ public class ForceCast_TopDown : MonoBehaviour
         count = 0;
     }
 
-
-
     void Accumulate()
     {
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
@@ -160,6 +170,7 @@ public class ForceCast_TopDown : MonoBehaviour
     IEnumerator FriendCD(int time)
     {
         friendPushed = true;
+        rangeObj.SetActive(false);
         yield return new WaitForSeconds(time);
         friendPushed = false;
     }

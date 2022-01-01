@@ -63,11 +63,6 @@ public class Move : MonoBehaviour
         Boss = GameObject.Find("Boss");
     }
 
-    private void FixedUpdate()
-    {
-        //ShootRot.transform.rotation = Quaternion.Euler(0, angle, 0);
-    }
-
     void Update()
     {
         if (characterController.isGrounded)
@@ -146,6 +141,11 @@ public class Move : MonoBehaviour
                 //Debug.Log(angle);
             }
 
+            if (Input.GetButtonDown("LockOnP1"))
+            {
+                Debug.Log("locked Boss!");
+                BossLockOn();
+            }                
             //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
             //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
 
@@ -392,10 +392,10 @@ public class Move : MonoBehaviour
 
     public void BossLockOn()//Boss will always lock on the closest player
     {
-        Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - transform.position);
+        Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - ShootRot.transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime);
+        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 400f * Time.deltaTime);
     }
 }
 
