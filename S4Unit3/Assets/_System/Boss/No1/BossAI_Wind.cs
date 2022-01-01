@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(BossSkillDemo))]
 public class BossAI_Wind : MonoBehaviour
 {
     Rigidbody rb;
     Animator ani;
+    NavMeshAgent agent;
 
     BossSkillDemo BossSkill;
     BossHealthBar healthBar;
@@ -54,7 +56,8 @@ public class BossAI_Wind : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        ani = GetComponent<Animator>();
+        ani = transform.GetComponentInChildren<Animator>();
+        agent = GetComponent<NavMeshAgent>();
 
         BossSkill = GetComponent<BossSkillDemo>();
         healthBar = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
@@ -423,18 +426,18 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 2))
         {
-            ani.SetTrigger("isBacking");
+            ani.SetTrigger("IsBackwarding");
             yield return new WaitForSeconds(timing);
             rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
         }
         if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 2))
         {
-            ani.SetTrigger("isBacking");
+            ani.SetTrigger("IsBackwarding");
             yield return new WaitForSeconds(timing);
             rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
         }
 
-        yield return null;
+        yield return new WaitForSeconds(0.3f);
     }
 
     IEnumerator AIStartTimer()
@@ -494,6 +497,7 @@ public class BossAI_Wind : MonoBehaviour
             PlayerDetect();
             //yield return new WaitForSeconds(0.3f);
             yield return new WaitUntil(() => isLockOn);
+            yield return coroutineRun = StartCoroutine(Pre_BossMovement());
             SkillSelection();
             yield return coroutineAtk;
             //Debug.Log("A rountine is FINISH!");

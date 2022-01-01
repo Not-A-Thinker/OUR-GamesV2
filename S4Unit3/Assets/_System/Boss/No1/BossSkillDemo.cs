@@ -134,9 +134,10 @@ public class BossSkillDemo : MonoBehaviour
                 go.name = "WB_" + i + "," + j + "," + go.transform.localEulerAngles.y;
             }          
             yield return new WaitForSeconds(0.6f);
-        }  
-        yield return null;
+        }
+
         Boss1Animator.SetBool("isBlade", false);
+        yield return null;
     }
 
     public void VacuumPressure()
@@ -227,7 +228,7 @@ public class BossSkillDemo : MonoBehaviour
     public IEnumerator EightTornado(int wave)
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        Boss1Animator.SetTrigger("Skill_EightTornado");
         for (int i = 0; i < wave; i++)//Wave to spawn
         {
             float SelfPosY = transform.rotation.y;
@@ -250,7 +251,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             case 1:
                 Vector3 forwardLeft = Quaternion.Euler(0, -60, 0) * transform.forward * _range;
-                Boss1Animator.SetTrigger("Skill_SwingAttack");
+                Boss1Animator.SetTrigger("Skill_Boomerang");
                 for (int i = 0; i < 5; i++)
                 {
                     GameObject go_boomerang = Instantiate(windBladeBoomerang, transform.position, transform.rotation);
@@ -264,7 +265,7 @@ public class BossSkillDemo : MonoBehaviour
                 break;
             case 2:
                 int ran = Random.Range(1, 3);
-                Boss1Animator.SetTrigger("Skill_SwingAttack");
+                Boss1Animator.SetTrigger("Skill_Boomerang");
                 GameObject go = Instantiate(windBladeBoomerang, instantiatePoint.transform.position, transform.rotation);
                 if (ran == 1)
                     go.GetComponent<Skill_WindBladeBoomerang>().tarPos = _Player1.transform.position;
