@@ -21,6 +21,7 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject windBladeBoomerang;
     public GameObject tornadoSpecialAttack;
 
+    [Header("Coroutine")]
     public Coroutine TornadoTracking;
 
     [Header("Skill")]

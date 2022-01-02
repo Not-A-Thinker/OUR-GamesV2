@@ -152,7 +152,7 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     public void CantSucc()
     {
-        canSucc=false;
+        canSucc = false;
     }
 
     public void resetObject()

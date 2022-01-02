@@ -5,23 +5,24 @@ using UnityEngine.UI;
 
 public class UIcontrol : MonoBehaviour
 {
-    //player 
+    [Header("Player")]
     [SerializeField] GameObject[] Player1Hp;
     [SerializeField] GameObject[] Player2Hp;
     [SerializeField] Slider Player1Energy;
     [SerializeField] Slider Player2Energy;
 
-    //boss
+    [Header("Boss")]
     [SerializeField] Slider BossHP;
+    [SerializeField] BossAI_Wind BossAI;
 
-    //respawn 
+    [Header("Respawn")]
     [SerializeField] GameObject RespawnLoad;
     [SerializeField] Text LoadingText;
     [SerializeField] Slider slider;
     SceneControl sceneControl;
     //[SerializeField] Text DeadCount;
 
-    //push Bar
+    [Header("Push Bar")]
     [SerializeField] GameObject pushing;
     [SerializeField] Slider push_slider;
 
@@ -35,7 +36,7 @@ public class UIcontrol : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (BossHP.value == 0)
+        if (BossHP.value <= 0 && BossAI.IsStage2)
         {
             YouWin();
         }
