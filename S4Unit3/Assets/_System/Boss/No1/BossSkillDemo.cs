@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossSkillDemo : MonoBehaviour
 {
+    Rigidbody rb;
+
     private GameObject _Player1;
     private GameObject _Player2;
 
@@ -39,6 +41,9 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject windHole;
     public LayerMask layerMask;
     public Vector3[] otherPos = new Vector3[5];
+
+    [Header("Skill Tail Attack")]
+    [SerializeField] float tailForwardForce = 10000;
 
     [Header("State")]
     [SerializeField] float _range = 20f;
@@ -381,6 +386,11 @@ public class BossSkillDemo : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         yield return null;
+    }
+
+    public void bossTailAttackAnimation()
+    {
+        rb.AddForce(tailForwardForce * -transform.forward, ForceMode.Impulse);
     }
 
     //This is the end of stage2 skill sets.
