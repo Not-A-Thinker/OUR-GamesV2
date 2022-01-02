@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BossSkillDemo : MonoBehaviour
 {
+    Rigidbody rb;
+
     private GameObject _Player1;
     private GameObject _Player2;
 
@@ -21,6 +23,7 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject windBladeBoomerang;
     public GameObject tornadoSpecialAttack;
 
+    [Header("Coroutine")]
     public Coroutine TornadoTracking;
 
     [Header("Skill")]
@@ -39,6 +42,9 @@ public class BossSkillDemo : MonoBehaviour
     public LayerMask layerMask;
     public Vector3[] otherPos = new Vector3[5];
 
+    [Header("Skill Tail Attack")]
+    [SerializeField] float tailForwardForce = 10000;
+
     [Header("State")]
     [SerializeField] float _range = 20f;
     Vector3 orgPos;
@@ -53,6 +59,8 @@ public class BossSkillDemo : MonoBehaviour
     {
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
+
+        rb = GetComponent<Rigidbody>();
 
         orgPos = transform.position;
     }
@@ -103,6 +111,11 @@ public class BossSkillDemo : MonoBehaviour
             TornadoSpecialAttack();
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            StartCoroutine(WindHole(1, 10));
+        }
+
         //The Update ends here.
     }
 
@@ -118,6 +131,7 @@ public class BossSkillDemo : MonoBehaviour
         Boss1Animator.SetBool("isBlade", true);
         for (int i = 0; i < wave; i++)//Wave to spawn
         {
+            Boss1Animator.SetTrigger("Skill_WindBlade");
             for (int j = 0; j < 16; j++)
             {
                 float angleValue = (22.5f * j + (22.5f / 2 * i) + i) % 360f + 45;
@@ -127,9 +141,10 @@ public class BossSkillDemo : MonoBehaviour
                 go.name = "WB_" + i + "," + j + "," + go.transform.localEulerAngles.y;
             }          
             yield return new WaitForSeconds(0.6f);
-        }  
-        yield return null;
+        }
+
         Boss1Animator.SetBool("isBlade", false);
+        yield return null;
     }
 
     public void VacuumPressure()
@@ -220,7 +235,7 @@ public class BossSkillDemo : MonoBehaviour
     public IEnumerator EightTornado(int wave)
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        Boss1Animator.SetTrigger("Skill_EightTornado");
         for (int i = 0; i < wave; i++)//Wave to spawn
         {
             float SelfPosY = transform.rotation.y;
@@ -243,7 +258,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             case 1:
                 Vector3 forwardLeft = Quaternion.Euler(0, -60, 0) * transform.forward * _range;
-                Boss1Animator.SetTrigger("Skill_SwingAttack");
+                Boss1Animator.SetTrigger("Skill_Boomerang");
                 for (int i = 0; i < 5; i++)
                 {
                     GameObject go_boomerang = Instantiate(windBladeBoomerang, transform.position, transform.rotation);
@@ -257,7 +272,7 @@ public class BossSkillDemo : MonoBehaviour
                 break;
             case 2:
                 int ran = Random.Range(1, 3);
-                Boss1Animator.SetTrigger("Skill_SwingAttack");
+                Boss1Animator.SetTrigger("Skill_Boomerang");
                 GameObject go = Instantiate(windBladeBoomerang, instantiatePoint.transform.position, transform.rotation);
                 if (ran == 1)
                     go.GetComponent<Skill_WindBladeBoomerang>().tarPos = _Player1.transform.position;
@@ -373,6 +388,11 @@ public class BossSkillDemo : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         yield return null;
+    }
+
+    public void bossTailAttackAnimation()
+    {
+        rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
     }
 
     //This is the end of stage2 skill sets.
