@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Boss1Animator : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public BossSkillDemo BossSkill;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Animation_BossTailAttack()
     {
-        
+        BossSkill.bossTailAttackAnimation();
     }
 }
