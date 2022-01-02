@@ -285,6 +285,7 @@ public class BossSkillDemo : MonoBehaviour
     public void TornadoSpecialAttack()
     {
         //StartCoroutine(animationPlaytime("isTonado"));
+        //Boss1Animator.SetTrigger("Skill_PinBall");
         Boss1Animator.SetTrigger("Skill_Tornado");
         for (int i = 0; i < 4; i++)
         {
@@ -390,9 +391,24 @@ public class BossSkillDemo : MonoBehaviour
         yield return null;
     }
 
-    public void bossTailAttackAnimation()
+    public void BossTailAttackAnimation()
     {
         rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
+    }
+
+    public void BossTailAttack()
+    {
+        Boss1Animator.SetTrigger("Skill_TailAttack");
+    }
+
+    public void BossWingAreaAttack()
+    {
+        Boss1Animator.SetTrigger("Skill_WingAreaAttack");
+    }
+
+    public void BossWingAttack()
+    {
+        Boss1Animator.SetTrigger("Skill_WingAttack");
     }
 
     //This is the end of stage2 skill sets.
