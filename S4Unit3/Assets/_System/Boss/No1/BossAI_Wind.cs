@@ -35,6 +35,8 @@ public class BossAI_Wind : MonoBehaviour
     public float timing = 0.2f;
     [SerializeField] float backwardForce = 100;
     [SerializeField] int preMoveCount = 0;
+    Vector3 orgPos;
+    [SerializeField] bool isMoveFinished;
 
     [Header("AI")]
     [SerializeField] bool aiEnable = true;
@@ -446,6 +448,28 @@ public class BossAI_Wind : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
+    IEnumerator bossAttackMovement()
+    {
+        isMoveFinished = false;
+
+        agent.SetDestination(_Player1.transform.position);
+        transform.LookAt(_Player1.transform);
+
+        yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 5);
+
+        if (Vector3.Distance(transform.position, _Player1.transform.position) <= 5)
+        {
+            agent.SetDestination(transform.position);
+            Debug.Log("Is Moved!");
+            isMoveFinished = true;
+        }
+
+        yield return new WaitUntil(() => isMoveFinished);
+
+        yield return new WaitForSeconds(1);
+        agent.SetDestination(orgPos);
+    }
+
     IEnumerator AIStartTimer()
     {
         yield return new WaitForSeconds(aiStartTime);
@@ -500,13 +524,17 @@ public class BossAI_Wind : MonoBehaviour
         while (IsStage2 && aiEnable)
         {
             PlayerDetect();
-            //yield return new WaitForSeconds(0.3f);
             yield return new WaitUntil(() => isLockOn);
+
+            //This is for detect if the boss need to do a move because of the player is too near by.
             yield return coroutineRun = StartCoroutine(Pre_BossMovement());
+
+            //This is the skill selection, it is mainly for decide what skill to be use
+            //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for reset the premove counter so it can prefrom again.
+            //This is for reset the pre-move counter so it can perform again.
             preMoveCount = 0;
             yield return new WaitForSeconds(aiReactTime);
         }
