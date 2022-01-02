@@ -255,7 +255,7 @@ public class Move : MonoBehaviour
                 if (Input.GetButtonDown("JumpP2") && DashBar >= DashUsed)
                 {
                     isDashed = true;
-                    Debug.Log("P2 Dashed");
+                    //Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                     DashBar = DashBar - DashUsed;
                 }

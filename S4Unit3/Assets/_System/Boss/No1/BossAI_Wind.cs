@@ -35,6 +35,8 @@ public class BossAI_Wind : MonoBehaviour
     public float timing = 0.2f;
     [SerializeField] float backwardForce = 100;
     [SerializeField] int preMoveCount = 0;
+    Vector3 orgPos;
+    [SerializeField] bool isMoveFinished;
 
     [Header("AI")]
     [SerializeField] bool aiEnable = true;
@@ -258,17 +260,19 @@ public class BossAI_Wind : MonoBehaviour
                 }
             }
             if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
-            {
-                AIDecision = 61;
-            }
+            { AIDecision = 61;}
             if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
-            {
-                AIDecision = 62;
-            }
+            { AIDecision = 62;}
+            if (preMoveCount == 2 && distP1 < skillRange1)//If player1 is too near boss after 2 backward, then...
+            { AIDecision = 63;}
+            else if (preMoveCount == 2 && distP2 < skillRange1)//If player2 is too near boss after 2 backward, then...
+            { AIDecision = 63;}
         }
 
         Debug.Log("Skill is select!");
         coroutineAtk = StartCoroutine(AIOnAttack(AIDecision));
+
+        //This is the End of Skill Selection.
     }
 
     public IEnumerator AIOnAttack(int num)
@@ -281,146 +285,157 @@ public class BossAI_Wind : MonoBehaviour
         attackAlert.SetTrigger("isAttacking");
         yield return new WaitForSeconds(0.4f);
 
-        switch (num)
+        if (IsStage1 || isStand)
         {
-            case 11:
-                if (rndNum < 50)
-                {
-                    //WindBlade 16發風刃 * 3 + S形龍捲風
-                    yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
-                    BossSkill.TornadoAttack();
-                }
-                else if (rndNum >= 50 && rndNum < 100)
-                {
-                    //8Tornado 八方龍捲 * 3
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(3));
-                }
-                break;
-            case 12:
-                if (rndNum < 40)
-                {
-                    //Boomerang 風刃迴力鏢
-                    BossSkill.WindBladeBoomerang();
+            switch (num)
+            {
+                case 11:
+                    if (rndNum < 50)
+                    {
+                        //WindBlade 16發風刃 * 3 + S形龍捲風
+                        yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
+                        BossSkill.TornadoAttack();
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //8Tornado 八方龍捲 * 3
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(3));
+                    }
+                    break;
+                case 12:
+                    if (rndNum < 40)
+                    {
+                        //Boomerang 風刃迴力鏢
+                        BossSkill.WindBladeBoomerang();
+                        cameraControl.ChangeTargetWeight(3, 3);
+                    }
+                    else if (rndNum >= 40 && rndNum < 67)
+                    {
+                        //WindBlade 16發風刃 * 4 + S形龍捲風
+                        yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(4));
+                        BossSkill.TornadoAttack();
+                    }
+                    else if (rndNum >= 67 && rndNum < 100)
+                    {
+                        //8Tornado八方龍捲 * 4
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(4));
+                    }
+                    break;
+                case 13:
+                    if (rndNum < 40)
+                    {
+                        //TornadoGattai 龍捲風合體
+                        BossSkill.TornadoGattai();
+                        cameraControl.ChangeTargetWeight(3, 3);
+                    }
+                    else if (rndNum >= 40 && rndNum < 100)
+                    {
+                        //STornado S形龍捲風
+                        BossSkill.TornadoAttack();
+                    }
+                    break;
+
+                case 21:
+                    if (rndNum < 50)
+                    {
+                        //WindBlade 16發風刃 * 1
+                        BossSkill.StartCoroutine(BossSkill.WindBlade16(1));
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //8Tornado 八方龍捲
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(1));
+                    }
+                    break;
+                case 22:
+                    if (rndNum < 33)
+                    {
+                        //Boomerang 風刃迴力鏢
+                        BossSkill.WindBladeBoomerang();
+                    }
+                    else if (rndNum >= 33 && rndNum < 67)
+                    {
+                        //WindBlade 16發風刃 * 2
+                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                    }
+                    else if (rndNum >= 67 && rndNum < 100)
+                    {
+                        //8Tornado八方龍捲 * 2
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(2));
+                    }
+                    break;
+                case 23:
+                    if (rndNum < 50)
+                    {
+                        //TornadoGattai 龍捲風合體
+                        BossSkill.TornadoGattai();
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //STornado S形龍捲風
+                        BossSkill.TornadoAttack();
+                    }
+                    break;
+
+                case 31:
+                    if (rndNum < 50)
+                    {
+                        //WindBlade 16發風刃 * 2
+                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //8Tornado 八方龍捲 * 3
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(3));
+                    }
+                    break;
+                case 32:
+                    if (rndNum < 50)
+                    {
+                        //WindBlade 16發風刃 * 2
+                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //8Tornado 八方龍捲 * 3
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(3));
+                    }
+                    break;
+                case 33:
+                    //STA 龍龍彈珠台
+                    BossSkill.TornadoSpecialAttack();
                     cameraControl.ChangeTargetWeight(3, 3);
-                }
-                else if (rndNum >= 40 && rndNum < 67)
-                {
-                    //WindBlade 16發風刃 * 4 + S形龍捲風
-                    yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(4));
-                    BossSkill.TornadoAttack();
-                }
-                else if (rndNum >= 67 && rndNum < 100)
-                {
-                    //8Tornado八方龍捲 * 4
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(4));
-                }
-                break;
-            case 13:
-                if (rndNum < 40)
-                {
-                    //TornadoGattai 龍捲風合體
-                    BossSkill.TornadoGattai();
-                    cameraControl.ChangeTargetWeight(3, 3);
-                }
-                else if (rndNum >= 40 && rndNum < 100)
-                {
-                    //STornado S形龍捲風
-                    BossSkill.TornadoAttack();
-                }
-                break;
+                    break;
+            }
+        }
 
-            case 21:
-                if (rndNum < 50)
-                {
-                    //WindBlade 16發風刃 * 1
-                    BossSkill.StartCoroutine(BossSkill.WindBlade16(1));
-                }
-                else if (rndNum >= 50 && rndNum < 100)
-                {
-                    //8Tornado 八方龍捲
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(1));
-                }
-                break;
-            case 22:
-                if (rndNum < 33)
-                {
-                    //Boomerang 風刃迴力鏢
-                    BossSkill.WindBladeBoomerang();
-                }
-                else if (rndNum >= 33 && rndNum < 67)
-                {
-                    //WindBlade 16發風刃 * 2
-                    BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
-                }
-                else if (rndNum >= 67 && rndNum < 100)
-                {
-                    //8Tornado八方龍捲 * 2
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(2));
-                }
-                break;
-            case 23:
-                if (rndNum < 50)
-                {
-                    //TornadoGattai 龍捲風合體
-                    BossSkill.TornadoGattai();
-                }
-                else if (rndNum >= 50 && rndNum < 100)
-                {
-                    //STornado S形龍捲風
-                    BossSkill.TornadoAttack();
-                }
-                break;
+        if (IsStage2 && !isStand)
+        {
+            switch (num)
+            {
+                case 41:
 
-            case 31:
-                if (rndNum < 50)
-                {
-                    //WindBlade 16發風刃 * 2
-                    BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
-                }
-                else if (rndNum >= 50 && rndNum < 100)
-                {
-                    //8Tornado 八方龍捲 * 3
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(3));
-                }
-                break;
-            case 32:
-                if (rndNum < 50)
-                {
-                    //WindBlade 16發風刃 * 2
-                    BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
-                }
-                else if (rndNum >= 50 && rndNum < 100)
-                {
-                    //8Tornado 八方龍捲 * 3
-                    BossSkill.StartCoroutine(BossSkill.EightTornado(3));
-                }
-                break;
-            case 33:
-                //STA 龍龍彈珠台
-                BossSkill.TornadoSpecialAttack();
-                cameraControl.ChangeTargetWeight(3, 3);
-                break;
+                    break;
+                case 42:
 
-            case 41:
+                    break;
+                case 43:
 
-                break;
-            case 42:
+                    break;
+                case 61:
 
-                break;
-            case 43:
+                    break;
+                case 62:
 
-                break;
-            case 61:
+                    break;
+                case 63:
 
-                break;
-            case 62:
+                    break;
 
-                break;
-            case 63:
-
-                break;
+            }
         }
         yield return null;
+        //This is the End of AI Attack.
     }
 
     public IEnumerator Pre_BossMovement()
@@ -444,6 +459,45 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+    }
+
+    IEnumerator bossAttackMovement()
+    {
+        isMoveFinished = false;
+
+        if (lookAtP1)
+        {
+            agent.SetDestination(_Player1.transform.position);
+            //transform.LookAt(_Player1.transform);
+
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 5);
+
+            if (Vector3.Distance(transform.position, _Player1.transform.position) <= 5)
+            {
+                agent.SetDestination(transform.position);
+                Debug.Log("Is Moved!");
+                isMoveFinished = true;
+            }
+        }
+        else if (lookAtP2)
+        {
+            agent.SetDestination(_Player2.transform.position);
+            //transform.LookAt(_Player2.transform);
+
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 5);
+
+            if (Vector3.Distance(transform.position, _Player2.transform.position) <= 5)
+            {
+                agent.SetDestination(transform.position);
+                Debug.Log("Is Moved!");
+                isMoveFinished = true;
+            }
+        }
+
+        yield return new WaitUntil(() => isMoveFinished);
+
+        yield return new WaitForSeconds(1);
+        agent.SetDestination(orgPos);
     }
 
     IEnumerator AIStartTimer()
@@ -500,13 +554,17 @@ public class BossAI_Wind : MonoBehaviour
         while (IsStage2 && aiEnable)
         {
             PlayerDetect();
-            //yield return new WaitForSeconds(0.3f);
             yield return new WaitUntil(() => isLockOn);
+
+            //This is for detect if the boss need to do a move because of the player is too near by.
             yield return coroutineRun = StartCoroutine(Pre_BossMovement());
+
+            //This is the skill selection, it is mainly for decide what skill to be use
+            //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for reset the premove counter so it can prefrom again.
+            //This is for reset the pre-move counter so it can perform again.
             preMoveCount = 0;
             yield return new WaitForSeconds(aiReactTime);
         }
