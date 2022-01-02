@@ -34,6 +34,7 @@ public class BossAI_Wind : MonoBehaviour
     [Header("Boss Movement")]
     public float timing = 0.2f;
     [SerializeField] float backwardForce = 100;
+    [SerializeField] int preMoveCount = 0;
 
     [Header("AI")]
     [SerializeField] bool aiEnable = true;
@@ -424,20 +425,25 @@ public class BossAI_Wind : MonoBehaviour
 
     public IEnumerator Pre_BossMovement()
     {
-        if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 2))
+        if (preMoveCount <= 2)
         {
-            ani.SetTrigger("IsBackwarding");
-            yield return new WaitForSeconds(timing);
-            rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
-        }
-        if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 2))
-        {
-            ani.SetTrigger("IsBackwarding");
-            yield return new WaitForSeconds(timing);
-            rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
+            if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 2))
+            {
+                ani.SetTrigger("IsBackwarding");
+                yield return new WaitForSeconds(timing);
+                rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
+                preMoveCount++;
+            }
+            if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 2))
+            {
+                ani.SetTrigger("IsBackwarding");
+                yield return new WaitForSeconds(timing);
+                rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
+                preMoveCount++;
+            }
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator AIStartTimer()
@@ -454,10 +460,9 @@ public class BossAI_Wind : MonoBehaviour
 
     IEnumerator AIRestartTimer()
     {
+        yield return new WaitForSeconds(aiStartTime);
         while (true)
         {
-            yield return new WaitForSeconds(aiStartTime);
-
             yield return new WaitForSeconds(5);
             if (aiEnable)
                 yield return new WaitUntil(() => !aiEnable);
@@ -500,9 +505,10 @@ public class BossAI_Wind : MonoBehaviour
             yield return coroutineRun = StartCoroutine(Pre_BossMovement());
             SkillSelection();
             yield return coroutineAtk;
-            //Debug.Log("A rountine is FINISH!");
+
+            //This is for reset the premove counter so it can prefrom again.
+            preMoveCount = 0;
             yield return new WaitForSeconds(aiReactTime);
-            //Debug.Log("Will Start Again...");
         }
     }
 

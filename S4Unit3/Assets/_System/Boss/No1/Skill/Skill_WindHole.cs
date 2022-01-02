@@ -6,6 +6,8 @@ public class Skill_WindHole : MonoBehaviour
 {
     [SerializeField] float secondToDie = 12f;
 
+    PlayerState playerState;
+
     void Start()
     {
         
@@ -26,5 +28,14 @@ public class Skill_WindHole : MonoBehaviour
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerState = other.GetComponent<PlayerState>();
+            playerState.hp_decrease();
+            //Debug.Log("Hit!");
+            //Destroy(gameObject);
+        }
+    }
 }
