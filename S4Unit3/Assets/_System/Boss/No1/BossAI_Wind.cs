@@ -23,6 +23,7 @@ public class BossAI_Wind : MonoBehaviour
     Coroutine coroutineThink;
     Coroutine coroutineTemp;
     Coroutine coroutineRun;
+    Coroutine coroutineRunAtk;
 
     Vector3 selfPos;
 
@@ -46,8 +47,9 @@ public class BossAI_Wind : MonoBehaviour
     public bool IsStage2 = false;
 
     [Header("Skills AI")]
+    public bool isStandoMode;
     public bool isMain;
-    public bool isStand;
+    public bool isStando;
 
     [Header("Skill Range")]
     [SerializeField] float skillRange1 = 5;
@@ -174,7 +176,7 @@ public class BossAI_Wind : MonoBehaviour
 
         int AIDecision = 0;
 
-        if (IsStage1 || isStand)
+        if (IsStage1 || isStando)
         {
             //This is use for detect who is the closest player to boss or is behind it.
             //But now lookatp1 and lookatp2 are work in the same way.
@@ -225,7 +227,7 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
 
-        if (IsStage2 && !isStand)
+        if (IsStage2 && !isStando)
         {
             //This is use for detect who is the closest player to boss or is behind it.
             //But now lookatp1 and lookatp2 are work in the same way.
@@ -285,7 +287,7 @@ public class BossAI_Wind : MonoBehaviour
         attackAlert.SetTrigger("isAttacking");
         yield return new WaitForSeconds(0.4f);
 
-        if (IsStage1 || isStand)
+        if (IsStage1 || isStando)
         {
             switch (num)
             {
@@ -409,27 +411,51 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
 
-        if (IsStage2 && !isStand)
+        if (IsStage2 && !isStando)
         {
             switch (num)
             {
                 case 41:
-
+                    if (rndNum < 50)
+                    {
+                        //Wing Area Attack 近戰範圍攻擊
+                        BossSkill.BossWingAreaAttack();
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //Tail Attack 尾巴攻擊
+                        BossSkill.BossTailAttack();
+                    }
                     break;
                 case 42:
+                    //Wing Attack 近戰攻擊(翼)
+                    yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+                    BossSkill.BossWingAttack();
 
                     break;
                 case 43:
-
+                    if (rndNum < 50)
+                    {
+                        //Wind Hole 風柱
+                        StartCoroutine(BossSkill.WindHole(1,8));
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //Stando! 分身
+                        Debug.Log("Stando!(Not Finish Yet)");
+                    }
                     break;
                 case 61:
-
+                    //Wing Area Attack 近戰範圍攻擊
+                    BossSkill.BossWingAreaAttack();
                     break;
                 case 62:
-
+                    //Wind Hole 風柱
+                    StartCoroutine(BossSkill.WindHole(1, 8));
                     break;
                 case 63:
-
+                    //Wing Area Attack 近戰範圍攻擊
+                    BossSkill.BossWingAreaAttack();
                     break;
 
             }
@@ -461,7 +487,7 @@ public class BossAI_Wind : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    IEnumerator bossAttackMovement()
+    IEnumerator BossAttackMovement()
     {
         isMoveFinished = false;
 
@@ -493,11 +519,10 @@ public class BossAI_Wind : MonoBehaviour
                 isMoveFinished = true;
             }
         }
-
         yield return new WaitUntil(() => isMoveFinished);
 
-        yield return new WaitForSeconds(1);
-        agent.SetDestination(orgPos);
+        //yield return new WaitForSeconds(1);
+        //agent.SetDestination(orgPos);
     }
 
     IEnumerator AIStartTimer()
@@ -517,7 +542,6 @@ public class BossAI_Wind : MonoBehaviour
         yield return new WaitForSeconds(aiStartTime);
         while (true)
         {
-            yield return new WaitForSeconds(5);
             if (aiEnable)
                 yield return new WaitUntil(() => !aiEnable);
             if (!aiEnable)
@@ -528,6 +552,7 @@ public class BossAI_Wind : MonoBehaviour
                 coroutineThink = StartCoroutine(TimeOfThink());
                 break;
             }
+            yield return new WaitForSeconds(5);
         }
     }
 
@@ -563,6 +588,9 @@ public class BossAI_Wind : MonoBehaviour
             //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
+
+            //This is for restate the animator back to Idle State.
+            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
             //This is for reset the pre-move counter so it can perform again.
             preMoveCount = 0;
