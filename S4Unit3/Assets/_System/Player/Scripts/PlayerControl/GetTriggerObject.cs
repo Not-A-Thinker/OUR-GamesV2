@@ -25,8 +25,8 @@ public class GetTriggerObject : MonoBehaviour
     {
         if (ChipParent.transform.childCount >= 5 && SpawnDone == false)
         {
-            SpawnSpecialAttack();
-          
+            if(Input.GetButtonDown("Create"))
+                SpawnSpecialAttack();
         }
     }
 

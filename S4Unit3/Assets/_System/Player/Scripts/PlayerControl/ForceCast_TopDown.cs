@@ -82,6 +82,7 @@ public class ForceCast_TopDown : MonoBehaviour
                 rangeObj.SetActive(true);
             }     
         }
+
         if (Input.GetButtonUp("Fire1"))
         {
             if (Shooted == false)
@@ -109,7 +110,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
-             gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
+            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
             StartCoroutine(ShootCD(3));
         }    
         //else

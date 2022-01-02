@@ -112,7 +112,7 @@ public class Move : MonoBehaviour
                 {
                     isDashed = true;
                     _animation.PlayerDash(true);
-                    //Debug.Log("Dashed");
+                    Debug.Log("P1 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
                     DashBar = DashBar - DashUsed;
                 }
@@ -203,7 +203,7 @@ public class Move : MonoBehaviour
                 float horizontalInput = Input.GetAxis("HorizontalP2");
                 float verticalInput = Input.GetAxis("VerticalP2");
 
-                Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+                Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
 
                 Vector3 velocity = movementDirection * maximumSpeed;
 
@@ -219,7 +219,6 @@ public class Move : MonoBehaviour
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                 }
-
                 if (movementDirection != Vector3.zero)
                 {
                     _animation.PlayerWalk(true);
@@ -234,11 +233,29 @@ public class Move : MonoBehaviour
                 //Vector3 v_movement = characterController.transform.forward * verticalInput;
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
+                float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
+                float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
+
+                if (RothorizontalInput != 0 && RotverticalInput != 0)
+                {
+                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                    Quaternion target = Quaternion.Euler(0, angle, 0);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                    //Debug.Log(angle);
+                }
+
+                if (Input.GetButtonDown("LockOnP2"))
+                {
+                    Debug.Log("locked Boss!");
+                    BossLockOn();
+                }
 
                 if (Input.GetButtonDown("JumpP2") && DashBar >= DashUsed)
                 {
                     isDashed = true;
-                    //Debug.Log("Dashed");
+                    Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                     DashBar = DashBar - DashUsed;
                 }
