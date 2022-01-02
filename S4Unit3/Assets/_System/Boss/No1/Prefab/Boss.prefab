@@ -214,7 +214,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  tailForwardForce: 10000
+  tailForwardForce: 12000
   _range: 50
   Boss1Animator: {fileID: 8650027658515693968}
 --- !u!114 &188733293806428879
@@ -234,7 +234,7 @@ MonoBehaviour:
   lookAtP2: 0
   isLockOn: 0
   timing: 0.2
-  backwardForce: 10000
+  backwardForce: 11500
   preMoveCount: 0
   aiEnable: 0
   aiStartTime: 2

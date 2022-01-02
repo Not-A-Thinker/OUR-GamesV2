@@ -60,6 +60,8 @@ public class BossSkillDemo : MonoBehaviour
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
+        rb = GetComponent<Rigidbody>();
+
         orgPos = transform.position;
     }
 
@@ -390,7 +392,7 @@ public class BossSkillDemo : MonoBehaviour
 
     public void bossTailAttackAnimation()
     {
-        rb.AddForce(tailForwardForce * -transform.forward, ForceMode.Impulse);
+        rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
     }
 
     //This is the end of stage2 skill sets.
