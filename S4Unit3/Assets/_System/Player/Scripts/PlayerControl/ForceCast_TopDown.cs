@@ -95,13 +95,13 @@ public class ForceCast_TopDown : MonoBehaviour
             Charitor.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0, 0, 0, 0);
 
-            Vector3 startPos = transform.position;
-            Vector3 endPos = transform.forward;
+            Vector3 startPos = RangeBigObj.transform.position;
+            Vector3 endPos = RangeBigObj.transform.up;
             RaycastHit isPlayerHit;
 
             if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
             {
-                Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
+                //Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
                 //Debug.DrawRay(startPos, endPos * _range);
                 //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
                 if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
