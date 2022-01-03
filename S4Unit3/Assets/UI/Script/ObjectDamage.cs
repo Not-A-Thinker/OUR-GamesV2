@@ -46,7 +46,7 @@ public class ObjectDamage : MonoBehaviour
                 Damage = Damage * 1;
                 break;
         }
-        Debug.Log(Damage);
+        //Debug.Log(Damage);
     }
     private void OnTriggerEnter(Collider col)
     {

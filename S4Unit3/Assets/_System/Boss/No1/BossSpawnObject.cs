@@ -30,7 +30,7 @@ public class BossSpawnObject : MonoBehaviour
 
     public void SpawnedCountDecrease()
     {
-        SpawnedCount--;
+        //SpawnedCount--;
     }
     
     // Start is called before the first frame update

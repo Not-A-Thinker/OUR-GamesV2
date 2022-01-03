@@ -116,7 +116,7 @@ public class P1GetCube : MonoBehaviour
             PlayerSetCube(parentMax, force);
             parentMax = objectParent.transform.childCount;
             yield return new WaitForSeconds(0.3f);
-            Debug.Log(parentMax);
+            //Debug.Log(parentMax);
         }
     }
 }
