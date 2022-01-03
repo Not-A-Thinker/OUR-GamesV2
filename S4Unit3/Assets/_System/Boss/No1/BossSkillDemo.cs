@@ -23,6 +23,10 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject windBladeBoomerang;
     public GameObject tornadoSpecialAttack;
 
+    [Header("Boss Stando Prefabs")]
+    public GameObject bossStando;
+    public GameObject SpawnPoint;
+
     [Header("Coroutine")]
     public Coroutine TornadoTracking;
 
@@ -67,17 +71,17 @@ public class BossSkillDemo : MonoBehaviour
 
     void Update()
     {
+        #region KeyCodeSets
+        //This Key Input is Just for testing, should be remove after getting release.
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             //WindBlade();
             StartCoroutine(WindBlade16(2));
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            VacuumPressure();
+            BossStando();
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
         {
             if (!isTeleported)
@@ -85,36 +89,32 @@ public class BossSkillDemo : MonoBehaviour
                 StartCoroutine(BubbleTranslation());
             }
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             TornadoAttack();
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             TornadoGattai();
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             StartCoroutine(EightTornado(waveToSpawnTornado));
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             WindBladeBoomerang();
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
             TornadoSpecialAttack();
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             StartCoroutine(WindHole(1, 10));
         }
+        #endregion
+
 
         //The Update ends here.
     }
@@ -344,6 +344,7 @@ public class BossSkillDemo : MonoBehaviour
     #region Stage2_SkillSets
     public IEnumerator WindHole(int wave, int spawnNum)
     {
+        Boss1Animator.SetTrigger("Skill_Tornado");
         for (int i = 0; i < wave; i++)
         {
             for (int p = 0; p < otherPos.Length; p++)
@@ -366,7 +367,7 @@ public class BossSkillDemo : MonoBehaviour
 
                     for (int k = 0; k < otherPos.Length; k++)
                     {
-                        Debug.Log(Vector3.Distance(otherPos[j], otherPos[k]));
+                        //Debug.Log(Vector3.Distance(otherPos[j], otherPos[k]));
                         if (Vector3.Distance(otherPos[j], otherPos[k]) <= 3 && otherPos[j] != otherPos[k])
                         {
                             Debug.Log("Too Close!");
@@ -391,6 +392,12 @@ public class BossSkillDemo : MonoBehaviour
         yield return null;
     }
 
+    public void BossStando()
+    {
+        GameObject stando =  Instantiate(bossStando, SpawnPoint.transform.position, Quaternion.identity);
+
+    }
+
     public void BossTailAttackAnimation()
     {
         rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
@@ -411,13 +418,21 @@ public class BossSkillDemo : MonoBehaviour
         Boss1Animator.SetTrigger("Skill_WingAttack");
     }
 
+    public void MistAttack()
+    {
+
+        MistCDTimer();
+
+    }
+
     //This is the end of stage2 skill sets.
     #endregion
 
-    public IEnumerator MistTimer()
+    public IEnumerator MistCDTimer()
     {
 
         yield return new WaitForSeconds(15);
+
     }
 
     private void OnDrawGizmos()

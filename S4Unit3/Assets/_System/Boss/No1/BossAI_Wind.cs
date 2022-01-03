@@ -11,6 +11,7 @@ public class BossAI_Wind : MonoBehaviour
     NavMeshAgent agent;
 
     BossSkillDemo BossSkill;
+    BasicState basicState;
     BossHealthBar healthBar;
     BossCameraControl cameraControl;
 
@@ -44,6 +45,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] int aiStartTime = 99;
     [SerializeField] float aiReactTimeStage1 = 2.7f;
     [SerializeField] float aiReactTimeStage2 = 1.8f;
+    [SerializeField] float aiReactTimeStandoMode = 3.6f;
     public bool IsStage1 = true;
     public bool IsStage2 = false;
 
@@ -66,6 +68,7 @@ public class BossAI_Wind : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         BossSkill = GetComponent<BossSkillDemo>();
+        basicState = GetComponent<BasicState>();
         healthBar = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
 
@@ -93,6 +96,13 @@ public class BossAI_Wind : MonoBehaviour
         if (!aiEnable)
             return;
 
+        if (isStando && basicState._currentHealth <= 0)
+        {
+            Debug.Log("Stando is Vanish");
+            GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
+            Destroy(gameObject);
+        }
+
         //This is for detecting if is condition to stage 2
         //May need to apply a animation to tell if is Stage 2
         if (healthBar.health <= 0 && IsStage1)
@@ -108,6 +118,7 @@ public class BossAI_Wind : MonoBehaviour
             Debug.Log("Switch to Stage2!");
         }
 
+        //This is for locking on player itself;
         selfPos = new Vector3(transform.position.x, 1, transform.position.z);
 
         RaycastHit isPlayerGetHit;
@@ -118,7 +129,7 @@ public class BossAI_Wind : MonoBehaviour
         }
         else { isLockOn = false; }
 
-        Debug.DrawRay(selfPos, transform.forward * skillRange3, Color.red);
+        //Debug.DrawRay(selfPos, transform.forward * skillRange3, Color.red);
 
         PlayerLockOn();
 
@@ -454,6 +465,8 @@ public class BossAI_Wind : MonoBehaviour
                         if (!isStandoMode)
                         {
                             //Stando! д└ин
+                            isStandoMode = true;
+                            BossSkill.BossStando();
                             Debug.Log("Stando!(Not Finish Yet)");
                         }
                         else
@@ -624,7 +637,9 @@ public class BossAI_Wind : MonoBehaviour
 
             //This is for reset the pre-move counter so it can perform again.
             preMoveCount = 0;
-            yield return new WaitForSeconds(aiReactTimeStage2);
+            if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
+            else { yield return new WaitForSeconds(aiReactTimeStage2); }
+            
         }
     }
 
@@ -638,4 +653,8 @@ public class BossAI_Wind : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, skillRange3);
     }
 
+    private void OnDestroy()
+    {
+        //Maybe spawn some particle when destroy.
+    }
 }
