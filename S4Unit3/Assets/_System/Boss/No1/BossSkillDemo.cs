@@ -30,6 +30,9 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Coroutine")]
     public Coroutine TornadoTracking;
 
+    [Header("Skill Status")]
+    public bool isMeleeAttacking;
+
     [Header("Skill")]
     public int NumTornadoToSpawn = 2;
     [Range(1, 5)] public int NumBoomerangSpawn = 3;
@@ -54,7 +57,7 @@ public class BossSkillDemo : MonoBehaviour
     Vector3 orgPos;
 
     private bool isRushing = false;
-    bool isTeleported;
+    private bool isTeleported;
 
     [Header("Boss Animator")]
     [SerializeField] Animator Boss1Animator;
@@ -285,8 +288,13 @@ public class BossSkillDemo : MonoBehaviour
     public void TornadoSpecialAttack()
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        //Boss1Animator.SetTrigger("Skill_PinBall");
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        Boss1Animator.SetTrigger("Skill_PinBall");
+        //Boss1Animator.SetTrigger("Skill_Tornado");
+        
+    }
+
+    public void TornadoSpecialAttackAnimation()
+    {
         for (int i = 0; i < 4; i++)
         {
             int rnd = Random.Range(0, 360);
@@ -379,7 +387,7 @@ public class BossSkillDemo : MonoBehaviour
                     if (!isPass)
                     {
                         Instantiate(windHole, ranPos, Quaternion.identity);
-                        Debug.Log("Spawn!");
+                        //Debug.Log("Spawn!");
                         yield return new WaitForSeconds(0.15f);
                     }
                     else { j--; }

@@ -72,7 +72,7 @@ public class ObjectDamage : MonoBehaviour
             else
             {
                 int i = Random.Range(1, 3);
-                Debug.Log(i);
+                //Debug.Log(i);
                 for (int j = 0; j < i; j++)
                 {
                     Instantiate(chip, col.transform.position, Quaternion.identity);

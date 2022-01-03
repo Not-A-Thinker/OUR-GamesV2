@@ -32,6 +32,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool lookAtP1;
     [SerializeField] bool lookAtP2;
     [SerializeField] bool isLockOn;
+    [SerializeField] bool isMeleeAttacking;
 
     [Header("Boss Movement")]
     public float timing = 0.2f;
@@ -78,12 +79,20 @@ public class BossAI_Wind : MonoBehaviour
         StartCoroutine(AIStartTimer());
     }
 
+    IEnumerator Test()
+    {
+        lookAtP1 = true;
+        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+
+        isMeleeAttacking = true;
+        BossSkill.BossWingAttack();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            lookAtP1 = true;
-            StartCoroutine(BossAttackMovement());
+            StartCoroutine(Test());
         }
 
         //Press Left shift and 1 to change boss AI.
@@ -139,6 +148,9 @@ public class BossAI_Wind : MonoBehaviour
 
         PlayerLockOn();
 
+        if (lookAtP1) { BossSetDestination(_Player1.transform.position); }
+        else if (lookAtP2) { BossSetDestination(_Player2.transform.position); }
+
         //The Update ends here.
     }
 
@@ -175,14 +187,14 @@ public class BossAI_Wind : MonoBehaviour
     }
     public void PlayerLockOn()
     {
-        if (lookAtP1)
+        if (lookAtP1 && !isMeleeAttacking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_Player1.transform.position - transform.position);
             targetRotation.x = 0;
             targetRotation.z = 0;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime);
         }
-        else if (lookAtP2)
+        else if (lookAtP2 && !isMeleeAttacking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_Player2.transform.position - transform.position);
             targetRotation.x = 0;
@@ -308,7 +320,7 @@ public class BossAI_Wind : MonoBehaviour
 
         //This is the attack alert animation,
         //and will have to wait at least 0.4 sec to response(may need to change).
-        attackAlert.SetTrigger("isAttacking");
+        attackAlert.SetTrigger("isMeleeAttacking");
         yield return new WaitForSeconds(0.4f);
 
         if (IsStage1 || isStando)
@@ -429,6 +441,7 @@ public class BossAI_Wind : MonoBehaviour
                     break;
                 case 33:
                     //STA ÀsÀs¼u¯]¥x
+                    isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
                     cameraControl.ChangeTargetWeight(3, 3);
                     break;
@@ -444,17 +457,20 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         //Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
                         BossSkill.BossWingAreaAttack();
+                        isMoveFinished = true;
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
                         //Tail Attack §À¤Ú§ðÀ»
                         BossSkill.BossTailAttack();
+                        isMoveFinished = true;
                     }
                     break;
                 case 42:
                     //Wing Attack ªñ¾Ô§ðÀ»(Ál)
                     yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
+                    isMeleeAttacking = true;
                     BossSkill.BossWingAttack();
 
                     //This should be mist added.
@@ -481,6 +497,7 @@ public class BossAI_Wind : MonoBehaviour
                             //Wing Attack ªñ¾Ô§ðÀ»(Ál)
                             yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
+                            isMeleeAttacking = true;
                             BossSkill.BossWingAttack();
                         }
                     }
@@ -488,6 +505,7 @@ public class BossAI_Wind : MonoBehaviour
                 case 61:
                     //Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
                     BossSkill.BossWingAreaAttack();
+                    isMoveFinished = true;
                     break;
                 case 62:
                     //Wind Hole ­·¬W
@@ -496,6 +514,7 @@ public class BossAI_Wind : MonoBehaviour
                 case 63:
                     //Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
                     BossSkill.BossWingAreaAttack();
+                    isMoveFinished = true;
                     break;
 
             }
@@ -535,34 +554,41 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
-            Debug.Log("location");
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 5);
-            Debug.Log("No stuck for here");
-            if (Vector3.Distance(transform.position, _Player1.transform.position) <= 5)
-            {
-                agent.SetDestination(transform.position);
-                Debug.Log("Is Moved!");
-                isMoveFinished = true;
-            }
+
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 6);
+
+            isMoveFinished = true;
+            agent.SetDestination(transform.position);
+            Debug.Log("Is Moved!");
         }
         else if (lookAtP2)
         {
             agent.SetDestination(_Player2.transform.position);
             //transform.LookAt(_Player2.transform);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 5);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 6);
 
-            if (Vector3.Distance(transform.position, _Player2.transform.position) <= 5)
-            {
-                agent.SetDestination(transform.position);
-                Debug.Log("Is Moved!");
-                isMoveFinished = true;
-            }
+            isMoveFinished = true;
+
+            agent.SetDestination(transform.position);
+            Debug.Log("Is Moved!");
         }
         yield return new WaitUntil(() => isMoveFinished);
         agent.ResetPath();
         //yield return new WaitForSeconds(1);
         //agent.SetDestination(orgPos);
+    }
+
+    void BossSetDestination(Vector3 tarPos)
+    {
+        if (!isMoveFinished)
+        {
+            agent.SetDestination(tarPos);
+        }
+        else
+        {
+            agent.SetDestination(transform.position);
+        }
     }
 
     IEnumerator AIStartTimer()
@@ -612,6 +638,8 @@ public class BossAI_Wind : MonoBehaviour
             //This is for restate the animator back to Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
+            isMeleeAttacking = false;
+
             yield return new WaitForSeconds(aiReactTimeStage1);
             //Debug.Log("Will Start Again...");
         }
@@ -639,8 +667,9 @@ public class BossAI_Wind : MonoBehaviour
             //This is for restate the animator back to Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
-            //This is for reset the pre-move counter so it can perform again.
+            //This is for reset the pre-move counter and melee attack so it can be perform again.
             preMoveCount = 0;
+            isMeleeAttacking = false;
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
             else { yield return new WaitForSeconds(aiReactTimeStage2); }
             
