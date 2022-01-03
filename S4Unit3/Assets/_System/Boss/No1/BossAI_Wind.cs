@@ -42,7 +42,8 @@ public class BossAI_Wind : MonoBehaviour
     [Header("AI")]
     [SerializeField] bool aiEnable = true;
     [SerializeField] int aiStartTime = 99;
-    [SerializeField] float aiReactTime = 3;
+    [SerializeField] float aiReactTimeStage1 = 2.7f;
+    [SerializeField] float aiReactTimeStage2 = 1.8f;
     public bool IsStage1 = true;
     public bool IsStage2 = false;
 
@@ -52,9 +53,9 @@ public class BossAI_Wind : MonoBehaviour
     public bool isStando;
 
     [Header("Skill Range")]
-    [SerializeField] float skillRange1 = 5;
-    [SerializeField] float skillRange2 = 10;
-    [SerializeField] float skillRange3 = 15;
+    [SerializeField] float skillRange1 = 20;
+    [SerializeField] float skillRange2 = 35;
+    [SerializeField] float skillRange3 = 50;
 
     public float angleOfView = 90f;
 
@@ -99,6 +100,11 @@ public class BossAI_Wind : MonoBehaviour
             healthBar.Stage1ToStage2();
             IsStage1 = false;
             IsStage2 = true;
+
+            skillRange1 = 18;
+            skillRange2 = 35;
+            skillRange3 = 40;
+
             Debug.Log("Switch to Stage2!");
         }
 
@@ -148,6 +154,7 @@ public class BossAI_Wind : MonoBehaviour
                 lookAtP2 = true;
             }
         }
+        else { Debug.Log("Player is missing!"); }
     }
     public void PlayerLockOn()
     {
@@ -430,7 +437,10 @@ public class BossAI_Wind : MonoBehaviour
                 case 42:
                     //Wing Attack 近戰攻擊(翼)
                     yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+
                     BossSkill.BossWingAttack();
+
+                    //This should be mist added.
 
                     break;
                 case 43:
@@ -441,8 +451,21 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //Stando! 分身
-                        Debug.Log("Stando!(Not Finish Yet)");
+                        if (!isStandoMode)
+                        {
+                            //Stando! 分身
+                            Debug.Log("Stando!(Not Finish Yet)");
+                        }
+                        else
+                        {
+                            //Do something else
+                            //Wing Attack 近戰攻擊(翼)
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+
+                            BossSkill.BossWingAttack();
+                        }
+                        
+
                     }
                     break;
                 case 61:
@@ -520,7 +543,7 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
         yield return new WaitUntil(() => isMoveFinished);
-
+        agent.ResetPath();
         //yield return new WaitForSeconds(1);
         //agent.SetDestination(orgPos);
     }
@@ -560,13 +583,19 @@ public class BossAI_Wind : MonoBehaviour
     {
         while (IsStage1 && aiEnable)
         {
+            //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
-            //yield return new WaitForSeconds(0.3f);
             yield return new WaitUntil(() => isLockOn);
+
+            //This is the skill selection, it is mainly for decide what skill to be use
+            //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
-            //Debug.Log("A rountine is FINISH!");
-            yield return new WaitForSeconds(aiReactTime);
+
+            //This is for restate the animator back to Idle State.
+            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+
+            yield return new WaitForSeconds(aiReactTimeStage1);
             //Debug.Log("Will Start Again...");
         }
 
@@ -578,6 +607,7 @@ public class BossAI_Wind : MonoBehaviour
         //They should play the same expect a AI movement decide will be added
         while (IsStage2 && aiEnable)
         {
+            //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);
 
@@ -594,7 +624,7 @@ public class BossAI_Wind : MonoBehaviour
 
             //This is for reset the pre-move counter so it can perform again.
             preMoveCount = 0;
-            yield return new WaitForSeconds(aiReactTime);
+            yield return new WaitForSeconds(aiReactTimeStage2);
         }
     }
 

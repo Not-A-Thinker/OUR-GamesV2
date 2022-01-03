@@ -414,6 +414,12 @@ public class BossSkillDemo : MonoBehaviour
     //This is the end of stage2 skill sets.
     #endregion
 
+    public IEnumerator MistTimer()
+    {
+
+        yield return new WaitForSeconds(15);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
