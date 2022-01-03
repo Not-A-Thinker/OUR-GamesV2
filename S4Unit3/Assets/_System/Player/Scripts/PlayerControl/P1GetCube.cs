@@ -104,8 +104,8 @@ public class P1GetCube : MonoBehaviour
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;
-
-        Rb.AddForceAtPosition(direction.transform.forward * 3000f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
+        cube.GetComponent<ObjectDamage>().Direction= direction.transform.forward;
+        //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
     IEnumerator TheBigOne(int parentMax, int force)
