@@ -132,9 +132,12 @@ public class Skill_TornadoGattai : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            playerState = other.GetComponent<PlayerState>();
-            playerState.hp_decrease();
-            //Debug.Log("Hit!");
+            if (other.gameObject.GetComponent<CapsuleCollider>() != null)
+            {
+                playerState = other.GetComponent<PlayerState>();
+                playerState.hp_decrease();
+                //Debug.Log("Hit!");
+            }
         }
     }
 
