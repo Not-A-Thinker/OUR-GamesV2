@@ -80,6 +80,12 @@ public class BossAI_Wind : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            lookAtP1 = true;
+            StartCoroutine(BossAttackMovement());
+        }
+
         //Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
@@ -529,9 +535,9 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
-
+            Debug.Log("location");
             yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 5);
-
+            Debug.Log("No stuck for here");
             if (Vector3.Distance(transform.position, _Player1.transform.position) <= 5)
             {
                 agent.SetDestination(transform.position);
