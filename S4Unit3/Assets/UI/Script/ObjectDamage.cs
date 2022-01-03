@@ -6,6 +6,7 @@ public class ObjectDamage : MonoBehaviour
 {
     public int Damage = 15;
     BossHealthBar bossHealth;
+    BasicState basicState;
 
     bool isSpcecialAttack;
 
@@ -54,6 +55,16 @@ public class ObjectDamage : MonoBehaviour
             if (col.transform.tag == "Boss")
             {
                 bossHealth.TakeDamage(Damage);
+                BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
+                bossSpawn.SpawnedCountDecrease();
+                Destroy(this.gameObject);
+            }
+            else if (col.transform.tag == "BossStando")
+            {
+                //Help me Check if this is right or not.
+                basicState = col.gameObject.GetComponent<BasicState>();
+                basicState._currentHealth -= Damage;
+
                 BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);

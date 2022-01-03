@@ -149,16 +149,21 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (isColliding) return;
-    //    isColliding = true;
-    //    if (other.gameObject.tag == "BossSkill")
-    //    {       
-    //        hp_decrease();         
-    //        //Debug.Log("Hit!");
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        //This is for Player to detect if the boss melee attack is hit or not.
+        if (other.gameObject.tag == "WingAttack")
+        {
+            hp_decrease();
+            Debug.Log("Wing Hit!");
+        }
+        if (other.gameObject.tag == "TailAttack")
+        {
+            hp_decrease();
+            Debug.Log("Tail Hit!");
+        }
+
+    }
 
     IEnumerator Invincible(int time)
     {
