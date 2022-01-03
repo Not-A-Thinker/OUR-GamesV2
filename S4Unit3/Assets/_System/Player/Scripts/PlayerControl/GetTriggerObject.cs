@@ -25,7 +25,7 @@ public class GetTriggerObject : MonoBehaviour
     {
         if (ChipParent.transform.childCount >= 5 && SpawnDone == false)
         {
-            if(Input.GetButtonDown("Create"))
+            //if(Input.GetButtonDown("Create"))
                 SpawnSpecialAttack();
         }
     }
@@ -48,7 +48,7 @@ public class GetTriggerObject : MonoBehaviour
 
                 getedObject.transform.parent = ChipParent.transform;
 
-                getedObject.transform.position = new Vector3(ChipParent.transform.position.x*Time.deltaTime, totalHight * Time.deltaTime, ChipParent.transform.position.y * Time.deltaTime);
+                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.y );
                 totalHight = totalHight + 2;
                 getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 

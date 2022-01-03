@@ -13,6 +13,11 @@ public class BossSpawnObject : MonoBehaviour
 
     [SerializeField] int SpawnedCount;
 
+    private void Start()
+    {
+        bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
+    }
+
     private void FixedUpdate()
     {
         SpawnedCount = GameObject.FindGameObjectsWithTag("Object").Length;
