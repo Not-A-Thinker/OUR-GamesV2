@@ -8,7 +8,7 @@ public class BasicState : MonoBehaviour
     private Animator animator;
 
     public int _maxHealth = 300;
-    [SerializeField] int _currentHealth;
+    public int _currentHealth;
 
     public float _speed = 10f;
     public float _rotateSpeed;
