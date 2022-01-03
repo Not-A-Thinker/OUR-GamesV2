@@ -8,6 +8,8 @@ public class P1GetCube : MonoBehaviour
 
     public GameObject objectParent;
 
+    public GameObject direction;
+
     public Transform SpawnPoint;
 
     float totalHight = 2f;
@@ -103,7 +105,7 @@ public class P1GetCube : MonoBehaviour
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;
 
-        Rb.AddForceAtPosition(transform.forward * 2000f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
+        Rb.AddForceAtPosition(direction.transform.forward * 3000f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
     IEnumerator TheBigOne(int parentMax, int force)
