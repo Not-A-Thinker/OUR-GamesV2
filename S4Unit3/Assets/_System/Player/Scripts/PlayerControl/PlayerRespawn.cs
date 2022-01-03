@@ -28,7 +28,7 @@ public class PlayerRespawn : MonoBehaviour
                     RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
                     RespawnCount = (int)RespawnCountRange;
                     UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
-                    Debug.Log(RespawnCount);
+                    //Debug.Log(RespawnCount);
                     if (RespawnCount == 2)
                     {
                         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();

@@ -20,7 +20,7 @@ public class Boss1Animator : MonoBehaviour
 
     public void Animation_BossPinBallAttack()
     {
-
+        BossSkill.TornadoSpecialAttackAnimation();
     }
 
 
