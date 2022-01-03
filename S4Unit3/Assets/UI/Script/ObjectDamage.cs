@@ -11,14 +11,25 @@ public class ObjectDamage : MonoBehaviour
 
     //¸H¤ù
     public GameObject chip;
+
+    //private Rigidbody Rb;
+
+    public Vector3 Direction;
     private void Start()
     {
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
+        //Rb = GetComponent<Rigidbody>();
          //Rigidbody Rb = GetComponent<Rigidbody>();
         //Rb.AddForceAtPosition(transform.forward * 2000f *5* Time.deltaTime, transform.position, ForceMode.Impulse);
     }
+    private void Update()
+    {
+        //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
+        transform.position += Direction * 80 * Time.deltaTime;
+    }
+
 
     public void SetDamage(int DamageType)
     {

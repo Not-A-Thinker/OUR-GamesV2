@@ -111,6 +111,8 @@ MonoBehaviour:
   S_Tonado: {fileID: 0}
   Range: {fileID: 1860544260377549311}
   clipParent: {fileID: 749153411712952852}
+  move: {fileID: 1860544261278244878}
+  Mother: {fileID: 1860544261278244872}
   SuccFromBoss: 0
   canSucc: 1
   FriendCD: 0
@@ -452,6 +454,7 @@ MonoBehaviour:
   Cha: {fileID: 6214820614071332330}
   isPlayer1: 0
   isPlayer2: 1
+  IsJoystick: 1
   isSlowed: 0
   isImMobilized: 0
   isDashed: 0
@@ -469,7 +472,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860544261278244872}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

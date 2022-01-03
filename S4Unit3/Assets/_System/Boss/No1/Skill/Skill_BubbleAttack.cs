@@ -11,7 +11,9 @@ public class Skill_BubbleAttack : MonoBehaviour
 
     //bool b_shouldDestory = false;
 
-    public string targetName; 
+    public string targetName;
+
+    bool CCed;
 
     void Start()
     {
@@ -33,8 +35,9 @@ public class Skill_BubbleAttack : MonoBehaviour
             if (!P1.isImMobilized)
             {
                 P1.StartCoroutine("ImMobilzer", 1);
-                
             }
+            if(targetName != other.gameObject.name)
+                Destroy(this.gameObject);
         }
         if (other.gameObject.name == "Player2")
         {
@@ -42,6 +45,8 @@ public class Skill_BubbleAttack : MonoBehaviour
             {
                 P2.StartCoroutine("ImMobilzer", 1);
             }
+            if (targetName != other.gameObject.name)
+                Destroy(this.gameObject);
         }
     }
 
