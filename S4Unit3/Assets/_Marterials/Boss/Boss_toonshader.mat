@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Clund
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: Boss_toonshader
+  m_Shader: {fileID: -6465566751694194690, guid: dc12a20789cbf8140a773d89e70c23dd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 93fb03243d8c1d3408798ad81751c738, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 0836b6891fc625842925634dc6d87d33, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93fb03243d8c1d3408798ad81751c738, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -61,6 +61,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture:
+        m_Texture: {fileID: 2800000, guid: 6efe453f3d1f7eb4d86457b3eac08fcb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -89,14 +93,16 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
-    - _Glossiness: 0
+    - _Glossiness: 32
     - _GlossyReflections: 0
-    - _InvFade: 0.01
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _RimTheshhold: 0.127
+    - _Rim_Amount: 0.76
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -105,13 +111,16 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - MainColor: {r: 0.8679245, g: 0.85482377, b: 0.85482377, a: 0}
+    - Rim_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0}
+    - _AmbientColor: {r: 0.38679248, g: 0.37476102, b: 0.21310076, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TintColor: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 0.078431375}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2554493580193285718
+--- !u!114 &2003532688628033405
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
