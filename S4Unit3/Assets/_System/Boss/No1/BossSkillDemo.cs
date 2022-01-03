@@ -7,6 +7,8 @@ public class BossSkillDemo : MonoBehaviour
 {
     Rigidbody rb;
 
+    BossCameraControl cameraControl;
+
     private GameObject _Player1;
     private GameObject _Player2;
 
@@ -68,6 +70,8 @@ public class BossSkillDemo : MonoBehaviour
         _Player2 = GameObject.Find("Player2");
 
         rb = GetComponent<Rigidbody>();
+
+        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
 
         orgPos = transform.position;
     }
@@ -165,7 +169,7 @@ public class BossSkillDemo : MonoBehaviour
 
     public void BubbleAttack()
     {
-        GameObject bubble = Instantiate(bubbleAttack, _Player1.transform.position, Quaternion.identity);
+        GameObject bubble = Instantiate(bubbleAttack, _Player1.transform.position, Quaternion.Euler(0, 180, 0));
         bubble.GetComponent<Skill_BubbleAttack>().targetName = "Player1";
     }
 
@@ -402,8 +406,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public void BossStando()
     {
-        GameObject stando =  Instantiate(bossStando, SpawnPoint.transform.position, Quaternion.identity);
-
+        GameObject stando =  Instantiate(bossStando, SpawnPoint.transform.position, Quaternion.Euler(0, 180, 0));
+        cameraControl.ChangeTarget(4, stando.transform);
     }
 
     public void BossTailAttackAnimation()

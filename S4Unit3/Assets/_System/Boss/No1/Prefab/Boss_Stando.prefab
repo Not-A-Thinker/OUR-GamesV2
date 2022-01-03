@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1957455747635378789}
   - component: {fileID: 1957455747635378790}
   - component: {fileID: 1957455747635378794}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Boss_Stando
   m_TagString: BossStando
   m_Icon: {fileID: 0}
@@ -84,6 +84,7 @@ MonoBehaviour:
   tornadoSpecialAttack: {fileID: 609656492285098026, guid: c2500912f65c7ac429c3a76bff944f21, type: 3}
   bossStando: {fileID: 0}
   SpawnPoint: {fileID: 0}
+  isMeleeAttacking: 0
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
@@ -125,6 +126,7 @@ MonoBehaviour:
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
+  isMeleeAttacking: 0
   timing: 0.2
   backwardForce: 13000
   preMoveCount: 0
@@ -514,7 +516,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957455747817131594}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Instante Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1957455748797155239}
   - component: {fileID: 1957455748797155232}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Free Flat Arrow 1 N Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_TagString
@@ -1077,7 +1079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854777, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}

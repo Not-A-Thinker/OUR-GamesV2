@@ -92,7 +92,22 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            StartCoroutine(Test());
+            //StartCoroutine(Test());
+
+            if (!isStandoMode)
+            {
+                //Stando! д└ин
+                isStandoMode = true;
+                BossSkill.BossStando();
+                Debug.Log("Stando!(Not Finish Yet)");
+            }
+        }
+
+        if (isStando && basicState._currentHealth <= 0)
+        {
+            Debug.Log("Stando is Vanish");
+            GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
+            Destroy(gameObject);
         }
 
         //Press Left shift and 1 to change boss AI.
@@ -111,12 +126,7 @@ public class BossAI_Wind : MonoBehaviour
         if (!aiEnable)
             return;
 
-        if (isStando && basicState._currentHealth <= 0)
-        {
-            Debug.Log("Stando is Vanish");
-            GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
-            Destroy(gameObject);
-        }
+        
 
         //This is for detecting if is condition to stage 2
         //May need to apply a animation to tell if is Stage 2
@@ -581,6 +591,11 @@ public class BossAI_Wind : MonoBehaviour
 
     void BossSetDestination(Vector3 tarPos)
     {
+        if (isStando)
+        {
+            return;
+        }
+
         if (!isMoveFinished)
         {
             agent.SetDestination(tarPos);
