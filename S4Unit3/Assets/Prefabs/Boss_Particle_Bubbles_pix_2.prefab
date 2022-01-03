@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 1.5, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5817740836987239036}
   m_RootOrder: 0
@@ -4791,6 +4792,7 @@ ParticleSystemRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 4
+  m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
   m_MaxParticleSize: 0.5
@@ -4814,6 +4816,10 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+  m_MeshWeighting: 1
+  m_MeshWeighting1: 1
+  m_MeshWeighting2: 1
+  m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!1 &5817740836987239032
 GameObject:
@@ -4827,13 +4833,14 @@ GameObject:
   - component: {fileID: 5817740836987239037}
   - component: {fileID: 5817740836987239034}
   - component: {fileID: 5817740836987239035}
+  - component: {fileID: 1473110767304177176}
   m_Layer: 0
   m_Name: Boss_Particle_Bubbles_pix_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5817740836987239036
 Transform:
   m_ObjectHideFlags: 0
@@ -4843,7 +4850,8 @@ Transform:
   m_GameObject: {fileID: 5817740836987239032}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.72, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1111791197011670576}
   m_Father: {fileID: 0}
@@ -4907,8 +4915,22 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817740836987239032}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.55
-  m_Center: {x: 0.050000012, y: 1.35, z: 0.65000004}
+  m_Radius: 0.64
+  m_Center: {x: 0.050000012, y: 1.5, z: 0.65000004}
+--- !u!114 &1473110767304177176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817740836987239032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7d3280fe089bc4cb8451941710bfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondToDie: 10
+  targetName: 
