@@ -6,19 +6,31 @@ public class ObjectDamage : MonoBehaviour
 {
     public int Damage = 15;
     BossHealthBar bossHealth;
+    BasicState basicState;
 
     bool isSpcecialAttack;
 
     //¸H¤ù
     public GameObject chip;
+
+    //private Rigidbody Rb;
+
+    public Vector3 Direction;
     private void Start()
     {
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
+        //Rb = GetComponent<Rigidbody>();
          //Rigidbody Rb = GetComponent<Rigidbody>();
         //Rb.AddForceAtPosition(transform.forward * 2000f *5* Time.deltaTime, transform.position, ForceMode.Impulse);
     }
+    private void Update()
+    {
+        //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
+        transform.position += Direction * 80 * Time.deltaTime;
+    }
+
 
     public void SetDamage(int DamageType)
     {
@@ -34,7 +46,7 @@ public class ObjectDamage : MonoBehaviour
                 Damage = Damage * 1;
                 break;
         }
-        Debug.Log(Damage);
+        //Debug.Log(Damage);
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -43,6 +55,16 @@ public class ObjectDamage : MonoBehaviour
             if (col.transform.tag == "Boss")
             {
                 bossHealth.TakeDamage(Damage);
+                BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
+                bossSpawn.SpawnedCountDecrease();
+                Destroy(this.gameObject);
+            }
+            else if (col.transform.tag == "BossStando")
+            {
+                //Help me Check if this is right or not.
+                basicState = col.gameObject.GetComponent<BasicState>();
+                basicState._currentHealth -= Damage;
+
                 BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);

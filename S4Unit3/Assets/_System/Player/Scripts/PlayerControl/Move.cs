@@ -15,6 +15,8 @@ public class Move : MonoBehaviour
     private float maximumSpeed;
     private float tempSpeed;
 
+  
+
     [SerializeField] private float rotationSpeed;
 
     [SerializeField] CharacterController characterController;
@@ -32,6 +34,7 @@ public class Move : MonoBehaviour
     public bool isPlayer1;
     public bool isPlayer2;
 
+    public bool IsJoystick;
     public bool isSlowed;
     public bool isImMobilized;
     public bool isDashed;
@@ -112,7 +115,7 @@ public class Move : MonoBehaviour
                 {
                     isDashed = true;
                     _animation.PlayerDash(true);
-                    Debug.Log("P1 Dashed");
+                    //Debug.Log("P1 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
                     DashBar = DashBar - DashUsed;
                 }
@@ -230,27 +233,10 @@ public class Move : MonoBehaviour
                 //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 //Debug.Log(angle);
 
-                //Vector3 v_movement = characterController.transform.forward * verticalInput;
+                               //Vector3 v_movement = characterController.transform.forward * verticalInput;
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
-                float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
-                float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
-
-                if (RothorizontalInput != 0 && RotverticalInput != 0)
-                {
-                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
-                    Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
-                    //Debug.Log(angle);
-                }
-
-                if (Input.GetButtonDown("LockOnP2"))
-                {
-                    Debug.Log("locked Boss!");
-                    BossLockOn();
-                }
+               
 
                 if (Input.GetButtonDown("JumpP2") && DashBar >= DashUsed)
                 {
@@ -273,21 +259,46 @@ public class Move : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
 
+            if (IsJoystick)
+            {
+                float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
+                float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
+
+                if (RothorizontalInput != 0 && RotverticalInput != 0)
+                {
+                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                    Quaternion target = Quaternion.Euler(0, angle, 0);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                    //Debug.Log(angle);
+                }
+
+                if (Input.GetButtonDown("LockOnP2"))
+                {
+                    Debug.Log("locked Boss!");
+                    BossLockOn();
+                }
+            }
+            else
+            {
+                //Aim
+                Plane plane = new Plane(Vector3.up, ShootRot.transform.position);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                float hitDist = 0;
+
+                if (plane.Raycast(ray, out hitDist))
+                {
+                    Vector3 targetPoint = ray.GetPoint(hitDist);
+                    Quaternion targetRotation = Quaternion.LookRotation(targetPoint - ShootRot.transform.position);
+                    targetRotation.x = 0;
+                    targetRotation.z = 0;
+                    ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 7f * Time.deltaTime);
+                }
+            }
             //BossLockOn();
 
-            //Aim
-            Plane plane = new Plane(Vector3.up, ShootRot.transform.position);
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float hitDist = 0;
 
-            if (plane.Raycast(ray, out hitDist))
-            {
-                Vector3 targetPoint = ray.GetPoint(hitDist);
-                Quaternion targetRotation = Quaternion.LookRotation(targetPoint - ShootRot.transform.position);
-                targetRotation.x = 0;
-                targetRotation.z = 0;
-                ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 7f * Time.deltaTime);
-            }
         }
     }
 
@@ -339,7 +350,7 @@ public class Move : MonoBehaviour
             velocity = velocity - this.transform.position;
             velocity = velocity.normalized * 2f;
 
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
             while (Time.time < startTime + dashTime)
@@ -364,7 +375,7 @@ public class Move : MonoBehaviour
             velocity = velocity - transform.position;
             velocity = velocity.normalized * 2f;
 
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
             while (Time.time < startTime + dashTime)

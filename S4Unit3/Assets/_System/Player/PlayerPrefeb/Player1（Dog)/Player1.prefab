@@ -427,7 +427,6 @@ MonoBehaviour:
   rangeObj: {fileID: 500052817167976939}
   RangeBigObj: {fileID: 500052817520157419}
   UIcontrol: {fileID: 0}
-  ShootRot: {fileID: 500052817520157419}
   Charitor: {fileID: 5381467380246077115}
   friendPushed: 0
   Shooted: 0
@@ -444,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectParent: {fileID: 500052817746688516}
+  direction: {fileID: 9195968397510403553}
   SpawnPoint: {fileID: 500052817520157418}
   chip: {fileID: 4625094172040433220, guid: e8166e198b001b64a985a1bfd78070d9, type: 3}
 --- !u!114 &500052818044258935
@@ -491,6 +491,7 @@ MonoBehaviour:
   Cha: {fileID: 5381467380246077115}
   isPlayer1: 1
   isPlayer2: 0
+  IsJoystick: 1
   isSlowed: 0
   isImMobilized: 0
   isDashed: 0

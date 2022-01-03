@@ -7,6 +7,7 @@ public class BossHealthBar : MonoBehaviour
 {
     BasicState bossState;
     Slider slider;
+    BossAI_Wind bossAI;
 
     [SerializeField] float smoothing = 5;
     public float health;
@@ -15,6 +16,7 @@ public class BossHealthBar : MonoBehaviour
     void Start()
     {
         bossState = GameObject.Find("Boss").GetComponent<BasicState>();
+        bossAI = GameObject.Find("Boss").GetComponent<BossAI_Wind>();
         slider = GetComponent<Slider>();
 
         slider.maxValue = bossState._maxHealth;
@@ -42,6 +44,12 @@ public class BossHealthBar : MonoBehaviour
 
     public void TakeDamage(float value)//Should Improve
     {
+        if (bossAI.isStandoMode)
+        {
+            Debug.Log("No Damage!");
+            return;
+        }
+
         if (health - value <= 0 )
         {
             health = 0;
