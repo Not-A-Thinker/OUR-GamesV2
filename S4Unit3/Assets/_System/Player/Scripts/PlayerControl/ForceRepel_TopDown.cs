@@ -72,15 +72,6 @@ public class ForceRepel_TopDown : MonoBehaviour
             savedObject.transform.Translate(toTarget * _force * Time.deltaTime);
         }
     }
-    private void FixedUpdate()
-    {
-        //CubeConter = CubeCount.transform.childCount;
-        
-        //if (CubeConter == 5)
-        //    canSucc = false;
-        //else if (CubeConter < 5)
-        //    canSucc = true;
-    }
 
     public void Repel()
     {
