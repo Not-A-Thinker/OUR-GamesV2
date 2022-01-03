@@ -115,7 +115,7 @@ public class Move : MonoBehaviour
                 {
                     isDashed = true;
                     _animation.PlayerDash(true);
-                    Debug.Log("P1 Dashed");
+                    //Debug.Log("P1 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
                     DashBar = DashBar - DashUsed;
                 }
@@ -350,7 +350,7 @@ public class Move : MonoBehaviour
             velocity = velocity - this.transform.position;
             velocity = velocity.normalized * 2f;
 
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
             while (Time.time < startTime + dashTime)
@@ -375,7 +375,7 @@ public class Move : MonoBehaviour
             velocity = velocity - transform.position;
             velocity = velocity.normalized * 2f;
 
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
             while (Time.time < startTime + dashTime)
