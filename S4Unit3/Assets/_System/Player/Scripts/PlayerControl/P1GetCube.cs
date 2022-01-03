@@ -63,8 +63,12 @@ public class P1GetCube : MonoBehaviour
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
             Rigidbody Rb = cube.GetComponent<Rigidbody>();
-            if(cube.GetComponent<ObjectDestroy>().isSucked)
-                cube.GetComponent<ObjectDestroy>().isSucked = false;
+            if (!cube.GetComponent<ObjectDestroy>())
+            {
+                if (cube.GetComponent<ObjectDestroy>().isSucked)
+                    cube.GetComponent<ObjectDestroy>().isSucked = false;
+            }
+            
             Rb.constraints = RigidbodyConstraints.None;
             Rb.useGravity = true;
             totalHight = totalHight - 3;
@@ -90,7 +94,7 @@ public class P1GetCube : MonoBehaviour
             caseNum = 1;
             force = 2;
         }
-        Debug.Log(force);
+        //Debug.Log(force);
 
 
         Rigidbody Rb = cube.GetComponent<Rigidbody>();
