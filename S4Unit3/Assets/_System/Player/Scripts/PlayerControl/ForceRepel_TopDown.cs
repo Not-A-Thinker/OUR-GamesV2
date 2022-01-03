@@ -18,6 +18,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     //int CubeConter=0;
     [SerializeField] GameObject Range;
     [SerializeField] GameObject clipParent;
+    [SerializeField] Move move;
+    [SerializeField] GameObject Mother;
 
     [Header("State")]
     [SerializeField] bool SuccFromBoss = false;
@@ -30,7 +32,11 @@ public class ForceRepel_TopDown : MonoBehaviour
     void Update()
     {
         if (Input.GetButtonDown("Fire2"))
+        {
             OldQuate = ChaRot.transform.rotation;
+            move.inCC = true;
+        }
+           
 
         if (Input.GetButton("Fire2"))
         {
@@ -45,7 +51,8 @@ public class ForceRepel_TopDown : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = false;
             SuccFromBoss = false;
             Range.SetActive(false);
-          
+            move.inCC = false;
+
             canSucc = true;
             if (savedObject != null)
             {
@@ -133,8 +140,8 @@ public class ForceRepel_TopDown : MonoBehaviour
 
                 //    //Destroy(hit.transform.gameObject);
                 //}
-                if (hit.transform.tag == "Player" && FriendCD == false )
-                {
+                if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
+                {                   
                     //Debug.Log("Hit"+hit.transform.name);
                     Move move = hit.transform.GetComponent<Move>();
                     StartCoroutine(move.GetFriendlyControl(this.transform.position));
