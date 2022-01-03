@@ -32,7 +32,7 @@ public class GetTriggerObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider Obj)
     {
-        Debug.Log(Obj.tag);
+        //Debug.Log(Obj.tag);
         if (Obj.transform.gameObject.layer == 6&&Obj.transform.tag!="Player")
         {
             if (Obj.transform.tag == "Clip")
@@ -113,7 +113,7 @@ public class GetTriggerObject : MonoBehaviour
             totalHight = totalHight - 2;
             if (k == 1)
                 SpawnDone = false;
-            Debug.Log(SpawnDone);
+            //Debug.Log(SpawnDone);
         }
         GameObject NewSpcAtk = Instantiate(SpcAttack);
         getCube.PlayerGetCube(NewSpcAtk);
