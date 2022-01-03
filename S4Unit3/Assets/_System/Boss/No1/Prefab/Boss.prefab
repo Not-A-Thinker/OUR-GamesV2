@@ -814,6 +814,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: boss1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     - target: {fileID: 1676798751578687038, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_TagString
       value: WingAttack
