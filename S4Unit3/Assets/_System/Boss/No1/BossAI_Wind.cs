@@ -477,8 +477,6 @@ public class BossAI_Wind : MonoBehaviour
 
                             BossSkill.BossWingAttack();
                         }
-                        
-
                     }
                     break;
                 case 61:

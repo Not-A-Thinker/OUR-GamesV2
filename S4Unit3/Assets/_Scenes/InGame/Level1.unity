@@ -726,7 +726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013025552, y: 46.389996, z: -73.0735}
+  m_LocalPosition: {x: -0.013384104, y: 48.82391, z: -69.03172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1126,6 +1126,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206312102}
   m_CullTransparentMesh: 1
+--- !u!4 &213671919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3547116887273196986, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+  m_PrefabInstance: {fileID: 1558560915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &228379412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,11 +2415,14 @@ MonoBehaviour:
   - target: {fileID: 1507288132}
     weight: 3
     radius: 1
-  - target: {fileID: 0}
+  - target: {fileID: 213671919}
     weight: 1
     radius: 10
   - target: {fileID: 1717487049}
     weight: 2
+    radius: 3
+  - target: {fileID: 0}
+    weight: 1
     radius: 3
 --- !u!4 &620949372
 Transform:
@@ -2424,7 +2432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620949370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.43326163, y: 0.7725755, z: -31.685543}
+  m_LocalPosition: {x: 0.4302197, y: 0.6124946, z: -30.704885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3341,7 +3349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013025552, y: 46.389996, z: -73.0735}
+  m_LocalPosition: {x: -0.013384104, y: 48.82391, z: -69.03172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4981,7 +4989,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: aiEnable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: SpawnPoint
