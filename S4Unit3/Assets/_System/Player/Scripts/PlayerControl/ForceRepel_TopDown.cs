@@ -118,6 +118,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
                     Vector3 hitpoint = hit.point - hit.normal;
+                    //Debug.Log(hitpoint);
                     BossSpwO.ObjectSpawn(hitpoint);
                     if (BossSpwO.lastSpawned != null)
                     {
