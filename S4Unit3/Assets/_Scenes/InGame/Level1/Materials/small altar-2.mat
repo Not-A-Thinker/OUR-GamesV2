@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Boss_Outline
-  m_Shader: {fileID: -6465566751694194690, guid: 92dc858bdada85140b91d036d02326a5, type: 3}
+  m_Name: small altar-2
+  m_Shader: {fileID: -6465566751694194690, guid: dc12a20789cbf8140a773d89e70c23dd, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 93fb03243d8c1d3408798ad81751c738, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 93fb03243d8c1d3408798ad81751c738, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 6efe453f3d1f7eb4d86457b3eac08fcb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 528d208e0ff919f4a8a75c680d260904, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -81,7 +81,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - LineThickness: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -92,6 +91,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EdgeRang: 0.5
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 32
@@ -102,7 +102,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RimTheshhold: 0.127
+    - _RimTheshhold: 0.1
     - _Rim_Amount: 0.76
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -113,15 +113,18 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - MainColor: {r: 1, g: 1, b: 1, a: 0}
-    - Rim_Color: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 0}
-    - _AmbientColor: {r: 0.38679248, g: 0.37476102, b: 0.21310076, a: 0}
+    - Rim_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _AmbientColor: {r: 0.4941176, g: 0.4784314, b: 0.4784314, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MaxWhiteColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2003532688628033405
+--- !u!114 &5306330906130862729
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
