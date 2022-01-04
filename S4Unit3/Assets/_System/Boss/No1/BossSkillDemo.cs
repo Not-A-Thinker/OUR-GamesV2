@@ -24,6 +24,7 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject TornadoBigOne;
     public GameObject windBladeBoomerang;
     public GameObject tornadoSpecialAttack;
+    public GameObject mistObj;
 
     [Header("Boss Stando Prefabs")]
     public GameObject bossStando;
@@ -34,6 +35,7 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Skill Status")]
     public bool isMeleeAttacking;
+    public bool canMistAgain;
 
     [Header("Skill")]
     public int NumTornadoToSpawn = 2;
@@ -87,7 +89,7 @@ public class BossSkillDemo : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            BossStando();
+            MistAttack();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
         {
@@ -432,8 +434,8 @@ public class BossSkillDemo : MonoBehaviour
 
     public void MistAttack()
     {
-
-        MistCDTimer();
+        Instantiate(mistObj, transform.position, Quaternion.identity);
+        
 
     }
 
@@ -442,9 +444,9 @@ public class BossSkillDemo : MonoBehaviour
 
     public IEnumerator MistCDTimer()
     {
-
+        canMistAgain = false;
         yield return new WaitForSeconds(15);
-
+        canMistAgain = true;
     }
 
     private void OnDrawGizmos()
