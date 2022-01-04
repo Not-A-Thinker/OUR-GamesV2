@@ -475,14 +475,32 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
                 case 42:
-                    //Wing Attack 近戰攻擊(翼)
-                    yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+                    if (rndNum < 50)
+                    {
+                        //Wing Attack 近戰攻擊(翼)
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
-                    isMeleeAttacking = true;
-                    BossSkill.BossWingAttack();
+                        isMeleeAttacking = true;
+                        BossSkill.BossWingAttack();
+                    }
+                    else if (rndNum >= 50 && rndNum < 100)
+                    {
+                        //Mist Attack 霧氣攻擊
+                        if (BossSkill.canMistAgain)
+                        {
+                            BossSkill.MistAttack();
+                            StartCoroutine(BossSkill.MistCDTimer());
+                        }
+                        else
+                        {
+                            //Wing Attack 近戰攻擊(翼)
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
-                    //This should be mist added.
-
+                            isMeleeAttacking = true;
+                            BossSkill.BossWingAttack();
+                        }
+                    }
+                    
                     break;
                 case 43:
                     if (rndNum < 50)
