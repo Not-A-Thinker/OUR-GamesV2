@@ -82,9 +82,11 @@ MonoBehaviour:
   TornadoBigOne: {fileID: 7699805585455492480, guid: 0d5a3efd9cecfaf42b4f6f134b5b47bd, type: 3}
   windBladeBoomerang: {fileID: 7946992982300751064, guid: ee0e9caac38b7b8459abd4eb5cb75f25, type: 3}
   tornadoSpecialAttack: {fileID: 609656492285098026, guid: c2500912f65c7ac429c3a76bff944f21, type: 3}
+  mistObj: {fileID: 0}
   bossStando: {fileID: 0}
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
+  canMistAgain: 0
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1

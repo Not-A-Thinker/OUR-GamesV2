@@ -9,7 +9,7 @@ public class GetTriggerObject : MonoBehaviour
 
     //getChip
     public GameObject ChipParent,SpcAttack;
-    float totalHight = 2f;
+    float totalHight = 3f;
 
     [SerializeField] GameObject chip;
     P1GetCube getCube;
@@ -48,7 +48,7 @@ public class GetTriggerObject : MonoBehaviour
 
                 getedObject.transform.parent = ChipParent.transform;
 
-                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.y );
+                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z);
                 totalHight = totalHight + 2;
                 getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 
