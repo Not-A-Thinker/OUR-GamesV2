@@ -52,7 +52,16 @@ public class ObjectDamage : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.layer == 6)
+        if (col.transform.tag == "BossStando")
+        {
+            //Help me Check if this is right or not.
+            basicState = col.gameObject.GetComponent<BasicState>();
+            basicState._currentHealth -= Damage;
+            //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
+            //bossSpawn.SpawnedCountDecrease();
+            Destroy(this.gameObject);
+        }
+        if (col.gameObject.layer == 6)
         {
             if (col.transform.tag == "Boss")
             {
@@ -61,15 +70,7 @@ public class ObjectDamage : MonoBehaviour
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);
             }
-            else if (col.transform.tag == "BossStando")
-            {
-                //Help me Check if this is right or not.
-                basicState = col.gameObject.GetComponent<BasicState>();
-                basicState._currentHealth -= Damage;
-                //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
-                //bossSpawn.SpawnedCountDecrease();
-                Destroy(this.gameObject);
-            }
+            //else 
             else
             {
                 int i = Random.Range(1, 3);
