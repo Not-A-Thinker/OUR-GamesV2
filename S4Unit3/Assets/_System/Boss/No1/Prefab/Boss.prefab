@@ -197,10 +197,11 @@ MonoBehaviour:
   TornadoBigOne: {fileID: 7699805585455492480, guid: 0d5a3efd9cecfaf42b4f6f134b5b47bd, type: 3}
   windBladeBoomerang: {fileID: 7946992982300751064, guid: ee0e9caac38b7b8459abd4eb5cb75f25, type: 3}
   tornadoSpecialAttack: {fileID: 609656492285098026, guid: c2500912f65c7ac429c3a76bff944f21, type: 3}
-  mistObj: {fileID: 0}
+  mistObj: {fileID: 1546076111722753262, guid: f4f8c31eba57edc4391e3c0ccb79cb71, type: 3}
   bossStando: {fileID: 1957455747635378796, guid: fa90e23e5034dde409d5ed56edfba0bf, type: 3}
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
+  canMistAgain: 0
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
@@ -247,7 +248,7 @@ MonoBehaviour:
   backwardForce: 13000
   preMoveCount: 0
   isMoveFinished: 0
-  aiEnable: 0
+  aiEnable: 1
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 1.8
@@ -798,9 +799,17 @@ PrefabInstance:
       value: -180
       objectReference: {fileID: 0}
     - target: {fileID: -4174759811996636199, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4174759811996636199, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1eedea41d28d9e143b07470a8dcc8eaf, type: 2}
+    - target: {fileID: -4174759811996636199, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4453b98dffa808c4cba245e9dbf5c49c, type: 2}
     - target: {fileID: 668007280084587874, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0.000016899034
