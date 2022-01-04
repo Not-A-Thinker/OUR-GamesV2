@@ -37,6 +37,7 @@ public class PlayerState : MonoBehaviour
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
+        move = GetComponent<Move>();
 
         _currentHealth = _maxHealth;
         if (gameObject.name == "Player1")

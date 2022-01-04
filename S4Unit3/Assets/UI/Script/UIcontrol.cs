@@ -25,11 +25,16 @@ public class UIcontrol : MonoBehaviour
     [Header("Push Bar")]
     [SerializeField] GameObject pushing;
     [SerializeField] Slider push_slider;
+    [SerializeField] GameObject pushingCD;
+    [SerializeField] Slider pushCD_slider;
 
+    [Header("SuckBar")]
+    [SerializeField] GameObject SuckingCD;
+    [SerializeField] Slider SuckCD_slider;
     //GameOver
     //[SerializeField] GameObject GameOverText,YouWinTest,RestartTest;
     //bool IsGameOver, IsWinGame;
-
+    [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] Text DeadCounter;
 
@@ -106,6 +111,18 @@ public class UIcontrol : MonoBehaviour
         pushing.SetActive(false);
 
         push_slider.value = 0;
+    }
+
+    //PlayerSuckPushCD
+    public void PushingCDBar(float load,bool Ready)
+    {
+        pushingCD.SetActive(Ready);
+        //pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+    }
+    public void SuckingCDBar(bool Ready)
+    {
+        SuckingCD.SetActive(Ready);
+        //SuckCD_slider.value = Mathf.Lerp(SuckCD_slider.value, load, smoothing * Time.deltaTime);
     }
 
     //end game
