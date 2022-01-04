@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.7581196, g: 0.7894322, b: 0.7902498, a: 1}
+  m_IndirectSpecularColor: {r: 0.76512945, g: 0.7968668, b: 0.7867662, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,6 +259,10 @@ MonoBehaviour:
   slider: {fileID: 703364615}
   pushing: {fileID: 1762843936}
   push_slider: {fileID: 466738669}
+  pushingCD: {fileID: 0}
+  pushCD_slider: {fileID: 0}
+  SuckingCD: {fileID: 0}
+  SuckCD_slider: {fileID: 0}
   smoothing: 5
   DeadCounter: {fileID: 206312104}
 --- !u!1 &17329935
@@ -718,9 +722,8 @@ MonoBehaviour:
     LensShift: {x: 0, y: 0}
     GateFit: 2
     m_SensorSize: {x: 1.7777778, y: 1}
-
   m_Transitions:
-    m_BlendHint: 1
+    m_BlendHint: 0
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
@@ -735,7 +738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013598949, y: 51.45515, z: -64.982994}
+  m_LocalPosition: {x: -0.013733685, y: 52.545376, z: -63.091713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1397,7 +1400,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3332,7 +3335,7 @@ Camera:
     height: 1
   near clip plane: 0.001
   far clip plane: 400
-  field of view: 45
+  field of view: 50.16434
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3358,7 +3361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.013598949, y: 51.45515, z: -64.982994}
+  m_LocalPosition: {x: -0.013733685, y: 52.545376, z: -63.091713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
