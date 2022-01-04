@@ -16,6 +16,8 @@ public class ObjectDamage : MonoBehaviour
     //private Rigidbody Rb;
 
     public Vector3 Direction;
+
+    public float Speed = 50;
     private void Start()
     {
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
@@ -28,7 +30,7 @@ public class ObjectDamage : MonoBehaviour
     private void Update()
     {
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
-        transform.position += Direction * 80 * Time.deltaTime;
+        transform.position += Direction * Speed * Time.deltaTime;
     }
 
 

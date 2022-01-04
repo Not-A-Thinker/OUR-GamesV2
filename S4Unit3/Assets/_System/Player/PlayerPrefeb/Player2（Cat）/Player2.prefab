@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChaRot: {fileID: 6214820614071332330}
-  _force: 15
+  _force: 6.5
   _range: 25
   savedObject: {fileID: 0}
   S_Tonado: {fileID: 0}
@@ -662,9 +662,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2319457247965724244, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2319457247965724244, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ff59d6d7b0c2f7f418b7e5003531a6f7, type: 2}
+    - target: {fileID: -2319457247965724244, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ba5af815d096e8488382acd159c36fa, type: 2}
     - target: {fileID: -1958615599611684883, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_Layer
       value: 0
