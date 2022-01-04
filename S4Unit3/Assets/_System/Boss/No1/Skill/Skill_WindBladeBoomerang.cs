@@ -58,7 +58,7 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
             //Debug.Log("Hit!");
             Destroy(gameObject);
         }
-        if (other.gameObject.tag == "Boss")
+        if (other.gameObject.tag == "Boss" || other.gameObject.tag == "BossStando")
         {
             if (b_ShouldReturn == true)
             {
