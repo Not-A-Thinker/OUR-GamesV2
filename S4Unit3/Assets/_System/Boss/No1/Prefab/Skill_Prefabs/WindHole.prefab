@@ -258,10 +258,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4988700607590763604}
     m_Modifications:
+    - target: {fileID: 6285763654819619416, guid: ae106a007465c674cb9087f543c21a82, type: 3}
+      propertyPath: ShapeModule.m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: 443301b7445004d4bbde253e5d66fbd0, type: 3}
     - target: {fileID: 6285763656413864200, guid: ae106a007465c674cb9087f543c21a82, type: 3}
       propertyPath: m_Name
       value: Particle_Wind assault_3_5s
       objectReference: {fileID: 0}
+    - target: {fileID: 6285763656413864206, guid: ae106a007465c674cb9087f543c21a82, type: 3}
+      propertyPath: ShapeModule.m_Mesh
+      value: 
+      objectReference: {fileID: -2432090755550338912, guid: 443301b7445004d4bbde253e5d66fbd0, type: 3}
     - target: {fileID: 6285763656413864207, guid: ae106a007465c674cb9087f543c21a82, type: 3}
       propertyPath: m_RootOrder
       value: 2
