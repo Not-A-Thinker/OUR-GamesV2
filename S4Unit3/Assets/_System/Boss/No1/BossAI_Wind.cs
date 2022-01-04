@@ -103,6 +103,11 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
 
+        if (isStando)
+        {
+            Destroy(gameObject, 30);
+        }
+
         if (isStando && basicState._currentHealth <= 0)
         {
             Debug.Log("Stando is Vanish");
@@ -118,9 +123,9 @@ public class BossAI_Wind : MonoBehaviour
             IsStage1 = false;
             IsStage2 = true;
 
-            skillRange1 = 18;
+            skillRange1 = 20;
             skillRange2 = 35;
-            skillRange3 = 40;
+            skillRange3 = 50;
 
             Debug.Log("Switch to Stage2!");
         }
@@ -720,5 +725,10 @@ public class BossAI_Wind : MonoBehaviour
     private void OnDestroy()
     {
         //Maybe spawn some particle when destroy.
+        if (isStando)
+        {
+            Debug.Log("Stando is Vanish.");
+            GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
+        }
     }
 }
