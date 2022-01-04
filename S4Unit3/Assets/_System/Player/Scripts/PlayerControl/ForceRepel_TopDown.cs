@@ -64,7 +64,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 S_Tonado = null;
             }
         }
-        if (savedObject == true)
+        if (savedObject)
         {
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
             Vector3 toTarget = transform.position - savedObject.transform.position;

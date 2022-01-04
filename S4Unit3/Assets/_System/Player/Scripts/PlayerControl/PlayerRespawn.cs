@@ -16,6 +16,10 @@ public class PlayerRespawn : MonoBehaviour
     public bool isPlayer1;
     public bool isPlayer2;
 
+    private void Start()
+    {
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+    }
 
     private void OnTriggerStay(Collider obj)
     {

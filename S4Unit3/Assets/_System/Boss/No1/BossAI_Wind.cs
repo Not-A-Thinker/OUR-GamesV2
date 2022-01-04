@@ -110,6 +110,21 @@ public class BossAI_Wind : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //This is for detecting if is condition to stage 2
+        //May need to apply a animation to tell if is Stage 2
+        if (healthBar.health <= 0 && IsStage1)
+        {
+            healthBar.Stage1ToStage2();
+            IsStage1 = false;
+            IsStage2 = true;
+
+            skillRange1 = 18;
+            skillRange2 = 35;
+            skillRange3 = 40;
+
+            Debug.Log("Switch to Stage2!");
+        }
+
         //Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
@@ -125,23 +140,6 @@ public class BossAI_Wind : MonoBehaviour
         }
         if (!aiEnable)
             return;
-
-        
-
-        //This is for detecting if is condition to stage 2
-        //May need to apply a animation to tell if is Stage 2
-        if (healthBar.health <= 0 && IsStage1)
-        {
-            healthBar.Stage1ToStage2();
-            IsStage1 = false;
-            IsStage2 = true;
-
-            skillRange1 = 18;
-            skillRange2 = 35;
-            skillRange3 = 40;
-
-            Debug.Log("Switch to Stage2!");
-        }
 
         //This is for locking on player itself;
         selfPos = new Vector3(transform.position.x, 1, transform.position.z);
@@ -330,7 +328,7 @@ public class BossAI_Wind : MonoBehaviour
 
         //This is the attack alert animation,
         //and will have to wait at least 0.4 sec to response(may need to change).
-        attackAlert.SetTrigger("isMeleeAttacking");
+        attackAlert.SetTrigger("isAttacking");
         yield return new WaitForSeconds(0.4f);
 
         if (IsStage1 || isStando)
@@ -591,7 +589,7 @@ public class BossAI_Wind : MonoBehaviour
 
     void BossSetDestination(Vector3 tarPos)
     {
-        if (isStando)
+        if (isStando || IsStage1)
         {
             return;
         }

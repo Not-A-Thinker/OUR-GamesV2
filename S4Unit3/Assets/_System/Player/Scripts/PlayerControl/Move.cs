@@ -61,6 +61,7 @@ public class Move : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
