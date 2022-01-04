@@ -23,7 +23,6 @@ public class PlayerState : MonoBehaviour
     [SerializeField] Move move;
     [SerializeField] PlayerTotalDead playerTotalDead;
     [SerializeField] PlayerState OthePlayerState;
-    [SerializeField] P1GetCube p1GetCube;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     //bool isColliding;
@@ -32,16 +31,24 @@ public class PlayerState : MonoBehaviour
 
     bool isInvincible = false;
     private void Start()
-    {
-       
+    {      
         rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
+        col = GetComponent<Collider>();     
+
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
+
         _currentHealth = _maxHealth;
         if (gameObject.name == "Player1")
         {
             playerCount = 1;
+            OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
         }
-        else playerCount = 2;
+        else
+        {
+            playerCount = 2;
+            OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
+        } 
         Resurrect_range.SetActive(false);
     }
 
@@ -77,6 +84,7 @@ public class PlayerState : MonoBehaviour
 
             if (playerCount == 1)
             {
+                P1GetCube p1GetCube= GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
             }
             //Debug.Log(_currentHealth);     

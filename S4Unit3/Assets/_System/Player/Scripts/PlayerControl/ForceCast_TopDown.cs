@@ -32,6 +32,7 @@ public class ForceCast_TopDown : MonoBehaviour
     void Start()
     {
         Shooted = false;
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
     void Update()
