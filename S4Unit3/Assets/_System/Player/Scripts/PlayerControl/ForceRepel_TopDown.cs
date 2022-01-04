@@ -20,6 +20,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
+    UIcontrol uIcontrol;
 
     [Header("State")]
     [SerializeField] bool SuccFromBoss = false;
@@ -29,12 +30,18 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     //clip
 
+    private void Start()
+    {
+        uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Fire2"))
         {
             OldQuate = ChaRot.transform.rotation;
             move.inCC = true;
+            uIcontrol.SuckingCDBar(false);
         }
            
 
@@ -51,9 +58,11 @@ public class ForceRepel_TopDown : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = false;
             SuccFromBoss = false;
             Range.SetActive(false);
-            move.inCC = false;
-
+            move.inCC = false;        
             canSucc = true;
+            uIcontrol.SuckingCDBar(canSucc);
+
+
             if (savedObject != null)
             {
                 resetObject();  
@@ -152,6 +161,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void CantSucc()
     {
         canSucc = false;
+        uIcontrol.SuckingCDBar(canSucc);
     }
 
     public void resetObject()
@@ -182,7 +192,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     IEnumerator FriendlyCD()
     {
         FriendCD = true;
-
+     
         yield return new WaitForSeconds(8);
 
         FriendCD = false;

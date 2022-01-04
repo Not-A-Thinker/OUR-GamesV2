@@ -189,8 +189,19 @@ public class ForceCast_TopDown : MonoBehaviour
    IEnumerator ShootCD(int time)
     {
         Shooted = true;
+        UIcontrol.PushingCDBar(time, false);
         yield return new WaitForSeconds(time);
         Shooted = false;
+        UIcontrol.PushingCDBar(time, true);
+        //while (time > 0)
+        //{
+        //    yield return new WaitForSeconds(1);
+        //    time -= 1;
+        //    UIcontrol.PushingCDBar(time);
+        //    // This leaves the coroutine at this point
+        //    // so in the next frame the while loop continues
+        //    yield return null;
+        //}
     }
 
     IEnumerator FriendCD(int time)
