@@ -35,7 +35,7 @@ public class Skill_WindHole : MonoBehaviour
             {
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
-                //Debug.Log("Hit!");
+
             }
         }
     }
