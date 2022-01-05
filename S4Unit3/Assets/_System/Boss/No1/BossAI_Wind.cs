@@ -311,9 +311,7 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 63;}
 
             if (!isStandoMode && BossSkill.canStandoAgain)
-            {
-                AIDecision = 64;
-            }
+            {AIDecision = 64;}
         }
 
         Debug.Log("Skill is select!");

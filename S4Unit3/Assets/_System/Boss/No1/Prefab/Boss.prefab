@@ -193,7 +193,7 @@ MonoBehaviour:
   isLockOn: 0
   isMeleeAttacking: 0
   timing: 0.2
-  backwardForce: 13000
+  backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
   aiEnable: 1
@@ -237,6 +237,9 @@ MonoBehaviour:
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
   canMistAgain: 0
+  canStandoAgain: 0
+  mistCDTime: 15
+  standoCDTime: 30
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
