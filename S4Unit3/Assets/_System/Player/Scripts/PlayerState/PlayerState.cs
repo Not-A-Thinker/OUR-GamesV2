@@ -25,23 +25,20 @@ public class PlayerState : MonoBehaviour
     [SerializeField] PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
+    //[SerializeField] GameObject SuckRange;
     //bool isColliding;
-    Rigidbody rb;
-    Collider col;
 
     bool isInvincible = false;
     private void Start()
-    {      
-        rb = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();     
-
+    {           
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         move = GetComponent<Move>();
 
-        _currentHealth = _maxHealth;
+       //檢查玩家編號
         if (gameObject.name == "Player1")
         {
+            _maxHealth = 5;
             playerCount = 1;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
         }
@@ -49,7 +46,10 @@ public class PlayerState : MonoBehaviour
         {
             playerCount = 2;
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
-        } 
+        }
+
+        _currentHealth = _maxHealth;
+
         Resurrect_range.SetActive(false);
     }
 
@@ -59,6 +59,7 @@ public class PlayerState : MonoBehaviour
 
         UIcontrol.EnergyBarChange(move.DashBar, playerCount);
 
+        //Invincible作弊
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
             isInvincible = !isInvincible;
@@ -110,6 +111,7 @@ public class PlayerState : MonoBehaviour
         UIcontrol.hp_increase(_currentHealth, playerCount);
     }
 
+    //Player RespawnReset
     public void PlayerRespawn()
     {
         isDead = false;
@@ -132,6 +134,7 @@ public class PlayerState : MonoBehaviour
         //rb.useGravity = true;
     }
 
+    //PlayerState Reset When Dead
     public void PlayerIsDead()
     {
         isDead = true;
@@ -158,6 +161,7 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    //GetHitByAttack
     private void OnTriggerEnter(Collider other)
     {
         //This is for Player to detect if the boss melee attack is hit or not.
@@ -174,6 +178,7 @@ public class PlayerState : MonoBehaviour
 
     }
 
+    //Hyper Muteki Gamer
     IEnumerator Invincible(int time)
     {
         isInvincible = true;
@@ -188,6 +193,7 @@ public class PlayerState : MonoBehaviour
         Debug.Log("Invincible" + isInvincible);
     }
 
+    //Cheat
     void InvincibleRend()
     {
         if (_renderer.enabled == true)       

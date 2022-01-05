@@ -20,6 +20,7 @@ public class P1GetCube : MonoBehaviour
 
     public void PlayerGetCube(GameObject cube)
     {
+        // Saveing Cube on the Top of dog head
         if (objectParent.transform.childCount<3)
         {
             move = GetComponent<Move>();
