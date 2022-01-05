@@ -125,8 +125,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3547116887273196986}
   - component: {fileID: 3547116887273196987}
-  - component: {fileID: 3547116887273196985}
   - component: {fileID: 188733293806428879}
+  - component: {fileID: 3547116887273196985}
   - component: {fileID: 3547116887273196982}
   - component: {fileID: 3547116887273196991}
   - component: {fileID: 3547116887273196983}
@@ -175,6 +175,41 @@ MonoBehaviour:
   _speed: 10
   _rotateSpeed: 10
   b_isDefeated: 0
+--- !u!114 &188733293806428879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547116887273196990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAlert: {fileID: 8678587213662028274}
+  lookAtP1: 0
+  lookAtP2: 0
+  isLockOn: 0
+  isMeleeAttacking: 0
+  timing: 0.2
+  backwardForce: 13000
+  preMoveCount: 0
+  isMoveFinished: 0
+  aiEnable: 1
+  aiStartTime: 2
+  aiReactTimeStage1: 2.7
+  aiReactTimeStage2: 1.8
+  aiReactTimeStandoMode: 3.6
+  IsStage1: 1
+  IsStage2: 0
+  isStandoMode: 0
+  isMain: 1
+  isStando: 0
+  skillRange1: 20
+  skillRange2: 35
+  skillRange3: 50
+  angleOfView: 90
 --- !u!114 &3547116887273196985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,6 +262,7 @@ MonoBehaviour:
   tailForwardForce: 18000
   _range: 50
   Boss1Animator: {fileID: 8650027658515693968}
+
 --- !u!114 &188733293806428879
 MonoBehaviour:
   m_ObjectHideFlags: 0
