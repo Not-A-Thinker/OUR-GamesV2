@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1957455747635378792}
   - component: {fileID: 1957455747635378793}
-  - component: {fileID: 1957455747635378795}
   - component: {fileID: 2922027244449699101}
+  - component: {fileID: 1957455747635378795}
   - component: {fileID: 1957455747635378788}
   - component: {fileID: 1957455747635378797}
   - component: {fileID: 1957455747635378789}
@@ -60,6 +60,41 @@ MonoBehaviour:
   _speed: 10
   _rotateSpeed: 10
   b_isDefeated: 0
+--- !u!114 &2922027244449699101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957455747635378796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAlert: {fileID: 5936635689230513696}
+  lookAtP1: 0
+  lookAtP2: 0
+  isLockOn: 0
+  isMeleeAttacking: 0
+  timing: 0.2
+  backwardForce: 13000
+  preMoveCount: 0
+  isMoveFinished: 0
+  aiEnable: 1
+  aiStartTime: 2
+  aiReactTimeStage1: 2.7
+  aiReactTimeStage2: 1.8
+  aiReactTimeStandoMode: 3.6
+  IsStage1: 0
+  IsStage2: 1
+  isStandoMode: 0
+  isMain: 0
+  isStando: 1
+  skillRange1: 20
+  skillRange2: 35
+  skillRange3: 50
+  angleOfView: 90
 --- !u!114 &1957455747635378795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,41 +147,6 @@ MonoBehaviour:
   tailForwardForce: 18000
   _range: 50
   Boss1Animator: {fileID: 5915673759277053506}
---- !u!114 &2922027244449699101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957455747635378796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackAlert: {fileID: 5936635689230513696}
-  lookAtP1: 0
-  lookAtP2: 0
-  isLockOn: 0
-  isMeleeAttacking: 0
-  timing: 0.2
-  backwardForce: 13000
-  preMoveCount: 0
-  isMoveFinished: 0
-  aiEnable: 1
-  aiStartTime: 2
-  aiReactTimeStage1: 2.7
-  aiReactTimeStage2: 1.8
-  aiReactTimeStandoMode: 3.6
-  IsStage1: 0
-  IsStage2: 1
-  isStandoMode: 0
-  isMain: 0
-  isStando: 1
-  skillRange1: 20
-  skillRange2: 35
-  skillRange3: 50
-  angleOfView: 90
 --- !u!114 &1957455747635378788
 MonoBehaviour:
   m_ObjectHideFlags: 0

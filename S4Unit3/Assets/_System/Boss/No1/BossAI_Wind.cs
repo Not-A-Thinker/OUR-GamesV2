@@ -127,6 +127,9 @@ public class BossAI_Wind : MonoBehaviour
             skillRange2 = 35;
             skillRange3 = 50;
 
+            //This is for preventing the stando show up too early, can be change.
+            StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+
             Debug.Log("Switch to Stage2!");
         }
 
@@ -318,6 +321,11 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 63;}
             else if (preMoveCount == 2 && distP2 < skillRange1)//If player2 is too near boss after 2 backward, then...
             { AIDecision = 63;}
+
+            if (!isStandoMode && BossSkill.canStandoAgain)
+            {
+                AIDecision = 64;
+            }
         }
 
         Debug.Log("Skill is select!");
@@ -326,6 +334,7 @@ public class BossAI_Wind : MonoBehaviour
         //This is the End of Skill Selection.
     }
 
+    //This is for AI how to do an attack after the decision make by SkillSelection function.
     public IEnumerator AIOnAttack(int num)
     {
         int rndNum = Random.Range(0, 100);
@@ -494,7 +503,7 @@ public class BossAI_Wind : MonoBehaviour
                         if (BossSkill.canMistAgain)
                         {
                             BossSkill.MistAttack();
-                            StartCoroutine(BossSkill.MistCDTimer());
+                            StartCoroutine(BossSkill.MistCDTimer(BossSkill.mistCDTime));
                         }
                         else
                         {
@@ -508,29 +517,19 @@ public class BossAI_Wind : MonoBehaviour
                     
                     break;
                 case 43:
-                    if (rndNum < 50)
+                    if(rndNum < 50)
                     {
                         //Wind Hole 風柱
                         StartCoroutine(BossSkill.WindHole(1,8));
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        if (!isStandoMode)
-                        {
-                            //Stando! 分身
-                            isStandoMode = true;
-                            BossSkill.BossStando();
-                            Debug.Log("Stando!(Not Finish Yet)");
-                        }
-                        else
-                        {
-                            //Do something else
-                            //Wing Attack 近戰攻擊(翼)
-                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+                        //Do something else
+                        //Wing Attack 近戰攻擊(翼)
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
-                            isMeleeAttacking = true;
-                            BossSkill.BossWingAttack();
-                        }
+                        isMeleeAttacking = true;
+                        BossSkill.BossWingAttack();
                     }
                     break;
                 case 61:
@@ -546,6 +545,12 @@ public class BossAI_Wind : MonoBehaviour
                     //Wing Area Attack 近戰範圍攻擊
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
+                    break;
+                case 64:
+                    //Stando! 分身
+                    isStandoMode = true;
+                    BossSkill.BossStando();
+                    StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
                     break;
 
             }
