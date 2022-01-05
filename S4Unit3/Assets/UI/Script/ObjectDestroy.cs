@@ -16,13 +16,13 @@ public class ObjectDestroy : MonoBehaviour
             CancelInvoke("DestroyThis");
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Wall")
-            Destroy(gameObject);
-        //else
-        //    isGround = false;
-    }
+    //private void OnCollisionStay(Collision col)
+    //{
+    //    if (col.gameObject.name == "Floor")
+    //        isGround = true;
+    //    //else
+    //    //    isGround = false;
+    //}
 
     //private void OnCollisionExit(Collision col)
     //{
