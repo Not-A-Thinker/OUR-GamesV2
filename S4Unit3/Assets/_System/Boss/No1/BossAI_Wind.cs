@@ -79,6 +79,7 @@ public class BossAI_Wind : MonoBehaviour
         StartCoroutine(AIStartTimer());
     }
 
+    //This is only for testing function, should be del soon.
     IEnumerator Test()
     {
         lookAtP1 = true;
@@ -94,13 +95,6 @@ public class BossAI_Wind : MonoBehaviour
         {
             //StartCoroutine(Test());
 
-            if (!isStandoMode)
-            {
-                //Stando! 分身
-                isStandoMode = true;
-                BossSkill.BossStando();
-                Debug.Log("Stando!(Not Finish Yet)");
-            }
         }
 
         if (isStando)
@@ -123,6 +117,7 @@ public class BossAI_Wind : MonoBehaviour
             IsStage1 = false;
             IsStage2 = true;
 
+            //This is for rearrange the skill range in stage 2.
             skillRange1 = 20;
             skillRange2 = 35;
             skillRange3 = 50;
@@ -263,20 +258,13 @@ public class BossAI_Wind : MonoBehaviour
                 }
             }
             if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
-            {
-                AIDecision = 31;
-            }
+            { AIDecision = 31;}
             if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
-            {
-                AIDecision = 32;
-            }
+            { AIDecision = 32;}
 
             //第一階大技
             if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
-            {
-                AIDecision = 33;
-                //Debug.Log("I'm gonna spam the STA!");
-            }
+            { AIDecision = 33;}
         }
 
         if (IsStage2 && !isStando)
@@ -623,13 +611,9 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         if (!isMoveFinished)
-        {
-            agent.SetDestination(tarPos);
-        }
+        { agent.SetDestination(tarPos); }
         else
-        {
-            agent.SetDestination(transform.position);
-        }
+        { agent.SetDestination(transform.position); }
     }
 
     IEnumerator AIStartTimer()
@@ -663,6 +647,7 @@ public class BossAI_Wind : MonoBehaviour
         }
     }
 
+    //This is the whole routine for AI to do in one round loop.
     public IEnumerator TimeOfThink()
     {
         while (IsStage1 && aiEnable)
@@ -671,7 +656,7 @@ public class BossAI_Wind : MonoBehaviour
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);
 
-            //This is the skill selection, it is mainly for decide what skill to be use
+            //This is the skill selection, it is mainly for decide what skill to be use,
             //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
@@ -719,6 +704,7 @@ public class BossAI_Wind : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        //This is for showing the skill range on the editor or in play mode.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, skillRange1);
         Gizmos.color = Color.yellow;
