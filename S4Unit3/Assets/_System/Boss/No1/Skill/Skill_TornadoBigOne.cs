@@ -9,7 +9,10 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
     Vector3 _targetPos;
 
+    PlayerState playerState;
+
     BossCameraControl cameraControl;
+    BossSkillDemo bossSkill;
 
     private GameObject _Player1;
     private GameObject _Player2;
@@ -24,6 +27,11 @@ public class Skill_TornadoBigOne : MonoBehaviour
         _Player2 = GameObject.Find("Player2");
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+        bossSkill = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
+        if (GameObject.Find("Boss Stando").activeInHierarchy)
+        {
+            bossSkill = GameObject.Find("Boss Stando").GetComponent<BossSkillDemo>();
+        }
     }
 
     void Update()
@@ -58,13 +66,20 @@ public class Skill_TornadoBigOne : MonoBehaviour
     private void OnDestroy()
     {
         cameraControl.ChangeTargetWeight(3, 1);
+
+        bossSkill.tornadoGattaiIsExisted = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            if (other.gameObject.GetComponent<CapsuleCollider>().enabled)
+            {
+                playerState = other.GetComponent<PlayerState>();
+                playerState.hp_decrease();
 
+            }
             Debug.Log("To the moon!");
         }
 

@@ -19,10 +19,13 @@ public class Skill_WindBlade : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            playerState = other.GetComponent<PlayerState>();
-            playerState.hp_decrease();
-            //Debug.Log("Hit!");
-            Destroy(gameObject);
+            if (other.gameObject.GetComponent<CapsuleCollider>().enabled)
+            {
+                playerState = other.GetComponent<PlayerState>();
+                playerState.hp_decrease();
+
+                Destroy(gameObject);
+            }
         }
     }
 }

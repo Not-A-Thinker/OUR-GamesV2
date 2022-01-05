@@ -414,6 +414,7 @@ public class BossSkillDemo : MonoBehaviour
     public void BossStando()
     {
         GameObject stando =  Instantiate(bossStando, SpawnPoint.transform.position, Quaternion.Euler(0, 180, 0));
+        stando.name = "Boss Stando";
         cameraControl.ChangeTarget(4, stando.transform);
     }
 
@@ -440,8 +441,6 @@ public class BossSkillDemo : MonoBehaviour
     public void MistAttack()
     {
         Instantiate(mistObj, transform.position, Quaternion.identity);
-        
-
     }
 
     //This is the end of stage2 skill sets.
