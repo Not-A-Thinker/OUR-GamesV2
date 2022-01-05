@@ -79,6 +79,7 @@ public class BossAI_Wind : MonoBehaviour
         StartCoroutine(AIStartTimer());
     }
 
+    //This is only for testing function, should be del soon.
     IEnumerator Test()
     {
         lookAtP1 = true;
@@ -94,13 +95,6 @@ public class BossAI_Wind : MonoBehaviour
         {
             //StartCoroutine(Test());
 
-            if (!isStandoMode)
-            {
-                //Stando! 分身
-                isStandoMode = true;
-                BossSkill.BossStando();
-                Debug.Log("Stando!(Not Finish Yet)");
-            }
         }
 
         if (isStando)
@@ -123,9 +117,13 @@ public class BossAI_Wind : MonoBehaviour
             IsStage1 = false;
             IsStage2 = true;
 
+            //This is for rearrange the skill range in stage 2.
             skillRange1 = 20;
             skillRange2 = 35;
             skillRange3 = 50;
+
+            //This is for preventing the stando show up too early, can be change.
+            StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
 
             Debug.Log("Switch to Stage2!");
         }
@@ -260,20 +258,13 @@ public class BossAI_Wind : MonoBehaviour
                 }
             }
             if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
-            {
-                AIDecision = 31;
-            }
+            { AIDecision = 31;}
             if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
-            {
-                AIDecision = 32;
-            }
+            { AIDecision = 32;}
 
             //第一階大技
             if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
-            {
-                AIDecision = 33;
-                //Debug.Log("I'm gonna spam the STA!");
-            }
+            { AIDecision = 33;}
         }
 
         if (IsStage2 && !isStando)
@@ -318,6 +309,11 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 63;}
             else if (preMoveCount == 2 && distP2 < skillRange1)//If player2 is too near boss after 2 backward, then...
             { AIDecision = 63;}
+
+            if (!isStandoMode && BossSkill.canStandoAgain)
+            {
+                AIDecision = 64;
+            }
         }
 
         Debug.Log("Skill is select!");
@@ -326,6 +322,7 @@ public class BossAI_Wind : MonoBehaviour
         //This is the End of Skill Selection.
     }
 
+    //This is for AI how to do an attack after the decision make by SkillSelection function.
     public IEnumerator AIOnAttack(int num)
     {
         int rndNum = Random.Range(0, 100);
@@ -494,7 +491,7 @@ public class BossAI_Wind : MonoBehaviour
                         if (BossSkill.canMistAgain)
                         {
                             BossSkill.MistAttack();
-                            StartCoroutine(BossSkill.MistCDTimer());
+                            StartCoroutine(BossSkill.MistCDTimer(BossSkill.mistCDTime));
                         }
                         else
                         {
@@ -508,29 +505,19 @@ public class BossAI_Wind : MonoBehaviour
                     
                     break;
                 case 43:
-                    if (rndNum < 50)
+                    if(rndNum < 50)
                     {
                         //Wind Hole 風柱
                         StartCoroutine(BossSkill.WindHole(1,8));
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        if (!isStandoMode)
-                        {
-                            //Stando! 分身
-                            isStandoMode = true;
-                            BossSkill.BossStando();
-                            Debug.Log("Stando!(Not Finish Yet)");
-                        }
-                        else
-                        {
-                            //Do something else
-                            //Wing Attack 近戰攻擊(翼)
-                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+                        //Do something else
+                        //Wing Attack 近戰攻擊(翼)
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
-                            isMeleeAttacking = true;
-                            BossSkill.BossWingAttack();
-                        }
+                        isMeleeAttacking = true;
+                        BossSkill.BossWingAttack();
                     }
                     break;
                 case 61:
@@ -546,6 +533,12 @@ public class BossAI_Wind : MonoBehaviour
                     //Wing Area Attack 近戰範圍攻擊
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
+                    break;
+                case 64:
+                    //Stando! 分身
+                    isStandoMode = true;
+                    BossSkill.BossStando();
+                    StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
                     break;
 
             }
@@ -618,13 +611,9 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         if (!isMoveFinished)
-        {
-            agent.SetDestination(tarPos);
-        }
+        { agent.SetDestination(tarPos); }
         else
-        {
-            agent.SetDestination(transform.position);
-        }
+        { agent.SetDestination(transform.position); }
     }
 
     IEnumerator AIStartTimer()
@@ -658,6 +647,7 @@ public class BossAI_Wind : MonoBehaviour
         }
     }
 
+    //This is the whole routine for AI to do in one round loop.
     public IEnumerator TimeOfThink()
     {
         while (IsStage1 && aiEnable)
@@ -666,7 +656,7 @@ public class BossAI_Wind : MonoBehaviour
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);
 
-            //This is the skill selection, it is mainly for decide what skill to be use
+            //This is the skill selection, it is mainly for decide what skill to be use,
             //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
@@ -714,6 +704,7 @@ public class BossAI_Wind : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        //This is for showing the skill range on the editor or in play mode.
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, skillRange1);
         Gizmos.color = Color.yellow;

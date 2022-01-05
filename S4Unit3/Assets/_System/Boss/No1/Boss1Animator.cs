@@ -1,17 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //This is mainly for storging the boss skill animation which have to use the animation event.
-
+//So is only for boss animaton.
 public class Boss1Animator : MonoBehaviour
 {
     public BossSkillDemo BossSkill;
-
-    void Start()
-    {
-        
-    }
 
     public void Animation_BossTailAttack()
     {
