@@ -35,6 +35,7 @@ public class GetTriggerObject : MonoBehaviour
         //Debug.Log(Obj.tag);
         if (Obj.transform.gameObject.layer == 6&&Obj.transform.tag!="Player")
         {
+            //處理碎片
             if (Obj.transform.tag == "Clip")
             {
                 GameObject getedObject = Obj.gameObject;
@@ -48,12 +49,13 @@ public class GetTriggerObject : MonoBehaviour
 
                 getedObject.transform.parent = ChipParent.transform;
 
-                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.y );
+                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z );
                 totalHight = totalHight + 2;
                 getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
 
                 getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
+            //處理方塊
             else if (Obj.transform.tag == "Object")
             {
                 GameObject getedObject = Obj.gameObject;
@@ -75,10 +77,12 @@ public class GetTriggerObject : MonoBehaviour
 
                 gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
             }
+            //不應該吸到boss
             else if (Obj.transform.tag == "Boss")
             {
 
             }
+            //吸到Boss技能
             else
             {
                 int i = Random.Range(1, 3);
@@ -104,6 +108,7 @@ public class GetTriggerObject : MonoBehaviour
         }     
     }
 
+    //生成特殊攻擊
     void SpawnSpecialAttack()
     {
         SpawnDone = true;
