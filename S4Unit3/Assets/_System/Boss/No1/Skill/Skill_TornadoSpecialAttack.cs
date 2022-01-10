@@ -61,11 +61,15 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            playerState = collision.gameObject.GetComponent<PlayerState>();
-            playerState.hp_decrease();
-            //Debug.Log("Hit!");
-            LastDetect();
-            Destroy(gameObject);
+            if (collision.gameObject.GetComponent<CapsuleCollider>().enabled)
+            {
+                playerState = collision.gameObject.GetComponent<PlayerState>();
+                playerState.hp_decrease();
+                //Debug.Log("Hit!");
+                LastDetect();
+                Destroy(gameObject);
+            }
+
         }
 
     }
