@@ -15,6 +15,8 @@ public class JoyStickMovement : MonoBehaviour
     [SerializeField] PlayerAnimator _animation;
     [SerializeField] GameObject ShootRot;
     GameObject Boss;
+    ForceCast_TopDown forceCast_TopDown;
+    ForceRepel_TopDown ForceRepel_TopDown;
 
     [Header("Player State")]
     public bool isPlayer1;
@@ -49,6 +51,13 @@ public class JoyStickMovement : MonoBehaviour
 #endif
     private void Awake()
     {
+        if (isPlayer1)
+            forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+        else
+        {
+
+        }
+
         inputActions = new JoystickControl();
         inputActions.Enable();     
     }
@@ -101,26 +110,48 @@ public class JoyStickMovement : MonoBehaviour
         }
 
         //LockBoss
-        if (inputActions.GamePlay.LockBoss.WasPerformedThisFrame())
+        if (inputActions.GamePlay.LockBoss.WasPressedThisFrame())
         {
             Debug.Log("locked Boss!");
             BossLockOn();
         }
 
         //Suck And Shoot
-        if (inputActions.GamePlay.Succ.WasPerformedThisFrame())
+        if (inputActions.GamePlay.Succ.WasPressedThisFrame())
         {
             if (isPlayer1)
             {
-                //GameObject.Find<ForceCast_TopDown>().gameObject;
+                forceCast_TopDown.SetOldQue();
+            }
+
+            if (isPlayer2)
+            {
+
+            }
+        }
+        if (inputActions.GamePlay.Succ.WasPerformedThisFrame())
+        {
+            if (isPlayer1)  
+            {
+                if (!forceCast_TopDown.Shooted)
+                {
+                    forceCast_TopDown.Accumulate();
+                }
+                forceCast_TopDown.FriendlyPushed();
             }
             if(isPlayer2)
             {
 
             }
         }
-           
-
+        if(inputActions.GamePlay.Succ.WasReleasedThisFrame())
+        {
+            if (isPlayer1)
+            {
+                forceCast_TopDown.Shoot((int)forceCast_TopDown._force);
+                forceCast_TopDown.ResetOldQue();
+            }           
+        }
     }
 
     IEnumerator Dash(Vector3 velocity)
@@ -149,6 +180,7 @@ public class JoyStickMovement : MonoBehaviour
         }
         else
             Boss = GameObject.Find("Boss");
+
         Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - ShootRot.transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;

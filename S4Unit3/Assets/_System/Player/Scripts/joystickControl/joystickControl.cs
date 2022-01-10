@@ -193,17 +193,6 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""389559b7-9d39-4dd9-9bad-7608176fab70"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse And Keyboard"",
-                    ""action"": ""Succ"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""743d5509-2dd6-46d3-96ab-1937d25bb2e6"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
