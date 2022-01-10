@@ -98,10 +98,10 @@ public class BossSkillDemo : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
         {
-            if (!isTeleported)
-            {
-                StartCoroutine(BubbleTranslation());
-            }
+            //if (!isTeleported)
+            //{
+            //    StartCoroutine(BubbleTranslation());
+            //}
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
