@@ -23,17 +23,20 @@ public class ObjectDamage : MonoBehaviour
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
+
+        StartCoroutine(DestroyTimer());
         //Rb = GetComponent<Rigidbody>();
          //Rigidbody Rb = GetComponent<Rigidbody>();
         //Rb.AddForceAtPosition(transform.forward * 2000f *5* Time.deltaTime, transform.position, ForceMode.Impulse);
     }
+
     private void Update()
     {
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
         transform.position += Direction * Speed * Time.deltaTime;
     }
 
-
+    //Do You Know YourDamage
     public void SetDamage(int DamageType)
     {
         if (isSpcecialAttack)
@@ -50,10 +53,24 @@ public class ObjectDamage : MonoBehaviour
         }
         //Debug.Log(Damage);
     }
+
+    //®g¤¤§A°ÕPK
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.layer == 6)
+
+        if (col.transform.tag == "BossStando")
         {
+            //Help me Check if this is right or not.
+            basicState = col.gameObject.GetComponentInParent<BasicState>();
+            basicState._currentHealth -= Damage;
+            //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
+            //bossSpawn.SpawnedCountDecrease();
+            Destroy(this.gameObject);
+        }
+
+        if (col.gameObject.layer == 6)
+        {
+            //IfBoss
             if (col.transform.tag == "Boss")
             {
                 bossHealth.TakeDamage(Damage);
@@ -61,15 +78,7 @@ public class ObjectDamage : MonoBehaviour
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);
             }
-            else if (col.transform.tag == "BossStando")
-            {
-                //Help me Check if this is right or not.
-                basicState = col.gameObject.GetComponent<BasicState>();
-                basicState._currentHealth -= Damage;
-                //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
-                //bossSpawn.SpawnedCountDecrease();
-                Destroy(this.gameObject);
-            }
+            //If Skill
             else
             {
                 int i = Random.Range(1, 3);
@@ -92,5 +101,10 @@ public class ObjectDamage : MonoBehaviour
         }     
     }
 
-   
+   IEnumerator DestroyTimer()
+    {
+
+        yield return new WaitForSeconds(3);
+        Destroy(this.gameObject);
+    }
 }
