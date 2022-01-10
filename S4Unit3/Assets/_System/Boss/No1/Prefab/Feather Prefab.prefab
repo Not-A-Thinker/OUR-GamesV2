@@ -143,10 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6800d80fd6acad4cabddbc624129c04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAttacking: 0
   tailParticle: {fileID: 7687086766045105777, guid: 3e1424bbfe3d2e348bad9d8956f0888b, type: 3}
   dir: {x: 0, y: 0, z: 0, w: 0}
+  Traget: {fileID: 0}
   explosionPrefab: {fileID: 7778751112654327726, guid: 3c109236d8754624394a70f50c60b547, type: 3}
-  hitParticle: {fileID: 3413306987961497365, guid: 3a05b0655bf423a48839881319e774df, type: 3}
+  hitParticle: {fileID: 3413306987961497365, guid: d1f059fcda19cbb49b8b8d24f7ef68a9, type: 3}
 --- !u!1001 &1048197141778294923
 PrefabInstance:
   m_ObjectHideFlags: 0
