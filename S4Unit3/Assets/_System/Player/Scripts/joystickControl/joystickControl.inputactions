@@ -49,6 +49,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "dfcaff73-5a2c-4444-96a5-de3fb2825550",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LockBoss",
+                    "type": "Button",
+                    "id": "496582f0-f095-4d4a-ae20-43e8151abe1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -57,7 +75,7 @@
                     "id": "c05d4a63-f76a-4920-9de7-c7d7b3cc18fc",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.3,max=1)",
                     "groups": "JoyStick",
                     "action": "Move",
                     "isComposite": false,
@@ -121,9 +139,9 @@
                 {
                     "name": "",
                     "id": "161c9923-8f05-4e77-9d92-dd0f8b498bf4",
-                    "path": "<Gamepad>/dpad",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.3,max=1)",
                     "groups": "JoyStick",
                     "action": "Rotate",
                     "isComposite": false,
@@ -131,19 +149,19 @@
                 },
                 {
                     "name": "",
-                    "id": "f87d5953-d98d-42b8-96b9-b1699ae2f8a9",
-                    "path": "<Mouse>/position",
+                    "id": "c76c62e9-b587-4f58-85d0-92769dce0b49",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Mouse And Keyboard",
-                    "action": "Rotate",
+                    "groups": "JoyStick",
+                    "action": "Succ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "c76c62e9-b587-4f58-85d0-92769dce0b49",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "2f69ff5c-ae15-4b8a-9435-b320078be653",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "JoyStick",
@@ -249,14 +267,58 @@
                     "action": "RotateQE",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2eac9f95-4eb9-4156-8d00-05805c3805b1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyStick",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4a6dd4d6-de14-430d-9ce3-8d040d262e23",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LockBoss",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "New action map",
-            "id": "7e1e73b3-6348-4aa5-a8d0-48810ebae1ef",
-            "actions": [],
-            "bindings": []
+            "name": "Player2",
+            "id": "def87078-3344-48c7-9369-5d59ff7d2ec9",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "16bb5731-4f93-4c66-bee3-1fcfa6e82a85",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eb4e32bb-1487-4058-8bc1-5c1ec2d1a821",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
