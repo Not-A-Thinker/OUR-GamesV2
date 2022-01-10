@@ -16,6 +16,12 @@ public class ObjectDestroy : MonoBehaviour
             CancelInvoke("DestroyThis");
     }
 
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Wall" && isSucked == false)
+            DestroyThis();
+    }
+
     //private void OnCollisionStay(Collision col)
     //{
     //    if (col.gameObject.name == "Floor")

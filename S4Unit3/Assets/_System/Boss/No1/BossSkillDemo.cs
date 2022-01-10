@@ -36,8 +36,13 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Skill Status")]
     public bool isMeleeAttacking;
     public bool canMistAgain;
+    public bool canStandoAgain;
 
-    [Header("Skill")]
+    [Header("Skill CD Timer")]
+    public float mistCDTime = 15;
+    public float standoCDTime = 30;
+
+    [Header("Skill Tweak")]
     public int NumTornadoToSpawn = 2;
     [Range(1, 5)] public int NumBoomerangSpawn = 3;
     [Range(1, 2)] public int BoomerangCase = 1;
@@ -409,6 +414,7 @@ public class BossSkillDemo : MonoBehaviour
     public void BossStando()
     {
         GameObject stando =  Instantiate(bossStando, SpawnPoint.transform.position, Quaternion.Euler(0, 180, 0));
+        stando.name = "Boss Stando";
         cameraControl.ChangeTarget(4, stando.transform);
     }
 
@@ -435,18 +441,23 @@ public class BossSkillDemo : MonoBehaviour
     public void MistAttack()
     {
         Instantiate(mistObj, transform.position, Quaternion.identity);
-        
-
     }
 
     //This is the end of stage2 skill sets.
     #endregion
 
-    public IEnumerator MistCDTimer()
+    public IEnumerator MistCDTimer(float cdTime)
     {
         canMistAgain = false;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(cdTime);
         canMistAgain = true;
+    }
+
+    public IEnumerator StandoCDTimer(float cdTime)
+    {
+        canStandoAgain = false;
+        yield return new WaitForSeconds(cdTime);
+        canStandoAgain = true;
     }
 
     private void OnDrawGizmos()

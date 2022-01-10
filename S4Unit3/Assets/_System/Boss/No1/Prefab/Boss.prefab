@@ -125,8 +125,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3547116887273196986}
   - component: {fileID: 3547116887273196987}
-  - component: {fileID: 3547116887273196985}
   - component: {fileID: 188733293806428879}
+  - component: {fileID: 3547116887273196985}
   - component: {fileID: 3547116887273196982}
   - component: {fileID: 3547116887273196991}
   - component: {fileID: 3547116887273196983}
@@ -170,11 +170,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71a7e532d663ae4f8a86bee2fafabfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 500
+  _maxHealth: 400
   _currentHealth: 0
   _speed: 10
   _rotateSpeed: 10
   b_isDefeated: 0
+--- !u!114 &188733293806428879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547116887273196990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAlert: {fileID: 8678587213662028274}
+  lookAtP1: 0
+  lookAtP2: 0
+  isLockOn: 0
+  isMeleeAttacking: 0
+  timing: 0.2
+  backwardForce: 14000
+  preMoveCount: 0
+  isMoveFinished: 0
+  aiEnable: 1
+  aiStartTime: 2
+  aiReactTimeStage1: 2.7
+  aiReactTimeStage2: 1.8
+  aiReactTimeStandoMode: 3.6
+  IsStage1: 1
+  IsStage2: 0
+  isStandoMode: 0
+  isMain: 1
+  isStando: 0
+  skillRange1: 20
+  skillRange2: 35
+  skillRange3: 50
+  angleOfView: 90
 --- !u!114 &3547116887273196985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +237,9 @@ MonoBehaviour:
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
   canMistAgain: 0
+  canStandoAgain: 0
+  mistCDTime: 15
+  standoCDTime: 30
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
@@ -227,41 +265,6 @@ MonoBehaviour:
   tailForwardForce: 18000
   _range: 50
   Boss1Animator: {fileID: 8650027658515693968}
---- !u!114 &188733293806428879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3547116887273196990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackAlert: {fileID: 8678587213662028274}
-  lookAtP1: 0
-  lookAtP2: 0
-  isLockOn: 0
-  isMeleeAttacking: 0
-  timing: 0.2
-  backwardForce: 13000
-  preMoveCount: 0
-  isMoveFinished: 0
-  aiEnable: 1
-  aiStartTime: 2
-  aiReactTimeStage1: 2.7
-  aiReactTimeStage2: 1.8
-  aiReactTimeStandoMode: 3.6
-  IsStage1: 0
-  IsStage2: 1
-  isStandoMode: 0
-  isMain: 1
-  isStando: 0
-  skillRange1: 20
-  skillRange2: 35
-  skillRange3: 50
-  angleOfView: 90
 --- !u!114 &3547116887273196982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,8 +305,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 18
-  m_Acceleration: 13
+  m_Speed: 20
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 180
   m_StoppingDistance: 0
@@ -805,7 +808,7 @@ PrefabInstance:
     - target: {fileID: -4174759811996636199, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 1eedea41d28d9e143b07470a8dcc8eaf, type: 2}
+      objectReference: {fileID: 2100000, guid: 2a48967f47306bb459bdf8a7e544ca24, type: 2}
     - target: {fileID: -4174759811996636199, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
