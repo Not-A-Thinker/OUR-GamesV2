@@ -35,74 +35,74 @@ public class ForceCast_TopDown : MonoBehaviour
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
-    //void Update()
-    //{
-    //    //Vector3 selfPos = new Vector3(transform.position.x, 1, transform.position.z);
-    //    //Debug.DrawRay(selfPos, transform.forward * _range, Color.red);
-    //    if (Input.GetButtonDown("Fire1"))
-    //        SetOldQue();
+    void Update()
+    {
+        //Vector3 selfPos = new Vector3(transform.position.x, 1, transform.position.z);
+        //Debug.DrawRay(selfPos, transform.forward * _range, Color.red);
+        if (Input.GetButtonDown("Fire1"))
+            SetOldQue();
 
-    //    //if (Input.GetButton("HelpFriendP1"))
-    //    //{       
-    //    //    //Vector3 startPos = transform.position;
-    //    //    //Vector3 endPos = RangeBigObj.transform.forward;
-    //    //    //RaycastHit isPlayerHit;
+        //if (Input.GetButton("HelpFriendP1"))
+        //{       
+        //    //Vector3 startPos = transform.position;
+        //    //Vector3 endPos = RangeBigObj.transform.forward;
+        //    //RaycastHit isPlayerHit;
 
-    //        //    //if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
-    //        //    //{
-    //        //    //    //Debug.Log(isPlayerHit.transform.tag);
-    //        //    //    //Debug.DrawRay(startPos, endPos * _range);
-    //        //    //    //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
-    //        //    //    if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
-    //        //    //    {
-    //        //    //        rangeObj.SetActive(true);
-    //        //    //        if (isPlayerHit.transform.gameObject != gameObject)
-    //        //    //        {
-    //        //    //            //Debug.Log(isPlayerHit.transform.gameObject.name);
-    //        //    //            Move move = isPlayerHit.transform.GetComponent<Move>();
-    //        //    //            StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
-    //        //    //            StartCoroutine(FriendCD(8));
-    //        //    //            rangeObj.SetActive(false);
-    //        //    //        }
-    //        //    //    }
-    //        //    //}     
-    //        //}
+        //    //if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
+        //    //{
+        //    //    //Debug.Log(isPlayerHit.transform.tag);
+        //    //    //Debug.DrawRay(startPos, endPos * _range);
+        //    //    //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
+        //    //    if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
+        //    //    {
+        //    //        rangeObj.SetActive(true);
+        //    //        if (isPlayerHit.transform.gameObject != gameObject)
+        //    //        {
+        //    //            //Debug.Log(isPlayerHit.transform.gameObject.name);
+        //    //            Move move = isPlayerHit.transform.GetComponent<Move>();
+        //    //            StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
+        //    //            StartCoroutine(FriendCD(8));
+        //    //            rangeObj.SetActive(false);
+        //    //        }
+        //    //    }
+        //    //}     
+        //}
 
-    //    if (Input.GetButtonUp("HelpFriendP1"))
-    //    {
-    //        rangeObj.SetActive(false);
-    //    }
+        if (Input.GetButtonUp("HelpFriendP1"))
+        {
+            rangeObj.SetActive(false);
+        }
 
-    //    if (Input.GetButton("Fire1"))
-    //    {
-    //        if(Shooted==false)
-    //        {
-    //            //transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, ShootRot.transform.rotation, 15f * Time.deltaTime);
-    //            Accumulate();       
-    //        }
-    //        FriendlyPushed();
-    //    }
+        if (Input.GetButton("Fire1"))
+        {
+            if (Shooted == false)
+            {
+                //transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, ShootRot.transform.rotation, 15f * Time.deltaTime);
+                Accumulate();
+            }
+            FriendlyPushed();
+        }
 
-    //    if (Input.GetButtonUp("Fire1"))
-    //    {
-    //        if (Shooted == false)
-    //        {
-    //            Shoot((int)_force);
-    //            rangeObj.SetActive(false);
-    //            UIcontrol.PushingStop();
-    //        }
-    //        ResetOldQue();
-    //    }
-    //    //if (Input.GetButton("HelpFriendP1"))
-    //    //{
-    //    //    rangeObj.SetActive(true);
-    //    //    StartCoroutine("PushFriendCD");
-    //    //}
-    //    //if (Input.GetButtonUp("HelpFriendP1"))
-    //    //{
-    //    //    rangeObj.SetActive(false);
-    //    //}
-    //}
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (Shooted == false)
+            {
+                Shoot((int)_force);
+                rangeObj.SetActive(false);
+                UIcontrol.PushingStop();
+            }
+            ResetOldQue();
+        }
+        //if (Input.GetButton("HelpFriendP1"))
+        //{
+        //    rangeObj.SetActive(true);
+        //    StartCoroutine("PushFriendCD");
+        //}
+        //if (Input.GetButtonUp("HelpFriendP1"))
+        //{
+        //    rangeObj.SetActive(false);
+        //}
+    }
 
     public void Shoot(int force)
     {
