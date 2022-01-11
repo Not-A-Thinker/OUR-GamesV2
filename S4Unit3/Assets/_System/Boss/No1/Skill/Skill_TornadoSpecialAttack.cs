@@ -20,7 +20,7 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
     {
         b_CanBounce = true;
         rb = GetComponent<Rigidbody>();
-        rb.velocity = rb.velocity = transform.forward * speed;
+        rb.velocity = transform.forward * speed;
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
     }
@@ -44,7 +44,6 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Wall")
         {
-            LastDetect();
             Destroy(gameObject, 0.1f);
         }
 
@@ -54,7 +53,6 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Breakable Wall")
         {
-            LastDetect();
             Destroy(gameObject, 0.1f);
         }
 
@@ -65,8 +63,7 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
             {
                 playerState = collision.gameObject.GetComponent<PlayerState>();
                 playerState.hp_decrease();
-                //Debug.Log("Hit!");
-                LastDetect();
+
                 Destroy(gameObject);
             }
 
