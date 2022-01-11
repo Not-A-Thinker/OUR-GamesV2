@@ -115,6 +115,7 @@ Material:
     - MainColor: {r: 1, g: 1, b: 1, a: 0}
     - Rim_Color: {r: 1, g: 1, b: 1, a: 0}
     - _AmbientColor: {r: 383.49805, g: 383.49805, b: 383.49805, a: 0}
+
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
@@ -122,7 +123,7 @@ Material:
     - _MaxWhiteColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 0}
     - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecularColor: {r: 1024, g: 1024, b: 1024, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5306330906130862729
 MonoBehaviour:

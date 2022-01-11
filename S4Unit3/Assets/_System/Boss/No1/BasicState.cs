@@ -7,6 +7,8 @@ public class BasicState : MonoBehaviour
     private CharacterController cc;
     private Animator animator;
 
+    public bool isHealthMerge = false;
+
     public int _maxHealth = 300;
     public int _currentHealth;
 
@@ -17,7 +19,16 @@ public class BasicState : MonoBehaviour
 
     void Start()
     {
-        _currentHealth = _maxHealth;
+        if (isHealthMerge)
+        {
+            _maxHealth *= 2;
+            _currentHealth = _maxHealth;
+        }
+        else
+        {
+            _currentHealth = _maxHealth;
+        }
+
     }
 
     void Update()

@@ -28,6 +28,9 @@ public class BossAI_Wind : MonoBehaviour
 
     Vector3 selfPos;
 
+    [Header("Test Tweak")]
+    [SerializeField] bool _TestingMode = false;
+
     [Header("Player LockOn")]
     [SerializeField] bool lookAtP1;
     [SerializeField] bool lookAtP2;
@@ -94,7 +97,6 @@ public class BossAI_Wind : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             //StartCoroutine(Test());
-
         }
 
         if (isStando)
@@ -111,21 +113,44 @@ public class BossAI_Wind : MonoBehaviour
 
         //This is for detecting if is condition to stage 2
         //May need to apply a animation to tell if is Stage 2
-        if (healthBar.health <= 0 && IsStage1)
+        if (IsStage1 && !basicState.isHealthMerge)
         {
-            healthBar.Stage1ToStage2();
-            IsStage1 = false;
-            IsStage2 = true;
+            if (_TestingMode){return;}
+            if (healthBar.health <= 0)
+            {
+                healthBar.Stage1ToStage2();
+                IsStage1 = false;
+                IsStage2 = true;
 
-            //This is for rearrange the skill range in stage 2.
-            skillRange1 = 20;
-            skillRange2 = 35;
-            skillRange3 = 50;
+                //This is for rearrange the skill range in stage 2.
+                skillRange1 = 20;
+                skillRange2 = 35;
+                skillRange3 = 50;
 
-            //This is for preventing the stando show up too early, can be change.
-            StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                //This is for preventing the stando show up too early, can be change.
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
 
-            Debug.Log("Switch to Stage2!");
+                Debug.Log("Switch to Stage2!");
+            }
+        }
+        else if (IsStage1 && basicState.isHealthMerge)
+        {
+            if (_TestingMode) { return; }
+            if (healthBar.health <= basicState._maxHealth / 2)
+            {
+                IsStage1 = false;
+                IsStage2 = true;
+
+                //This is for rearrange the skill range in stage 2.
+                skillRange1 = 20;
+                skillRange2 = 35;
+                skillRange3 = 50;
+
+                //This is for preventing the stando show up too early, can be change.
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+
+                Debug.Log("Switch to Stage2!");
+            }
         }
 
         //Press Left shift and 1 to change boss AI.
