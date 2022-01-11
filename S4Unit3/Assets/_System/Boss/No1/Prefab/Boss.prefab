@@ -196,7 +196,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  aiEnable: 1
+  aiEnable: 0
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 1.8
@@ -262,8 +262,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  tailForwardForce: 18000
-  _range: 50
+  tailForwardForce: 20000
+  _skillRange: 45
   Boss1Animator: {fileID: 8650027658515693968}
 --- !u!114 &3547116887273196982
 MonoBehaviour:
