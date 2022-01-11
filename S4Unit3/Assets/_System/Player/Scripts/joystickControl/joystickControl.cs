@@ -292,40 +292,23 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1a22990f-a706-4780-92c9-ac6c996320e3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4a6dd4d6-de14-430d-9ce3-8d040d262e23"",
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LockBoss"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Player2"",
-            ""id"": ""def87078-3344-48c7-9369-5d59ff7d2ec9"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""16bb5731-4f93-4c66-bee3-1fcfa6e82a85"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""eb4e32bb-1487-4058-8bc1-5c1ec2d1a821"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -376,9 +359,6 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         m_GamePlay_SuccFriendlyObject = m_GamePlay.FindAction("SuccFriendlyObject", throwIfNotFound: true);
         m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
         m_GamePlay_LockBoss = m_GamePlay.FindAction("LockBoss", throwIfNotFound: true);
-        // Player2
-        m_Player2 = asset.FindActionMap("Player2", throwIfNotFound: true);
-        m_Player2_Newaction = m_Player2.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -515,39 +495,6 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         }
     }
     public GamePlayActions @GamePlay => new GamePlayActions(this);
-
-    // Player2
-    private readonly InputActionMap m_Player2;
-    private IPlayer2Actions m_Player2ActionsCallbackInterface;
-    private readonly InputAction m_Player2_Newaction;
-    public struct Player2Actions
-    {
-        private @JoystickControl m_Wrapper;
-        public Player2Actions(@JoystickControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Player2_Newaction;
-        public InputActionMap Get() { return m_Wrapper.m_Player2; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(Player2Actions set) { return set.Get(); }
-        public void SetCallbacks(IPlayer2Actions instance)
-        {
-            if (m_Wrapper.m_Player2ActionsCallbackInterface != null)
-            {
-                @Newaction.started -= m_Wrapper.m_Player2ActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_Player2ActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_Player2ActionsCallbackInterface.OnNewaction;
-            }
-            m_Wrapper.m_Player2ActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
-            }
-        }
-    }
-    public Player2Actions @Player2 => new Player2Actions(this);
     private int m_MouseAndKeyboardSchemeIndex = -1;
     public InputControlScheme MouseAndKeyboardScheme
     {
@@ -575,9 +522,5 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         void OnSuccFriendlyObject(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLockBoss(InputAction.CallbackContext context);
-    }
-    public interface IPlayer2Actions
-    {
-        void OnNewaction(InputAction.CallbackContext context);
     }
 }

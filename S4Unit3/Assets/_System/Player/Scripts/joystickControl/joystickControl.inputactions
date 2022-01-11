@@ -270,40 +270,23 @@
                 },
                 {
                     "name": "",
+                    "id": "1a22990f-a706-4780-92c9-ac6c996320e3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4a6dd4d6-de14-430d-9ce3-8d040d262e23",
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "LockBoss",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Player2",
-            "id": "def87078-3344-48c7-9369-5d59ff7d2ec9",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "16bb5731-4f93-4c66-bee3-1fcfa6e82a85",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "eb4e32bb-1487-4058-8bc1-5c1ec2d1a821",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

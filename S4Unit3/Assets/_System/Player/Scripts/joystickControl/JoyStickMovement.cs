@@ -43,6 +43,10 @@ public class JoyStickMovement : MonoBehaviour
     public float DashUsed;
     public float DashRestore;
 
+    [Header("Player Vectors")]
+    Vector2 vector2d = Vector2.zero;
+    Vector2 Rotvector2d = Vector2.zero;
+
 #if UNITY_EDITOR
     private void OnValidate()
     {
@@ -61,25 +65,37 @@ public class JoyStickMovement : MonoBehaviour
         inputActions = new JoystickControl();
         inputActions.Enable();     
     }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        isDashed = context.action.triggered;
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        vector2d = context.ReadValue<Vector2>();
+    }
+
+    public void OnRotate(InputAction.CallbackContext context)
+    {
+        Rotvector2d = context.ReadValue<Vector2>();
+    }
+
+
     private void Update()
     {
-        Vector2 vector2d = inputActions.GamePlay.Move.ReadValue<Vector2>();
-        Vector2 Rotvector2d = inputActions.GamePlay.Rotate.ReadValue<Vector2>();
         Vector3 vector3d = new Vector3(vector2d.x, 0, vector2d.y);
-
         //Simple Move
         if (vector2d != Vector2.zero)
-        {       
-            Vector3 direction = vector3d * moveSpeed;
-
-            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+        {
+            Quaternion toRotation = Quaternion.LookRotation(vector3d, Vector3.up);
             Char.transform.rotation = Quaternion.RotateTowards(Char.transform.rotation, toRotation, rotationSpeed * 5 * Time.deltaTime);
             _animation.PlayerWalk(true);
 
             vSpeed -= gravity * Time.deltaTime;
-            direction.y = vSpeed;
+            vector3d.y = vSpeed;
 
-            characterController.Move(direction * Time.deltaTime);      
+            characterController.Move(vector3d * Time.deltaTime * moveSpeed);      
         }
         else 
             _animation.PlayerWalk(false);
@@ -95,17 +111,15 @@ public class JoyStickMovement : MonoBehaviour
         }
 
         //Dash
-        if(inputActions.GamePlay.Dash.WasPressedThisFrame() && DashBar >= DashUsed)
+        if(isDashed && DashBar >= DashUsed)
         {
-            isDashed = true;
             _animation.PlayerDash(true);
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
             DashBar = DashBar - DashUsed;
         }
-        else if ((inputActions.GamePlay.Dash.WasReleasedThisFrame()))
-        {
-            isDashed = false;
+        else if (!isDashed)
+        {    
             _animation.PlayerDash(false);
         }
 
