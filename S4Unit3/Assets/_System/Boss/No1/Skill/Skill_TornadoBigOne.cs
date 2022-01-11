@@ -28,7 +28,9 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
         bossSkill = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
-        if (GameObject.Find("Boss Stando").activeInHierarchy)
+
+
+        if (GameObject.Find("Boss Stando") != null)
         {
             bossSkill = GameObject.Find("Boss Stando").GetComponent<BossSkillDemo>();
         }
