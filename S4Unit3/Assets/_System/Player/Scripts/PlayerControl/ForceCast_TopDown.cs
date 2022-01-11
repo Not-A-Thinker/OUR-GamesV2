@@ -68,10 +68,10 @@ public class ForceCast_TopDown : MonoBehaviour
         //    //}     
         //}
 
-        if (Input.GetButtonUp("HelpFriendP1"))
-        {
-            rangeObj.SetActive(false);
-        }
+        //if (Input.GetButtonUp("HelpFriendP1"))
+        //{
+        //    rangeObj.SetActive(false);
+        //}
 
         if (Input.GetButton("Fire1"))
         {
@@ -110,7 +110,7 @@ public class ForceCast_TopDown : MonoBehaviour
         if (objectParent.transform.childCount > 0)
         {
             gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
-            StartCoroutine(ShootCD(3));
+            StartCoroutine(ShootCD(1));
         }    
         //else
         //{

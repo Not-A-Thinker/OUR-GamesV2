@@ -122,6 +122,9 @@ MonoBehaviour:
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
   canMistAgain: 0
+  canStandoAgain: 0
+  mistCDTime: 15
+  standoCDTime: 30
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
