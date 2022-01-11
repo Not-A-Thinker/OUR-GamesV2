@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyBox_Clouds 1
+  m_Name: SkyBox_Clouds_2
   m_Shader: {fileID: -6465566751694194690, guid: c82fdf5b0c570ff4e9dc9916f8e587e9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -133,10 +133,10 @@ Material:
     - _CloudsAnimationSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HorizonColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
-    - _NadirColor: {r: 0, g: 0.34509805, b: 0.49411765, a: 1}
+    - _HorizonColor: {r: 0.7924528, g: 0.6049555, b: 0.49640438, a: 0}
+    - _NadirColor: {r: 0.754717, g: 0.546586, b: 0.2164471, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ZenithColor_: {r: 2.101961, g: 4.392157, b: 5.992157, a: 1}
+    - _ZenithColor_: {r: 0.18141682, g: 0.5605781, b: 0.8584906, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7673742580240921581
 MonoBehaviour:
