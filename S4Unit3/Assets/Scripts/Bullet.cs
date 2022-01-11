@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
             GameObject particleobj = Instantiate(CollisionParticle, pos, Quaternion.identity);
             Destroy(particleobj, 5);
         }
-          Destroy(gameObject);
+         // Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
