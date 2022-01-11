@@ -62,7 +62,7 @@ public class BossSkillDemo : MonoBehaviour
     [SerializeField] float tailForwardForce = 10000;
 
     [Header("State")]
-    [SerializeField] float _range = 20f;
+    [SerializeField] float _skillRange = 20f;
     Vector3 orgPos;
 
     private bool isRushing = false;
@@ -210,8 +210,8 @@ public class BossSkillDemo : MonoBehaviour
         int id = 1;
         for (int i = 0; i < NumTornadoToSpawn; i++)
         {
-            float ranX = Random.Range(transform.position.x - _range, transform.position.x + _range + 1);
-            float ranY = Random.Range(transform.position.z - _range, transform.position.z + _range + 1);
+            float ranX = Random.Range(transform.position.x - _skillRange, transform.position.x + _skillRange + 1);
+            float ranY = Random.Range(transform.position.z - _skillRange, transform.position.z + _skillRange + 1);
             Vector3 ranPos = new Vector3(ranX, 0, ranY);
 
             if (!Physics.Raycast(ranPos, transform.up * 10, 20))//Will need to change
@@ -271,7 +271,7 @@ public class BossSkillDemo : MonoBehaviour
         switch (BoomerangCase)
         {
             case 1:
-                Vector3 forwardLeft = Quaternion.Euler(0, -60, 0) * transform.forward * _range;
+                Vector3 forwardLeft = Quaternion.Euler(0, -60, 0) * transform.forward * _skillRange;
                 Boss1Animator.SetTrigger("Skill_Boomerang");
                 for (int i = 0; i < 5; i++)
                 {
@@ -339,8 +339,8 @@ public class BossSkillDemo : MonoBehaviour
     {
         while (true)
         {
-            float ranX = Random.Range(_Player1.transform.position.x - 3, _Player1.transform.position.x + _range + 3);
-            float ranY = Random.Range(_Player1.transform.position.z - 3, _Player1.transform.position.z + _range + 3);
+            float ranX = Random.Range(_Player1.transform.position.x - 3, _Player1.transform.position.x + _skillRange + 3);
+            float ranY = Random.Range(_Player1.transform.position.z - 3, _Player1.transform.position.z + _skillRange + 3);
             Vector3 ranPos = new Vector3(ranX, 0, ranY);
 
             if (!Physics.Raycast(ranPos, transform.up * 10, 20))
@@ -373,8 +373,8 @@ public class BossSkillDemo : MonoBehaviour
 
             for (int j = 0; j < spawnNum; j++)
             {
-                float ranX = Random.Range(transform.position.x - _range + 1, transform.position.x + _range - 1);
-                float ranY = Random.Range(transform.position.z - _range + 1, transform.position.z + _range - 1);
+                float ranX = Random.Range(transform.position.x - _skillRange + 1, transform.position.x + _skillRange - 1);
+                float ranY = Random.Range(transform.position.z - _skillRange + 1, transform.position.z + _skillRange - 1);
                 Vector3 ranPos = new Vector3(ranX, 0.1f, ranY);
 
                 otherPos[j] = ranPos;
@@ -463,7 +463,7 @@ public class BossSkillDemo : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _range);     
+        Gizmos.DrawWireSphere(transform.position, _skillRange);     
     }
 
 
