@@ -196,7 +196,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  aiEnable: 1
+  aiEnable: 0
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 1.8
@@ -262,8 +262,8 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  tailForwardForce: 18000
-  _range: 50
+  tailForwardForce: 20000
+  _skillRange: 45
   Boss1Animator: {fileID: 8650027658515693968}
 --- !u!114 &3547116887273196982
 MonoBehaviour:
@@ -314,7 +314,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0.3
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &3547116887273196980
@@ -644,7 +644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.97999996
+      value: -0.338
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1027,7 +1027,7 @@ CapsuleCollider:
   m_Radius: 1.2
   m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0.52, z: -0.01}
+  m_Center: {x: 0, y: 1.15, z: -0.01}
 --- !u!95 &8650027658515693968
 Animator:
   serializedVersion: 4
