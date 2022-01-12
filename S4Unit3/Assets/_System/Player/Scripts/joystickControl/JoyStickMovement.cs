@@ -81,11 +81,21 @@ public class JoyStickMovement : MonoBehaviour
         Rotvector2d = context.ReadValue<Vector2>();
     }
 
-
-    private void Update()
+    public void OnLockedBoss(InputAction.CallbackContext context)
     {
-        Vector3 vector3d = new Vector3(vector2d.x, 0, vector2d.y);
-        //Simple Move
+        BossLockOn();
+    }
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+
+    }
+    public void OnFriendlyHelp(InputAction.CallbackContext context)
+    {
+
+    }
+
+    private void Move(Vector3 vector3d)
+    {
         if (vector2d != Vector2.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(vector3d, Vector3.up);
@@ -95,11 +105,15 @@ public class JoyStickMovement : MonoBehaviour
             vSpeed -= gravity * Time.deltaTime;
             vector3d.y = vSpeed;
 
-            characterController.Move(vector3d * Time.deltaTime * moveSpeed);      
+            characterController.Move(vector3d * Time.deltaTime * moveSpeed);
         }
-        else 
+        else
             _animation.PlayerWalk(false);
+    }
 
+    private void Update()
+    {
+        Vector3 vector3d = new Vector3(vector2d.x, 0, vector2d.y);
         //Rotation
         if(Rotvector2d!=Vector2.zero)
         {
@@ -121,13 +135,6 @@ public class JoyStickMovement : MonoBehaviour
         else if (!isDashed)
         {    
             _animation.PlayerDash(false);
-        }
-
-        //LockBoss
-        if (inputActions.GamePlay.LockBoss.WasPressedThisFrame())
-        {
-            Debug.Log("locked Boss!");
-            BossLockOn();
         }
 
         //Suck And Shoot
@@ -186,7 +193,7 @@ public class JoyStickMovement : MonoBehaviour
         }
     }
 
-    public void BossLockOn()//Player will lock on the Best Target
+    private void BossLockOn()//Player will lock on the Best Target
     {
         if (GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode)
         {

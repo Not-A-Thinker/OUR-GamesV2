@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 500052818044258932}
   - component: {fileID: 500052818044258935}
   - component: {fileID: 500052818044258939}
+  - component: {fileID: 2059720215559111308}
   - component: {fileID: 500052818044258936}
   m_Layer: 6
   m_Name: Player1
@@ -500,6 +501,35 @@ MonoBehaviour:
   DashBar: 100
   DashUsed: 49
   DashRestore: 25
+--- !u!114 &2059720215559111308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500052818044258924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3985f0a8284c1a24ba1236cbbc9a7a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 500052818044258931}
+  Char: {fileID: 0}
+  _animation: {fileID: 0}
+  ShootRot: {fileID: 0}
+  isPlayer1: 0
+  isPlayer2: 0
+  isSlowed: 0
+  isImMobilized: 0
+  isDashed: 0
+  inCC: 0
+  moveSpeed: 10
+  rotationSpeed: 100
+  dashSpeed: 0
+  dashTime: 0
+  DashBar: 100
+  DashUsed: 0
+  DashRestore: 0
 --- !u!54 &500052818044258936
 Rigidbody:
   m_ObjectHideFlags: 0
