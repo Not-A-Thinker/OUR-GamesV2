@@ -281,22 +281,22 @@ public class Move : MonoBehaviour
                     BossLockOn();
                 }
             }
-            else
-            {
-                //Aim
-                Plane plane = new Plane(Vector3.up, ShootRot.transform.position);
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                float hitDist = 0;
+            //else
+            //{
+            //    //Aim
+            //    Plane plane = new Plane(Vector3.up, ShootRot.transform.position);
+            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //    float hitDist = 0;
 
-                if (plane.Raycast(ray, out hitDist))
-                {
-                    Vector3 targetPoint = ray.GetPoint(hitDist);
-                    Quaternion targetRotation = Quaternion.LookRotation(targetPoint - ShootRot.transform.position);
-                    targetRotation.x = 0;
-                    targetRotation.z = 0;
-                    ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 7f * Time.deltaTime);
-                }
-            }
+            //    if (plane.Raycast(ray, out hitDist))
+            //    {
+            //        Vector3 targetPoint = ray.GetPoint(hitDist);
+            //        Quaternion targetRotation = Quaternion.LookRotation(targetPoint - ShootRot.transform.position);
+            //        targetRotation.x = 0;
+            //        targetRotation.z = 0;
+            //        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 7f * Time.deltaTime);
+            //    }
+            //}
             //BossLockOn();
 
 
