@@ -25,6 +25,7 @@ public class UIcontrol : MonoBehaviour
     [Header("Push Bar")]
     [SerializeField] GameObject pushing;
     [SerializeField] Slider push_slider;
+    
     [SerializeField] GameObject pushingCD;
     [SerializeField] Slider pushCD_slider;
 
@@ -37,7 +38,22 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] Text DeadCounter;
+    [SerializeField] GameObject target;
 
+    private void Start()
+    {
+        target = GameObject.Find("Player1").gameObject;
+    }
+
+    private void Update()
+    {
+        if (pushing) 
+        {
+            Vector3 wantedPos = Camera.main.WorldToScreenPoint(target.transform.position);
+            wantedPos.y = wantedPos.y -20;
+            pushing.transform.position = wantedPos;
+        }      
+    }
 
     private void FixedUpdate()
     {
