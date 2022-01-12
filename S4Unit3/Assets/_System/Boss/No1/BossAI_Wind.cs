@@ -45,7 +45,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool isMoveFinished;
 
     [Header("AI")]
-    [SerializeField] bool aiEnable = true;
+    [SerializeField] bool _aiEnable = true;
     [SerializeField] int aiStartTime = 99;
     [SerializeField] float aiReactTimeStage1 = 2.7f;
     [SerializeField] float aiReactTimeStage2 = 1.8f;
@@ -160,17 +160,17 @@ public class BossAI_Wind : MonoBehaviour
         //Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
-            aiEnable = !aiEnable;
-            if (aiEnable)
+            _aiEnable = !_aiEnable;
+            if (_aiEnable)
             {
                 StartCoroutine(AIRestartTimer());
             }
-            else if (!aiEnable)
+            else if (!_aiEnable)
             {
                 StopCoroutine(TimeOfThink());
             }
         }
-        if (!aiEnable)
+        if (!_aiEnable)
             return;
 
         //This is for locking on player itself;
@@ -649,7 +649,7 @@ public class BossAI_Wind : MonoBehaviour
         Debug.Log("'AI' Started");
         yield return new WaitForSeconds(3);
 
-        if (aiEnable)
+        if (_aiEnable)
         {
             coroutineThink = StartCoroutine(TimeOfThink());
         }
@@ -660,11 +660,11 @@ public class BossAI_Wind : MonoBehaviour
         yield return new WaitForSeconds(aiStartTime);
         while (true)
         {
-            if (aiEnable)
-                yield return new WaitUntil(() => !aiEnable);
-            if (!aiEnable)
-                yield return new WaitUntil(() => aiEnable);
-            if (aiEnable && coroutineThink != null)
+            if (_aiEnable)
+                yield return new WaitUntil(() => !_aiEnable);
+            if (!_aiEnable)
+                yield return new WaitUntil(() => _aiEnable);
+            if (_aiEnable && coroutineThink != null)
             {
                 Debug.Log("'AI' Restarted");
                 coroutineThink = StartCoroutine(TimeOfThink());
@@ -677,7 +677,7 @@ public class BossAI_Wind : MonoBehaviour
     //This is the whole routine for AI to do in one round loop.
     public IEnumerator TimeOfThink()
     {
-        while (IsStage1 && aiEnable)
+        while (IsStage1 && _aiEnable)
         {
             //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
@@ -703,7 +703,7 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         //They should play the same expect a AI movement decide will be added
-        while (IsStage2 && aiEnable)
+        while (IsStage2 && _aiEnable)
         {
             //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
