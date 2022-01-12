@@ -134,9 +134,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HorizonColor: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0}
-    - _NadirColor: {r: 0, g: 0.14509805, b: 0.20784314, a: 1}
+    - _NadirColor: {r: 0, g: 0.34509805, b: 0.49411765, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ZenithColor_: {r: 0.03627451, g: 0.07450981, b: 0.10098039, a: 1}
+    - _ZenithColor_: {r: 2.101961, g: 4.392157, b: 5.992157, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7673742580240921581
 MonoBehaviour:
