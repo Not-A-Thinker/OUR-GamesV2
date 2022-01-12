@@ -116,6 +116,8 @@ public class BossAI_Wind : MonoBehaviour
         if (IsStage1 && !basicState.isHealthMerge)
         {
             if (_TestingMode){return;}
+
+            //This is the version of 2 stage health.
             if (healthBar.health <= 0)
             {
                 healthBar.Stage1ToStage2();
@@ -128,7 +130,7 @@ public class BossAI_Wind : MonoBehaviour
                 skillRange3 = 50;
 
                 //This is for preventing the stando show up too early, can be change.
-                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
             }
@@ -136,6 +138,8 @@ public class BossAI_Wind : MonoBehaviour
         else if (IsStage1 && basicState.isHealthMerge)
         {
             if (_TestingMode) { return; }
+
+            //This is the version of total health instead of 2 stage health.
             if (healthBar.health <= basicState._maxHealth / 2)
             {
                 IsStage1 = false;
@@ -147,7 +151,7 @@ public class BossAI_Wind : MonoBehaviour
                 skillRange3 = 50;
 
                 //This is for preventing the stando show up too early, can be change.
-                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
             }
