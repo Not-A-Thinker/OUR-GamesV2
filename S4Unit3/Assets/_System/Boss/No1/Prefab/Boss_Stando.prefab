@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d71a7e532d663ae4f8a86bee2fafabfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHealthMerge: 0
   _maxHealth: 200
   _currentHealth: 0
   _speed: 10
@@ -73,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 5936635689230513696}
+  _TestingMode: 0
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -85,7 +87,7 @@ MonoBehaviour:
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 1.8
-  aiReactTimeStandoMode: 3.6
+  aiReactTimeStandoMode: 4.5
   IsStage1: 0
   IsStage2: 1
   isStandoMode: 0
@@ -122,6 +124,9 @@ MonoBehaviour:
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
   canMistAgain: 0
+  canStandoAgain: 0
+  mistCDTime: 15
+  standoCDTime: 30
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
@@ -145,7 +150,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   tailForwardForce: 18000
-  _range: 50
+  _skillRange: 40
   Boss1Animator: {fileID: 5915673759277053506}
 --- !u!114 &1957455747635378788
 MonoBehaviour:

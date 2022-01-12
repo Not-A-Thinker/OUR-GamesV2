@@ -93,6 +93,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlendOp: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -110,7 +111,8 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.5
+    - _SampleGI: 0
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -118,8 +120,8 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6792453, g: 0.450801, b: 0.20761837, a: 1}
-    - _Color: {r: 0.6792453, g: 0.450801, b: 0.20761837, a: 1}
+    - _BaseColor: {r: 0.6320754, g: 0.5265904, b: 0.41383052, a: 1}
+    - _Color: {r: 0.6320754, g: 0.5265904, b: 0.41383052, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
