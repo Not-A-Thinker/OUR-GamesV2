@@ -4,12 +4,17 @@
 #
 [Ll]ibrary/
 [Tt]emp/
-/[Oo]bj/
+[Oo]bj/
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
 /[Mm]emoryCaptures/
-/[Uu]ser[Ss]ettings/
+[Uu]ser[Ss]ettings/
+
+[Oo]bj/[Dd]ebug/
+
+# Recordings can get excessive in size
+/[Rr]ecordings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -70,3 +75,4 @@ S4Unit3/Assets/_UnityAssets/PlayMaker/Versions/PlaymakerDefault.unitypackage.met
 S4Unit3/Assets/_UnityAssets/PlayMaker/Versions/PlaymakerPreview.unitypackage.meta
 S4Unit3/Assets/_UnityAssets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset
 S4Unit3/obj/Debug/
+*.dwlt

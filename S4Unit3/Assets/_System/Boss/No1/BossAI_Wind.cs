@@ -15,10 +15,8 @@ public class BossAI_Wind : MonoBehaviour
     BossHealthBar healthBar;
     BossCameraControl cameraControl;
 
-    private GameObject _Player1;
-    private GameObject _Player2;
-
-    public Animator attackAlert;
+    GameObject _Player1;
+    GameObject _Player2;
 
     Coroutine coroutineAtk;
     Coroutine coroutineThink;
@@ -27,6 +25,10 @@ public class BossAI_Wind : MonoBehaviour
     Coroutine coroutineRunAtk;
 
     Vector3 selfPos;
+
+    [Header("Alerter")]
+    public Animator attackAlert;
+    public Animator boomerageAlert;
 
     [Header("Test Tweak")]
     [SerializeField] bool _TestingMode = false;
@@ -45,7 +47,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool isMoveFinished;
 
     [Header("AI")]
-    [SerializeField] bool aiEnable = true;
+    [SerializeField] bool _aiEnable = true;
     [SerializeField] int aiStartTime = 99;
     [SerializeField] float aiReactTimeStage1 = 2.7f;
     [SerializeField] float aiReactTimeStage2 = 1.8f;
@@ -85,28 +87,31 @@ public class BossAI_Wind : MonoBehaviour
     //This is only for testing function, should be del soon.
     IEnumerator Test()
     {
-        lookAtP1 = true;
-        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+        //Boomerang 風刃迴力鏢
+        boomerageAlert.SetTrigger("Boomer Alert");
+        yield return new WaitForSeconds(0.2f);
 
-        isMeleeAttacking = true;
-        BossSkill.BossWingAttack();
+        BossSkill.WindBladeBoomerang();
+
+        //lookAtP1 = true;
+        //yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+
+        //isMeleeAttacking = true;
+        //BossSkill.BossWingAttack();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
-            //StartCoroutine(Test());
+            StartCoroutine(Test());
         }
 
-        if (isStando)
-        {
-            Destroy(gameObject, 30);
-        }
+        if (isStando){ Destroy(gameObject, 30); }
 
         if (isStando && basicState._currentHealth <= 0)
         {
-            Debug.Log("Stando is Vanish");
+            Debug.Log("Stando is Vanish!");
             GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
             Destroy(gameObject);
         }
@@ -116,6 +121,8 @@ public class BossAI_Wind : MonoBehaviour
         if (IsStage1 && !basicState.isHealthMerge)
         {
             if (_TestingMode){return;}
+
+            //This is the version of 2 stage health.
             if (healthBar.health <= 0)
             {
                 healthBar.Stage1ToStage2();
@@ -128,7 +135,7 @@ public class BossAI_Wind : MonoBehaviour
                 skillRange3 = 50;
 
                 //This is for preventing the stando show up too early, can be change.
-                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
             }
@@ -136,6 +143,8 @@ public class BossAI_Wind : MonoBehaviour
         else if (IsStage1 && basicState.isHealthMerge)
         {
             if (_TestingMode) { return; }
+
+            //This is the version of total health instead of 2 stage health.
             if (healthBar.health <= basicState._maxHealth / 2)
             {
                 IsStage1 = false;
@@ -147,7 +156,7 @@ public class BossAI_Wind : MonoBehaviour
                 skillRange3 = 50;
 
                 //This is for preventing the stando show up too early, can be change.
-                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
             }
@@ -156,17 +165,17 @@ public class BossAI_Wind : MonoBehaviour
         //Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
-            aiEnable = !aiEnable;
-            if (aiEnable)
+            _aiEnable = !_aiEnable;
+            if (_aiEnable)
             {
                 StartCoroutine(AIRestartTimer());
             }
-            else if (!aiEnable)
+            else if (!_aiEnable)
             {
                 StopCoroutine(TimeOfThink());
             }
         }
-        if (!aiEnable)
+        if (!_aiEnable)
             return;
 
         //This is for locking on player itself;
@@ -377,8 +386,11 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 40)
                     {
                         //Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+
                         BossSkill.WindBladeBoomerang();
-                        cameraControl.ChangeTargetWeight(3, 3);
+                        //cameraControl.ChangeTargetWeight(3, 3);
                     }
                     else if (rndNum >= 40 && rndNum < 67)
                     {
@@ -397,7 +409,7 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         //TornadoGattai 龍捲風合體
                         BossSkill.TornadoGattai();
-                        cameraControl.ChangeTargetWeight(3, 3);
+                        //cameraControl.ChangeTargetWeight(3, 3);
                     }
                     else if (rndNum >= 40 && rndNum < 100)
                     {
@@ -406,6 +418,7 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
 
+                //If there are player2 perf. then should change the skill.
                 case 21:
                     if (rndNum < 50)
                     {
@@ -422,6 +435,9 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 33)
                     {
                         //Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+
                         BossSkill.WindBladeBoomerang();
                     }
                     else if (rndNum >= 33 && rndNum < 67)
@@ -476,7 +492,8 @@ public class BossAI_Wind : MonoBehaviour
                     //STA 龍龍彈珠台
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
-                    cameraControl.ChangeTargetWeight(3, 3);
+
+                    //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
         }
@@ -645,7 +662,7 @@ public class BossAI_Wind : MonoBehaviour
         Debug.Log("'AI' Started");
         yield return new WaitForSeconds(3);
 
-        if (aiEnable)
+        if (_aiEnable)
         {
             coroutineThink = StartCoroutine(TimeOfThink());
         }
@@ -656,11 +673,11 @@ public class BossAI_Wind : MonoBehaviour
         yield return new WaitForSeconds(aiStartTime);
         while (true)
         {
-            if (aiEnable)
-                yield return new WaitUntil(() => !aiEnable);
-            if (!aiEnable)
-                yield return new WaitUntil(() => aiEnable);
-            if (aiEnable && coroutineThink != null)
+            if (_aiEnable)
+                yield return new WaitUntil(() => !_aiEnable);
+            if (!_aiEnable)
+                yield return new WaitUntil(() => _aiEnable);
+            if (_aiEnable && coroutineThink != null)
             {
                 Debug.Log("'AI' Restarted");
                 coroutineThink = StartCoroutine(TimeOfThink());
@@ -673,7 +690,7 @@ public class BossAI_Wind : MonoBehaviour
     //This is the whole routine for AI to do in one round loop.
     public IEnumerator TimeOfThink()
     {
-        while (IsStage1 && aiEnable)
+        while (IsStage1 && _aiEnable)
         {
             //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
@@ -699,7 +716,7 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         //They should play the same expect a AI movement decide will be added
-        while (IsStage2 && aiEnable)
+        while (IsStage2 && _aiEnable)
         {
             //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
