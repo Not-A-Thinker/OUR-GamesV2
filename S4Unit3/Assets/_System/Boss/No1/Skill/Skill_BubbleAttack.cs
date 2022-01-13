@@ -14,6 +14,7 @@ public class Skill_BubbleAttack : MonoBehaviour
     public string targetName;
 
     bool CCed;
+    public bool _isTrapped;
 
     void Start()
     {
