@@ -44,11 +44,13 @@ public class BossHealthBar : MonoBehaviour
 
     public void TakeDamage(float value)//Should Improve
     {
-        if (bossAI.isStandoMode)
-        {
-            Debug.Log("No Damage!");
-            return;
-        }
+
+        //Because the decision have made, thus the code is closeing.
+        //if (bossAI.isStandoMode)
+        //{
+        //    Debug.Log("No Damage!");
+        //    return;
+        //}
 
         if (health - value <= 0 )
         {

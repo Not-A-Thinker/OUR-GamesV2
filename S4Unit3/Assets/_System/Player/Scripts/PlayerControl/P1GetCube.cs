@@ -105,7 +105,9 @@ public class P1GetCube : MonoBehaviour
 
         cube.transform.position = SpawnPoint.position;
         cube.transform.parent = null;
-       
+
+        cube.GetComponent<Bullet>().isAttacking = true;
+
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;
