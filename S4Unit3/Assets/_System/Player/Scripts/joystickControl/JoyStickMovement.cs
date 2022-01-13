@@ -201,8 +201,7 @@ public class JoyStickMovement : MonoBehaviour
             {
                
             }
-        }
-       
+        }   
     }
     private void BossLockOn()//Player will lock on the Best Target
     {
