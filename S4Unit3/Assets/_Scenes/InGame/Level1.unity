@@ -1771,6 +1771,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &276953249
@@ -2663,6 +2664,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561538709
@@ -2694,6 +2696,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &586244315
@@ -4793,6 +4796,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498769, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 187b19cc5985d744a995a888d6c293b3, type: 2}
     - target: {fileID: 5771018412379498771, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
       propertyPath: m_Name
       value: Player_eff_Smoke
@@ -4800,6 +4807,58 @@ PrefabInstance:
     - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.6949134
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.atime1
+      value: 49560
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771018412379498782, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_NumAlphaKeys
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f5ea8adb51b4c84fbc64fed4cd23c30, type: 3}
