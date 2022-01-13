@@ -32,7 +32,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""09569ab5-d2cc-411a-9cb0-b9b2c2cc650e"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -41,7 +41,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""17837a79-21c8-4e51-a205-3ff74b5707b0"",
                     ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -280,10 +280,21 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""afaffb37-830f-47e5-818b-9dea1ab9a1c3"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ed8f9fa-f7dd-43ba-b247-8d92b2b0914f"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
                     ""action"": ""Respawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

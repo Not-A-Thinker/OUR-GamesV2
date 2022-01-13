@@ -39,9 +39,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2"))
         {
-            OldQuate = ChaRot.transform.rotation;
-            move.inCC = true;
-            uIcontrol.SuckingCDBar(false);
+            ButtonDonwEvent();
         }
            
 
@@ -80,6 +78,13 @@ public class ForceRepel_TopDown : MonoBehaviour
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             savedObject.transform.Translate(toTarget * _force * Time.deltaTime);
         }
+    }
+
+    public void ButtonDonwEvent()
+    {
+        OldQuate = ChaRot.transform.rotation;
+        move.inCC = true;
+        uIcontrol.SuckingCDBar(false);
     }
 
     public void Repel()
