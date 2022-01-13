@@ -11,6 +11,8 @@
 /[Mm]emoryCaptures/
 [Uu]ser[Ss]ettings/
 
+[Oo]bj/[Dd]ebug/
+
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
@@ -73,3 +75,4 @@ S4Unit3/Assets/_UnityAssets/PlayMaker/Versions/PlaymakerDefault.unitypackage.met
 S4Unit3/Assets/_UnityAssets/PlayMaker/Versions/PlaymakerPreview.unitypackage.meta
 S4Unit3/Assets/_UnityAssets/PlayMaker/Editor/Resources/EditorStartupPrefs.asset
 S4Unit3/obj/Debug/
+*.dwlt
