@@ -841,7 +841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1169902096529698970, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1232522856159861547, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1093,7 +1093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708801238803447567, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -125.8
+      value: 0.72
       objectReference: {fileID: 0}
     - target: {fileID: 6708801238803447567, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1895,6 +1895,10 @@ PrefabInstance:
     - target: {fileID: 1169902096529698970, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_Name
       value: Island_toonShader Variant_UnLit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1169902096529698970, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2564807751119927282, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_NavMeshLayer
