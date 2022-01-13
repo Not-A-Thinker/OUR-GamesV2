@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 3547116887273196983}
   - component: {fileID: 3547116887273196980}
   - component: {fileID: 3547116887273196984}
+  - component: {fileID: 666164369}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Boss
@@ -155,6 +156,7 @@ Transform:
   - {fileID: 3547116886111481973}
   - {fileID: 3547116887089412504}
   - {fileID: 8678587213662028268}
+  - {fileID: 1780179792160792249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -189,6 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
+  boomerageAlert: {fileID: 1780179792160792254}
   _TestingMode: 1
   lookAtP1: 0
   lookAtP2: 0
@@ -198,7 +201,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  aiEnable: 0
+  _aiEnable: 1
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 1.8
@@ -629,6 +632,138 @@ MonoBehaviour:
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
   eventHandlerComponentsAdded: 1
+--- !u!114 &666164369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547116887273196990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!1001 &613284813
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3547116887273196986}
+    m_Modifications:
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792639780213, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+      propertyPath: m_Name
+      value: Wind Boomerang Alert Set
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+--- !u!4 &1780179792160792249 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1780179792639780212, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+  m_PrefabInstance: {fileID: 613284813}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1780179792160792254 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1780179792639780211, guid: 2f08dc2b28a8fe8488a67575780e92c4, type: 3}
+  m_PrefabInstance: {fileID: 613284813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1721258655907234120
 PrefabInstance:
   m_ObjectHideFlags: 0

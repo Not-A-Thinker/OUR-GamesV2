@@ -66,7 +66,7 @@ public class BossSkillDemo : MonoBehaviour
     Vector3 orgPos;
 
     private bool isRushing = false;
-    private bool isTeleported;
+    //private bool isTeleported;
 
     [Header("Boss Animator")]
     [SerializeField] Animator Boss1Animator;
@@ -275,7 +275,7 @@ public class BossSkillDemo : MonoBehaviour
                 Boss1Animator.SetTrigger("Skill_Boomerang");
                 for (int i = 0; i < 5; i++)
                 {
-                    GameObject go_boomerang = Instantiate(windBladeBoomerang, transform.position, transform.rotation);
+                    GameObject go_boomerang = Instantiate(windBladeBoomerang, new Vector3(transform.position.x, 1.85f,transform.position.z), transform.rotation);
                     go_boomerang.transform.name = "Boomerang_" + i;
 
                     Vector3 vector = transform.position + Quaternion.Euler(0, (150 / 5) * i, 0) * forwardLeft;
@@ -345,7 +345,7 @@ public class BossSkillDemo : MonoBehaviour
 
             if (!Physics.Raycast(ranPos, transform.up * 10, 20))
             {
-                isTeleported = true;
+                //isTeleported = true;
                 transform.position = ranPos;
                 BubbleAttack();
                 break;
@@ -355,8 +355,9 @@ public class BossSkillDemo : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         transform.position = orgPos;
-        isTeleported = false;
+        //isTeleported = false;
     }
+
     //This is the end of stage1 skill sets.
     #endregion
 

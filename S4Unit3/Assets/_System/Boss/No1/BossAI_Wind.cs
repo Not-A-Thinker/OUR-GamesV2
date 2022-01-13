@@ -15,10 +15,8 @@ public class BossAI_Wind : MonoBehaviour
     BossHealthBar healthBar;
     BossCameraControl cameraControl;
 
-    private GameObject _Player1;
-    private GameObject _Player2;
-
-    public Animator attackAlert;
+    GameObject _Player1;
+    GameObject _Player2;
 
     Coroutine coroutineAtk;
     Coroutine coroutineThink;
@@ -27,6 +25,10 @@ public class BossAI_Wind : MonoBehaviour
     Coroutine coroutineRunAtk;
 
     Vector3 selfPos;
+
+    [Header("Alerter")]
+    public Animator attackAlert;
+    public Animator boomerageAlert;
 
     [Header("Test Tweak")]
     [SerializeField] bool _TestingMode = false;
@@ -85,28 +87,31 @@ public class BossAI_Wind : MonoBehaviour
     //This is only for testing function, should be del soon.
     IEnumerator Test()
     {
-        lookAtP1 = true;
-        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+        //Boomerang 風刃迴力鏢
+        boomerageAlert.SetTrigger("Boomer Alert");
+        yield return new WaitForSeconds(0.2f);
 
-        isMeleeAttacking = true;
-        BossSkill.BossWingAttack();
+        BossSkill.WindBladeBoomerang();
+
+        //lookAtP1 = true;
+        //yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+
+        //isMeleeAttacking = true;
+        //BossSkill.BossWingAttack();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
-            //StartCoroutine(Test());
+            StartCoroutine(Test());
         }
 
-        if (isStando)
-        {
-            Destroy(gameObject, 30);
-        }
+        if (isStando){ Destroy(gameObject, 30); }
 
         if (isStando && basicState._currentHealth <= 0)
         {
-            Debug.Log("Stando is Vanish");
+            Debug.Log("Stando is Vanish!");
             GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
             Destroy(gameObject);
         }
@@ -381,8 +386,11 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 40)
                     {
                         //Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+
                         BossSkill.WindBladeBoomerang();
-                        cameraControl.ChangeTargetWeight(3, 3);
+                        //cameraControl.ChangeTargetWeight(3, 3);
                     }
                     else if (rndNum >= 40 && rndNum < 67)
                     {
@@ -401,7 +409,7 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         //TornadoGattai 龍捲風合體
                         BossSkill.TornadoGattai();
-                        cameraControl.ChangeTargetWeight(3, 3);
+                        //cameraControl.ChangeTargetWeight(3, 3);
                     }
                     else if (rndNum >= 40 && rndNum < 100)
                     {
@@ -410,6 +418,7 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
 
+                //If there are player2 perf. then should change the skill.
                 case 21:
                     if (rndNum < 50)
                     {
@@ -426,6 +435,9 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 33)
                     {
                         //Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+
                         BossSkill.WindBladeBoomerang();
                     }
                     else if (rndNum >= 33 && rndNum < 67)
@@ -480,7 +492,8 @@ public class BossAI_Wind : MonoBehaviour
                     //STA 龍龍彈珠台
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
-                    cameraControl.ChangeTargetWeight(3, 3);
+
+                    //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
         }
