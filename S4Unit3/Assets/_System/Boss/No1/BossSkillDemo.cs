@@ -310,7 +310,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             int rnd = Random.Range(0, 360);
             Quaternion rndRot = Quaternion.Euler(0, rnd, 0);
-            GameObject go_STA = Instantiate(tornadoSpecialAttack, transform.position, rndRot);
+            GameObject go_STA = Instantiate(tornadoSpecialAttack, instantiatePoint.transform.position, rndRot);
             go_STA.name = "STA_" + (i + 1);
         }
         _STACount++;
