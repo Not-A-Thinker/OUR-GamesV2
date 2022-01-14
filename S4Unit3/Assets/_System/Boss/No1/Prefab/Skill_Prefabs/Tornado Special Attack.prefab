@@ -350,6 +350,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6734540042206016440, guid: 84d33718a2a359c4a9d96d22db42fdd6, type: 3}
+      propertyPath: poolRang
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6734540042206016440, guid: 84d33718a2a359c4a9d96d22db42fdd6, type: 3}
+      propertyPath: DestroyTime
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6734540042206016441, guid: 84d33718a2a359c4a9d96d22db42fdd6, type: 3}
       propertyPath: m_Name
       value: Particle_Rasengan_v5_L7

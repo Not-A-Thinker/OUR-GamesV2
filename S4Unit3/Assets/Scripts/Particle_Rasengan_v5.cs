@@ -32,7 +32,7 @@ public class Particle_Rasengan_v5 : MonoBehaviour
         if(poolObj<poolRang)
         {
             //print(RandomFloat(360));
-            GameObject obj = Instantiate(particlePer, transform.position, Quaternion.Euler(new Vector3(RandomFloat(360), RandomFloat(360), RandomFloat(360))), poolMaster);
+            GameObject obj = Instantiate(particlePer, transform.position, Quaternion.Euler(new Vector3(RandomFloat(720), RandomFloat(720), RandomFloat(720))), poolMaster);
             if (obj.GetComponent<rotate>() == null) obj.AddComponent<rotate>();
 
             Destroy(obj, DestroyTime + (RandomFloat(1) * (RandomBool() ? 1 : -1f)));
