@@ -42,4 +42,13 @@ public class PlayerAnimator : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         PlayerAn.SetBool("Dammagerd", false);
     }
+
+
+    public ParticleSystem CatSmoke;
+    public void Catalighting()
+    {
+        CatSmoke.Play();
+
+    }
+
 }
