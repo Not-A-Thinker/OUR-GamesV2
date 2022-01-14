@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 53798674}
   - component: {fileID: 53798677}
   m_Layer: 0
-  m_Name: Boss VCam
+  m_Name: BossSkill VCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 9
+  m_Priority: 5
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 1558560916}
   m_Follow: {fileID: 620949372}
@@ -410,7 +410,7 @@ MonoBehaviour:
     GateFit: 2
     m_SensorSize: {x: 1.6006019, y: 1}
   m_Transitions:
-    m_BlendHint: 1
+    m_BlendHint: 0
     m_InheritPosition: 0
     m_OnCameraLive:
       m_PersistentCalls:
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 116990513}
   - component: {fileID: 116990514}
   m_Layer: 0
-  m_Name: Group VCam1
+  m_Name: Main VCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -871,7 +871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0041251183, y: 47.209194, z: -51.708168}
+  m_LocalPosition: {x: -0.0041252673, y: 47.209187, z: -51.708164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4003,7 +4003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0041251183, y: 47.209194, z: -51.708168}
+  m_LocalPosition: {x: -0.0041252673, y: 47.209187, z: -51.708164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4030,7 +4030,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1.5
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -5924,6 +5924,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1420706972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2419415252669032787, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+  m_PrefabInstance: {fileID: 1558560915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1420706977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420706972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 3
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 1
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -1.5, z: 0}
 --- !u!1 &1430162429
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,11 +6315,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0.03980309, y: 11.040661, z: -5.8061676}
   m_LookaheadTime: 0.2
-  m_LookaheadSmoothing: 2.5
+  m_LookaheadSmoothing: 2
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
   m_YDamping: 1
-  m_ZDamping: 20
+  m_ZDamping: 15
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -6351,6 +6409,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 197238359, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: bossVC
+      value: 
+      objectReference: {fileID: 53798675}
+    - target: {fileID: 197238359, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: mainVC
+      value: 
+      objectReference: {fileID: 116990510}
     - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: boomerageAlert
       value: 
