@@ -20,6 +20,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
+    [SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
     [Header("State")]
@@ -73,10 +74,8 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (savedObject)
         {
-            Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
-            Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.Translate(toTarget * _force * Time.deltaTime);
+            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.06f));
         }
     }
 

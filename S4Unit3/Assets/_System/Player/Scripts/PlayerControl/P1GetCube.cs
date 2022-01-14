@@ -18,6 +18,18 @@ public class P1GetCube : MonoBehaviour
 
     [SerializeField] GameObject chip;
 
+    private void Update()
+    {
+        if(objectParent.transform.childCount!=0)
+        {
+            for (int i = 0; i < objectParent.transform.childCount; i++)
+            {
+                objectParent.transform.GetChild(i).transform.Rotate(Vector3.up * 5f, Space.World);
+                objectParent.transform.GetChild(i).RotateAround(transform.position, Vector3.up*Time.deltaTime , 3f);
+            }
+        }    
+    }
+
     public void PlayerGetCube(GameObject cube)
     {
         // Saveing Cube on the Top of dog head
@@ -27,11 +39,12 @@ public class P1GetCube : MonoBehaviour
             move.SpeedSlow();
 
             cube.transform.parent = objectParent.transform;
-            totalHight = totalHight + 3;
-            cube.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+            //totalHight = totalHight + 3;
+            cube.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
+        
             cube.GetComponent<ObjectDestroy>().isSucked = true;
-            cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
         }

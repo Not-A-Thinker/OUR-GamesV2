@@ -126,7 +126,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""9bbc0806-045d-43b1-a2b0-bd7276dde470"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
@@ -137,7 +137,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""5e59f505-c348-48cb-9ea2-aa492f990e29"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
@@ -148,7 +148,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""0dfc9185-a9a0-4798-868d-76f083da9f53"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
@@ -159,7 +159,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""4914562b-a7a2-4a90-a674-c4114d7c7178"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
@@ -203,7 +203,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d73b0402-601c-4586-b5af-f56140cfb7d9"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/numpad3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
