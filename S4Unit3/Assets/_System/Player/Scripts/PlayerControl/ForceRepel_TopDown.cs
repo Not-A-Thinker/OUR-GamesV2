@@ -61,7 +61,6 @@ public class ForceRepel_TopDown : MonoBehaviour
             canSucc = true;
             uIcontrol.SuckingCDBar(canSucc);
 
-
             if (savedObject != null)
             {
                 resetObject();  
@@ -75,7 +74,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (savedObject)
         {
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.06f));
+            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.25f));
         }
     }
 

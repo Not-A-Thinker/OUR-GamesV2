@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,19 +16,10 @@ public class P1GetCube : MonoBehaviour
 
     Move move;
 
+    private float distance;
+
     [SerializeField] GameObject chip;
 
-    private void Update()
-    {
-        if(objectParent.transform.childCount!=0)
-        {
-            for (int i = 0; i < objectParent.transform.childCount; i++)
-            {
-                objectParent.transform.GetChild(i).transform.Rotate(Vector3.up * 5f, Space.World);
-                objectParent.transform.GetChild(i).RotateAround(transform.position, Vector3.up*Time.deltaTime , 3f);
-            }
-        }    
-    }
 
     public void PlayerGetCube(GameObject cube)
     {
@@ -42,8 +33,11 @@ public class P1GetCube : MonoBehaviour
             //totalHight = totalHight + 3;
             cube.transform.position = new Vector3(this.transform.position.x, 1, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
-        
+            cube.GetComponent<Rigidbody>().useGravity = false;
             cube.GetComponent<ObjectDestroy>().isSucked = true;
+            cube.AddComponent<ObjectRotation>();
+            cube.GetComponent<ObjectRotation>().target = objectParent;
+            cube.GetComponent<ObjectRotation>().inBox = true;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
