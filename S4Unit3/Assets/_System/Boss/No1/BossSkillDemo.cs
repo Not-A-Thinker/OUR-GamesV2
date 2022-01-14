@@ -210,8 +210,8 @@ public class BossSkillDemo : MonoBehaviour
         int id = 1;
         for (int i = 0; i < NumTornadoToSpawn; i++)
         {
-            float ranX = Random.Range(transform.position.x - _skillRange, transform.position.x + _skillRange + 1);
-            float ranY = Random.Range(transform.position.z - _skillRange, transform.position.z + _skillRange + 1);
+            float ranX = Random.Range(instantiatePoint.transform.position.x - _skillRange, instantiatePoint.transform.position.x + _skillRange + 1);
+            float ranY = Random.Range(instantiatePoint.transform.position.z - _skillRange, instantiatePoint.transform.position.z + _skillRange + 1);
             Vector3 ranPos = new Vector3(ranX, 0, ranY);
 
             if (!Physics.Raycast(ranPos, transform.up * 10, 20))//Will need to change
@@ -310,7 +310,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             int rnd = Random.Range(0, 360);
             Quaternion rndRot = Quaternion.Euler(0, rnd, 0);
-            GameObject go_STA = Instantiate(tornadoSpecialAttack, transform.position, rndRot);
+            GameObject go_STA = Instantiate(tornadoSpecialAttack, instantiatePoint.transform.position, rndRot);
             go_STA.name = "STA_" + (i + 1);
         }
         _STACount++;
