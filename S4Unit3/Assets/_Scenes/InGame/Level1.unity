@@ -871,7 +871,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0041252673, y: 47.209187, z: -51.708164}
+  m_LocalPosition: {x: -0.004125476, y: 47.209187, z: -51.708164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4003,7 +4003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0041252673, y: 47.209187, z: -51.708164}
+  m_LocalPosition: {x: -0.004125476, y: 47.209187, z: -51.708164}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5981,7 +5981,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1.5, z: 0}
+  m_DefaultVelocity: {x: 0, y: -2, z: 0}
 --- !u!1 &1430162429
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,7 +6318,7 @@ MonoBehaviour:
   m_LookaheadSmoothing: 2
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
-  m_YDamping: 1
+  m_YDamping: 0.79
   m_ZDamping: 15
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5

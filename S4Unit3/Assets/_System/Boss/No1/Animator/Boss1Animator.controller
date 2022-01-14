@@ -756,7 +756,7 @@ AnimatorStateMachine:
     m_Position: {x: 140, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4312044422272757546}
-    m_Position: {x: 610, y: 160, z: 0}
+    m_Position: {x: 620, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4558283812136219414}
     m_Position: {x: 480, y: 50, z: 0}
@@ -939,7 +939,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: test
+    m_ConditionEvent: Skill_PinBall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6215709246602412696}
@@ -1060,6 +1060,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Skill_PinBall
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: test
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4312044422272757546}
   m_Solo: 0
@@ -1103,7 +1106,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u9AA8\u67B6|\u9AA8\u67B6Action"
+  m_Name: Boss_Skill_PinBall(FBX)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
