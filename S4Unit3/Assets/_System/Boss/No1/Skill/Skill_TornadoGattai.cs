@@ -144,7 +144,7 @@ public class Skill_TornadoGattai : MonoBehaviour
     private void LastDetect()
     {
         if (GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
-            cameraControl.ChangeTargetWeight(3, 1);
+            cameraControl.ChangeTargetWeight(3, 2);
     }
 
     

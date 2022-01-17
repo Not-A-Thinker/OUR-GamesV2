@@ -67,7 +67,7 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
     private void OnDestroy()
     {
-        cameraControl.ChangeTargetWeight(3, 1);
+        cameraControl.ChangeTargetWeight(3, 2);
 
         bossSkill.tornadoGattaiIsExisted = false;
     }

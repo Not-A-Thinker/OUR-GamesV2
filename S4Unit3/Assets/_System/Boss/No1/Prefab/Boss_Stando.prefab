@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 5936635689230513696}
-  boomerageAlert: {fileID: 0}
+  boomerageAlert: {fileID: 666437681515073794}
   _TestingMode: 0
   lookAtP1: 0
   lookAtP2: 0
@@ -977,6 +977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossSkill: {fileID: 1957455747635378795}
+  mainVC: {fileID: 0}
+  bossVC: {fileID: 0}
+  orgPriority: 5
+  fadeInPriority: 15
 --- !u!1 &1154215344902465006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1676798751578687038, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
@@ -1096,6 +1100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+--- !u!95 &666437681515073794 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1780179792639780211, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+  m_PrefabInstance: {fileID: 1264334591158350961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &666437681515073797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}

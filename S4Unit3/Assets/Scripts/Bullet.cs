@@ -7,8 +7,13 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     [Header("幫我在攻擊的時候打開")]
     public bool isAttacking = false;
+
+    [Header("從boss身上吸取的時候打開")]
+    public bool bossToSuck = false;
+
     public GameObject tailParticle;
-    public Quaternion dir;
+    private Quaternion dir; //face direction
+
     [Header("攻擊目標(Boss)")]
     public GameObject Traget;
     void Start()
@@ -37,15 +42,19 @@ public class Bullet : MonoBehaviour
         //print("collision with " + collision.gameObject.name);
         if (collision.transform.gameObject == Traget || collision.transform.gameObject.tag == "Boss")
          {
+
             ContactPoint contact = collision.contacts[0]; //get hit point 
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal); // rotation
             Vector3 pos = contact.point;//position
-
+            if (!bossToSuck)
+            {
+                GameObject particleobj = Instantiate(CollisionParticle, pos, Quaternion.identity);
+                Destroy(particleobj, 5);
+            }
             //Instantiate(explosionPrefab, pos, rot);
-            GameObject particleobj = Instantiate(CollisionParticle, pos, Quaternion.identity);
-            Destroy(particleobj, 5);
+
         }
-         // Destroy(gameObject);
+         Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,12 +66,21 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag== "Boss" || other.gameObject==Traget)
         {
+            if(!bossToSuck)
+            {
+                GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(particleobj, 5);
+            }
             //Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-            GameObject particleobj = Instantiate(hitParticle, transform.position,Quaternion.identity);
 
-            Destroy(particleobj, 5);
         }
+
+        Destroy(gameObject);
+
     }
 
 
 }
+
+
+

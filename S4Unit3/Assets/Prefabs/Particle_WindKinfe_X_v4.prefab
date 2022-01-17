@@ -4876,15 +4876,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84652f4a7454dd7419ea2e60b3a167c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  main_Color: {r: 1, g: 0.18943085, b: 0.17358488, a: 1}
+  windKinfe_Color: {r: 0.33333337, g: 1, b: 0.41238725, a: 1}
+  windPoint_Color: {r: 1, g: 1, b: 1, a: 0}
   WindKinfe_1: {fileID: 4024608435641903385}
   WindKinfe_2: {fileID: 4024608437385138156}
   Point_1: {fileID: 2286661597016538308}
   Point_2: {fileID: 3395376538712304209}
   Point_3: {fileID: 1804606216045714566}
   Point_4: {fileID: 4501060942273430145}
+  intansty: 0
   rotateRange: {x: 0, y: 0, z: 0}
   rotateSpeed: 10
+  DestroyTag: 
 --- !u!1 &4024608437385138153
 GameObject:
   m_ObjectHideFlags: 0
