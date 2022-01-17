@@ -10,7 +10,7 @@ public class ObjectRotation : MonoBehaviour
 
     public GameObject target;
 
-    private float step = 50;
+    private float step = 180;
     private float own = 20;
 
     private float distance;
@@ -19,6 +19,7 @@ public class ObjectRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         dir = transform.position - target.transform.position;
 
         distance = Vector3.Distance(transform.position, target.transform.position);
@@ -29,16 +30,21 @@ public class ObjectRotation : MonoBehaviour
     {
         if (inBox)
         {
+            transform.localScale = new Vector3(0.7f,0.7f,0.7f);
+            //Debug.Log(distance);
+
             transform.position = target.transform.position + dir.normalized * distance;
 
-            Vector3 targetPos = new Vector3(target.transform.position.x, -2, target.transform.position.z); 
+            Vector3 targetPos = target.transform.position; 
 
             transform.RotateAround(targetPos, Vector3.up, step * Time.deltaTime);
 
             dir = transform.position - target.transform.position;
 
             //¦ÛÂà
-            transform.Rotate(new Vector3(0, -own, 0));
+            transform.Rotate(new Vector3(0, -own*Time.deltaTime, 0));
         }
+        else
+            transform.localScale = new Vector3(1, 1, 1);
     }
 }
