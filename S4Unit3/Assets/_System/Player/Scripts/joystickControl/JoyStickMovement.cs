@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class JoyStickMovement : MonoBehaviour
 {
+    [SerializeField] UIcontrol UIcontrol;
 
     [Header("Player Components")]
     [SerializeField] JoystickControl inputActions;
@@ -50,6 +51,7 @@ public class JoyStickMovement : MonoBehaviour
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
     Vector2 Rotvector2d = Vector2.zero;
+    Vector3 vector3d;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -59,6 +61,7 @@ public class JoyStickMovement : MonoBehaviour
 #endif
     private void Awake()
     {
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
             forceCast_TopDown = GetComponent<ForceCast_TopDown>();
         else
@@ -70,6 +73,7 @@ public class JoyStickMovement : MonoBehaviour
         inputActions.Enable();     
     }
 
+
     #region OnInputTrigger
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -77,8 +81,17 @@ public class JoyStickMovement : MonoBehaviour
     }
 
     public void OnDash(InputAction.CallbackContext context)
-    {
-        isDashed = context.action.triggered;
+    {   
+        if (context.started)
+        {
+            isDashed = true;
+            DashOn();
+        }
+        if(context.canceled)
+        {
+            isDashed = false;
+            DashOn();
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -156,7 +169,7 @@ public class JoyStickMovement : MonoBehaviour
         }
     }
     //Dash
-    private void DashOn(Vector3 vector3d)
+    private void DashOn()
     {
         if (isDashed && DashBar >= DashUsed)
         {
@@ -164,6 +177,7 @@ public class JoyStickMovement : MonoBehaviour
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
             DashBar = DashBar - DashUsed;
+           
         }
         else if (!isDashed)
         {
@@ -220,13 +234,17 @@ public class JoyStickMovement : MonoBehaviour
     #endregion
     private void Update()
     {
-        Vector3 vector3d = new Vector3(vector2d.x, 0, vector2d.y);
+        vector3d = new Vector3(vector2d.x, 0, vector2d.y);
+        if (DashBar < 100)
+        {
+            DashBar = DashBar + DashRestore * Time.deltaTime;
+        }
 
         Move(vector3d);
         Rotate();
-        DashOn(vector3d);
+        //DashOn(vector3d);
         Shoot();
-       
+        UIcontrol.EnergyBarChange(DashBar, 1);
 
         //Suck And Shoot
         //if (inputActions.GamePlay.Succ.WasPressedThisFrame())
