@@ -43,7 +43,6 @@ public class ForceRepel_TopDown : MonoBehaviour
             ButtonDonwEvent();
         }
            
-
         if (Input.GetButton("Fire2"))
         {
             GetComponent<BoxCollider>().isTrigger = true;
@@ -75,6 +74,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         {
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.25f));
+
         }
     }
 
