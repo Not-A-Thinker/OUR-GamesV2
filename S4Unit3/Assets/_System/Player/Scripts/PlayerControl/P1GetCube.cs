@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,10 @@ public class P1GetCube : MonoBehaviour
 
     Move move;
 
+    private float distance;
+
     [SerializeField] GameObject chip;
+
 
     public void PlayerGetCube(GameObject cube)
     {
@@ -27,11 +30,15 @@ public class P1GetCube : MonoBehaviour
             move.SpeedSlow();
 
             cube.transform.parent = objectParent.transform;
-            totalHight = totalHight + 3;
-            cube.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+            //totalHight = totalHight + 3;
+            cube.transform.position = new Vector3(this.transform.position.x+2 , 4, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
+            cube.GetComponent<Rigidbody>().useGravity = false;
             cube.GetComponent<ObjectDestroy>().isSucked = true;
-            cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            cube.AddComponent<ObjectRotation>();
+            cube.GetComponent<ObjectRotation>().target = objectParent;
+            cube.GetComponent<ObjectRotation>().inBox = true;
+            //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
         }
@@ -108,6 +115,7 @@ public class P1GetCube : MonoBehaviour
 
         cube.GetComponent<Bullet>().isAttacking = true;
 
+        cube.GetComponent<ObjectRotation>().inBox = false;
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;

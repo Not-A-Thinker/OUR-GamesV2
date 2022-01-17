@@ -10,16 +10,16 @@
                     "type": "Value",
                     "id": "09569ab5-d2cc-411a-9cb0-b9b2c2cc650e",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RotateQE",
-                    "type": "Value",
+                    "name": "RotateMouse",
+                    "type": "PassThrough",
                     "id": "17837a79-21c8-4e51-a205-3ff74b5707b0",
-                    "expectedControlType": "Button",
-                    "processors": "",
+                    "expectedControlType": "",
+                    "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Respawn",
+                    "type": "Button",
+                    "id": "231acc1b-0308-4b81-b551-f77557c42a9d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -95,7 +104,7 @@
                 {
                     "name": "up",
                     "id": "9bbc0806-045d-43b1-a2b0-bd7276dde470",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse And Keyboard",
@@ -106,7 +115,7 @@
                 {
                     "name": "down",
                     "id": "5e59f505-c348-48cb-9ea2-aa492f990e29",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse And Keyboard",
@@ -117,7 +126,7 @@
                 {
                     "name": "left",
                     "id": "0dfc9185-a9a0-4798-868d-76f083da9f53",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse And Keyboard",
@@ -128,7 +137,7 @@
                 {
                     "name": "right",
                     "id": "4914562b-a7a2-4a90-a674-c4114d7c7178",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse And Keyboard",
@@ -171,6 +180,17 @@
                 },
                 {
                     "name": "",
+                    "id": "d73b0402-601c-4586-b5af-f56140cfb7d9",
+                    "path": "<Keyboard>/numpad3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse And Keyboard",
+                    "action": "Succ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "743d5509-2dd6-46d3-96ab-1937d25bb2e6",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
@@ -192,72 +212,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "LeftRight",
-                    "id": "dce5eff3-6fe6-471b-b7cf-402cf82a8c8b",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateQE",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "8c087174-67d0-4a01-b474-4c56227a5587",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse And Keyboard",
-                    "action": "RotateQE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "26298233-f828-405c-9bd8-cc1edb5fb9cf",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse And Keyboard",
-                    "action": "RotateQE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "R1L1",
-                    "id": "64050404-df91-4944-a74c-87499901bd66",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RotateQE",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "b817840b-1a59-4c2b-adac-4fd7aba235a4",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyStick",
-                    "action": "RotateQE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "432346ec-ad7a-41fe-a6aa-15e8d137d70f",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "JoyStick",
-                    "action": "RotateQE",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "2eac9f95-4eb9-4156-8d00-05805c3805b1",
                     "path": "<Gamepad>/buttonSouth",
@@ -271,10 +225,10 @@
                 {
                     "name": "",
                     "id": "1a22990f-a706-4780-92c9-ac6c996320e3",
-                    "path": "",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Mouse And Keyboard",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -285,8 +239,41 @@
                     "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "JoyStick",
                     "action": "LockBoss",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1ff0bf5-bafd-4932-be04-0071c8937fa1",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse And Keyboard",
+                    "action": "RotateMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afaffb37-830f-47e5-818b-9dea1ab9a1c3",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "JoyStick",
+                    "action": "Respawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ed8f9fa-f7dd-43ba-b247-8d92b2b0914f",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse And Keyboard",
+                    "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

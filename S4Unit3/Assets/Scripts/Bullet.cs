@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("collision with " + collision.gameObject.name);
+        //print("collision with " + collision.gameObject.name);
         if (collision.transform.gameObject == Traget || collision.transform.gameObject.tag == "Boss")
          {
 
