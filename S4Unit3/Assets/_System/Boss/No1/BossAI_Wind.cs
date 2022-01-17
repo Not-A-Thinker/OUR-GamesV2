@@ -297,8 +297,18 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 32;}
 
             //第一階大技
-            if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
-            { AIDecision = 33;}
+            if (basicState.isHealthMerge)
+            {
+                if (healthBar.health <= healthBar.maxHealth / 2 - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                { AIDecision = 33; }
+            }
+            else
+            {
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                { AIDecision = 33; }
+            }
+
+            
         }
 
         if (IsStage2 && !isStando)

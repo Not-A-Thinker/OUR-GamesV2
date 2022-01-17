@@ -303,7 +303,6 @@ public class BossSkillDemo : MonoBehaviour
         //Boss1Animator.SetTrigger("Skill_Tornado");
         
     }
-
     public void TornadoSpecialAttackAnimation()
     {
         for (int i = 0; i < 4; i++)

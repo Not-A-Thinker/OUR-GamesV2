@@ -977,6 +977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossSkill: {fileID: 1957455747635378795}
+  mainVC: {fileID: 0}
+  bossVC: {fileID: 0}
+  orgPriority: 5
+  fadeInPriority: 15
 --- !u!1 &1154215344902465006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1676798751578687038, guid: f3a400392811d8641abec7fab7d3310b, type: 3}
