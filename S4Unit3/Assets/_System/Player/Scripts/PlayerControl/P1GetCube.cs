@@ -16,8 +16,6 @@ public class P1GetCube : MonoBehaviour
 
     Move move;
 
-    private float distance;
-
     [SerializeField] GameObject chip;
 
 
@@ -31,7 +29,7 @@ public class P1GetCube : MonoBehaviour
 
             cube.transform.parent = objectParent.transform;
             //totalHight = totalHight + 3;
-            cube.transform.position = new Vector3(this.transform.position.x+2 , 4, this.transform.position.z);
+            cube.transform.position = new Vector3(this.transform.position.x+2 , 3, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
             cube.GetComponent<ObjectDestroy>().isSucked = true;
@@ -48,7 +46,7 @@ public class P1GetCube : MonoBehaviour
         }
     }
 
-    public void PlayerSpawnCube(int force)
+    public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
         if (force>=2)
@@ -85,23 +83,21 @@ public class P1GetCube : MonoBehaviour
         }
     }
 
-    void PlayerSetCube(int parentMax,int force)
+    void PlayerSetCube(int parentMax, float force)
     {
         move = GetComponent<Move>();
         move.SpeedFast();
 
-        int caseNum = 0;
+        int caseNum = 1;
 
         totalHight = totalHight - 3;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
-        if (force >= 3)
+        if (force >= 2)
             caseNum = 2;     
         else
-        {
             caseNum = 1;
-            force = 2;
-        }
+
         //Debug.Log(force);
 
 
@@ -123,7 +119,7 @@ public class P1GetCube : MonoBehaviour
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
-    IEnumerator TheBigOne(int parentMax, int force)
+    IEnumerator TheBigOne(int parentMax, float force)
     {      
         int Max = parentMax;
         for (int i = 0; i < Max; i++)

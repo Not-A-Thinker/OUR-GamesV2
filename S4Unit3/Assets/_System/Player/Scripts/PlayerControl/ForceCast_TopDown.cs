@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class ForceCast_TopDown : MonoBehaviour
 {
-    public float _force = 500f;
-    public float _range = 15f;
-
-    public bool _attackTrigger = false;
-
-    public int maxItem = 5;
-
+    [Header("Component")]
     public GameObject objectParent;
 
     public GameObject rangeObj;
-    Renderer rangeObjRed;
-   [SerializeField] GameObject RangeBigObj;
+    [SerializeField] GameObject RangeBigObj;
 
-   [SerializeField] UIcontrol UIcontrol;
-   [SerializeField] GameObject Charitor;
+    [SerializeField] UIcontrol UIcontrol;
+    [SerializeField] GameObject Charitor;
+    [Header("P1 Push State")]
+    public float _force = 500f;
+    public float _range = 15f;
+    public bool friendPushed, Charge, Shooted, ShootInCD;
+  
 
-    float countFloat = 0;
-
-    int count = 0;
-
-    public bool friendPushed,Charge,Shooted,ShootInCD;
-
-
+    public bool _attackTrigger = false;
     Quaternion OldQuate;
+
+    [Header("P1 Carge State")]
+    [SerializeField] float countFloat = 0;
+    public float CountMax = 2f;
+
+    [Header("P1 Attack CD")]
+    [SerializeField] float Timer = 1;
+    public int PushMaxCD = 1;
+
+   
 
 
     void Start()
@@ -45,13 +47,15 @@ public class ForceCast_TopDown : MonoBehaviour
                 Accumulate();
             }
             else
-                Charge = false;
+            {
+                Charge = false;          
+            }            
         }
         if (Shooted)
         {
             if (!ShootInCD)
             {
-                Shoot();
+                Shoot();               
                 rangeObj.SetActive(false);
                 UIcontrol.PushingStop();
             }
@@ -63,6 +67,20 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             FriendlyPushed();
         }
+
+        if (ShootInCD)
+        {
+            if (Timer < PushMaxCD)
+            {
+                Timer += Time.deltaTime;
+            }
+            else
+                Timer = PushMaxCD;
+        }
+        else
+            Timer = PushMaxCD;
+
+        UIcontrol.PushingCDBar(Timer);
 
         //if (Input.GetButton("Fire1"))
         //{
@@ -90,8 +108,9 @@ public class ForceCast_TopDown : MonoBehaviour
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
-            StartCoroutine(ShootCD(1));
+            Timer = 0;
+            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
+            StartCoroutine(ShootCD(PushMaxCD));
         }    
         //else
         //{
@@ -114,7 +133,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //    _attackTrigger = false;
         //}
         countFloat = 0;
-        count = 0;
         Shooted = false;
         Charge = false;
     }
@@ -128,14 +146,17 @@ public class ForceCast_TopDown : MonoBehaviour
         //rangeObjRed.material.SetColor("_Color", Color.green);
         rangeObj.SetActive(true);
 
-        countFloat += (1 * Time.deltaTime);
+        countFloat += Time.deltaTime;
 
-        if (countFloat > 2.5f)
+        if (countFloat > CountMax + 0.5f)
         {
             countFloat = 0;
         }
-            
-        UIcontrol.PushingBar(countFloat);
+
+        float BarValue = countFloat / CountMax;
+
+
+        UIcontrol.PushingBar(BarValue);
     }
 
     private void FriendlyPushed()
@@ -167,11 +188,9 @@ public class ForceCast_TopDown : MonoBehaviour
 
    IEnumerator ShootCD(int time)
     {
-        ShootInCD = true;
-        UIcontrol.PushingCDBar(time, false);
+        ShootInCD = true;     
         yield return new WaitForSeconds(time);
         ShootInCD = false;
-        UIcontrol.PushingCDBar(time, true);
         //while (time > 0)
         //{
         //    yield return new WaitForSeconds(1);
