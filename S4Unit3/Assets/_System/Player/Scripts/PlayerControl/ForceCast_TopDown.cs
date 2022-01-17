@@ -19,10 +19,11 @@ public class ForceCast_TopDown : MonoBehaviour
   
 
     public bool _attackTrigger = false;
+    Quaternion OldQuate;
 
     [Header("P1 Carge State")]
-    float countFloat = 0;
-    int count = 0;
+    [SerializeField] float countFloat = 0;
+    public float CountMax = 2f;
 
     [Header("P1 Attack CD")]
     [SerializeField] float Timer = 1;
@@ -30,7 +31,6 @@ public class ForceCast_TopDown : MonoBehaviour
 
    
 
-    Quaternion OldQuate;
 
     void Start()
     {
@@ -109,7 +109,7 @@ public class ForceCast_TopDown : MonoBehaviour
         if (objectParent.transform.childCount > 0)
         {
             Timer = 0;
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
+            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
             StartCoroutine(ShootCD(PushMaxCD));
         }    
         //else
@@ -133,7 +133,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //    _attackTrigger = false;
         //}
         countFloat = 0;
-        count = 0;
         Shooted = false;
         Charge = false;
     }
@@ -147,14 +146,17 @@ public class ForceCast_TopDown : MonoBehaviour
         //rangeObjRed.material.SetColor("_Color", Color.green);
         rangeObj.SetActive(true);
 
-        countFloat += (1 * Time.deltaTime);
+        countFloat += Time.deltaTime;
 
-        if (countFloat > 2.5f)
+        if (countFloat > CountMax + 0.5f)
         {
             countFloat = 0;
         }
-            
-        UIcontrol.PushingBar(countFloat);
+
+        float BarValue = countFloat / CountMax;
+
+
+        UIcontrol.PushingBar(BarValue);
     }
 
     private void FriendlyPushed()
