@@ -400,7 +400,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1558560916}
   m_Follow: {fileID: 620949372}
   m_Lens:
-    FieldOfView: 75
+    FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.001
     FarClipPlane: 400
@@ -847,7 +847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0031544566, y: 63.02542, z: -63.95304}
+  m_LocalPosition: {x: -0.0031545758, y: 63.02542, z: -63.95304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4054,7 +4054,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: -0.0031544566, y: 63.02542, z: -63.95304}
+  m_LocalPosition: {x: -0.0031545758, y: 63.02542, z: -63.95304}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6177,7 +6177,7 @@ MonoBehaviour:
   m_LookaheadTime: 0.2
   m_LookaheadSmoothing: 2.5
   m_LookaheadIgnoreY: 0
-  m_XDamping: 5
+  m_XDamping: 8
   m_YDamping: 1
   m_ZDamping: 20
   m_TargetMovementOnly: 1
@@ -6544,6 +6544,10 @@ PrefabInstance:
     - target: {fileID: 3547116886111481972, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547116887089412504, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 3547116887273196982, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: bossHealth
