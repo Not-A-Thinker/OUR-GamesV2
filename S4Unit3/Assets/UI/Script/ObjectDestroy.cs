@@ -6,7 +6,7 @@ public class ObjectDestroy : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isSucked=false;
-    public float DestroyTime=3;
+    public float DestroyTime=15;
 
     private void Update()
     {
@@ -18,7 +18,7 @@ public class ObjectDestroy : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Wall" && isSucked == false)
+        if (col.gameObject.tag == "Wall" && !isSucked)
             DestroyThis();
     }
 
