@@ -27,6 +27,7 @@ public class ParticleCollision : MonoBehaviour
     {
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
+
         Rigidbody rb = other.GetComponent<Rigidbody>();
         int i = 0;
 
