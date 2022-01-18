@@ -515,6 +515,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 500052818044258933, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: UIcontrol
+      value: 
+      objectReference: {fileID: 4553678}
     - target: {fileID: 500052818044258939, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: maximumSpeed
       value: 11
