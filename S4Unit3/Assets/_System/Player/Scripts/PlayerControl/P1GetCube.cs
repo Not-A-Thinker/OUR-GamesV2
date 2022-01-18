@@ -36,14 +36,13 @@ public class P1GetCube : MonoBehaviour
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>().inBox = true;
+            cube.GetComponent<Bullet>().bossToSuck = false;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
         }
        else
-        {
             cube.transform.position = transform.forward * Time.deltaTime ;
-        }
     }
 
     public void PlayerSpawnCube(float force)
@@ -99,7 +98,6 @@ public class P1GetCube : MonoBehaviour
             caseNum = 1;
 
         //Debug.Log(force);
-
 
         Rigidbody Rb = cube.GetComponent<Rigidbody>();
 

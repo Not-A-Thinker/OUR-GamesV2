@@ -122,6 +122,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     {
                         savedObject = BossSpwO.lastSpawned;
                         savedObject.GetComponent<ObjectDestroy>().isSucked = true;
+                        savedObject.GetComponent<Bullet>().bossToSuck = true;
                         //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
                         //rb.useGravity = false;
                     }
