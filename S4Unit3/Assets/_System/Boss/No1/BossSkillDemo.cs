@@ -35,7 +35,7 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Skill Status")]
     public bool isMeleeAttacking;
-    public bool canMistAgain;
+    public bool canMistAgain = true;
     public bool canStandoAgain;
 
     [Header("Skill CD Timer")]
@@ -303,7 +303,6 @@ public class BossSkillDemo : MonoBehaviour
         //Boss1Animator.SetTrigger("Skill_Tornado");
         
     }
-
     public void TornadoSpecialAttackAnimation()
     {
         for (int i = 0; i < 4; i++)
