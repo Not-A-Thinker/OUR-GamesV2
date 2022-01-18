@@ -18,6 +18,7 @@ public class ObjectDamage : MonoBehaviour
     public Vector3 Direction;
 
     public float Speed = 50;
+
     private void Start()
     {
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
@@ -25,8 +26,10 @@ public class ObjectDamage : MonoBehaviour
             isSpcecialAttack = true;
 
         StartCoroutine(DestroyTimer());
+
+    
         //Rb = GetComponent<Rigidbody>();
-         //Rigidbody Rb = GetComponent<Rigidbody>();
+        //Rigidbody Rb = GetComponent<Rigidbody>();
         //Rb.AddForceAtPosition(transform.forward * 2000f *5* Time.deltaTime, transform.position, ForceMode.Impulse);
     }
 
@@ -34,6 +37,8 @@ public class ObjectDamage : MonoBehaviour
     {
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
         transform.position += Direction * Speed * Time.deltaTime;
+
+       
     }
 
     //Do You Know YourDamage
@@ -57,7 +62,6 @@ public class ObjectDamage : MonoBehaviour
     //®g¤¤§A°ÕPK
     private void OnTriggerEnter(Collider col)
     {
-
         if (col.transform.tag == "BossStando")
         {
             //Help me Check if this is right or not.
@@ -103,7 +107,6 @@ public class ObjectDamage : MonoBehaviour
 
    IEnumerator DestroyTimer()
     {
-
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
     }
