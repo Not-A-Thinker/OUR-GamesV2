@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1546076111722753171}
   - component: {fileID: 1546076111722753168}
   - component: {fileID: 1546076111722753169}
-  - component: {fileID: 398843881897597046}
   m_Layer: 0
   m_Name: MistAttack
   m_TagString: Untagged
@@ -223,9 +222,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 2
-      minColor: {r: 0.33962262, g: 0.24798858, b: 0.24798858, a: 0.39215687}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+      minMaxState: 0
+      minColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -286,9 +285,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     startSize:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1.7
-      minScalar: 1.5
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -339,9 +338,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.3
-      minScalar: 0.3
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -392,9 +391,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 1.7
-      minScalar: 1.5
+      minMaxState: 0
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1365,10 +1364,10 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.78431374}
+        key0: {r: 1, g: 1, b: 1, a: 0.627451}
         key1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
         key2: {r: 1, g: 0, b: 0.47024775, a: 0}
-        key3: {r: 3.9335268, g: 3.5807366, b: 0.02215773, a: 0}
+        key3: {r: 3.9335268, g: 3.5807366, b: 0.02215773, a: 1}
         key4: {r: 1, g: 1, b: 1, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1384,7 +1383,7 @@ ParticleSystem:
         atime0: 0
         atime1: 37008
         atime2: 65535
-        atime3: 65535
+        atime3: 53777
         atime4: 65535
         atime5: 0
         atime6: 0
@@ -4821,7 +4820,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3bb9afdbf188ea44b08711f07a01a15, type: 2}
+  - {fileID: 2100000, guid: 846d35069cf593f428c7225d9ae62bc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4872,19 +4871,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &398843881897597046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546076111722753262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36775751634e68f4190e6e4ee67e020c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle_mistAttack: {fileID: 0}
 --- !u!1 &1546076112212849004
 GameObject:
   m_ObjectHideFlags: 0
