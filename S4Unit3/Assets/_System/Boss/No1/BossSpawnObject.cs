@@ -23,13 +23,11 @@ public class BossSpawnObject : MonoBehaviour
         SpawnedCount = GameObject.FindGameObjectsWithTag("Object").Length;
     }
 
-    public void ObjectSpawn(Vector3 P2Pos)
+    public void ObjectSpawn(Vector3 P2Pos,Quaternion SpawnQuat)
     {
-        if (SpawnedCount < 5)
-        {
-            lastSpawned = Instantiate(Object, P2Pos, Quaternion.identity);
-            bossHealth.TakeDamage(5);
-        }
+        lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
+        Debug.Log(lastSpawned.gameObject.name);
+        bossHealth.TakeDamage(5);
         //Debug.Log(P2Pos);
     }
 

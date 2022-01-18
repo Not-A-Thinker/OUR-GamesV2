@@ -179,7 +179,7 @@ public class JoyStickMovement : MonoBehaviour
             DashBar = DashBar - DashUsed;
            
         }
-        else if (!isDashed)
+        if (!isDashed)
         {
             _animation.PlayerDash(false);
         }

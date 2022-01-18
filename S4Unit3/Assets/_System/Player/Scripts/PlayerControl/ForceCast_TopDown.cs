@@ -29,9 +29,6 @@ public class ForceCast_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public int PushMaxCD = 1;
 
-   
-
-
     void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();

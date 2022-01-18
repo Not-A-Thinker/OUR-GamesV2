@@ -73,7 +73,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (savedObject)
         {
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.25f));
+            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.15f));
         }
     }
 
@@ -115,15 +115,15 @@ public class ForceRepel_TopDown : MonoBehaviour
                 if (hit.transform.tag == "Boss" && SuccFromBoss == false)
                 {
                     BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
-                    Vector3 hitpoint = hit.point - hit.normal;
+                    Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     //Debug.Log(hitpoint);
-                    BossSpwO.ObjectSpawn(hitpoint);
+                    BossSpwO.ObjectSpawn(hit.point, spawnRotation);
                     if (BossSpwO.lastSpawned != null)
                     {
                         savedObject = BossSpwO.lastSpawned;
+                        savedObject.GetComponent<ObjectDestroy>().isSucked = true;
                         //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
                         //rb.useGravity = false;
-                        BossSpwO.lastSpawned = null;
                     }
                     SuccFromBoss = true;
                 }
