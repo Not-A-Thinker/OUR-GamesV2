@@ -133,8 +133,8 @@ VisualEffect:
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 1.2392157, b: 4, a: 0}
-          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 0}
+          key0: {r: 0, g: 1.2392157, b: 4, a: 1}
+          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 1}
           key2: {r: 1.3803922, g: 0.24313726, b: 1.4117647, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 1}
           key4: {r: 0, g: 0, b: 0, a: 1}
@@ -150,22 +150,22 @@ VisualEffect:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 6168
-          atime2: 8481
-          atime3: 52235
+          atime1: 52235
+          atime2: 65535
+          atime3: 65535
           atime4: 65535
           atime5: 0
           atime6: 0
           atime7: 0
           m_Mode: 0
           m_NumColorKeys: 3
-          m_NumAlphaKeys: 5
+          m_NumAlphaKeys: 3
         m_Name: OutParticleColorOverLife
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 1.2392157, b: 4, a: 0}
-          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 0}
+          key0: {r: 0, g: 1.2392157, b: 4, a: 1}
+          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 1}
           key2: {r: 1.3803922, g: 0.24313726, b: 1.4117647, a: 1}
           key3: {r: 0, g: 0, b: 0, a: 1}
           key4: {r: 0, g: 0, b: 0, a: 1}
@@ -181,16 +181,16 @@ VisualEffect:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 6168
-          atime2: 8481
-          atime3: 52235
+          atime1: 52235
+          atime2: 65535
+          atime3: 65535
           atime4: 65535
           atime5: 0
           atime6: 0
           atime7: 0
           m_Mode: 0
           m_NumColorKeys: 3
-          m_NumAlphaKeys: 5
+          m_NumAlphaKeys: 3
         m_Name: MainParticleColorOverLife
         m_Overridden: 1
     m_NamedObject:

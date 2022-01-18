@@ -35,6 +35,9 @@ public class PlayerState : MonoBehaviour
         playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         move = GetComponent<Move>();
 
+        if(GetComponent<JoyStickMovement>())
+
+
        //檢查玩家編號
         if (gameObject.name == "Player1")
         {
@@ -57,7 +60,11 @@ public class PlayerState : MonoBehaviour
     {
         //isColliding = false;
 
-        UIcontrol.EnergyBarChange(move.DashBar, playerCount);
+        if(playerCount==2)
+        {
+            UIcontrol.EnergyBarChange(move.DashBar, playerCount);
+        }
+      
 
         //Invincible作弊
         if (Input.GetKeyDown(KeyCode.CapsLock))
