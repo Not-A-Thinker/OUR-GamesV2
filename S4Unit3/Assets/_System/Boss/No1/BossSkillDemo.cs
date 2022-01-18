@@ -35,7 +35,7 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Skill Status")]
     public bool isMeleeAttacking;
-    public bool canMistAgain;
+    public bool canMistAgain = true;
     public bool canStandoAgain;
 
     [Header("Skill CD Timer")]

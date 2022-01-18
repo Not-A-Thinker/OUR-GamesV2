@@ -167,18 +167,14 @@ public class BossAI_Wind : MonoBehaviour
         {
             _aiEnable = !_aiEnable;
             if (_aiEnable)
-            {
-                StartCoroutine(AIRestartTimer());
-            }
+            {StartCoroutine(AIRestartTimer());}
             else if (!_aiEnable)
-            {
-                StopCoroutine(TimeOfThink());
-            }
+            {StopCoroutine(TimeOfThink());}
         }
         if (!_aiEnable)
             return;
 
-        //This is for locking on player itself;
+        //This is for locking on player itself by shooting a raycast;
         selfPos = new Vector3(transform.position.x, 1, transform.position.z);
 
         RaycastHit isPlayerGetHit;
