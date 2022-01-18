@@ -41,7 +41,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5311870857991120316}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 3e127244a71b61b4a86714082fe33922, type: 3}
+  m_Asset: {fileID: 0}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -453,15 +453,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windKinfe_Color.b
-      value: 0.64705884
+      value: 0.43137255
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windKinfe_Color.g
-      value: 0.28235295
+      value: 0.2509804
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windKinfe_Color.r
-      value: 0.90588236
+      value: 0.2901961
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windPoint_Color.a
@@ -469,15 +469,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windPoint_Color.b
-      value: 0.24905658
+      value: 0.85882354
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windPoint_Color.g
-      value: 0.8092887
+      value: 0.7529412
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windPoint_Color.r
-      value: 1
+      value: 0.8784314
       objectReference: {fileID: 0}
     - target: {fileID: 2374785418796884067, guid: 64446975eded93346992320ca441bbca, type: 3}
       propertyPath: windKinfe_Color_Gradient.atime0
