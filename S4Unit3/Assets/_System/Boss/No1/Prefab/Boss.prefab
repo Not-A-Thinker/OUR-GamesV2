@@ -96,7 +96,7 @@ GameObject:
   m_Layer: 6
   m_Name: Instante Point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547116887089412507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0.84}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
-  _TestingMode: 1
+  _TestingMode: 0
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 1
+  _aiEnable: 0
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 2
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c45a6fb620c6504ab666db1b2663fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossAI: {fileID: 0}
   instantiatePoint: {fileID: 3547116887089412507}
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
@@ -1176,59 +1177,6 @@ MonoBehaviour:
   bossVC: {fileID: 0}
   orgPriority: 5
   fadeInPriority: 15
---- !u!114 &1420706977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2419415252669032787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 3
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 1
-    m_ImpulseType: 0
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -2, z: 0}
 --- !u!114 &379224771
 MonoBehaviour:
   m_ObjectHideFlags: 0
