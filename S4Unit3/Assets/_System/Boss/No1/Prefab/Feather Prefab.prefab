@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5714a5a4fd04d5148ac65d98c167f0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAttacking: 1
+  isAttacking: 0
+  bossToSuck: 0
   tailParticle: {fileID: 6926796485958506195}
-  dir: {x: 0, y: 0, z: 0, w: 0}
   Traget: {fileID: 0}
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
   hitParticle: {fileID: 3413306987961497365, guid: d1cc9ff88bc752b4895b608c8ff7ae56, type: 3}
