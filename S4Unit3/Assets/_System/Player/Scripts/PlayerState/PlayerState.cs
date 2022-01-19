@@ -11,13 +11,11 @@ public class PlayerState : MonoBehaviour
     int _maxHealth = 3;
     [SerializeField] int _currentHealth;
 
-
     [Header("Player State")]
     public bool isDead = false;
     public bool isMove = false;
     public bool isDash = false;
-    public bool  isPlayer1;
-    public bool  isPlayer2;
+    int playerCount;
 
     [Header("Player GetComponent")]
     [SerializeField] UIcontrol UIcontrol;
@@ -39,14 +37,17 @@ public class PlayerState : MonoBehaviour
 
         if(GetComponent<JoyStickMovement>())
 
+
        //ÀË¬dª±®a½s¸¹
-        if (isPlayer1)
+        if (gameObject.name == "Player1")
         {
             _maxHealth = 5;
+            playerCount = 1;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
         }
-        if(isPlayer2)
+        else
         {
+            playerCount = 2;
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
         }
 
@@ -59,9 +60,9 @@ public class PlayerState : MonoBehaviour
     {
         //isColliding = false;
 
-        if(isPlayer2)
+        if(playerCount==2)
         {
-            UIcontrol.EnergyBarChange(move.DashBar, 2);
+            UIcontrol.EnergyBarChange(move.DashBar, playerCount);
         }
       
 
@@ -90,7 +91,7 @@ public class PlayerState : MonoBehaviour
         {
             _currentHealth--;
 
-            if (isPlayer1)
+            if (playerCount == 1)
             {
                 P1GetCube p1GetCube= GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
@@ -106,12 +107,6 @@ public class PlayerState : MonoBehaviour
             }
             if (_currentHealth < 0)
                 _currentHealth = 0;
-            int playerCount=1;
-            if (isPlayer1)
-                playerCount = 1;
-            if (isPlayer2)
-                playerCount = 2;
-
             UIcontrol.hp_decrease(_currentHealth, playerCount);
             StartCoroutine(_animation.PlayerDamaged()) ;
         }
@@ -119,11 +114,6 @@ public class PlayerState : MonoBehaviour
 
     public void hp_increase()
     {
-        int playerCount = 1;
-        if (isPlayer1)
-            playerCount = 1;
-        if (isPlayer2)
-            playerCount = 2;
         _currentHealth++;
         UIcontrol.hp_increase(_currentHealth, playerCount);
     }
@@ -138,7 +128,7 @@ public class PlayerState : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = true;
         StartCoroutine(Invincible(1));
 
-        if (isPlayer1)
+        if (playerCount == 1)
         {
             ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.enabled = true;
@@ -160,7 +150,7 @@ public class PlayerState : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         //rb.useGravity = false;
 
-        if (isPlayer1)
+        if (playerCount == 1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.enabled = false;

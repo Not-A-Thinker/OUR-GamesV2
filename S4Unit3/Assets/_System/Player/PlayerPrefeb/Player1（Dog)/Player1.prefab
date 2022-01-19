@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 2059720215559111308}
   - component: {fileID: 500052818044258936}
   - component: {fileID: 59152141}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ Transform:
   m_GameObject: {fileID: 500052818044258924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: 1, z: 0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4748202195682001921}
@@ -425,22 +425,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abb4aa8970b3e641b19ef938aa0dc3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _force: 500
+  _range: 25
+  _attackTrigger: 0
+  maxItem: 5
   objectParent: {fileID: 500052817746688516}
   rangeObj: {fileID: 500052817167976939}
   RangeBigObj: {fileID: 500052817520157419}
   UIcontrol: {fileID: 0}
   Charitor: {fileID: 5381467380246077115}
-  _force: 500
-  _range: 25
   friendPushed: 0
   Charge: 0
   Shooted: 0
   ShootInCD: 0
-  _attackTrigger: 0
-  countFloat: 0
-  CountMax: 2
-  Timer: 2
-  PushMaxCD: 2
 --- !u!114 &500052818044258932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,8 +470,6 @@ MonoBehaviour:
   isDead: 0
   isMove: 0
   isDash: 0
-  isPlayer1: 1
-  isPlayer2: 0
   UIcontrol: {fileID: 0}
   Resurrect_range: {fileID: 500052815962489648}
   move: {fileID: 0}
@@ -495,7 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 11
+  maximumSpeed: 9
   rotationSpeed: 40
   characterController: {fileID: 500052818044258931}
   _animation: {fileID: 628926013}
@@ -973,18 +968,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1176,7 +1159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de34969679d25489f13482414405eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CatSmoke: {fileID: 0}
 --- !u!137 &5983910854311786690 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1541540555798731560, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}

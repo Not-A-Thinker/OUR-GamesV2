@@ -23,22 +23,21 @@ public class BossSpawnObject : MonoBehaviour
         SpawnedCount = GameObject.FindGameObjectsWithTag("Object").Length;
     }
 
-    public void ObjectSpawn(Vector3 P2Pos,Quaternion SpawnQuat)
+    public void ObjectSpawn(Vector3 P2Pos)
     {
-        if (SpawnedCount<6)
+        if (SpawnedCount < 5)
         {
-            lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
-            //Debug.Log(lastSpawned.gameObject.name);
+            lastSpawned = Instantiate(Object, P2Pos, Quaternion.identity);
             bossHealth.TakeDamage(5);
-            //Debug.Log(P2Pos);
         }
+        //Debug.Log(P2Pos);
     }
 
-    //public void SpawnedCountDecrease()
-    //{
-    //   SpawnedCount--;
-    //}
-
+    public void SpawnedCountDecrease()
+    {
+        //SpawnedCount--;
+    }
+    
     // Start is called before the first frame update
-
+  
 }

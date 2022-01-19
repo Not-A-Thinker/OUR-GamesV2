@@ -32,17 +32,18 @@ public class P1GetCube : MonoBehaviour
             cube.transform.position = new Vector3(this.transform.position.x+2 , 3, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
-           
+            cube.GetComponent<ObjectDestroy>().isSucked = true;
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>().inBox = true;
-            cube.GetComponent<Bullet>().bossToSuck = false;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
         }
        else
+        {
             cube.transform.position = transform.forward * Time.deltaTime ;
+        }
     }
 
     public void PlayerSpawnCube(float force)
@@ -98,6 +99,7 @@ public class P1GetCube : MonoBehaviour
             caseNum = 1;
 
         //Debug.Log(force);
+
 
         Rigidbody Rb = cube.GetComponent<Rigidbody>();
 

@@ -58,14 +58,11 @@ public class GetTriggerObject : MonoBehaviour
             //處理方塊
             else if (Obj.transform.tag == "Object")
             {
-               
                 GameObject getedObject = Obj.gameObject;
                 Rigidbody Obj_rb = getedObject.GetComponent<Rigidbody>();
                 Obj.transform.GetComponent<Collider>().isTrigger = false;
                 ForceRepel_TopDown forceRepel_TopDown = GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
-                forceRepel_TopDown.SuckCount++;
-
 
                 //Obj_rb.useGravity = false;
                 //Debug.Log(Obj.name + "Trigger");             
@@ -73,14 +70,13 @@ public class GetTriggerObject : MonoBehaviour
                 {
                     getCube.PlayerGetCube(Obj.transform.gameObject);
                     forceRepel_TopDown.resetObject();
-                    getedObject.GetComponent<ObjectDestroy>().isSucked = true;
                 }
                 else
                 {
                     Obj_rb.useGravity = true;
                 }
 
-                //gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
+                gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
             }
             //不應該吸到boss
             else if (Obj.transform.tag == "Boss")
@@ -98,7 +94,6 @@ public class GetTriggerObject : MonoBehaviour
                     getedObject.GetComponent<Collider>().isTrigger = false;
                     ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
                     forceRepel_TopDown.resetObject();
-                    forceRepel_TopDown.SuckCount++;
 
                     Obj_rb.useGravity = false;
 
