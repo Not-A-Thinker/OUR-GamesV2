@@ -119,8 +119,13 @@ public class PlayerState : MonoBehaviour
 
     public void hp_increase()
     {
+        int playerCount = 1;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
         _currentHealth++;
-        UIcontrol.hp_increase(_currentHealth, );
+        UIcontrol.hp_increase(_currentHealth, playerCount);
     }
 
     //Player RespawnReset

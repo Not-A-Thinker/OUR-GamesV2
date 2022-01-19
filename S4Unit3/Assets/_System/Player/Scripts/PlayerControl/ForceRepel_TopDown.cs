@@ -24,7 +24,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     UIcontrol uIcontrol;
 
     [Header("State")]
-    [SerializeField] bool SuccFromBoss = false;
     [SerializeField] bool canSucc = true;
     [SerializeField] bool FriendCD = false;
     Quaternion OldQuate;
@@ -54,12 +53,11 @@ public class ForceRepel_TopDown : MonoBehaviour
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
-            SuccFromBoss = false;
             Range.SetActive(false);
             move.inCC = false;        
             canSucc = true;
             uIcontrol.SuckingCDBar(canSucc);
-
+            SuckCount=0;
             if (savedObject != null)
             {
                 resetObject();  
@@ -68,12 +66,12 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
                 S_Tonado = null;
-            }
+            }          
         }
         if (savedObject)
         {
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.position = Vector3.Lerp(savedObject.transform.position, transform.position, curve.Evaluate(0.15f));
+            savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, curve.Evaluate(0.8f));
         }
     }
 
@@ -97,22 +95,25 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
             //Debug.Log(hit.transform.name + "." + hit.transform.tag);
-            if (hit.transform.gameObject.layer == 6)
+            if (hit.transform.gameObject.layer == 6 && SuckCount<3)
             {
                 if (savedObject == null)
                 {
-                    if(hit.transform.tag != "Boss" && hit.transform.tag != "Player")
+                    if(hit.transform.tag != "Boss" && hit.transform.tag != "Player" )
                     {
                         if (hit.transform.name.Contains("Tornado SForm"))
                         {
                             hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
                             S_Tonado = hit.transform.gameObject;
                         }
-                        savedObject = hit.transform.gameObject;
+                        else
+                        {
+                            savedObject = hit.transform.gameObject;
+                        }                     
                     }                                     
                     //rb.useGravity = !rb.useGravity;       
                 }
-                if (hit.transform.tag == "Boss" && SuccFromBoss == false)
+                if (hit.transform.tag == "Boss")
                 {
                     BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
                     Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
@@ -123,25 +124,43 @@ public class ForceRepel_TopDown : MonoBehaviour
                         savedObject = BossSpwO.lastSpawned;
                         savedObject.GetComponent<ObjectDestroy>().isSucked = true;
                         savedObject.GetComponent<Bullet>().bossToSuck = true;
+                        BossSpwO.lastSpawned = null;
                         //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
                         //rb.useGravity = false;
                     }
-                    SuccFromBoss = true;
-                }
-                if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
-                {                   
-                    //Debug.Log("Hit"+hit.transform.name);
-                    Move move = hit.transform.GetComponent<Move>();
-                    StartCoroutine(move.GetFriendlyControl(this.transform.position));
-                    StartCoroutine(FriendlyCD());
-                    //Vector3 NowPos = Vector3.Lerp(hit.transform.position, transform.position, 0.2f);
-                    //Vector3 toTarget = this.transform.position - hit.transform.position;      
-                    //hit.transform.Translate(toTarget * _force * Time.deltaTime);
-                }
+                }     
+                //if(hit.transform.tag=="Objcet")
+                //{
+                //    hit.transform.rotation = new Quaternion(0, 0, 0, 0);
+                //    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, curve.Evaluate(0.15f));                
+                //}
 
                 else
                 { }
             }  
+        }
+    }
+    public void SuckFriend()
+    {
+        ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
+
+        Vector3 startPos = transform.position;
+        Vector3 endPos = transform.forward;
+        //Debug.DrawRay(startPos, endPos);
+
+        RaycastHit hit;
+        if (Physics.Raycast(startPos, endPos, out hit, _range))
+        {
+            if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
+            {
+                //Debug.Log("Hit"+hit.transform.name);
+                Move move = hit.transform.GetComponent<Move>();
+                StartCoroutine(move.GetFriendlyControl(this.transform.position));
+                StartCoroutine(FriendlyCD());
+                //Vector3 NowPos = Vector3.Lerp(hit.transform.position, transform.position, 0.2f);
+                //Vector3 toTarget = this.transform.position - hit.transform.position;      
+                //hit.transform.Translate(toTarget * _force * Time.deltaTime);
+            }
         }
     }
 
