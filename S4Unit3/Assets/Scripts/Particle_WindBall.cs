@@ -5,6 +5,9 @@ using UnityEngine;
 public class Particle_WindBall : MonoBehaviour
 {
     public GameObject particlePer;
+    public Color particleColor;
+    [Range(-10f,10f)]
+    public float intansty;
     public float poolRang;
     public float DestroyTime = 1;
     public Transform poolMaster;
@@ -13,6 +16,9 @@ public class Particle_WindBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var ps =  particlePer.GetComponent<ParticleSystem>().main;
+        float hdr = Mathf.Pow(2, intansty);
+        ps.startColor = new Color (particleColor.r* hdr,particleColor.g* hdr,particleColor.b* hdr,particleColor.a);
         StartCoroutine(StartCor());
     }
     private float RandomFloat(float inN)
