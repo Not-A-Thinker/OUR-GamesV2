@@ -167,18 +167,14 @@ public class BossAI_Wind : MonoBehaviour
         {
             _aiEnable = !_aiEnable;
             if (_aiEnable)
-            {
-                StartCoroutine(AIRestartTimer());
-            }
+            {StartCoroutine(AIRestartTimer());}
             else if (!_aiEnable)
-            {
-                StopCoroutine(TimeOfThink());
-            }
+            {StopCoroutine(TimeOfThink());}
         }
         if (!_aiEnable)
             return;
 
-        //This is for locking on player itself;
+        //This is for locking on player itself by shooting a raycast;
         selfPos = new Vector3(transform.position.x, 1, transform.position.z);
 
         RaycastHit isPlayerGetHit;
@@ -297,8 +293,18 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 32;}
 
             //第一階大技
-            if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
-            { AIDecision = 33;}
+            if (basicState.isHealthMerge)
+            {
+                if (healthBar.health <= healthBar.maxHealth / 2 - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                { AIDecision = 33; }
+            }
+            else
+            {
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                { AIDecision = 33; }
+            }
+
+            
         }
 
         if (IsStage2 && !isStando)
