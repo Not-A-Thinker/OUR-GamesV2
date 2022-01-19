@@ -293,7 +293,7 @@ public class BossAI_Wind : MonoBehaviour
             { AIDecision = 32;}
 
             //第一階大技
-            if (basicState.isHealthMerge)
+            if (basicState.isHealthMerge && !isStando)
             {
                 if (healthBar.health <= healthBar.maxHealth / 2 - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
                 { AIDecision = 33; }
@@ -303,10 +303,7 @@ public class BossAI_Wind : MonoBehaviour
                 if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
                 { AIDecision = 33; }
             }
-
-            
         }
-
         if (IsStage2 && !isStando)
         {
             //This is use for detect who is the closest player to boss or is behind it.
@@ -413,9 +410,17 @@ public class BossAI_Wind : MonoBehaviour
                 case 13:
                     if (rndNum < 40)
                     {
-                        //TornadoGattai 龍捲風合體
-                        BossSkill.TornadoGattai();
-                        //cameraControl.ChangeTargetWeight(3, 3);
+                        if (BossSkill.tornadoGattaiIsExisted)
+                        {
+                            //STornado S形龍捲風
+                            BossSkill.TornadoAttack();
+                        }
+                        else
+                        {
+                            //TornadoGattai 龍捲風合體
+                            BossSkill.TornadoGattai();
+                            //cameraControl.ChangeTargetWeight(3, 3);
+                        }
                     }
                     else if (rndNum >= 40 && rndNum < 100)
                     {

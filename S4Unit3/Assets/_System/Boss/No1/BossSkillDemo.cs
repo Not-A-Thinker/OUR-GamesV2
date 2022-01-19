@@ -230,7 +230,7 @@ public class BossSkillDemo : MonoBehaviour
     public IEnumerator TornadoGattaiTracktion()//May need to fix
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        //Boss1Animator.SetTrigger("Skill_Tornado");
         if (GameObject.Find("tornadoSmall_1") == null)
             yield break;
         
@@ -241,6 +241,7 @@ public class BossSkillDemo : MonoBehaviour
         GameObject go = Instantiate(TornadoBigOne, tornado1.transform.position, Quaternion.identity);
         go.GetComponent<Skill_TornadoBigOne>().playerSelect = tornado1.playerSelect;
 
+        tornadoGattaiIsExisted = false;
         Debug.Log("Here's come the big one! And select:" + tornado1.playerSelect);
 
         yield return null;
