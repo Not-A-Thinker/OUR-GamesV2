@@ -29,9 +29,6 @@ public class ForceCast_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public int PushMaxCD = 1;
 
-   
-
-
     void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -39,6 +36,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Update()
     {
+        //射擊前充能
         if (Charge)
         {
             if (!ShootInCD)
@@ -51,6 +49,8 @@ public class ForceCast_TopDown : MonoBehaviour
                 Charge = false;          
             }            
         }
+
+        //射擊
         if (Shooted)
         {
             if (!ShootInCD)
@@ -62,12 +62,14 @@ public class ForceCast_TopDown : MonoBehaviour
             else
                 Shooted = false;
         }
-           
+
+        //推隊友
         if (friendPushed)
         {
             FriendlyPushed();
         }
 
+        //射擊CD
         if (ShootInCD)
         {
             if (Timer < PushMaxCD)
@@ -80,7 +82,7 @@ public class ForceCast_TopDown : MonoBehaviour
         else
             Timer = PushMaxCD;
 
-        UIcontrol.PushingCDBar(Timer);
+        UIcontrol.PushingCDBar(Timer/PushMaxCD);
 
         //if (Input.GetButton("Fire1"))
         //{
@@ -186,6 +188,7 @@ public class ForceCast_TopDown : MonoBehaviour
         }
     }
 
+   //射擊CD 2
    IEnumerator ShootCD(int time)
     {
         ShootInCD = true;     
@@ -210,6 +213,7 @@ public class ForceCast_TopDown : MonoBehaviour
         friendPushed = false;
     }
 
+    //重置成射擊前方為
     public void SetOldQue()
     {
         OldQuate = Charitor.transform.rotation;

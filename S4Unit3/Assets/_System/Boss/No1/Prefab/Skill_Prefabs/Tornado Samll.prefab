@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 757659685398159305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.2, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3993620433186748010}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757659685398159305}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 3e127244a71b61b4a86714082fe33922, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: ebec01415c74bd2478c62e9e64cd8965, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -53,10 +53,28 @@ VisualEffect:
       - m_Value: 7
         m_Name: AngleSpeed
         m_Overridden: 1
+      - m_Value: 3
+        m_Name: MainParticleAngleSpeed
+        m_Overridden: 1
+      - m_Value: 140
+        m_Name: MainParticleAmount
+        m_Overridden: 1
+      - m_Value: 2.5
+        m_Name: CenterParticleSize
+        m_Overridden: 1
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1.2, y: 1.5}
+        m_Name: MainParticleSize
+        m_Overridden: 1
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: -1, z: 0}
+        m_Name: CenterParticleAngleSpeed
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 9, z: 0}
+        m_Name: CenterParticlePosition
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -102,95 +120,100 @@ VisualEffect:
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0, g: 1.2392157, b: 4, a: 1}
-          key1: {r: 0.16452472, g: 0.38230908, b: 0.7452831, a: 1}
-          key2: {r: 1.3803922, g: 0.24313726, b: 1.4117647, a: 1}
-          key3: {r: 0, g: 0, b: 0, a: 1}
-          key4: {r: 0, g: 0, b: 0, a: 1}
+          key0: {r: 0.12941177, g: 0.0627451, b: 0.21568628, a: 1}
+          key1: {r: 0.12156863, g: 0.25882354, b: 0.21568628, a: 1}
+          key2: {r: 0.12941177, g: 0.0627451, b: 0.21568628, a: 0.5882353}
+          key3: {r: 0.92156863, g: 0.07058824, b: 0.5764706, a: 1}
+          key4: {r: 1024, g: 413.6157, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
+          ctime1: 33036
+          ctime2: 64852
+          ctime3: 64852
+          ctime4: 65340
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65535
+          atime3: 53777
+          atime4: 65535
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 2
+        m_Name: CenterParticleColorOverLife
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.9649928, g: 0.60450697, b: 0.81525254, a: 1}
+          key1: {r: 0.9649928, g: 0.60450697, b: 0.81525254, a: 1}
+          key2: {r: 1.3803922, g: 0.24313724, b: 1.4117647, a: 1}
+
+          key3: {r: 0, g: 0, b: 0, a: 1}
+          key4: {r: 0, g: 0, b: 0, a: 1}
+          key5: {r: 0, g: 0, b: 0, a: 1}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
           ctime1: 65535
-          ctime2: 39456
+          ctime2: 40350
           ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 52235
+          atime2: 65535
+          atime3: 65535
+          atime4: 65535
+          atime5: 65535
+          atime6: 0
+          atime7: 0
+          m_Mode: 0
+          m_NumColorKeys: 2
+
+          m_NumAlphaKeys: 3
+        m_Name: OutParticleColorOverLife
+        m_Overridden: 1
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.9647059, g: 0.6039216, b: 0.8156863, a: 1}
+          key1: {r: 0.38981962, g: 0.23146006, b: 0.4027398, a: 1}
+          key2: {r: 0.12941177, g: 0.0627451, b: 0.21568628, a: 1}
+          key3: {r: 0.5566038, g: 0, b: 0.027205257, a: 0}
+
+          key4: {r: 0, g: 0, b: 0, a: 1}
+          key5: {r: 0, g: 0, b: 0, a: 1}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 0
+          ctime1: 24137
+          ctime2: 65535
+          ctime3: 65439
           ctime4: 0
           ctime5: 0
           ctime6: 0
           ctime7: 0
           atime0: 0
           atime1: 65535
-          atime2: 8481
-          atime3: 52235
+
+          atime2: 65535
+          atime3: 65535
           atime4: 65535
-          atime5: 0
+          atime5: 65535
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_NumColorKeys: 2
+          m_NumColorKeys: 3
           m_NumAlphaKeys: 2
-        m_Name: CenterParticleColorOverLife
-        m_Overridden: 1
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0, g: 1.2392157, b: 4, a: 1}
-          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 1}
-          key2: {r: 1.3803922, g: 0.24313726, b: 1.4117647, a: 1}
-          key3: {r: 0, g: 0, b: 0, a: 1}
-          key4: {r: 0, g: 0, b: 0, a: 1}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 26584
-          ctime2: 39456
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 52235
-          atime2: 65535
-          atime3: 65535
-          atime4: 65535
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 3
-        m_Name: OutParticleColorOverLife
-        m_Overridden: 1
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 0, g: 1.2392157, b: 4, a: 1}
-          key1: {r: 0.16452472, g: 0.38230908, b: 0.745283, a: 1}
-          key2: {r: 1.3803922, g: 0.24313726, b: 1.4117647, a: 1}
-          key3: {r: 0, g: 0, b: 0, a: 1}
-          key4: {r: 0, g: 0, b: 0, a: 1}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 26584
-          ctime2: 39456
-          ctime3: 0
-          ctime4: 0
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 52235
-          atime2: 65535
-          atime3: 65535
-          atime4: 65535
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_NumColorKeys: 3
-          m_NumAlphaKeys: 3
+
         m_Name: MainParticleColorOverLife
         m_Overridden: 1
     m_NamedObject:
