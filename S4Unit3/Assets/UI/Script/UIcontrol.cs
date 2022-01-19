@@ -38,21 +38,27 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] Text DeadCounter;
-    [SerializeField] GameObject target;
+    [SerializeField] GameObject P1,P2;
+    [SerializeField] Image SuckObjectCount;
 
     private void Start()
     {
-        target = GameObject.Find("Player1").gameObject;
+        P1 = GameObject.Find("Player1").gameObject;
+        P2 = GameObject.Find("Player2").gameObject;
     }
 
     private void Update()
     {
         if (pushing) 
         {
-            Vector3 wantedPos = Camera.main.WorldToScreenPoint(target.transform.position);
+            Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
             wantedPos.y = wantedPos.y -20;
             pushing.transform.position = wantedPos;
-        }      
+        }
+
+        Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+        P2pos.y = P2pos.y + 130;
+        SuckObjectCount.transform.position = P2pos;
     }
 
     private void FixedUpdate()
@@ -135,10 +141,10 @@ public class UIcontrol : MonoBehaviour
         //pushingCD.SetActive(Ready);
         pushCD_slider.value = Mathf.Lerp(load, pushCD_slider.value, smoothing * Time.deltaTime);
     }
-    public void SuckingCDBar(bool Ready)
+    public void SuckingCDBar(float load)
     {
-        SuckingCD.SetActive(Ready);
-        //SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
+        //SuckingCD.SetActive(Ready);
+        SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
     }
 
     //end game
@@ -159,5 +165,15 @@ public class UIcontrol : MonoBehaviour
             Player1Energy.value = NowEnergy * 0.01f;
         else if (playerCount == 2)
             Player2Energy.value = NowEnergy * 0.01f;
+    }
+
+    public void SuckCount(int Count)
+    {
+        if (Count < 2)
+            SuckObjectCount.color = new Color32(0, 130, 0, 255);
+        else if (Count == 2)
+            SuckObjectCount.color = new Color32(255, 230, 0, 255);
+        else
+            SuckObjectCount.color = new Color32(255, 0, 0, 255);
     }
 }

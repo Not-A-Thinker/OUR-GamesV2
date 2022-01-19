@@ -34,11 +34,11 @@ public class BossSpawnObject : MonoBehaviour
         }
     }
 
-    public void SpawnedCountDecrease()
-    {
-        //SpawnedCount--;
-    }
-    
+    //public void SpawnedCountDecrease()
+    //{
+    //   SpawnedCount--;
+    //}
+
     // Start is called before the first frame update
-  
+
 }

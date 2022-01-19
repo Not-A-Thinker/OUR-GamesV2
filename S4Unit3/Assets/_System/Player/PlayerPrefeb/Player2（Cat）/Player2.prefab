@@ -146,10 +146,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  SuccFromBoss: 0
   canSucc: 1
   FriendCD: 0
   SuckCount: 0
+  SuccMaxCD: 2
+  Timer: 2
+  SuckInCD: 0
 --- !u!114 &18583013816442373
 MonoBehaviour:
   m_ObjectHideFlags: 0
