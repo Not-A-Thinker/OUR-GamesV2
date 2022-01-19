@@ -712,7 +712,7 @@ public class BossAI_Wind : MonoBehaviour
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for restate the animator back to Idle State.
+            //This is for restate the animator back to the Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
             isMeleeAttacking = false;
@@ -741,10 +741,10 @@ public class BossAI_Wind : MonoBehaviour
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for restate the animator back to Idle State.
+            //This is for restate the animator back to the Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
-            //This is for reset the pre-move counter and melee attack so it can be perform again.
+            //This is use for reset the pre-move counter and melee attack so it can be perform again.
             preMoveCount = 0;
             isMeleeAttacking = false;
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }

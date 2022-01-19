@@ -31,7 +31,16 @@ public class Skill_TornadoGattai : MonoBehaviour
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
-        boss = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
+        
+        if (boss.GetIsBossInStandoMode())
+        {
+            boss = GameObject.Find("Boss Stando").GetComponent<BossSkillDemo>();
+        }
+        else
+        {
+            boss = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
+        }
+
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
 
         count = 1;
@@ -63,22 +72,22 @@ public class Skill_TornadoGattai : MonoBehaviour
             }
         }
 
-        if (!b_ISLocked)
-        {
-            if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
-            {
-                b_ISLocked = true;
-                //int ran = Random.Range(1, 3);
-                //if (ran == 1)
-                //{
-                //    _targetPos = _Player1.transform.position;
-                //}
-                //else
-                //{
-                //    _targetPos = _Player2.transform.position;
-                //}
-            }
-        }
+        //if (!b_ISLocked)
+        //{
+        //    if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
+        //    {
+        //        b_ISLocked = true;
+        //        //int ran = Random.Range(1, 3);
+        //        //if (ran == 1)
+        //        //{
+        //        //    _targetPos = _Player1.transform.position;
+        //        //}
+        //        //else
+        //        //{
+        //        //    _targetPos = _Player2.transform.position;
+        //        //}
+        //    }
+        //}
 
         transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
 

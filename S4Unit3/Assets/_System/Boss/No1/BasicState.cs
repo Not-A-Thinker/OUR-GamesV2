@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BasicState : MonoBehaviour
 {
-    private CharacterController cc;
-    private Animator animator;
-
     public bool isHealthMerge = false;
 
     public int _maxHealth = 300;
@@ -19,6 +16,7 @@ public class BasicState : MonoBehaviour
 
     void Start()
     {
+        ///So if the isHealthMerge option is on, it will merge two health bar into one whole health bar.
         if (isHealthMerge)
         {
             _maxHealth *= 2;
@@ -28,11 +26,5 @@ public class BasicState : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
-
-    }
-
-    void Update()
-    {
-        
     }
 }
