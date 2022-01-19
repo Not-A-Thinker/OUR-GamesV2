@@ -8,7 +8,7 @@ public class BossSkillDemo : MonoBehaviour
     Rigidbody rb;
 
     BossCameraControl cameraControl;
-    BossAI_Wind bossAI;
+    [SerializeField] BossAI_Wind bossAI;
 
     private GameObject _Player1;
     private GameObject _Player2;
@@ -72,20 +72,18 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Boss Animator")]
     [SerializeField] Animator Boss1Animator;
 
-    public bool GetIsBossInStandoMode()
-    {
-        return bossAI.isStandoMode;
-    }
-
-    void Start()
+    private void Awake()
     {
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
-        rb = GetComponent<Rigidbody>();
-
-        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
         bossAI = GetComponent<BossAI_Wind>();
+        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+    }
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
 
         orgPos = transform.position;
     }

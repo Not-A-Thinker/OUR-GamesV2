@@ -14,6 +14,7 @@ public class Skill_TornadoGattai : MonoBehaviour
 
     PlayerState playerState;
     BossSkillDemo boss;
+    BossAI_Wind bossAI;
     BossCameraControl cameraControl;
 
     private GameObject _Player1;
@@ -31,8 +32,9 @@ public class Skill_TornadoGattai : MonoBehaviour
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
+        bossAI = GameObject.Find("Boss").GetComponent<BossAI_Wind>();
         
-        if (boss.GetIsBossInStandoMode())
+        if (bossAI.isStandoMode)
         {
             boss = GameObject.Find("Boss Stando").GetComponent<BossSkillDemo>();
         }

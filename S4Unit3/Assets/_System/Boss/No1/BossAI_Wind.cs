@@ -56,7 +56,7 @@ public class BossAI_Wind : MonoBehaviour
     public bool IsStage2 = false;
 
     [Header("Skills AI")]
-    public bool isStandoMode;
+    public bool isStandoMode = false;
     public bool isMain;
     public bool isStando;
 
