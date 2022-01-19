@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547116887089412507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0.49, z: 0.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
-  boomerageAlert: {fileID: 0}
+  boomerageAlert: {fileID: 4275804552186041929}
   _TestingMode: 1
   lookAtP1: 0
   lookAtP2: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   _aiEnable: 1
   aiStartTime: 2
   aiReactTimeStage1: 2.7
-  aiReactTimeStage2: 1.8
+  aiReactTimeStage2: 2
   aiReactTimeStandoMode: 4.5
   IsStage1: 1
   IsStage2: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   bossStando: {fileID: 1957455747635378796, guid: fa90e23e5034dde409d5ed56edfba0bf, type: 3}
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
-  canMistAgain: 0
+  canMistAgain: 1
   canStandoAgain: 0
   mistCDTime: 30
   standoCDTime: 60
@@ -821,6 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+--- !u!95 &4275804552186041929 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1780179792639780211, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+  m_PrefabInstance: {fileID: 2585855089840452410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4275804552186041934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
@@ -1193,6 +1198,59 @@ MonoBehaviour:
   bossVC: {fileID: 0}
   orgPriority: 5
   fadeInPriority: 15
+--- !u!114 &1420706977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419415252669032787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 3
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 1
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: -2, z: 0}
 --- !u!4 &3087408816934859753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a400392811d8641abec7fab7d3310b, type: 3}

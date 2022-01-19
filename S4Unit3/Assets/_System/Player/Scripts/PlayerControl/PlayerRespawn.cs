@@ -16,6 +16,8 @@ public class PlayerRespawn : MonoBehaviour
     public bool isPlayer1;
     public bool isPlayer2;
 
+    public bool Respawning;
+
     private void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -27,12 +29,12 @@ public class PlayerRespawn : MonoBehaviour
         {
             if (obj.tag == "Player"&& obj.name!= "Player1")
             {
-                if (Input.GetButton("RespawnP2"))
+                if (Input.GetButton("RespawnP2")|| Respawning)
                 {
                     RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
                     RespawnCount = (int)RespawnCountRange;
                     UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
-                    //Debug.Log(RespawnCount);
+                    Debug.Log(RespawnCount);
                     if (RespawnCount == 2)
                     {
                         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
@@ -44,10 +46,11 @@ public class PlayerRespawn : MonoBehaviour
                         return;
                     }
                 }
-                else if (Input.GetButtonUp("RespawnP2"))
+                else if (Input.GetButtonUp("RespawnP2")|| !Respawning)
                 {
                     RespawnCountRange = 0;
                     RespawnCount = 0;
+                    UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
                     UIcontrol.PlayerRespawnStop();
                     //Debug.Log("RespawnCountReset");
                 }
@@ -57,7 +60,7 @@ public class PlayerRespawn : MonoBehaviour
         {
             if (obj.tag == "Player" && obj.name != "Player2")
             {
-                if (Input.GetButton("RespawnP1"))
+                if (Input.GetButton("RespawnP1") || Respawning)
                 {
                     RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
                     RespawnCount = (int)RespawnCountRange;
@@ -74,7 +77,7 @@ public class PlayerRespawn : MonoBehaviour
                         //Debug.Log("RespawnCountReset");
                     }
                 }
-                else if (Input.GetButtonUp("RespawnP1"))
+                else if (Input.GetButtonUp("RespawnP1") || Respawning)
                 {
                     RespawnCountRange = 0;
                     RespawnCount = 0;

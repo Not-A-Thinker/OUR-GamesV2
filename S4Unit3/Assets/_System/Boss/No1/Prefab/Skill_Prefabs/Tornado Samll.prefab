@@ -154,6 +154,7 @@ VisualEffect:
           key0: {r: 0.9649928, g: 0.60450697, b: 0.81525254, a: 1}
           key1: {r: 0.9649928, g: 0.60450697, b: 0.81525254, a: 1}
           key2: {r: 1.3803922, g: 0.24313724, b: 1.4117647, a: 1}
+
           key3: {r: 0, g: 0, b: 0, a: 1}
           key4: {r: 0, g: 0, b: 0, a: 1}
           key5: {r: 0, g: 0, b: 0, a: 1}
@@ -177,6 +178,7 @@ VisualEffect:
           atime7: 0
           m_Mode: 0
           m_NumColorKeys: 2
+
           m_NumAlphaKeys: 3
         m_Name: OutParticleColorOverLife
         m_Overridden: 1
@@ -186,6 +188,7 @@ VisualEffect:
           key1: {r: 0.38981962, g: 0.23146006, b: 0.4027398, a: 1}
           key2: {r: 0.12941177, g: 0.0627451, b: 0.21568628, a: 1}
           key3: {r: 0.5566038, g: 0, b: 0.027205257, a: 0}
+
           key4: {r: 0, g: 0, b: 0, a: 1}
           key5: {r: 0, g: 0, b: 0, a: 1}
           key6: {r: 0, g: 0, b: 0, a: 0}
@@ -200,6 +203,7 @@ VisualEffect:
           ctime7: 0
           atime0: 0
           atime1: 65535
+
           atime2: 65535
           atime3: 65535
           atime4: 65535
@@ -209,6 +213,7 @@ VisualEffect:
           m_Mode: 0
           m_NumColorKeys: 3
           m_NumAlphaKeys: 2
+
         m_Name: MainParticleColorOverLife
         m_Overridden: 1
     m_NamedObject:

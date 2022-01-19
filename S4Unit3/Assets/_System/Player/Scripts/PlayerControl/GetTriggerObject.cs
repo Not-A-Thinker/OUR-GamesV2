@@ -69,6 +69,7 @@ public class GetTriggerObject : MonoBehaviour
                 if (getCube.objectParent.transform.childCount < 3)
                 {
                     getCube.PlayerGetCube(Obj.transform.gameObject);
+                    forceRepel_TopDown.resetObject();
                 }
                 else
                 {
