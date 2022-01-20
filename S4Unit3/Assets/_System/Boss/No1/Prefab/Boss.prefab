@@ -96,7 +96,7 @@ GameObject:
   m_Layer: 6
   m_Name: Instante Point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3547116887089412507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0.84}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
-  _TestingMode: 1
+  _TestingMode: 0
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 1
+  _aiEnable: 0
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 2
