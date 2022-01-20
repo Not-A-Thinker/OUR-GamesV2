@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class JoyStickMovement : MonoBehaviour
 {
+    [SerializeField] UIcontrol UIcontrol;
 
     [Header("Player Components")]
     [SerializeField] JoystickControl inputActions;
@@ -14,6 +15,8 @@ public class JoyStickMovement : MonoBehaviour
     [SerializeField] GameObject Char;
     [SerializeField] PlayerAnimator _animation;
     [SerializeField] GameObject ShootRot;
+    [SerializeField] PlayerRespawn playerRespawn;
+
     GameObject Boss;
     ForceCast_TopDown forceCast_TopDown;
     ForceRepel_TopDown ForceRepel_TopDown;
@@ -25,6 +28,8 @@ public class JoyStickMovement : MonoBehaviour
     public bool isSlowed;
     public bool isImMobilized;
     public bool isDashed;
+    public bool isShoot;
+    public bool isFriendlyPush;
 
     public bool inCC = false;
 
@@ -46,6 +51,7 @@ public class JoyStickMovement : MonoBehaviour
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
     Vector2 Rotvector2d = Vector2.zero;
+    Vector3 vector3d;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -55,25 +61,37 @@ public class JoyStickMovement : MonoBehaviour
 #endif
     private void Awake()
     {
+        UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
             forceCast_TopDown = GetComponent<ForceCast_TopDown>();
         else
         {
-
+            ForceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
         }
 
         inputActions = new JoystickControl();
-        inputActions.Enable();     
+        inputActions.Enable();
     }
 
+
+    #region OnInputTrigger
     public void OnMove(InputAction.CallbackContext context)
     {
-        isDashed = context.action.triggered;
+        vector2d = context.ReadValue<Vector2>();
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        vector2d = context.ReadValue<Vector2>();
+        if (context.started)
+        {
+            isDashed = true;
+            DashOn();
+        }
+        if (context.canceled)
+        {
+            isDashed = false;
+            DashOn();
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -81,11 +99,49 @@ public class JoyStickMovement : MonoBehaviour
         Rotvector2d = context.ReadValue<Vector2>();
     }
 
-
-    private void Update()
+    public void OnLockedBoss(InputAction.CallbackContext context)
     {
-        Vector3 vector3d = new Vector3(vector2d.x, 0, vector2d.y);
-        //Simple Move
+        BossLockOn();
+    }
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (isPlayer1)
+            {
+                forceCast_TopDown.Charge = true;
+            }
+            if (isPlayer2)
+            {
+                ForceRepel_TopDown.ButtonDonwEvent();
+            }
+        }
+        if (context.performed)
+        {
+            //Debug.Log("ShootAcumating");
+        }
+        //isShoot = context.action.triggered;
+        if (context.canceled)
+        {
+            //Debug.Log("ShootUp");
+            forceCast_TopDown.Shooted = true;
+        }
+    }
+    public void OnFriendlyHelp(InputAction.CallbackContext context)
+    {
+        isFriendlyPush = context.action.triggered;
+    }
+    public void OnRespawn(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            playerRespawn.Respawning = context.action.triggered;
+    }
+    #endregion
+
+    #region InputActions
+    //Move
+    private void Move(Vector3 vector3d)
+    {
         if (vector2d != Vector2.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(vector3d, Vector3.up);
@@ -95,13 +151,15 @@ public class JoyStickMovement : MonoBehaviour
             vSpeed -= gravity * Time.deltaTime;
             vector3d.y = vSpeed;
 
-            characterController.Move(vector3d * Time.deltaTime * moveSpeed);      
+            characterController.Move(vector3d * Time.deltaTime * moveSpeed);
         }
-        else 
+        else
             _animation.PlayerWalk(false);
-
-        //Rotation
-        if(Rotvector2d!=Vector2.zero)
+    }
+    //Rotation   
+    private void Rotate()
+    {
+        if (Rotvector2d != Vector2.zero)
         {
             float angle = Mathf.Atan2(Rotvector2d.x, Rotvector2d.y) * Mathf.Rad2Deg;
             //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
@@ -109,72 +167,30 @@ public class JoyStickMovement : MonoBehaviour
             ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
             //Debug.Log(angle);
         }
-
-        //Dash
-        if(isDashed && DashBar >= DashUsed)
+    }
+    //Dash
+    private void DashOn()
+    {
+        if (isDashed && DashBar >= DashUsed)
         {
             _animation.PlayerDash(true);
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
             DashBar = DashBar - DashUsed;
+
         }
         if (!isDashed)
         {
             _animation.PlayerDash(false);
         }
-
-        //LockBoss
-        if (inputActions.GamePlay.LockBoss.WasPressedThisFrame())
-        {
-            Debug.Log("locked Boss!");
-            BossLockOn();
-        }
-
-        //Suck And Shoot
-        if (inputActions.GamePlay.Succ.WasPressedThisFrame())
-        {
-            if (isPlayer1)
-            {
-                forceCast_TopDown.SetOldQue();
-            }
-
-            if (isPlayer2)
-            {
-
-            }
-        }
-        if (inputActions.GamePlay.Succ.WasPerformedThisFrame())
-        {
-            if (isPlayer1)  
-            {
-                if (!forceCast_TopDown.Shooted)
-                {
-                    forceCast_TopDown.Accumulate();
-                }
-                forceCast_TopDown.FriendlyPushed();
-            }
-            if(isPlayer2)
-            {
-
-            }
-        }
-        if(inputActions.GamePlay.Succ.WasReleasedThisFrame())
-        {
-            if (isPlayer1)
-            {
-                forceCast_TopDown.Shoot((int)forceCast_TopDown._force);
-                forceCast_TopDown.ResetOldQue();
-            }           
-        }
     }
-
     IEnumerator Dash(Vector3 velocity)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
 
-        if (velocity==Vector3.zero)
+        if (velocity == Vector3.zero)
         {
             velocity = -transform.forward * 0.1f * moveSpeed;
         }
@@ -185,8 +201,23 @@ public class JoyStickMovement : MonoBehaviour
             yield return null;
         }
     }
+    //Shoot
+    private void Shoot()
+    {
+        if (isShoot)
+        {
+            if (isPlayer1)
+            {
+                forceCast_TopDown.Shooted = true;
+            }
 
-    public void BossLockOn()//Player will lock on the Best Target
+            if (isPlayer2)
+            {
+
+            }
+        }
+    }
+    private void BossLockOn()//Player will lock on the Best Target
     {
         if (GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode)
         {
@@ -199,5 +230,49 @@ public class JoyStickMovement : MonoBehaviour
         targetRotation.x = 0;
         targetRotation.z = 0;
         ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 400f * Time.deltaTime);
+    }
+    #endregion
+    private void Update()
+    {
+        vector3d = new Vector3(vector2d.x, 0, vector2d.y);
+        if (DashBar < 100)
+        {
+            DashBar = DashBar + DashRestore * Time.deltaTime;
+        }
+
+        Move(vector3d);
+        Rotate();
+        //DashOn(vector3d);
+        Shoot();
+        UIcontrol.EnergyBarChange(DashBar, 1);
+
+        //Suck And Shoot
+        //if (inputActions.GamePlay.Succ.WasPressedThisFrame())
+        //{
+
+        //}
+        //if (inputActions.GamePlay.Succ.WasPerformedThisFrame())
+        //{
+        //    if (isPlayer1)  
+        //    {
+        //        if (!forceCast_TopDown.Shooted)
+        //        {
+        //            forceCast_TopDown.Accumulate();
+        //        }
+        //        forceCast_TopDown.FriendlyPushed();
+        //    }
+        //    if(isPlayer2)
+        //    {
+
+        //    }
+        //}
+        //if(inputActions.GamePlay.Succ.WasReleasedThisFrame())
+        //{
+        //    if (isPlayer1)
+        //    {
+        //        forceCast_TopDown.Shoot((int)forceCast_TopDown._force);
+        //        forceCast_TopDown.ResetOldQue();
+        //    }           
+        //}
     }
 }

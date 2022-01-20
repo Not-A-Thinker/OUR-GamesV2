@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 500052818044258939}
   - component: {fileID: 500052818044258936}
   - component: {fileID: 1124331809862700244}
+  - component: {fileID: 59152141}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -537,15 +538,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3985f0a8284c1a24ba1236cbbc9a7a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIcontrol: {fileID: 0}
   characterController: {fileID: 500052818044258931}
   Char: {fileID: 5381467380246077115}
   _animation: {fileID: 628926013}
   ShootRot: {fileID: 9195968397510403553}
+  playerRespawn: {fileID: 0}
   isPlayer1: 1
   isPlayer2: 0
   isSlowed: 0
   isImMobilized: 0
   isDashed: 0
+  isShoot: 0
+  isFriendlyPush: 0
   inCC: 0
   moveSpeed: 10
   rotationSpeed: 100
@@ -554,6 +559,152 @@ MonoBehaviour:
   DashBar: 100
   DashUsed: 49
   DashRestore: 25
+--- !u!114 &59152141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500052818044258924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9cc68b417f389834c9a792501b29a6d6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 09569ab5-d2cc-411a-9cb0-b9b2c2cc650e
+    m_ActionName: GamePlay/Move[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17837a79-21c8-4e51-a205-3ff74b5707b0
+    m_ActionName: GamePlay/RotateMouse[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 75cfe72e-1fd2-4896-9c10-1dec78da6cca
+    m_ActionName: GamePlay/Rotate
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5f03c65b-64a4-44a8-8964-77e02b741b91
+    m_ActionName: GamePlay/Succ[/Keyboard/numpad3]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnFriendlyHelp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3e5edc09-041b-4b26-9862-f9cb2788ec7a
+    m_ActionName: GamePlay/SuccFriendlyObject[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: dfcaff73-5a2c-4444-96a5-de3fb2825550
+    m_ActionName: GamePlay/Dash[/Keyboard/numpad0]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnLockedBoss
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 496582f0-f095-4d4a-ae20-43e8151abe1b
+    m_ActionName: GamePlay/LockBoss
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1124331809862700244}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRespawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 231acc1b-0308-4b81-b551-f77557c42a9d
+    m_ActionName: GamePlay/Respawn[/Keyboard/f]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: JoyStick
+  m_DefaultActionMap: GamePlay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &9195968397510403553
 GameObject:
   m_ObjectHideFlags: 0
