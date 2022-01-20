@@ -44,8 +44,9 @@ public class P1GetCube : MonoBehaviour
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
+        Debug.Log(force);
         int newForce = (int)force;
-        if (force>=2)
+        if (force>=1)
         {
             StartCoroutine(TheBigOne(parentMax, newForce));        
         }
@@ -108,7 +109,9 @@ public class P1GetCube : MonoBehaviour
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;
-        cube.GetComponent<ObjectDamage>().Direction= direction.transform.forward;
+        cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
+
+        cube.GetComponent<ObjectRotation>().inBox = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 

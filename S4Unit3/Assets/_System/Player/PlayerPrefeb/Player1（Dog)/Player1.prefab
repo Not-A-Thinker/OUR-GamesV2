@@ -425,7 +425,6 @@ MonoBehaviour:
   objectParent: {fileID: 500052817746688516}
   rangeObj: {fileID: 500052817167976939}
   RangeBigObj: {fileID: 500052817520157419}
-  UIcontrol: {fileID: 0}
   Charitor: {fileID: 5381467380246077115}
   _force: 500
   _range: 25
@@ -472,11 +471,7 @@ MonoBehaviour:
   isDash: 0
   isPlayer1: 1
   isPlayer2: 0
-  UIcontrol: {fileID: 0}
   Resurrect_range: {fileID: 500052815962489648}
-  move: {fileID: 0}
-  playerTotalDead: {fileID: 0}
-  OthePlayerState: {fileID: 0}
   _renderer: {fileID: 5983910854311786690}
   _animation: {fileID: 628926013}
 --- !u!114 &500052818044258939
@@ -543,7 +538,7 @@ MonoBehaviour:
   Char: {fileID: 5381467380246077115}
   _animation: {fileID: 628926013}
   ShootRot: {fileID: 9195968397510403553}
-  playerRespawn: {fileID: 0}
+  playerRespawn: {fileID: 500052815962489652}
   isPlayer1: 1
   isPlayer2: 0
   isSlowed: 0

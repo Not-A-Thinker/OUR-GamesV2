@@ -20,11 +20,11 @@ public class PlayerState : MonoBehaviour
     public bool  isPlayer2;
 
     [Header("Player GetComponent")]
-    [SerializeField] UIcontrol UIcontrol;
+     UIcontrol UIcontrol;
     [SerializeField] GameObject Resurrect_range;
-    [SerializeField] Move move;
-    [SerializeField] PlayerTotalDead playerTotalDead;
-    [SerializeField] PlayerState OthePlayerState;
+     Move move;
+     PlayerTotalDead playerTotalDead;
+     PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     //[SerializeField] GameObject SuckRange;
