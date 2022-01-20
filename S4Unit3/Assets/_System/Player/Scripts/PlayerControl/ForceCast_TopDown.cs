@@ -101,7 +101,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
+            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
             StartCoroutine(ShootCD(1));
         }    
         //else
@@ -125,7 +125,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //    _attackTrigger = false;
         //}
         countFloat = 0;
-        count = 0;
     }
 
     public void Accumulate()
@@ -148,9 +147,8 @@ public class ForceCast_TopDown : MonoBehaviour
             countFloat = 0;
         }
             
-        count = (int)countFloat;
 
-        UIcontrol.PushingBar(count);
+        UIcontrol.PushingBar(countFloat);
     }
 
     public void FriendlyPushed()
@@ -183,10 +181,10 @@ public class ForceCast_TopDown : MonoBehaviour
    IEnumerator ShootCD(int time)
     {
         Shooted = true;
-        UIcontrol.PushingCDBar(time, false);
+        UIcontrol.PushingCDBar(time);
         yield return new WaitForSeconds(time);
         Shooted = false;
-        UIcontrol.PushingCDBar(time, true);
+        UIcontrol.PushingCDBar(time);
         //while (time > 0)
         //{
         //    yield return new WaitForSeconds(1);

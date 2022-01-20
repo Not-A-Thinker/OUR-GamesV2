@@ -44,16 +44,17 @@ public class P1GetCube : MonoBehaviour
             cube.transform.position = transform.forward * Time.deltaTime ;
     }
 
-    public void PlayerSpawnCube(int force)
+    public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
+        int newForce = (int)force;
         if (force>=2)
         {
-            StartCoroutine(TheBigOne(parentMax, force));        
+            StartCoroutine(TheBigOne(parentMax, newForce));        
         }
         else
         {
-            PlayerSetCube(parentMax, force);
+            PlayerSetCube(parentMax, newForce);
         }    
     }
 

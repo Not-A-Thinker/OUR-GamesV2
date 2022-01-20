@@ -136,10 +136,10 @@ public class UIcontrol : MonoBehaviour
     }
 
     //PlayerSuckPushCD
-    public void PushingCDBar(float load,bool Ready)
+    public void PushingCDBar(float load)
     {
-        pushingCD.SetActive(Ready);
-        //pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+        //pushingCD.SetActive(Ready);
+        pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
     }
     public void SuckingCDBar(float load)
     {

@@ -20,6 +20,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
+    [SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
     [Header("State")]
@@ -32,6 +33,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     public int SuccMaxCD = 1;
     [SerializeField] float Timer = 1;
     public bool SuckInCD;
+    public int SuckCount;
 
     //clip
 
