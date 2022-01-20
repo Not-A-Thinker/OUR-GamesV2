@@ -10,13 +10,13 @@ public class ForceCast_TopDown : MonoBehaviour
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
 
-    [SerializeField] UIcontrol UIcontrol;
+     UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
     [Header("P1 Push State")]
     public float _force = 500f;
     public float _range = 15f;
     public bool friendPushed, Charge, Shooted, ShootInCD;
-  
+
 
     public bool _attackTrigger = false;
     Quaternion OldQuate;
@@ -31,7 +31,6 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Start()
     {
-        Shooted = false;
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
@@ -40,23 +39,23 @@ public class ForceCast_TopDown : MonoBehaviour
         //®gÀ»«e¥R¯à
         if (Charge)
         {
-            if (Shooted == false)
+            if (!ShootInCD)
             {
-                //transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, ShootRot.transform.rotation, 15f * Time.deltaTime);
+                SetOldQue();
                 Accumulate();
             }
             else
             {
-                Charge = false;          
-            }            
+                Charge = false;
+            }
         }
 
         //®gÀ»
         if (Shooted)
         {
-            if (Shooted == false)
+            if (!ShootInCD)
             {
-                Shoot((int)_force);
+                Shoot();
                 rangeObj.SetActive(false);
                 UIcontrol.PushingStop();
             }
@@ -83,27 +82,38 @@ public class ForceCast_TopDown : MonoBehaviour
         else
             Timer = PushMaxCD;
 
-        UIcontrol.PushingCDBar(Timer/PushMaxCD);
+        UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
         //if (Input.GetButton("Fire1"))
         //{
-        //    rangeObj.SetActive(true);
-        //    StartCoroutine("PushFriendCD");
+        //    if (ShootInCD == false)
+        //    {
+        //        Accumulate();
+        //    }
+        //    FriendlyPushed();
         //}
-        //if (Input.GetButtonUp("HelpFriendP1"))
+
+        //if (Input.GetButtonUp("Fire1"))
         //{
-        //    rangeObj.SetActive(false);
+        //    if (ShootInCD == false)
+        //    {
+        //        Shoot();
+        //        rangeObj.SetActive(false);
+        //        UIcontrol.PushingStop();
+        //    }
+        //    ResetOldQue();
         //}
     }
 
-    public void Shoot(int force)
+    private void Shoot()
     {
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
+            Timer = 0;
             gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
-            StartCoroutine(ShootCD(1));
-        }    
+            StartCoroutine(ShootCD(PushMaxCD));
+        }
         //else
         //{
         //    _attackTrigger = true;
@@ -125,9 +135,11 @@ public class ForceCast_TopDown : MonoBehaviour
         //    _attackTrigger = false;
         //}
         countFloat = 0;
+        Shooted = false;
+        Charge = false;
     }
 
-    public void Accumulate()
+    private void Accumulate()
     {
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
 
@@ -136,22 +148,20 @@ public class ForceCast_TopDown : MonoBehaviour
         //rangeObjRed.material.SetColor("_Color", Color.green);
         rangeObj.SetActive(true);
 
-        countFloat += (1 * Time.deltaTime);
+        countFloat += Time.deltaTime;
 
-        if(countFloat > 1f)
-            //rangeObjRed.material.SetColor("_Color", Color.yellow);
-        if (countFloat > 3f)
-            //rangeObjRed.material.SetColor("_Color", Color.red);
-        if (countFloat > 3.2f)
+        if (countFloat > CountMax + 0.5f)
         {
             countFloat = 0;
         }
-            
 
-        UIcontrol.PushingBar(countFloat);
+        float BarValue = countFloat/CountMax;
+
+
+        UIcontrol.PushingBar(BarValue);
     }
 
-    public void FriendlyPushed()
+    private void FriendlyPushed()
     {
         Vector3 startPos = RangeBigObj.transform.position;
         Vector3 endPos = RangeBigObj.transform.up;
@@ -162,6 +172,7 @@ public class ForceCast_TopDown : MonoBehaviour
             //Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
             //Debug.DrawRay(startPos, endPos * _range);
             //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
+
             if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
             {
                 rangeObj.SetActive(true);
@@ -177,14 +188,12 @@ public class ForceCast_TopDown : MonoBehaviour
         }
     }
 
-   //®gÀ»CD 2
-   IEnumerator ShootCD(int time)
+    //®gÀ»CD 2
+    IEnumerator ShootCD(int time)
     {
-        Shooted = true;
-        UIcontrol.PushingCDBar(time);
+        ShootInCD = true;
         yield return new WaitForSeconds(time);
-        Shooted = false;
-        UIcontrol.PushingCDBar(time);
+        ShootInCD = false;
         //while (time > 0)
         //{
         //    yield return new WaitForSeconds(1);
@@ -217,3 +226,4 @@ public class ForceCast_TopDown : MonoBehaviour
         rangeObj.SetActive(false);
     }
 }
+

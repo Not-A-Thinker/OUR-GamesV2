@@ -24,7 +24,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     UIcontrol uIcontrol;
 
     [Header("State")]
-    [SerializeField] bool canSucc = true;
     [SerializeField] bool FriendCD = false;
  
     Quaternion OldQuate;
@@ -80,7 +79,6 @@ public class ForceRepel_TopDown : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
             move.inCC = false;        
-            canSucc = true;
             //uIcontrol.SuckingCDBar(canSucc);
             if (!SuckInCD)
             {
@@ -125,7 +123,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
             //Debug.Log(hit.transform.name + "." + hit.transform.tag);
-            if (hit.transform.gameObject.layer == 6 && SuckCount < 3)
+            if (hit.transform.gameObject.layer == 6 && SuckCount < 3 && !SuckInCD)
             {
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
@@ -195,12 +193,6 @@ public class ForceRepel_TopDown : MonoBehaviour
                 //hit.transform.Translate(toTarget * _force * Time.deltaTime);
             }
         }
-    }
-
-    public void CantSucc()
-    {
-        canSucc = false;
-        //uIcontrol.SuckingCDBar(canSucc);
     }
 
     public void resetObject()

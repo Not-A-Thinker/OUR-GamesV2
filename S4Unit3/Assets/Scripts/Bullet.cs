@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
             //Instantiate(explosionPrefab, pos, rot);
 
         }
-         Destroy(gameObject);
+         //Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
 
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
     }
 

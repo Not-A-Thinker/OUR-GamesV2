@@ -12,8 +12,6 @@ public class P1GetCube : MonoBehaviour
 
     public Transform SpawnPoint;
 
-    float totalHight = 2f;
-
     Move move;
 
     [SerializeField] GameObject chip;
@@ -27,8 +25,7 @@ public class P1GetCube : MonoBehaviour
             move.SpeedSlow();
 
             cube.transform.parent = objectParent.transform;
-            totalHight = totalHight + 3;
-            cube.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+            cube.transform.position = new Vector3(this.transform.position.x+3, 3, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
            
@@ -47,8 +44,9 @@ public class P1GetCube : MonoBehaviour
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
+        Debug.Log(force);
         int newForce = (int)force;
-        if (force>=2)
+        if (force>=1)
         {
             StartCoroutine(TheBigOne(parentMax, newForce));        
         }
@@ -76,7 +74,6 @@ public class P1GetCube : MonoBehaviour
             
             Rb.constraints = RigidbodyConstraints.None;
             Rb.useGravity = true;
-            totalHight = totalHight - 3;
             cube.transform.position = SpawnPoint.position;
             cube.transform.parent = null;
         }
@@ -88,8 +85,6 @@ public class P1GetCube : MonoBehaviour
         move.SpeedFast();
 
         int caseNum = 0;
-
-        totalHight = totalHight - 3;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
         if (force >= 3)
@@ -114,7 +109,9 @@ public class P1GetCube : MonoBehaviour
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().chip = chip;
-        cube.GetComponent<ObjectDamage>().Direction= direction.transform.forward;
+        cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
+
+        cube.GetComponent<ObjectRotation>().inBox = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
