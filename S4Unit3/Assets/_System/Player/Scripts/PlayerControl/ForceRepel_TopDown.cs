@@ -20,7 +20,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
-    [SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
     [Header("State")]
@@ -28,7 +27,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] bool FriendCD = false;
  
     Quaternion OldQuate;
-    public int SuckCount;
 
     [Header("P2 Attack CD")]
     public int SuccMaxCD = 1;
@@ -91,7 +89,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 resetObject();  
             }    
-            if( S_Tonado!=null)
+            if(S_Tonado!=null)
             {
                 S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
                 S_Tonado = null;
@@ -99,6 +97,8 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (savedObject)
         {
+            Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
+            Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, curve.Evaluate(0.6f));
         }
@@ -110,7 +110,6 @@ public class ForceRepel_TopDown : MonoBehaviour
         move.inCC = true;
         //uIcontrol.SuckingCDBar(false);
     }
-
     public void Repel()
     {
         ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation , 15f * Time.deltaTime);
@@ -211,8 +210,22 @@ public class ForceRepel_TopDown : MonoBehaviour
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
             }             
             savedObject = null;
-        }                          
+        }
+           
+        //if (savedObject.tag=="Object")
+        //{
+        //    savedObject.AddComponent<ObjectDestroy>();
+        //}    
+           //savedObject.transform.parent = null;
+           //savedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;                       
     }   
+    //void ObjectTransform(GameObject obj)
+    //{
+    //    direction = savedObject.transform.position - transform.position;
+    //    direction.Normalize();
+        
+    //    rb.AddForceAtPosition(transform.forward * _force * -1 * Time.deltaTime, transform.position, ForceMode.Impulse);
+    //}
     IEnumerator FriendlyCD()
     {
         FriendCD = true;

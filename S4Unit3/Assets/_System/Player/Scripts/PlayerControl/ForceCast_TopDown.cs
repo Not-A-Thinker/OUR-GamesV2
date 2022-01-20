@@ -31,6 +31,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Start()
     {
+        Shooted = false;
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
@@ -39,9 +40,9 @@ public class ForceCast_TopDown : MonoBehaviour
         //®gÀ»«e¥R¯à
         if (Charge)
         {
-            if (!ShootInCD)
+            if (Shooted == false)
             {
-                SetOldQue();
+                //transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, ShootRot.transform.rotation, 15f * Time.deltaTime);
                 Accumulate();
             }
             else
@@ -53,9 +54,9 @@ public class ForceCast_TopDown : MonoBehaviour
         //®gÀ»
         if (Shooted)
         {
-            if (!ShootInCD)
+            if (Shooted == false)
             {
-                Shoot();               
+                Shoot((int)_force);
                 rangeObj.SetActive(false);
                 UIcontrol.PushingStop();
             }
@@ -86,33 +87,22 @@ public class ForceCast_TopDown : MonoBehaviour
 
         //if (Input.GetButton("Fire1"))
         //{
-        //    if (ShootInCD == false)
-        //    {
-        //        Accumulate();
-        //    }
-        //    FriendlyPushed();
+        //    rangeObj.SetActive(true);
+        //    StartCoroutine("PushFriendCD");
         //}
-
-        //if (Input.GetButtonUp("Fire1"))
+        //if (Input.GetButtonUp("HelpFriendP1"))
         //{
-        //    if (ShootInCD == false)
-        //    {
-        //        Shoot();
-        //        rangeObj.SetActive(false);
-        //        UIcontrol.PushingStop();
-        //    }
-        //    ResetOldQue();
+        //    rangeObj.SetActive(false);
         //}
     }
 
-    private void Shoot()
+    public void Shoot(int force)
     {
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
-            Timer = 0;
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
-            StartCoroutine(ShootCD(PushMaxCD));
+            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(count);
+            StartCoroutine(ShootCD(1));
         }    
         //else
         //{
@@ -135,11 +125,10 @@ public class ForceCast_TopDown : MonoBehaviour
         //    _attackTrigger = false;
         //}
         countFloat = 0;
-        Shooted = false;
-        Charge = false;
+        count = 0;
     }
 
-    private void Accumulate()
+    public void Accumulate()
     {
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
 
@@ -148,20 +137,23 @@ public class ForceCast_TopDown : MonoBehaviour
         //rangeObjRed.material.SetColor("_Color", Color.green);
         rangeObj.SetActive(true);
 
-        countFloat += Time.deltaTime;
+        countFloat += (1 * Time.deltaTime);
 
-        if (countFloat > CountMax + 0.5f)
+        if(countFloat > 1f)
+            //rangeObjRed.material.SetColor("_Color", Color.yellow);
+        if (countFloat > 3f)
+            //rangeObjRed.material.SetColor("_Color", Color.red);
+        if (countFloat > 3.2f)
         {
             countFloat = 0;
         }
+            
+        count = (int)countFloat;
 
-        float BarValue = countFloat / CountMax;
-
-
-        UIcontrol.PushingBar(BarValue);
+        UIcontrol.PushingBar(count);
     }
 
-    private void FriendlyPushed()
+    public void FriendlyPushed()
     {
         Vector3 startPos = RangeBigObj.transform.position;
         Vector3 endPos = RangeBigObj.transform.up;
@@ -172,7 +164,6 @@ public class ForceCast_TopDown : MonoBehaviour
             //Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
             //Debug.DrawRay(startPos, endPos * _range);
             //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
-
             if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
             {
                 rangeObj.SetActive(true);
@@ -191,9 +182,11 @@ public class ForceCast_TopDown : MonoBehaviour
    //®gÀ»CD 2
    IEnumerator ShootCD(int time)
     {
-        ShootInCD = true;     
+        Shooted = true;
+        UIcontrol.PushingCDBar(time, false);
         yield return new WaitForSeconds(time);
-        ShootInCD = false;
+        Shooted = false;
+        UIcontrol.PushingCDBar(time, true);
         //while (time > 0)
         //{
         //    yield return new WaitForSeconds(1);

@@ -63,7 +63,6 @@ public class PlayerState : MonoBehaviour
         {
             UIcontrol.EnergyBarChange(move.DashBar, 2);
         }
-      
 
         //Invincible§@¹ú
         if (Input.GetKeyDown(KeyCode.CapsLock))
