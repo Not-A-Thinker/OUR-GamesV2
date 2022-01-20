@@ -148,10 +148,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   canSucc: 1
   FriendCD: 0
-  SuckCount: 0
   SuccMaxCD: 2
   Timer: 2
   SuckInCD: 0
+  SuckCount: 0
 --- !u!114 &18583013816442373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +373,7 @@ MonoBehaviour:
   Move: {fileID: 1860544261278244878}
   isPlayer1: 0
   isPlayer2: 1
+  Respawning: 0
 --- !u!1 &1860544261278244872
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 1860544261278244872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6734195116091602768}
@@ -648,15 +649,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_LocalPosition.x

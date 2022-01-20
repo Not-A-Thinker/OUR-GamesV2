@@ -116,6 +116,7 @@ MonoBehaviour:
   Move: {fileID: 500052818044258939}
   isPlayer1: 1
   isPlayer2: 0
+  Respawning: 0
 --- !u!1 &500052817167976939
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +350,7 @@ GameObject:
   - component: {fileID: 500052818044258935}
   - component: {fileID: 500052818044258939}
   - component: {fileID: 500052818044258936}
-  - component: {fileID: 59152141}
+  - component: {fileID: 1124331809862700244}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -366,7 +367,7 @@ Transform:
   m_GameObject: {fileID: 500052818044258924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: 1, z: 0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4748202195682001921}
@@ -428,6 +429,7 @@ MonoBehaviour:
   _force: 500
   _range: 25
   friendPushed: 0
+  Charge: 0
   Shooted: 0
   ShootInCD: 0
   _attackTrigger: 0
@@ -483,7 +485,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052818044258924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536bfb091edbaf64fb7d75fb6c85af37, type: 3}
   m_Name: 
@@ -523,6 +525,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1124331809862700244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500052818044258924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3985f0a8284c1a24ba1236cbbc9a7a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 500052818044258931}
+  Char: {fileID: 5381467380246077115}
+  _animation: {fileID: 628926013}
+  ShootRot: {fileID: 9195968397510403553}
+  isPlayer1: 1
+  isPlayer2: 0
+  isSlowed: 0
+  isImMobilized: 0
+  isDashed: 0
+  inCC: 0
+  moveSpeed: 10
+  rotationSpeed: 100
+  dashSpeed: 15
+  dashTime: 0.25
+  DashBar: 100
+  DashUsed: 49
+  DashRestore: 25
 --- !u!1 &9195968397510403553
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,15 +600,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalPosition.x
