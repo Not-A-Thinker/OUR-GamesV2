@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 3547116887273196983}
   - component: {fileID: 3547116887273196980}
   - component: {fileID: 3547116887273196984}
-  - component: {fileID: 666164369}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Boss
@@ -227,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c45a6fb620c6504ab666db1b2663fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossAI: {fileID: 0}
   instantiatePoint: {fileID: 3547116887089412507}
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
@@ -632,59 +632,6 @@ MonoBehaviour:
     handleAnimatorIK: 0
   fsmTemplate: {fileID: 0}
   eventHandlerComponentsAdded: 1
---- !u!114 &666164369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3547116887273196990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 2
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 0
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 0}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
 --- !u!1001 &1721258655907234120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -763,17 +710,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3547116887273196986}
     m_Modifications:
+    - target: {fileID: 1780179790785441460, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179790785441460, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179790918479634, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179790918479634, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179791178634326, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179791178634326, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792575541300, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780179792575541300, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.68
+      objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1212,10 +1191,109 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
-    m_ImpulseShape: 3
+    m_ImpulseShape: 0
     m_CustomImpulseShape:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.1
+        value: -0.15
+        inSlope: -0.010928631
+        outSlope: -0.010928631
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.2
+        value: 0.13
+        inSlope: 0.04583185
+        outSlope: 0.04583185
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.3
+        value: -0.07
+        inSlope: 0.09270377
+        outSlope: 0.09270377
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4
+        value: 0.05
+        inSlope: 0.104153275
+        outSlope: 0.104153275
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5
+        value: -0.04
+        inSlope: -0.044891313
+        outSlope: -0.044891313
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.6
+        value: 0.03
+        inSlope: 0.04243661
+        outSlope: 0.04243661
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.7
+        value: -0.02
+        inSlope: -0.09299838
+        outSlope: -0.09299838
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8
+        value: 0.01
+        inSlope: 0.066447206
+        outSlope: 0.066447206
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.8975693
+        value: -0.009219117
+        inSlope: -0.0076942854
+        outSlope: -0.0076942854
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.88961536
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0.065537415
+        outSlope: 0.065537415
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.062394083
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1250,7 +1328,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -2, z: 0}
+  m_DefaultVelocity: {x: 0, y: -10, z: 0}
 --- !u!4 &3087408816934859753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a400392811d8641abec7fab7d3310b, type: 3}

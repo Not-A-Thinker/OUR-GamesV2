@@ -8,6 +8,7 @@ public class BossSkillDemo : MonoBehaviour
     Rigidbody rb;
 
     BossCameraControl cameraControl;
+    [SerializeField] BossAI_Wind bossAI;
 
     private GameObject _Player1;
     private GameObject _Player2;
@@ -71,15 +72,20 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Boss Animator")]
     [SerializeField] Animator Boss1Animator;
 
-    void Start()
+    private void Awake()
     {
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
+        bossAI = GetComponent<BossAI_Wind>();
+        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+    }
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
-
         orgPos = transform.position;
     }
 
@@ -230,7 +236,7 @@ public class BossSkillDemo : MonoBehaviour
     public IEnumerator TornadoGattaiTracktion()//May need to fix
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        //Boss1Animator.SetTrigger("Skill_Tornado");
         if (GameObject.Find("tornadoSmall_1") == null)
             yield break;
         
@@ -241,6 +247,7 @@ public class BossSkillDemo : MonoBehaviour
         GameObject go = Instantiate(TornadoBigOne, tornado1.transform.position, Quaternion.identity);
         go.GetComponent<Skill_TornadoBigOne>().playerSelect = tornado1.playerSelect;
 
+        tornadoGattaiIsExisted = false;
         Debug.Log("Here's come the big one! And select:" + tornado1.playerSelect);
 
         yield return null;
