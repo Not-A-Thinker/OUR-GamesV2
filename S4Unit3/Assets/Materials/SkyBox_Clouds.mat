@@ -128,7 +128,7 @@ Material:
     - _ZenithBlendPower: 0.22
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CloudColor: {r: 0.0039215684, g: 0.6421968, b: 1, a: 0}
+    - _CloudColor: {r: 0.0039215684, g: 0.6421967, b: 1, a: 0.5882353}
     - _CloudScale: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _CloudsAnimationSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -136,7 +136,7 @@ Material:
     - _HorizonColor: {r: 1, g: 0.77815676, b: 0.645283, a: 0}
     - _NadirColor: {r: 0.754717, g: 0.546586, b: 0.2164471, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _ZenithColor_: {r: 0.18039216, g: 0.56078434, b: 0.78431374, a: 1}
+    - _ZenithColor_: {r: 0.23957288, g: 0.7397338, b: 1.0339462, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7673742580240921581
 MonoBehaviour:

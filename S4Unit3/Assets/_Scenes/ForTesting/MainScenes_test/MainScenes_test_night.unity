@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 71840813392070516}
-  m_IndirectSpecularColor: {r: 0.9439926, g: 1.3523232, b: 1.3793889, a: 1}
+  m_IndirectSpecularColor: {r: 0.24547637, g: 0.63582003, b: 0.82756114, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1623,6 +1623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Island_toonShader Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1919568368808712029, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2564807751119927282, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
@@ -1686,6 +1690,10 @@ PrefabInstance:
     - target: {fileID: 4618578709087872578, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_LocalPosition.z
       value: 6.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148124855393799704, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5608168732111656975, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}
       propertyPath: m_NavMeshLayer
