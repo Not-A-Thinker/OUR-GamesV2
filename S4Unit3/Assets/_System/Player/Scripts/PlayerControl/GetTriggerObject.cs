@@ -41,7 +41,7 @@ public class GetTriggerObject : MonoBehaviour
             if (Obj.transform.tag == "Clip")
             {
                 GameObject getedObject = Obj.gameObject;
-                Rigidbody Obj_rb = getedObject.GetComponent<Rigidbody>();
+                getedObject.GetComponent<Rigidbody>();
                 getedObject.GetComponent<Collider>().isTrigger = false;
                 //getedObject.transform.position = new Vector3(0, 0, 0);
                 ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
@@ -60,7 +60,6 @@ public class GetTriggerObject : MonoBehaviour
             //³B²z¤è¶ô
             else if (Obj.transform.tag == "Object")
             {
-               
                 GameObject getedObject = Obj.gameObject;
                 Rigidbody Obj_rb = getedObject.GetComponent<Rigidbody>();
                 Obj.transform.GetComponent<Collider>().isTrigger = false;
@@ -73,7 +72,7 @@ public class GetTriggerObject : MonoBehaviour
                 //Debug.Log(Obj.name + "Trigger");             
                 if (getCube.objectParent.transform.childCount < 3)
                 {
-                    getCube.PlayerGetCube(Obj.transform.gameObject);
+                    getCube.PlayerGetCube(Obj.gameObject);
                     forceRepel_TopDown.resetObject();
                     getedObject.GetComponent<ObjectDestroy>().isSucked = true;
                 }

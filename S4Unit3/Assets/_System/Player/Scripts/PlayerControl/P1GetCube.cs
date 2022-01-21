@@ -19,19 +19,21 @@ public class P1GetCube : MonoBehaviour
     public void PlayerGetCube(GameObject cube)
     {
         // Saveing Cube on the Top of dog head
-        if (objectParent.transform.childCount<3)
+        if (objectParent.transform.childCount < 3)
         {
             move = GetComponent<Move>();
             move.SpeedSlow();
 
+            //用於初始化方塊的位置
             cube.transform.parent = objectParent.transform;
-            cube.transform.position = new Vector3(this.transform.position.x+2, 3, this.transform.position.z);
+            cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
-           
+
+            //用於初始化方塊的"公轉"
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
-            cube.GetComponent<ObjectRotation>().inBox = true;
+            cube.GetComponent<ObjectRotation>()._isInCount = true;
             cube.GetComponent<Bullet>().bossToSuck = false;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
@@ -111,7 +113,7 @@ public class P1GetCube : MonoBehaviour
         cube.GetComponent<ObjectDamage>().chip = chip;
         cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
 
-        cube.GetComponent<ObjectRotation>().inBox = false;
+        cube.GetComponent<ObjectRotation>()._isInCount = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
