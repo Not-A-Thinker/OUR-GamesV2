@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
-  _TestingMode: 0
+  _TestingMode: 1
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c45a6fb620c6504ab666db1b2663fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossAI: {fileID: 0}
   instantiatePoint: {fileID: 3547116887089412507}
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
@@ -282,8 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7541f99ba9567348b8c287df5304f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Object: {fileID: 2774420081290986442, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
-  bossHealth: {fileID: 0}
   lastSpawned: {fileID: 0}
   SpawnedCount: 0
 --- !u!136 &3547116887273196991

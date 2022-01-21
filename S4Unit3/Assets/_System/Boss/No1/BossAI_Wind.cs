@@ -32,7 +32,7 @@ public class BossAI_Wind : MonoBehaviour
     public Animator boomerageAlert;
 
     [Header("Test Tweak")]
-    [SerializeField] bool _TestingMode = false;
+    public bool _TestingMode = false;
 
     [Header("Player LockOn")]
     [SerializeField] bool lookAtP1;

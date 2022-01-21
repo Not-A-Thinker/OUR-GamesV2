@@ -91,46 +91,46 @@ public class BossSkillDemo : MonoBehaviour
     void Update()
     {
         #region KeyCodeSets
-        //This Key Input is Just for testing, should be remove after getting release.
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (bossAI._TestingMode)
         {
-            //WindBlade();
-            StartCoroutine(WindBlade16(2));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            MistAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
-        {
-            //if (!isTeleported)
-            //{
-            //    StartCoroutine(BubbleTranslation());
-            //}
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            TornadoAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            TornadoGattai();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            StartCoroutine(EightTornado(waveToSpawnTornado));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            WindBladeBoomerang();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            TornadoSpecialAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            StartCoroutine(WindHole(1, 10));
+            //This Key Input is Just for testing, should be remove after getting release.
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                //WindBlade();
+                StartCoroutine(WindBlade16(2));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                MistAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                TornadoAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                TornadoGattai();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                StartCoroutine(EightTornado(waveToSpawnTornado));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                WindBladeBoomerang();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                TornadoSpecialAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                StartCoroutine(WindHole(1, 10));
+            }
         }
         #endregion
 
