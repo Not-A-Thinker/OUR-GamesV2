@@ -10176,5 +10176,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  secondToDie: 2
+  _angleOfTracking: 25
+  _canTrackNum: 3
   playerSelect: 0
+  secondToDie: 10
+  _outOfTrack: 0
+  _isTracking: 0
+  _firstTime: 0
+  _timerStarted: 0
+  _showDetectLine: 0
+  _trackCount: 0
