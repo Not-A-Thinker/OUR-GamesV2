@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BossSpawnObject : MonoBehaviour
 {
-    [SerializeField]
     GameObject Object;
 
-    [SerializeField] BossHealthBar bossHealth;
+    BossHealthBar bossHealth;
 
     public GameObject lastSpawned;
 
@@ -20,7 +19,9 @@ public class BossSpawnObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        SpawnedCount = GameObject.FindGameObjectsWithTag("Object").Length;
+        ///這個可能要做更改, 因為這樣搜索挺用效能的.
+        SpawnedCount = GameObject.FindGameObjectsWithTag("Object").Length; 
+        
     }
 
     public void ObjectSpawn(Vector3 P2Pos,Quaternion SpawnQuat)
