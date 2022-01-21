@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(BasicState))]
 [RequireComponent(typeof(BossSkillDemo))]
 public class BossAI_Wind : MonoBehaviour
 {
