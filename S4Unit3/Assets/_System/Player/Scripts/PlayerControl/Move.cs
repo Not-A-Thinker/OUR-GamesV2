@@ -149,7 +149,9 @@ public class Move : MonoBehaviour
             {
                 Debug.Log("locked Boss!");
                 BossLockOn();
-            }                
+            }         
+            
+            ///可能會刪除因為都是旋轉失敗的測試
             //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
             //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
 
