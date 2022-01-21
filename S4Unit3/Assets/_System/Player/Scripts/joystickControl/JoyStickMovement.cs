@@ -146,12 +146,7 @@ public class JoyStickMovement : MonoBehaviour
         {
             Quaternion toRotation = Quaternion.LookRotation(vector3d, Vector3.up);
             Char.transform.rotation = Quaternion.RotateTowards(Char.transform.rotation, toRotation, rotationSpeed * 5 * Time.deltaTime);
-            _animation.PlayerWalk(true);
-
-            vSpeed -= gravity * Time.deltaTime;
-            vector3d.y = vSpeed;
-
-            characterController.Move(vector3d * Time.deltaTime * moveSpeed);
+            _animation.PlayerWalk(true);       
         }
         else
             _animation.PlayerWalk(false);
@@ -245,6 +240,11 @@ public class JoyStickMovement : MonoBehaviour
         //DashOn(vector3d);
         Shoot();
         UIcontrol.EnergyBarChange(DashBar, 1);
+
+        vSpeed -= gravity * Time.deltaTime;
+        vector3d.y = vSpeed;
+
+        characterController.Move(vector3d * Time.deltaTime * moveSpeed);
 
         //Suck And Shoot
         //if (inputActions.GamePlay.Succ.WasPressedThisFrame())
