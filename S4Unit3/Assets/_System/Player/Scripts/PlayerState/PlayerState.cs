@@ -198,7 +198,7 @@ public class PlayerState : MonoBehaviour
     IEnumerator Invincible(int time)
     {
         isInvincible = true;
-        Debug.Log("Is Fucking Invincible" + isInvincible);
+        //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
        
@@ -206,7 +206,7 @@ public class PlayerState : MonoBehaviour
         CancelInvoke();
         _renderer.enabled = true;   
         isInvincible = false;
-        Debug.Log("Invincible" + isInvincible);
+        //Debug.Log("Invincible" + isInvincible);
     }
 
     //Cheat
