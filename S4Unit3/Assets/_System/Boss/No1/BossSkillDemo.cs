@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class BossSkillDemo : MonoBehaviour
 {
     Rigidbody rb;
 
     BossCameraControl cameraControl;
-    [SerializeField] BossAI_Wind bossAI;
+    BossAI_Wind bossAI;
 
     private GameObject _Player1;
     private GameObject _Player2;
