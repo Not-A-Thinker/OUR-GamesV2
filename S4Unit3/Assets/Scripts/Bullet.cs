@@ -54,6 +54,8 @@ public class Bullet : MonoBehaviour
             //Instantiate(explosionPrefab, pos, rot);
 
         }
+
+        ///這兩個destroy我先關掉不然我吸不起來
          //Destroy(gameObject);
     }
 
