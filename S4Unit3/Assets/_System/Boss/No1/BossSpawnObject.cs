@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossSpawnObject : MonoBehaviour
 {
-    [SerializeField] GameObject Object;
+    GameObject Object;
 
     BossHealthBar bossHealth;
 
@@ -15,6 +15,7 @@ public class BossSpawnObject : MonoBehaviour
     private void Start()
     {
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
+        Object = Resources.Load("Prefabs/Feather Prefab") as GameObject;
     }
 
     //private void FixedUpdate()

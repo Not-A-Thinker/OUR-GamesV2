@@ -8,10 +8,10 @@ public class GetTriggerObject : MonoBehaviour
     //public float _RotationSpeed = 20;
 
     //getChip
-    public GameObject ChipParent,SpcAttack;
+    public GameObject ChipParent;
     float totalHight = 2f;
-
-    [SerializeField] GameObject chip;
+    GameObject SpcAttack;  
+    GameObject chip;
     P1GetCube getCube;
 
     public bool SpawnDone;
@@ -19,6 +19,8 @@ public class GetTriggerObject : MonoBehaviour
     private void Start()
     {
         getCube = GameObject.Find("Player1").GetComponent<P1GetCube>();
+        SpcAttack = Resources.Load("Prefabs/SpecialAttack") as GameObject;
+        chip = Resources.Load("Prefabs/Clip") as GameObject;
     }
 
     private void Update()
