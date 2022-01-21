@@ -78,6 +78,8 @@ public class ObjectDamage : MonoBehaviour
             if (col.transform.tag == "Boss")
             {
                 bossHealth.TakeDamage(Damage);
+                BossSpawnObject bossSpawn = col.GetComponent<BossSpawnObject>();
+                bossSpawn.SpawnedCountDecrease();
                 //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);

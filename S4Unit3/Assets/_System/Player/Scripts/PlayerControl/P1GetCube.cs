@@ -25,7 +25,7 @@ public class P1GetCube : MonoBehaviour
             move.SpeedSlow();
 
             cube.transform.parent = objectParent.transform;
-            cube.transform.position = new Vector3(this.transform.position.x+3, 3, this.transform.position.z);
+            cube.transform.position = new Vector3(this.transform.position.x+2, 3, this.transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
            
@@ -44,7 +44,7 @@ public class P1GetCube : MonoBehaviour
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
-        Debug.Log(force);
+        //Debug.Log(force);
         int newForce = (int)force;
         if (force>=1)
         {
