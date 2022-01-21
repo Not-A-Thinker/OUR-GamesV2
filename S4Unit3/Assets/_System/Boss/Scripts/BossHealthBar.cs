@@ -17,11 +17,11 @@ public class BossHealthBar : MonoBehaviour
 
     [Header("Health Bar Setting")]
     [Tooltip("Value smaller mean faster.")]
-    [SerializeField] float smoothing = 5;
+    [SerializeField] float smoothing = .5f;
     [Tooltip("Value smaller mean faster.")]
-    [SerializeField] float backerSmoothing = .8f;
+    [SerializeField] float backerSmoothing = .5f;
     [Tooltip("Value smaller mean the yellow thing will move early")]
-    [SerializeField] float _backerTTC = 1f;
+    [SerializeField] float _backerTTC = .8f;
 
     float elapsedTime;
     float backerElapsedTime;
