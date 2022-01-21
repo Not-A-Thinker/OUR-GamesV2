@@ -76,19 +76,19 @@ public class Skill_TornadoGattai : MonoBehaviour
 
         if (!b_ISLocked)
         {
-            if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
-            {
-                b_ISLocked = true;
-                //int ran = Random.Range(1, 3);
-                //if (ran == 1)
-                //{
-                //    _targetPos = _Player1.transform.position;
-                //}
-                //else
-                //{
-                //    _targetPos = _Player2.transform.position;
-                //}
-            }
+            //if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
+            //{
+            //    b_ISLocked = true;
+            //    //int ran = Random.Range(1, 3);
+            //    //if (ran == 1)
+            //    //{
+            //    //    _targetPos = _Player1.transform.position;
+            //    //}
+            //    //else
+            //    //{
+            //    //    _targetPos = _Player2.transform.position;
+            //    //}
+            //}
         }
 
         transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
