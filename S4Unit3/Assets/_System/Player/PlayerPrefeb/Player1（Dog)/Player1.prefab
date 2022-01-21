@@ -482,7 +482,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052818044258924}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 536bfb091edbaf64fb7d75fb6c85af37, type: 3}
   m_Name: 
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052818044258924}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3985f0a8284c1a24ba1236cbbc9a7a2d, type: 3}
   m_Name: 
@@ -934,6 +934,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8529933797211071529, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_Layer

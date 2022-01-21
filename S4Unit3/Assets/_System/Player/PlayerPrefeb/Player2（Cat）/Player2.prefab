@@ -146,7 +146,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  canSucc: 1
   FriendCD: 0
   SuccMaxCD: 2
   Timer: 2
@@ -166,8 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Hight: 1
   ChipParent: {fileID: 749153411712952852}
-  SpcAttack: {fileID: 6023778763630715703, guid: cbbb68771f12a334e92cd30d9f060972, type: 3}
-  chip: {fileID: 4625094172040433220, guid: e8166e198b001b64a985a1bfd78070d9, type: 3}
   SpawnDone: 0
 --- !u!1 &1860544260377549311
 GameObject:
@@ -464,11 +461,7 @@ MonoBehaviour:
   isDash: 0
   isPlayer1: 0
   isPlayer2: 1
-  UIcontrol: {fileID: 0}
   Resurrect_range: {fileID: 1860544260687256099}
-  move: {fileID: 0}
-  playerTotalDead: {fileID: 0}
-  OthePlayerState: {fileID: 0}
   _renderer: {fileID: 374276327143788823}
   _animation: {fileID: 317406783}
 --- !u!114 &1860544261278244878
@@ -780,6 +773,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8370012161921274808, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
       propertyPath: m_Layer

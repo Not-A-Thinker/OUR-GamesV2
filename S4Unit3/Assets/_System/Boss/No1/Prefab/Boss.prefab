@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
-  _TestingMode: 1
+  _TestingMode: 0
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 0
+  _aiEnable: 1
   aiStartTime: 2
   aiReactTimeStage1: 2.7
   aiReactTimeStage2: 2
