@@ -89,14 +89,22 @@ public class Skill_TornadoBigOne : MonoBehaviour
             Debug.DrawLine(transform.position, trackAngleLeft * 30, Color.red);
             Debug.DrawLine(transform.position, trackAngleRight * 30, Color.red);
         }
-        
+
         //If is not out of track, then will look to the target position.
         if (!_outOfTrack)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(_targetPos - transform.position);
-            targetRotation.x = 0;
-            targetRotation.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            Vector3 targetLookRotation = _targetPos - transform.position;
+            if (targetLookRotation != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(targetLookRotation);
+                targetRotation.x = 0;
+                targetRotation.z = 0;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            }
+            else
+            {
+                Debug.Log("Vector3 is zero!: ");
+            }
         }
 
         //This part is for detecting the player is in the line. If so, is time to chase.
