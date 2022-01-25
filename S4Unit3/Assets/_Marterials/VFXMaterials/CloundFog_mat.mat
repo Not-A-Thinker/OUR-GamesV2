@@ -35,7 +35,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0.05
+    - _Alpha: 0.25
     - _AlphaClip: 0
     - _Base_Scale: 0.003
     - _Base_Speed: 30
@@ -63,8 +63,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color_Peak: {r: 0.34901962, g: 0.49019608, b: 0.57254905, a: 0}
-    - _Color_Valley: {r: 0.7529412, g: 0.6901961, b: 0.6509804, a: 0}
+    - _Color_Peak: {r: 0.02750145, g: 0, b: 0.5660378, a: 1}
+    - _Color_Valley: {r: 1, g: 0.40511045, b: 0.3150943, a: 0.078431375}
     - _Noise_Remap: {r: -0.29, g: 0.82, b: -1.6, a: 0.61}
     - _Roate: {r: 1, g: 1, b: 0, a: 90}
   m_BuildTextureStacks: []
