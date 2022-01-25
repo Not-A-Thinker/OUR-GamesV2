@@ -44,11 +44,18 @@ public class PlayerAnimator : MonoBehaviour
     }
 
 
-    public ParticleSystem CatSmoke;
-    public void Catalighting()
+    public ParticleSystem Smoke;
+    public ParticleSystem SpeedLine;
+    public void PlayerSomke()
     {
-        CatSmoke.Play();
+        if (Smoke != null)
+            Smoke.Play();
+    }
 
+    public void PlayerDodge()
+    {
+        if (SpeedLine != null)
+            SpeedLine.Play();
     }
 
 }
