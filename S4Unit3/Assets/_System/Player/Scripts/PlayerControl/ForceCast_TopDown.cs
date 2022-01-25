@@ -10,13 +10,13 @@ public class ForceCast_TopDown : MonoBehaviour
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
 
-    [SerializeField] UIcontrol UIcontrol;
+     UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
     [Header("P1 Push State")]
     public float _force = 500f;
     public float _range = 15f;
     public bool friendPushed, Charge, Shooted, ShootInCD;
-  
+
 
     public bool _attackTrigger = false;
     Quaternion OldQuate;
@@ -31,32 +31,31 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Start()
     {
-        Shooted = false;
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
     void Update()
     {
-        //射擊前充能
+        ///射擊前充能
         if (Charge)
         {
-            if (Shooted == false)
+            if (!ShootInCD)
             {
-                //transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, ShootRot.transform.rotation, 15f * Time.deltaTime);
+                SetOldQue();
                 Accumulate();
             }
             else
             {
-                Charge = false;          
-            }            
+                Charge = false;
+            }
         }
 
-        //射擊
+        ///射擊
         if (Shooted)
         {
-            if (Shooted == false)
+            if (!ShootInCD)
             {
-                Shoot((int)_force);
+                Shoot();
                 rangeObj.SetActive(false);
                 UIcontrol.PushingStop();
             }
@@ -64,13 +63,13 @@ public class ForceCast_TopDown : MonoBehaviour
                 Shooted = false;
         }
 
-        //推隊友
+        ///推隊友
         if (friendPushed)
         {
             FriendlyPushed();
         }
 
-        //射擊CD
+        ///攻擊的CD
         if (ShootInCD)
         {
             if (Timer < PushMaxCD)
@@ -83,27 +82,34 @@ public class ForceCast_TopDown : MonoBehaviour
         else
             Timer = PushMaxCD;
 
-        UIcontrol.PushingCDBar(Timer/PushMaxCD);
+        ///攻擊蓄力的UI
+        UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
-        //if (Input.GetButton("Fire1"))
+        ///OldInput備案 如果New Input手把不能用的時候打開
+        //if (Input.GetButtonDown("Fire1"))
         //{
-        //    rangeObj.SetActive(true);
-        //    StartCoroutine("PushFriendCD");
+        //    Charge = true;
         //}
-        //if (Input.GetButtonUp("HelpFriendP1"))
+
+        //if (Input.GetButtonUp("Fire1"))
         //{
-        //    rangeObj.SetActive(false);
+        //    Shooted = true;
+        //    ResetOldQue();
         //}
     }
 
-    public void Shoot(int force)
+    private void Shoot()
     {
+        ///檢查手上有沒有方塊
         //Debug.Log(force);
         if (objectParent.transform.childCount > 0)
         {
+            //CD跟蓄力
+            Timer = 0;      
+            StartCoroutine(ShootCD(PushMaxCD));
+            //設置方塊
             gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
-            StartCoroutine(ShootCD(1));
-        }    
+        }
         //else
         //{
         //    _attackTrigger = true;
@@ -124,52 +130,54 @@ public class ForceCast_TopDown : MonoBehaviour
         //    }
         //    _attackTrigger = false;
         //}
+
+        ///重置狀態
         countFloat = 0;
+        Shooted = false;
+        Charge = false;
     }
 
-    public void Accumulate()
+    ///蓄力
+    private void Accumulate()
     {
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
-
         ////Call SetColor using the shader property name "_Color" and setting the color to red
-
         //rangeObjRed.material.SetColor("_Color", Color.green);
+        
+        ///地毯開啟
         rangeObj.SetActive(true);
 
-        countFloat += (1 * Time.deltaTime);
-
-        if(countFloat > 1f)
-            //rangeObjRed.material.SetColor("_Color", Color.yellow);
-        if (countFloat > 3f)
-            //rangeObjRed.material.SetColor("_Color", Color.red);
-        if (countFloat > 3.2f)
-        {
+        ///蓄力條蓄力計算
+        countFloat += Time.deltaTime;
+        if (countFloat > CountMax + 0.5f)
             countFloat = 0;
-        }
-            
-
-        UIcontrol.PushingBar(countFloat);
+        ///蓄力條UI
+        float BarValue = countFloat/CountMax;
+        UIcontrol.PushingBar(BarValue);
     }
 
-    public void FriendlyPushed()
+    private void FriendlyPushed()
     {
+        ///射線
         Vector3 startPos = RangeBigObj.transform.position;
         Vector3 endPos = RangeBigObj.transform.up;
         RaycastHit isPlayerHit;
-
         if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
         {
             //Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
             //Debug.DrawRay(startPos, endPos * _range);
             //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
+
             if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
             {
                 rangeObj.SetActive(true);
                 if (isPlayerHit.transform.gameObject != this.gameObject)
                 {
+                    ///不能讓對方動
                     //Debug.Log(isPlayerHit.transform.gameObject.name);
                     Move move = isPlayerHit.transform.GetComponent<Move>();
                     StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
+                    ///CD
                     StartCoroutine(FriendCD(8));
                     rangeObj.SetActive(false);
                 }
@@ -177,14 +185,12 @@ public class ForceCast_TopDown : MonoBehaviour
         }
     }
 
-   //射擊CD 2
-   IEnumerator ShootCD(int time)
+    ///另外一個射擊CD 一樣的
+    IEnumerator ShootCD(int time)
     {
-        Shooted = true;
-        UIcontrol.PushingCDBar(time);
+        ShootInCD = true;
         yield return new WaitForSeconds(time);
-        Shooted = false;
-        UIcontrol.PushingCDBar(time);
+        ShootInCD = false;
         //while (time > 0)
         //{
         //    yield return new WaitForSeconds(1);
@@ -196,6 +202,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //}
     }
 
+    ///推隊友CD
     IEnumerator FriendCD(int time)
     {
         friendPushed = true;
@@ -204,12 +211,13 @@ public class ForceCast_TopDown : MonoBehaviour
         friendPushed = false;
     }
 
-    //重置成射擊前方為
+    ///記錄射擊前方位
     public void SetOldQue()
     {
         OldQuate = Charitor.transform.rotation;
     }
 
+    ///重置成射擊前方位
     public void ResetOldQue()
     {
         Charitor.transform.rotation = OldQuate;
@@ -217,3 +225,4 @@ public class ForceCast_TopDown : MonoBehaviour
         rangeObj.SetActive(false);
     }
 }
+

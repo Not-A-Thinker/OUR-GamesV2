@@ -74,8 +74,8 @@ VisualEffect:
       m_Array:
       - m_Value:
           serializedVersion: 2
-          key0: {r: 0.31854683, g: 0.16513224, b: 0.084376216, a: 1}
-          key1: {r: 0.5943396, g: 0.280786, b: 0.119989306, a: 1}
+          key0: {r: 0.79391754, g: 2.0638416, b: 4.83651, a: 1}
+          key1: {r: 0.16452472, g: 0.38230908, b: 0.7452831, a: 1}
           key2: {r: 5.1065817, g: 0.68092823, b: 0, a: 1}
           key3: {r: 5.2990475, g: 0.16639827, b: 0, a: 1}
           key4: {r: 5.1579094, g: 0.5437113, b: 0, a: 1}
@@ -5026,7 +5026,7 @@ Transform:
   m_GameObject: {fileID: 70037385250985814}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.36, y: 0.36, z: 0.36}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 70037383525352766}
@@ -6488,7 +6488,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -10079,7 +10079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2289936242176804923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 3, y: 2, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10148,10 +10148,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 3.576932
+  m_Radius: 0.85
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0.788466, z: -0.00000007947286}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &1510764783555591368
 MonoBehaviour:
   m_ObjectHideFlags: 0

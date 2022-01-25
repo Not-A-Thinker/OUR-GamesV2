@@ -4,37 +4,32 @@ using UnityEngine;
 
 public class P1GetCube : MonoBehaviour
 {
-    //GameObject[] savedObject;
-
     public GameObject objectParent;
 
     public GameObject direction;
 
     public Transform SpawnPoint;
 
-    float totalHight = 2f;
-
     Move move;
-
-    [SerializeField] GameObject chip;
 
     public void PlayerGetCube(GameObject cube)
     {
         // Saveing Cube on the Top of dog head
-        if (objectParent.transform.childCount<3)
+        if (objectParent.transform.childCount < 3)
         {
             move = GetComponent<Move>();
             move.SpeedSlow();
 
+            ///用於初始化方塊的位置
             cube.transform.parent = objectParent.transform;
-            totalHight = totalHight + 3;
-            cube.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+            cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
-           
+
+            ///用於初始化方塊的"公轉"
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
-            cube.GetComponent<ObjectRotation>().inBox = true;
+            cube.GetComponent<ObjectRotation>()._isInCount = true;
             cube.GetComponent<Bullet>().bossToSuck = false;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
@@ -44,11 +39,14 @@ public class P1GetCube : MonoBehaviour
             cube.transform.position = transform.forward * Time.deltaTime ;
     }
 
+    ///射擊方塊前置設置
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
+        //Debug.Log(force);
         int newForce = (int)force;
-        if (force>=2)
+        ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
+        if (force>=1)
         {
             StartCoroutine(TheBigOne(parentMax, newForce));        
         }
@@ -58,12 +56,14 @@ public class P1GetCube : MonoBehaviour
         }    
     }
 
+    // 狗狗被擊中時會觸發
     public void PlayerGoneCube()
     {
         int parentMax = objectParent.transform.childCount;
         move = GetComponent<Move>();
         move.SpeedReset();
         //Debug.Log(parentMax);
+        // 狗狗身上的方塊掉落
         for (int i=0;i< parentMax;i++)
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
@@ -73,10 +73,9 @@ public class P1GetCube : MonoBehaviour
                 if (cube.GetComponent<ObjectDestroy>().isSucked)
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
             }
-            
+            //重置方塊掉落狀態
             Rb.constraints = RigidbodyConstraints.None;
             Rb.useGravity = true;
-            totalHight = totalHight - 3;
             cube.transform.position = SpawnPoint.position;
             cube.transform.parent = null;
         }
@@ -84,12 +83,11 @@ public class P1GetCube : MonoBehaviour
 
     void PlayerSetCube(int parentMax,int force)
     {
+        //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
         move.SpeedFast();
 
         int caseNum = 0;
-
-        totalHight = totalHight - 3;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
         if (force >= 3)
@@ -113,13 +111,15 @@ public class P1GetCube : MonoBehaviour
 
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
-        cube.GetComponent<ObjectDamage>().chip = chip;
-        cube.GetComponent<ObjectDamage>().Direction= direction.transform.forward;
+        cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
+
+        cube.GetComponent<ObjectRotation>()._isInCount = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
     IEnumerator TheBigOne(int parentMax, int force)
     {      
+        //蓄力成功三連發
         int Max = parentMax;
         for (int i = 0; i < Max; i++)
         {

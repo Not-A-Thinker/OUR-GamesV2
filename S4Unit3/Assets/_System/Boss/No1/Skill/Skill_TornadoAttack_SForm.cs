@@ -12,7 +12,7 @@ public class Skill_TornadoAttack_SForm : MonoBehaviour
     Vector3 selfPos;
     Vector3 dirPos;
 
-    public bool CanMove=true;
+    public bool CanMove = true;
 
     [Header("Frequency: How Fast it finish 1 turn")]
     [SerializeField] float frequency = 20f;

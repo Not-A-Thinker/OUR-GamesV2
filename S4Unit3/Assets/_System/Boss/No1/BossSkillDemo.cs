@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class BossSkillDemo : MonoBehaviour
 {
     Rigidbody rb;
 
     BossCameraControl cameraControl;
+    BossAI_Wind bossAI;
 
     private GameObject _Player1;
     private GameObject _Player2;
@@ -71,61 +71,66 @@ public class BossSkillDemo : MonoBehaviour
     [Header("Boss Animator")]
     [SerializeField] Animator Boss1Animator;
 
-    void Start()
+    private void Awake()
     {
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
+        bossAI = GetComponent<BossAI_Wind>();
+        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+    }
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody>();
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
-
         orgPos = transform.position;
     }
 
     void Update()
     {
         #region KeyCodeSets
-        //This Key Input is Just for testing, should be remove after getting release.
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (bossAI._TestingMode)
         {
-            //WindBlade();
-            StartCoroutine(WindBlade16(2));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            MistAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
-        {
-            //if (!isTeleported)
-            //{
-            //    StartCoroutine(BubbleTranslation());
-            //}
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            TornadoAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            TornadoGattai();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            StartCoroutine(EightTornado(waveToSpawnTornado));
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            WindBladeBoomerang();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            TornadoSpecialAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            StartCoroutine(WindHole(1, 10));
+            //This Key Input is Just for testing, should be remove after getting release.
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                //WindBlade();
+                StartCoroutine(WindBlade16(2));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                MistAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                TornadoAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                TornadoGattai();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                StartCoroutine(EightTornado(waveToSpawnTornado));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                WindBladeBoomerang();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                TornadoSpecialAttack();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                StartCoroutine(WindHole(1, 10));
+            }
         }
         #endregion
 
@@ -230,7 +235,7 @@ public class BossSkillDemo : MonoBehaviour
     public IEnumerator TornadoGattaiTracktion()//May need to fix
     {
         //StartCoroutine(animationPlaytime("isTonado"));
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        //Boss1Animator.SetTrigger("Skill_Tornado");
         if (GameObject.Find("tornadoSmall_1") == null)
             yield break;
         
@@ -241,6 +246,7 @@ public class BossSkillDemo : MonoBehaviour
         GameObject go = Instantiate(TornadoBigOne, tornado1.transform.position, Quaternion.identity);
         go.GetComponent<Skill_TornadoBigOne>().playerSelect = tornado1.playerSelect;
 
+        tornadoGattaiIsExisted = false;
         Debug.Log("Here's come the big one! And select:" + tornado1.playerSelect);
 
         yield return null;

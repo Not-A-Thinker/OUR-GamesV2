@@ -54,7 +54,9 @@ public class Bullet : MonoBehaviour
             //Instantiate(explosionPrefab, pos, rot);
 
         }
-         Destroy(gameObject);
+
+        ///這兩個destroy我先關掉不然我吸不起來
+         //Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,7 +77,7 @@ public class Bullet : MonoBehaviour
 
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
     }
 

@@ -20,11 +20,11 @@ public class PlayerState : MonoBehaviour
     public bool  isPlayer2;
 
     [Header("Player GetComponent")]
-    [SerializeField] UIcontrol UIcontrol;
+     UIcontrol UIcontrol;
     [SerializeField] GameObject Resurrect_range;
-    [SerializeField] Move move;
-    [SerializeField] PlayerTotalDead playerTotalDead;
-    [SerializeField] PlayerState OthePlayerState;
+     Move move;
+     PlayerTotalDead playerTotalDead;
+     PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     //[SerializeField] GameObject SuckRange;
@@ -39,6 +39,7 @@ public class PlayerState : MonoBehaviour
 
         if(GetComponent<JoyStickMovement>())
 
+
        //檢查玩家編號
         if (isPlayer1)
         {
@@ -50,6 +51,7 @@ public class PlayerState : MonoBehaviour
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
         }
 
+        ///_currentHealth當前血量 _maxHealth最大血量
         _currentHealth = _maxHealth;
 
         Resurrect_range.SetActive(false);
@@ -91,12 +93,14 @@ public class PlayerState : MonoBehaviour
 
             if (isPlayer1)
             {
+                ///P1受傷要把方塊都丟掉
                 P1GetCube p1GetCube= GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
             }
             //Debug.Log(_currentHealth);     
             if (_currentHealth > 0)
             {
+                ///受攻擊無敵
                 StartCoroutine(Invincible(3));
             }
             if (_currentHealth == 0)
@@ -111,6 +115,7 @@ public class PlayerState : MonoBehaviour
             if (isPlayer2)
                 playerCount = 2;
 
+            ///UI
             UIcontrol.hp_decrease(_currentHealth, playerCount);
             StartCoroutine(_animation.PlayerDamaged()) ;
         }
@@ -118,6 +123,7 @@ public class PlayerState : MonoBehaviour
 
     public void hp_increase()
     {
+        ///回血
         int playerCount = 1;
         if (isPlayer1)
             playerCount = 1;
@@ -130,6 +136,7 @@ public class PlayerState : MonoBehaviour
     //Player RespawnReset
     public void PlayerRespawn()
     {
+        ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
         _currentHealth = _maxHealth;
@@ -153,6 +160,7 @@ public class PlayerState : MonoBehaviour
     //PlayerState Reset When Dead
     public void PlayerIsDead()
     {
+        //死亡設置
         isDead = true;
         Resurrect_range.SetActive(true);
         move.inCC = true;
@@ -198,7 +206,7 @@ public class PlayerState : MonoBehaviour
     IEnumerator Invincible(int time)
     {
         isInvincible = true;
-        Debug.Log("Is Fucking Invincible" + isInvincible);
+        //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
        
@@ -206,12 +214,13 @@ public class PlayerState : MonoBehaviour
         CancelInvoke();
         _renderer.enabled = true;   
         isInvincible = false;
-        Debug.Log("Invincible" + isInvincible);
+        //Debug.Log("Invincible" + isInvincible);
     }
 
     //Cheat
     void InvincibleRend()
     {
+        ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else

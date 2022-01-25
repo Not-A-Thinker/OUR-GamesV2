@@ -6,7 +6,8 @@ public class ObjectRotation : MonoBehaviour
 {
 
     [Header("自轉公轉")]
-    public bool inBox;
+    [Tooltip("This is only for debug testing, don't touch it.")]
+    public bool _isInCount;
 
     public GameObject target;
 
@@ -16,19 +17,16 @@ public class ObjectRotation : MonoBehaviour
     private float distance;
     Vector3 dir;
 
-    // Start is called before the first frame update
     void Start()
     {
-
         dir = transform.position - target.transform.position;
 
         distance = Vector3.Distance(transform.position, target.transform.position);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (inBox)
+        if (_isInCount)
         {
             transform.localScale = new Vector3(0.7f,0.7f,0.7f);
             //Debug.Log(distance);
@@ -42,7 +40,7 @@ public class ObjectRotation : MonoBehaviour
             dir = transform.position - target.transform.position;
 
             //自轉
-            transform.Rotate(new Vector3(0, -own*Time.deltaTime, 0));
+            transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
         }
         else
             transform.localScale = new Vector3(1, 1, 1);

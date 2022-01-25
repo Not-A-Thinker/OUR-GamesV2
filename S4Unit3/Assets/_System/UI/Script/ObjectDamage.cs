@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectDamage : MonoBehaviour
 {
-    public int Damage = 15;
     BossHealthBar bossHealth;
     BasicState basicState;
 
@@ -15,19 +14,20 @@ public class ObjectDamage : MonoBehaviour
 
     //private Rigidbody Rb;
 
+    [Header("Cube Attact State")]
     public Vector3 Direction;
-
+    public int Damage = 15;
     public float Speed = 50;
 
     private void Start()
     {
+        chip = Resources.Load("Prefabs/Clip") as GameObject;
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
-
+        ///到指定時間會自己消失
         StartCoroutine(DestroyTimer());
 
-    
         //Rb = GetComponent<Rigidbody>();
         //Rigidbody Rb = GetComponent<Rigidbody>();
         //Rb.AddForceAtPosition(transform.forward * 2000f *5* Time.deltaTime, transform.position, ForceMode.Impulse);
@@ -35,20 +35,21 @@ public class ObjectDamage : MonoBehaviour
 
     private void Update()
     {
+        ///方塊移動
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
-        transform.position += Direction * Speed * Time.deltaTime;
-
-       
+        transform.position += Direction * Speed * Time.deltaTime;   
     }
 
     //Do You Know YourDamage
     public void SetDamage(int DamageType)
     {
+        ///特殊攻擊基本傷害70
         if (isSpcecialAttack)
             Damage = Damage + 55;
 
         switch (DamageType)
         {
+            ///蓄力成功傷害*2
             case 2:
                 Damage = Damage * 2;
                 break;
@@ -64,6 +65,7 @@ public class ObjectDamage : MonoBehaviour
     {
         if (col.transform.tag == "BossStando")
         {
+            ///如果擊中分身
             //Help me Check if this is right or not.
             basicState = col.gameObject.GetComponentInParent<BasicState>();
             basicState._currentHealth -= Damage;
@@ -74,10 +76,14 @@ public class ObjectDamage : MonoBehaviour
 
         if (col.gameObject.layer == 6)
         {
-            //IfBoss
+            ///如果擊中分身
             if (col.transform.tag == "Boss")
             {
+                ///扣血
                 bossHealth.TakeDamage(Damage);
+                ///Boss Count -1
+                BossSpawnObject bossSpawn = col.GetComponent<BossSpawnObject>();
+                bossSpawn.SpawnedCountDecrease();
                 //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);
@@ -107,6 +113,7 @@ public class ObjectDamage : MonoBehaviour
 
    IEnumerator DestroyTimer()
     {
+        ///射擊三秒後一定消失
         yield return new WaitForSeconds(3);
         Destroy(this.gameObject);
     }

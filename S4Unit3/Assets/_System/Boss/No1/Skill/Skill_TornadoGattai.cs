@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Skill_TornadoGattai : MonoBehaviour
@@ -14,6 +12,7 @@ public class Skill_TornadoGattai : MonoBehaviour
 
     PlayerState playerState;
     BossSkillDemo boss;
+    BossAI_Wind bossAI;
     BossCameraControl cameraControl;
 
     private GameObject _Player1;
@@ -31,7 +30,17 @@ public class Skill_TornadoGattai : MonoBehaviour
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
-        boss = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
+        bossAI = GameObject.Find("Boss").GetComponent<BossAI_Wind>();
+        
+        if (bossAI.isStandoMode)
+        {
+            boss = GameObject.Find("Boss Stando").GetComponent<BossSkillDemo>();
+        }
+        else
+        {
+            boss = GameObject.Find("Boss").GetComponent<BossSkillDemo>();
+        }
+
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
 
         count = 1;
@@ -63,17 +72,20 @@ public class Skill_TornadoGattai : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
+        if (!b_ISLocked)
         {
-            b_ISLocked = true;
-            //int ran = Random.Range(1, 3);
-            //if (ran == 1)
+            //if (Vector3.Distance(transform.position, _targetPos) <= 0.1f && GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
             //{
-            //    _targetPos = _Player1.transform.position;
-            //}
-            //else
-            //{
-            //    _targetPos = _Player2.transform.position;
+            //    b_ISLocked = true;
+            //    //int ran = Random.Range(1, 3);
+            //    //if (ran == 1)
+            //    //{
+            //    //    _targetPos = _Player1.transform.position;
+            //    //}
+            //    //else
+            //    //{
+            //    //    _targetPos = _Player2.transform.position;
+            //    //}
             //}
         }
 
@@ -100,6 +112,7 @@ public class Skill_TornadoGattai : MonoBehaviour
                 //Debug.Log("Gattai!");
                 b_CanGattai = true;
 
+                boss.tornadoGattaiIsExisted = false;
                 Destroy(gameObject, .3f);
             }
         }
@@ -112,7 +125,6 @@ public class Skill_TornadoGattai : MonoBehaviour
                 boss.TornadoTracking = null;
             }
 
-            boss.tornadoGattaiIsExisted = false;
             LastDetect();
             Destroy(gameObject);
         }
@@ -144,7 +156,10 @@ public class Skill_TornadoGattai : MonoBehaviour
     private void LastDetect()
     {
         if (GameObject.FindGameObjectsWithTag("TornadoSmall").Length <= 1)
+        {
             cameraControl.ChangeTargetWeight(3, 2);
+            boss.tornadoGattaiIsExisted = false;
+        }
     }
 
     
