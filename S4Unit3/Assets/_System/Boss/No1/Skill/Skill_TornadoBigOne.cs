@@ -8,7 +8,7 @@ public class Skill_TornadoBigOne : MonoBehaviour
     [SerializeField] float speed = 6f;
     public float _angleOfTracking = 25;
     public int _canTrackNum = 3;
-    public int playerSelect;
+    public int playerSelect = 1;
 
     [Header("Despawn Setting")]
     [SerializeField] float secondToDie = 10f;
@@ -26,13 +26,13 @@ public class Skill_TornadoBigOne : MonoBehaviour
     private bool b_ISLocked;
 
     [Header("Debug Testing Log")]
+    [SerializeField] int _trackCount = 0;
     [SerializeField] bool _outOfTrack;
     [SerializeField] bool _isTracking;
     [SerializeField] bool _firstTime = false;
     [SerializeField] bool _timerStarted = false;
     [SerializeField] bool _showDetectLine = false;
 
-    [SerializeField] int _trackCount;
 
     Vector3 selfPos;
 
@@ -82,12 +82,20 @@ public class Skill_TornadoBigOne : MonoBehaviour
         //This part is only for debugging.
         if (_showDetectLine)
         {
-            Vector3 trackAngleLeft = Quaternion.Euler(0, _angleOfTracking, 0) * transform.forward;
-            trackAngleLeft.y = 0;
-            Vector3 trackAngleRight = Quaternion.Euler(0, -_angleOfTracking, 0) * transform.forward;
-            trackAngleRight.y = 0;
-            Debug.DrawLine(transform.position, trackAngleLeft * 30, Color.red);
-            Debug.DrawLine(transform.position, trackAngleRight * 30, Color.red);
+            //The Angle Axis Version of track showing
+            var lineTrack = transform.position + (transform.forward * 30);
+            Vector3 rotatedLine = Quaternion.AngleAxis(_angleOfTracking, transform.up) * lineTrack;
+            rotatedLine.y = transform.position.y;
+            Vector3 rotaterLineI = Quaternion.AngleAxis(-_angleOfTracking, transform.up) * lineTrack;
+            rotaterLineI.y = transform.position.y;
+
+            //Vector3 trackAngleLeft = Quaternion.Euler(0, _angleOfTracking, 0) * transform.forward;
+            //trackAngleLeft.y = 0;
+            //Vector3 trackAngleRight = Quaternion.Euler(0, -_angleOfTracking, 0) * transform.forward;
+            //trackAngleRight.y = 0;
+
+            Debug.DrawLine(transform.position, rotatedLine , Color.red);
+            Debug.DrawLine(transform.position, rotaterLineI , Color.red);
         }
 
         //If is not out of track, then will look to the target position.
