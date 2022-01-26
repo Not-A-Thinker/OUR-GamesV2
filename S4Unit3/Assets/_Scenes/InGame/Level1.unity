@@ -829,7 +829,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.04779026, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.04779038, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4084,7 +4084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.04779026, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.04779038, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7494,9 +7494,9 @@ MonoBehaviour:
   backSlider: {fileID: 871808721}
   health: 0
   maxHealth: 0
-  smoothing: 0.1
-  backerSmoothing: 0.4
-  _backerTTC: 0.6
+  smoothing: 0.15
+  backerSmoothing: 0.3
+  _backerTTC: 0.5
   _isChanged: 0
 --- !u!1 &1762843936
 GameObject:
