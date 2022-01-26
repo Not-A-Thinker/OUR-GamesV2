@@ -1,20 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Skill_TornadoBigOne : MonoBehaviour
 {
-    [Header("Tracking Setting")]
-    [SerializeField] float speed = 6f;
-    public float _angleOfTracking = 25;
-    public int _canTrackNum = 3;
-    public int playerSelect = 1;
-
-    [Header("Despawn Setting")]
-    [SerializeField] float secondToDie = 10f;
-
-    Vector3 _targetPos;
-
     PlayerState playerState;
     BossSkillDemo bossSkill;
     BossAI_Wind bossAI;
@@ -23,18 +11,36 @@ public class Skill_TornadoBigOne : MonoBehaviour
     private GameObject _Player1;
     private GameObject _Player2;
 
-    private bool b_ISLocked;
+    [Header("Tracking Mode")]
+    [Tooltip("Mode 1 is using counter, 2 is using timer for tracking")]
+    [Range(1, 2)] [SerializeField] int _trackingMode = 1;
+
+    [Header("Tracking Basic Setting")]
+    [SerializeField] float speed = 6f;
+    [SerializeField] float _rotationSpeed = 8f;
+
+    public int playerSelect = 1;
+
+    [Header("Track Mode 1 Setting")]
+    [SerializeField] float _angleOfTracking = 15;
+    public int _canTrackNum = 3;
+    [SerializeField] int _trackCount = 0;
+
+    [Header("Track Mode 2 Setting")]
+    public float _trackingTime = 7;
+
+    [Header("Despawn Setting")]
+    [SerializeField] float secondToDie = 10f;
 
     [Header("Debug Testing Log")]
-    [SerializeField] int _trackCount = 0;
     [SerializeField] bool _outOfTrack;
     [SerializeField] bool _isTracking;
     [SerializeField] bool _firstTime = false;
     [SerializeField] bool _timerStarted = false;
     [SerializeField] bool _showDetectLine = false;
 
-
     Vector3 selfPos;
+    Vector3 _targetPos;
 
     float playerAngle;
 
@@ -63,17 +69,20 @@ public class Skill_TornadoBigOne : MonoBehaviour
         if (playerSelect == 1)
         {
             _targetPos = _Player1.transform.position;
+            _targetPos.y = transform.position.y;
             playerAngle = Vector3.Angle(_Player1.transform.position - transform.position, transform.forward);
         }
         else if (playerSelect == 2)
         {
             _targetPos = _Player2.transform.position;
+            _targetPos.y = transform.position.y;
             playerAngle = Vector3.Angle(_Player2.transform.position - transform.position, transform.forward);
         }
         else
         {
             Debug.Log("Oh fuck, the big one there has no player to select!");
             _targetPos = _Player2.transform.position;
+            _targetPos.y = transform.position.y;
             playerAngle = Vector3.Angle(_Player2.transform.position - transform.position, transform.forward);
         }
 
@@ -107,32 +116,39 @@ public class Skill_TornadoBigOne : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(targetLookRotation);
                 targetRotation.x = 0;
                 targetRotation.z = 0;
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+                if (_trackingMode == 2)
+                { _rotationSpeed = 5f;}
+                else
+                { _rotationSpeed = 8f;}
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             }
             else
             {
                 Debug.Log("Vector3 is zero!: ");
             }
+
+            //This part is for detecting the player is in the line. If so, is time to chase.
+            selfPos = new Vector3(transform.position.x, 1, transform.position.z);
+
+            RaycastHit isPlayerGetHit;
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, 30))
+            {
+                if (isPlayerGetHit.transform.tag == "Player")
+                { _isTracking = true; _firstTime = true; }
+            }
+            else { _isTracking = false; }
+
+            if (_showDetectLine)
+            { Debug.DrawRay(selfPos, transform.forward * 30, Color.red); }
         }
-
-        //This part is for detecting the player is in the line. If so, is time to chase.
-        selfPos = new Vector3(transform.position.x, 1, transform.position.z);
-
-        RaycastHit isPlayerGetHit;
-        if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, 30))
-        {
-            if (isPlayerGetHit.transform.tag == "Player")
-            { _isTracking = true; _firstTime = true; }
-        }
-        else { _isTracking = false; }
-
-        if (_showDetectLine)
-        { Debug.DrawRay(selfPos, transform.forward * 30, Color.red); }
 
         //This part is mainly for tracking the player or distracking after the count number is full.
         if (_firstTime && _isTracking && !_outOfTrack)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
+            //transform.LookAt(_targetPos);
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+            //transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
         }
         else if (_firstTime && !_isTracking && !_outOfTrack)
         {
@@ -140,13 +156,12 @@ public class Skill_TornadoBigOne : MonoBehaviour
             {
                 StartCoroutine(Timer());
                 _timerStarted = true;
+            }
 
-                transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
-            }
+            //transform.LookAt(_targetPos);
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+            //transform.position = Vector3.MoveTowards(transform.position, _targetPos, speed * Time.deltaTime);
         }
         else
         {
@@ -168,15 +183,25 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
     IEnumerator Timer()
     {
-        _trackCount++;
-        if (_trackCount == 3)
+        if (_trackingMode == 1)
         {
+            _trackCount++;
+            if (_trackCount == 3)
+            {
+                _outOfTrack = true;
+                Debug.Log("is out of track!");
+            }
+            yield return new WaitForSeconds(1);
+            _timerStarted = false;
+            Debug.Log("Timer ends.");
+        }
+        else if (_trackingMode == 2)
+        {
+            Debug.Log("Start Tracking!");
+            yield return new WaitForSeconds(_trackingTime);
             _outOfTrack = true;
             Debug.Log("is out of track!");
         }
-        yield return new WaitForSeconds(1);
-        _timerStarted = false;
-        Debug.Log("Timer ends.");
     }
 
     private void OnTriggerEnter(Collider other)
