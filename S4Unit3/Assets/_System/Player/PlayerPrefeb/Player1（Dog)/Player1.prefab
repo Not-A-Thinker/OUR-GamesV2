@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 9
+  maximumSpeed: 11
   rotationSpeed: 40
   characterController: {fileID: 500052818044258931}
   _animation: {fileID: 628926013}
@@ -500,7 +500,7 @@ MonoBehaviour:
   isImMobilized: 0
   isDashed: 0
   inCC: 0
-  dashSpeed: 15
+  dashSpeed: 25
   dashTime: 0.25
   DashBar: 100
   DashUsed: 49

@@ -671,7 +671,7 @@ public class BossAI_Wind : MonoBehaviour
     IEnumerator AIStartTimer()
     {
         yield return new WaitForSeconds(aiStartTime);
-        Debug.Log("'AI' Started");
+        if (_aiEnable){Debug.Log("'AI' Started");}
         yield return new WaitForSeconds(3);
 
         if (_aiEnable)

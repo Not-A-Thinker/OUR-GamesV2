@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Hight: 1
   ChipParent: {fileID: 749153411712952852}
-  ClipMax: 0
+  ClipMax: 3
   SpawnDone: 0
 --- !u!1 &1860544260377549311
 GameObject:
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 11
+  maximumSpeed: 13
   rotationSpeed: 10
   characterController: {fileID: 1860544261278244877}
   _animation: {fileID: 317406783}
@@ -493,7 +493,7 @@ MonoBehaviour:
   isImMobilized: 0
   isDashed: 0
   inCC: 0
-  dashSpeed: 15
+  dashSpeed: 30
   dashTime: 0.25
   DashBar: 100
   DashUsed: 99

@@ -10,7 +10,7 @@ public class GetTriggerObject : MonoBehaviour
     //getChip
     public GameObject ChipParent;
     float totalHight = 2f;
-    GameObject SpcAttack;  
+    GameObject SpcAttack;
     GameObject chip;
     P1GetCube getCube;
 
