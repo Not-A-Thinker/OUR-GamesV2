@@ -13,12 +13,12 @@ public class Level1Scripts : MonoBehaviour
 
     void Start()
     {
-        var sequence = DOTween.Sequence();
-
+        //This is for handling the crystal moving animation.
+        //哈利,這比Lerp好用
         foreach (var crystal in _crystalAlter)
         {
             crystal.DOMoveY(_crystalHeight, Random.Range(1.8f, 2f)).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutCubic);
-            crystal.DORotate(new Vector3(360, 360, 360), 1, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
+            crystal.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
         }
     }
 
