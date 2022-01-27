@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CloundFog_mat
+  m_Name: CloundFog_mat 1
   m_Shader: {fileID: -6465566751694194690, guid: 3badc300cf4e2474989123b027778be7, type: 3}
   m_ShaderKeywords: _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
@@ -38,7 +38,7 @@ Material:
     - _Alpha: 0.25
     - _AlphaClip: 0
     - _Base_Scale: 0.003
-    - _Base_Speed: 30
+    - _Base_Speed: 15
     - _Base_Strength: 1.16
     - _Blend: 0
     - _CastShadows: 1
@@ -63,8 +63,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color_Peak: {r: 0.02750145, g: 0, b: 0.5660378, a: 1}
-    - _Color_Valley: {r: 1, g: 0.40511045, b: 0.3150943, a: 0.078431375}
+    - _Color_Peak: {r: 0.009803922, g: 0, b: 0.20392157, a: 1}
+    - _Color_Valley: {r: 1, g: 0.38874123, b: 0.29622638, a: 0.078431375}
     - _Noise_Remap: {r: -0.29, g: 0.82, b: -1.6, a: 0.61}
     - _Roate: {r: 1, g: 1, b: 0, a: 90}
   m_BuildTextureStacks: []

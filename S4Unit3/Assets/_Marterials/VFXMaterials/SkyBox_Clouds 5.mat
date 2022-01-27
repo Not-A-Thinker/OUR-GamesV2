@@ -112,7 +112,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NadirBlendPower: 0.775
+    - _NadirBlendPower: 1.99
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -133,8 +133,8 @@ Material:
     - _CloudsAnimationSpeed: {r: 0.05, g: 0.1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HorizonColor: {r: 1, g: 0.3150943, b: 0.49773565, a: 1}
-    - _NadirColor: {r: 0.8113208, g: 0.26329654, b: 0.2675947, a: 1}
+    - _HorizonColor: {r: 0.9221513, g: 0.7193746, b: 0.5986742, a: 1}
+    - _NadirColor: {r: 0, g: 0.0981806, b: 0.5660378, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _ZenithColor_: {r: 0.4991342, g: 1.5195864, b: 2.1185474, a: 1}
   m_BuildTextureStacks: []
