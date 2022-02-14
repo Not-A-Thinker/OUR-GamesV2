@@ -6,6 +6,7 @@ public class ObjectDamage : MonoBehaviour
 {
     BossHealthBar bossHealth;
     BasicState basicState;
+    BossSpawnObject bossSpawn;
 
     bool isSpcecialAttack;
 
@@ -23,6 +24,7 @@ public class ObjectDamage : MonoBehaviour
     {
         chip = Resources.Load("Prefabs/Clip") as GameObject;
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
+      
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
         ///到指定時間會自己消失
@@ -83,7 +85,7 @@ public class ObjectDamage : MonoBehaviour
                 bossHealth.TakeDamage(Damage);
                 ///Boss Count -1
                 ///
-                BossSpawnObject bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
+                bossSpawn = GameObject.Find("Boss").transform.parent.GetComponent<BossSpawnObject>();
                 bossSpawn.SpawnedCountDecrease();
                 //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 //bossSpawn.SpawnedCountDecrease();
@@ -116,6 +118,8 @@ public class ObjectDamage : MonoBehaviour
     {
         ///射擊三秒後一定消失
         yield return new WaitForSeconds(3);
+        bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
+        bossSpawn.SpawnedCountDecrease();
         Destroy(this.gameObject);
     }
 }

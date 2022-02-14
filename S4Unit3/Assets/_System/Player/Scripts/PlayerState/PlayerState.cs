@@ -163,7 +163,8 @@ public class PlayerState : MonoBehaviour
         //¦º¤`³]¸m
         isDead = true;
         Resurrect_range.SetActive(true);
-        move.inCC = true;
+        move.isKnockUp = false;
+        move.inCC = true;    
         GetComponent<CapsuleCollider>().enabled = false;
         //rb.useGravity = false;
 

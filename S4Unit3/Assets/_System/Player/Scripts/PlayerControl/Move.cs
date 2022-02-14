@@ -151,7 +151,7 @@ public class Move : MonoBehaviour
                 angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                 //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                 Quaternion target = Quaternion.Euler(0, angle, 0);
-                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 500f * Time.deltaTime);
                 //Debug.Log(angle);
             }
 
