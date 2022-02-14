@@ -37,13 +37,14 @@ public class Move : MonoBehaviour
     public bool isSlowed;
     public bool isImMobilized;
     public bool isDashed;
+    public bool isKnockUp;
 
     public bool inCC = false;
 
     //demo1 used
     private GameObject Boss;
 
-    float gravity = 9.8f;
+    float gravity= 20f;
     float vSpeed = 0f;
 
     [Header("Player Dash")]
@@ -68,6 +69,12 @@ public class Move : MonoBehaviour
 
     void Update()
     {
+        if(isKnockUp)
+        {
+            characterController.Move(transform.up * 5*Time.deltaTime);
+            characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
+        }
+
         if (characterController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...
@@ -77,6 +84,9 @@ public class Move : MonoBehaviour
         {
             DashBar = DashBar + DashRestore * Time.deltaTime;
         }
+      
+        ///沒用Move的時候這邊記得要註解掉
+        UIcontrol.EnergyBarChange(DashBar, 1);
 
         if (isPlayer1)//wasd
         {
@@ -148,56 +158,7 @@ public class Move : MonoBehaviour
             {
                 Debug.Log("locked Boss!");
                 BossLockOn();
-            }         
-            
-            ///可能會刪除因為都是旋轉失敗的測試
-            //float tiltAroundZ = Input.GetAxisRaw("RotHorizontalP1");
-            //float tiltAroundX = Input.GetAxisRaw("RotVerticalP1");
-
-            //// Rotate the cube by converting the angles into a quaternion.
-            //Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
-            //// Dampen towards the target rotation
-            //ShootRot.transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 5f);
-
-            //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-            //if (angle != Vector2.zero)
-            //{
-            //    characterController.transform.Rotate(transform.up * angle * (rotationSpeed * Time.deltaTime));
-            //}
-
-            //2
-            //Vector2 angle = new Vector2(RothorizontalInput, RotverticalInput);
-
-            //if (angle != Vector2.zero)
-            //{
-            //    Quaternion toRotation = Quaternion.LookRotation(Vector3.up, angle);
-            //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            //}
-
-            //3
-            //Vector3 relative = transform.InverseTransformPoint(target.position);
-            //float angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-            //Debug.Log(angle);
-
-            //ShootRot.transform.rotation = new Quaternion(0, angle, 0, 90);
-            //Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            //Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-            //BossLockOn();
-
-            ////Aim
-            //Plane plane = new Plane(Vector3.up, transform.position);
-            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            //float hitDist = 0;
-
-            //if (plane.Raycast(ray, out hitDist))
-            //{
-            //    Vector3 targetPoint = ray.GetPoint(hitDist);
-            //    Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-            //    targetRotation.x = 0;
-            //    targetRotation.z = 0;
-            //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 7f * Time.deltaTime);
-            //}
+            }                          
         }
 
         if (isPlayer2)//arrows
@@ -398,11 +359,12 @@ public class Move : MonoBehaviour
     public IEnumerator KnockUp()
     {
         inCC = true;
-        characterController.Move(new Vector3(0, 5, 0) * Time.deltaTime);
+        isKnockUp = true;
         Debug.Log("KnockUp!");
 
-        yield return null;
+        yield return new WaitForSeconds(3);
         inCC = false;
+        isKnockUp = false;
     }
     public void SpeedSlow()
     {

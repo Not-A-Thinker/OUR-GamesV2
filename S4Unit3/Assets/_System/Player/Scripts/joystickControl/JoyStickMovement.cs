@@ -124,7 +124,7 @@ public class JoyStickMovement : MonoBehaviour
         if (context.canceled)
         {
             //Debug.Log("ShootUp");
-            forceCast_TopDown.Shooted = true;
+            forceCast_TopDown.isShooted = true;
         }
     }
     public void OnFriendlyHelp(InputAction.CallbackContext context)
@@ -203,7 +203,7 @@ public class JoyStickMovement : MonoBehaviour
         {
             if (isPlayer1)
             {
-                forceCast_TopDown.Shooted = true;
+                forceCast_TopDown.isShooted = true;
             }
 
             if (isPlayer2)

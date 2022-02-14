@@ -15,8 +15,8 @@ public class ForceCast_TopDown : MonoBehaviour
     [Header("P1 Push State")]
     public float _force = 500f;
     public float _range = 15f;
-    public bool friendPushed, Charge, Shooted, ShootInCD;
-
+    public bool isfriendPushed, Charge, isShooted ;//控制器觸發用的
+    bool friendPushed, ShootInCD;//檢查用
 
     public bool _attackTrigger = false;
     Quaternion OldQuate;
@@ -51,7 +51,7 @@ public class ForceCast_TopDown : MonoBehaviour
         }
 
         ///射擊
-        if (Shooted)
+        if (isShooted)
         {
             if (!ShootInCD)
             {
@@ -60,11 +60,11 @@ public class ForceCast_TopDown : MonoBehaviour
                 UIcontrol.PushingStop();
             }
             else
-                Shooted = false;
+                isShooted = false;
         }
 
         ///推隊友
-        if (friendPushed)
+        if (isfriendPushed)
         {
             FriendlyPushed();
         }
@@ -86,16 +86,24 @@ public class ForceCast_TopDown : MonoBehaviour
         UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
         ///OldInput備案 如果New Input手把不能用的時候打開
-        //if (Input.GetButtonDown("Fire1"))
-        //{
-        //    Charge = true;
-        //}
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Charge = true;
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            isShooted = true;
+            ResetOldQue();
+        }
+        if(Input.GetButton("HelpFriendP1"))
+        {
+            isfriendPushed = true;
+        }
+        if (Input.GetButtonUp("HelpFriendP1"))
+        {
+            isfriendPushed = false;
+        }
 
-        //if (Input.GetButtonUp("Fire1"))
-        //{
-        //    Shooted = true;
-        //    ResetOldQue();
-        //}
     }
 
     private void Shoot()
@@ -133,7 +141,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
         ///重置狀態
         countFloat = 0;
-        Shooted = false;
+        isShooted = false;
         Charge = false;
     }
 

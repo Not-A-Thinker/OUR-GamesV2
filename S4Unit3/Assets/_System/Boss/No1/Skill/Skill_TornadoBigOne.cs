@@ -4,6 +4,7 @@ using UnityEngine;
 public class Skill_TornadoBigOne : MonoBehaviour
 {
     PlayerState playerState;
+    Move move;
     BossSkillDemo bossSkill;
     BossAI_Wind bossAI;
     BossCameraControl cameraControl;
@@ -212,7 +213,8 @@ public class Skill_TornadoBigOne : MonoBehaviour
             {
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
-
+                move = other.GetComponent<Move>();
+                StartCoroutine(move.KnockUp());
             }
         }
 
