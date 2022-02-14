@@ -157,7 +157,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
         ///蓄力條蓄力計算
         countFloat += Time.deltaTime;
-        if (countFloat > CountMax + 0.5f)
+        if (countFloat > CountMax +1f)
             countFloat = 0;
         ///蓄力條UI
         float BarValue = countFloat/CountMax;

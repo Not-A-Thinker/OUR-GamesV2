@@ -71,7 +71,7 @@ public class Move : MonoBehaviour
     {
         if(isKnockUp)
         {
-            characterController.Move(transform.up * 5*Time.deltaTime);
+            characterController.Move(transform.up * 3 *Time.deltaTime);
             characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
         }
 
@@ -92,6 +92,7 @@ public class Move : MonoBehaviour
         {
             if (inCC == false)
             {
+                isKnockUp = false;
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 //Move
                 float horizontalInput = Input.GetAxis("HorizontalP1");
@@ -363,8 +364,7 @@ public class Move : MonoBehaviour
         Debug.Log("KnockUp!");
 
         yield return new WaitForSeconds(3);
-        inCC = false;
-        isKnockUp = false;
+        inCC = false;      
     }
     public void SpeedSlow()
     {

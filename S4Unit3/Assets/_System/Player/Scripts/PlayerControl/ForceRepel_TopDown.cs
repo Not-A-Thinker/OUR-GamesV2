@@ -62,6 +62,10 @@ public class ForceRepel_TopDown : MonoBehaviour
         uIcontrol.SuckingCDBar(Timer/SuccMaxCD);
         uIcontrol.SuckCount(SuckCount);
 
+        if (Input.GetButton("HelpFriendP2"))
+        {
+            SuckFriend();
+        }
         if (Input.GetButtonDown("Fire2"))
         {
              ButtonDonwEvent();
@@ -182,6 +186,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
+            //Debug.Log("Hit" + hit.transform.name);
             if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
             {
                 //Debug.Log("Hit"+hit.transform.name);
