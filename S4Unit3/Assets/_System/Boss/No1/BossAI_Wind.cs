@@ -105,7 +105,7 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
-            StartCoroutine(Test());
+            //StartCoroutine(Test());
         }
 
         if (isStando){ Destroy(gameObject, 30); }

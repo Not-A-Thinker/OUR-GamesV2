@@ -17,7 +17,7 @@ public class BasicState : MonoBehaviour
 
     public bool b_isDefeated;
 
-    void Start()
+    private void Awake()
     {
         if (isHealthMerge)
         {
@@ -28,6 +28,10 @@ public class BasicState : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
+    }
+
+    void Start()
+    {
 
     }
 
