@@ -68,9 +68,9 @@ public class P1GetCube : MonoBehaviour
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
             Rigidbody Rb = cube.GetComponent<Rigidbody>();
-            if (!cube.GetComponent<ObjectDestroy>())
+            cube.GetComponent<ObjectRotation>()._isInCount = false;
+            if (cube.GetComponent<ObjectDestroy>())
             {
-                if (cube.GetComponent<ObjectDestroy>().isSucked)
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
             }
             //­«¸m¤è¶ô±¼¸¨ª¬ºA
@@ -108,7 +108,10 @@ public class P1GetCube : MonoBehaviour
         cube.transform.parent = null;
 
         cube.GetComponent<Bullet>().isAttacking = true;
-
+        if (cube.GetComponent<ObjectDestroy>())
+        {
+            cube.GetComponent<ObjectDestroy>().isSucked = false;
+        }
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
