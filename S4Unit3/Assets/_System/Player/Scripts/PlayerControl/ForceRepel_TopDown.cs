@@ -60,7 +60,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Timer = SuccMaxCD;
 
         uIcontrol.SuckingCDBar(Timer/SuccMaxCD);
-        uIcontrol.SuckCount(SuckCount);
+        //uIcontrol.SuckCount(SuckCount);
 
         if (Input.GetButton("HelpFriendP2"))
         {

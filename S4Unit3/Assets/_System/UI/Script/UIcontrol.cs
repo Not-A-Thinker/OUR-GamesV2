@@ -39,7 +39,7 @@ public class UIcontrol : MonoBehaviour
     [SerializeField] float smoothing = 5;
     [SerializeField] Text DeadCounter;
     [SerializeField] GameObject P1,P2;
-    [SerializeField] Image SuckObjectCount;
+    //[SerializeField] Image SuckObjectCount;
 
     private void Start()
     {
@@ -58,7 +58,7 @@ public class UIcontrol : MonoBehaviour
 
         Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
         P2pos.y = P2pos.y + 130;
-        SuckObjectCount.transform.position = P2pos;
+        //SuckObjectCount.transform.position = P2pos;
     }
 
     private void FixedUpdate()
@@ -167,13 +167,13 @@ public class UIcontrol : MonoBehaviour
             Player2Energy.value = NowEnergy * 0.01f;
     }
 
-    public void SuckCount(int Count)
-    {
-        if (Count < 2)
-            SuckObjectCount.color = new Color32(0, 130, 0, 255);
-        else if (Count == 2)
-            SuckObjectCount.color = new Color32(255, 230, 0, 255);
-        else
-            SuckObjectCount.color = new Color32(255, 0, 0, 255);
-    }
+    //public void SuckCount(int Count)
+    //{
+    //    if (Count < 2)
+    //        SuckObjectCount.color = new Color32(0, 130, 0, 255);
+    //    else if (Count == 2)
+    //        SuckObjectCount.color = new Color32(255, 230, 0, 255);
+    //    else
+    //        SuckObjectCount.color = new Color32(255, 0, 0, 255);
+    //}
 }
