@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIcontrol : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class UIcontrol : MonoBehaviour
 
     [Header("Respawn")]
     [SerializeField] GameObject RespawnLoad;
-    [SerializeField] Text LoadingText;
+    [SerializeField] TextMeshProUGUI LoadingText;
     [SerializeField] Slider slider;
     SceneControl sceneControl;
     //[SerializeField] Text DeadCount;
@@ -37,7 +38,7 @@ public class UIcontrol : MonoBehaviour
     //bool IsGameOver, IsWinGame;
     [Header("Other")]
     [SerializeField] float smoothing = 5;
-    [SerializeField] Text DeadCounter;
+    [SerializeField] TextMeshProUGUI DeadCounter;
     [SerializeField] GameObject P1,P2;
     //[SerializeField] Image SuckObjectCount;
 
