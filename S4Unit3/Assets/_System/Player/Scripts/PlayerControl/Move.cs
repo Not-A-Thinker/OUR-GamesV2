@@ -277,15 +277,15 @@ public class Move : MonoBehaviour
         maximumSpeed = tempSpeed;
     }
 
-    IEnumerator ImMobilzer(int sec)
-    {
-        //Debug.Log(transform.name + " is ImMobilze!");
-        isImMobilized = true;
-        maximumSpeed = 0;
-        yield return new WaitForSeconds(sec);
-        isImMobilized = false;
-        maximumSpeed = tempSpeed;
-    }
+    //IEnumerator ImMobilzer(int sec)
+    //{
+    //    //Debug.Log(transform.name + " is ImMobilze!");
+    //    isImMobilized = true;
+    //    maximumSpeed = 0;
+    //    yield return new WaitForSeconds(sec);
+    //    isImMobilized = false;
+    //    maximumSpeed = tempSpeed;
+    //}
     IEnumerator Dash(Vector3 velocity, float horizontalInput, float verticalInput)
     {
         //Debug.Log("Dashed");
@@ -366,13 +366,15 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(3);
         inCC = false;      
     }
-    public void SpeedSlow()
+
+    ///Only For P1 While Getting New Cube
+    public void SpeedSlow(float SpeedDec)
     {
-        maximumSpeed = (float)maximumSpeed * 0.85f;
+        maximumSpeed = (float)maximumSpeed * SpeedDec;
     }
-    public void SpeedFast()
+    public void SpeedFast(float SpeedInc)
     {
-        maximumSpeed = (float)maximumSpeed / 0.85f;
+        maximumSpeed = (float)maximumSpeed / SpeedInc;
     }
 
     public void SpeedReset()

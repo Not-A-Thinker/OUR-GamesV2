@@ -437,6 +437,7 @@ MonoBehaviour:
   CountMax: 2
   Timer: 2
   PushMaxCD: 2
+  speedSlow: 0.5
 --- !u!114 &500052818044258932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +453,7 @@ MonoBehaviour:
   objectParent: {fileID: 500052817746688516}
   direction: {fileID: 9195968397510403553}
   SpawnPoint: {fileID: 500052817520157418}
+  SpeedToSlowDown: 0.85
 --- !u!114 &500052818044258935
 MonoBehaviour:
   m_ObjectHideFlags: 0

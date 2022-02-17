@@ -10,6 +10,8 @@ public class P1GetCube : MonoBehaviour
 
     public Transform SpawnPoint;
 
+    public float SpeedToSlowDown;
+
     Move move;
 
     public void PlayerGetCube(GameObject cube)
@@ -18,7 +20,7 @@ public class P1GetCube : MonoBehaviour
         if (objectParent.transform.childCount < 3)
         {
             move = GetComponent<Move>();
-            move.SpeedSlow();
+            move.SpeedSlow(SpeedToSlowDown);
 
             ///用於初始化方塊的位置
             cube.transform.parent = objectParent.transform;
@@ -85,7 +87,7 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-        move.SpeedFast();
+        move.SpeedFast(SpeedToSlowDown);
 
         int caseNum = 0;
 

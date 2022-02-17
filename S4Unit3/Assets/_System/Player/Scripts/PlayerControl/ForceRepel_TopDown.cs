@@ -33,6 +33,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public bool SuckInCD;
     public int SuckCount;
+    public float _SpeedSlow;
 
     //clip
 
@@ -82,7 +83,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            move.inCC = false;        
+            move.SpeedFast(_SpeedSlow);
             //uIcontrol.SuckingCDBar(canSucc);
             if (!SuckInCD)
             {
@@ -111,7 +112,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void ButtonDonwEvent()
     {
         OldQuate = ChaRot.transform.rotation;
-        move.inCC = true;
+        move.SpeedSlow(_SpeedSlow);
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()

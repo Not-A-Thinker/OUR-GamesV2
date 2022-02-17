@@ -29,6 +29,8 @@ public class ForceCast_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public int PushMaxCD = 1;
 
+    public float speedSlow;
+
     void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -118,6 +120,9 @@ public class ForceCast_TopDown : MonoBehaviour
             //設置方塊
             gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
         }
+
+        Move move = GetComponent<Move>();
+        move.SpeedFast(speedSlow);
         //else
         //{
         //    _attackTrigger = true;
@@ -162,6 +167,9 @@ public class ForceCast_TopDown : MonoBehaviour
         ///蓄力條UI
         float BarValue = countFloat/CountMax;
         UIcontrol.PushingBar(BarValue);
+
+        Move move = GetComponent<Move>();
+        move.SpeedSlow(speedSlow);
     }
 
     private void FriendlyPushed()
