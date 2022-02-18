@@ -105,7 +105,6 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             isfriendPushed = false;
         }
-
     }
 
     private void Shoot()

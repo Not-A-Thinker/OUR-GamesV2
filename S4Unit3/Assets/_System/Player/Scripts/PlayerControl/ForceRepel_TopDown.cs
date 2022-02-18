@@ -9,6 +9,7 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     [Header("Suck Force")]
     public float _force = 5f;
+    float _OldForce = 5f;
     public float _range = 15f;
 
     [Header("Suck OBJ")]
@@ -40,6 +41,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     private void Start()
     {
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        _OldForce = _force;
     }
 
     void Update()
@@ -105,7 +107,9 @@ public class ForceRepel_TopDown : MonoBehaviour
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
             Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, curve.Evaluate(0.6f));
+            savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, _force * Time.deltaTime);
+            _force = _force + _force* 2 *Time.deltaTime;
+            // curve.Evaluate(0.6f)
         }
     }
 
@@ -210,6 +214,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
             }             
             savedObject = null;
+            _force = _OldForce;
         }
            
         //if (savedObject.tag=="Object")
