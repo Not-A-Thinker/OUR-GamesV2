@@ -85,16 +85,18 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire2"))
         {
+
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            move.SpeedFast(_SpeedSlow);
+            
             //uIcontrol.SuckingCDBar(canSucc);
             if (!SuckInCD)
             {
                 SuckInCD = true;
                 Timer = 0;
+                move.SpeedFast(_SpeedSlow);
             }              
             if (savedObject != null)
             {
@@ -153,6 +155,9 @@ public class ForceRepel_TopDown : MonoBehaviour
                 //rb.useGravity = !rb.useGravity;       
                 if (hit.transform.tag == "Boss")
                 {
+                    var cubeRenderer = Range.GetComponent<Renderer>();
+                    cubeRenderer.material.SetColor("", Color.green);
+
                     BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
                     Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     //Debug.Log(hitpoint);
