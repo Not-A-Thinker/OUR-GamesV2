@@ -39,9 +39,7 @@ public class PlayerState : MonoBehaviour
         _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
 
-        if(GetComponent<JoyStickMovement>())
-
-
+        //if(GetComponent<JoyStickMovement>())
        //檢查玩家編號
         if (isPlayer1)
         {
@@ -71,7 +69,10 @@ public class PlayerState : MonoBehaviour
         //Invincible作弊
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
+            ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
             isInvincible = !isInvincible;
+            _Collider.enabled = !isInvincible;
+
             Debug.Log("Player Invincible is" + isInvincible);
         }
            
@@ -89,38 +90,36 @@ public class PlayerState : MonoBehaviour
 
     public void hp_decrease()
     {
-        if (!isInvincible)
+        _currentHealth--;
+
+        if (isPlayer1)
         {
-            _currentHealth--;
-
-            if (isPlayer1)
-            {
-                ///P1受傷要把方塊都丟掉
-                P1GetCube p1GetCube= GetComponent<P1GetCube>();
-                p1GetCube.PlayerGoneCube();
-            }
-            //Debug.Log(_currentHealth);     
-            if (_currentHealth > 0)
-            {
-                ///受攻擊無敵
-                StartCoroutine(Invincible(3));
-            }
-            if (_currentHealth == 0)
-            {
-                PlayerIsDead();
-            }
-            if (_currentHealth < 0)
-                _currentHealth = 0;
-            int playerCount=1;
-            if (isPlayer1)
-                playerCount = 1;
-            if (isPlayer2)
-                playerCount = 2;
-
-            ///UI
-            UIcontrol.hp_decrease(_currentHealth, playerCount);
-            StartCoroutine(_animation.PlayerDamaged()) ;
+            ///P1受傷要把方塊都丟掉
+            P1GetCube p1GetCube= GetComponent<P1GetCube>();
+            p1GetCube.PlayerGoneCube();
         }
+        //Debug.Log(_currentHealth);     
+        if (_currentHealth > 0)
+        {
+            ///受攻擊無敵
+            StartCoroutine(Invincible(3));
+        }
+        if (_currentHealth == 0)
+        {
+            PlayerIsDead();
+        }
+        if (_currentHealth < 0)
+            _currentHealth = 0;
+        int playerCount=1;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+
+        ///UI
+        UIcontrol.hp_decrease(_currentHealth, playerCount);
+        StartCoroutine(_animation.PlayerDamaged()) ;
+        
     }
 
     public void hp_increase()
@@ -212,8 +211,6 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
-        _Collider.enabled = false;
-
         yield return new WaitForSeconds(time);
         CancelInvoke();
         _renderer.enabled = true;
@@ -222,10 +219,10 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Invincible" + isInvincible);
     }
 
-    //Cheat
+    //閃爍
     void InvincibleRend()
     {
-        ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
+        _Collider.enabled = false;
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else

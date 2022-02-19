@@ -90,13 +90,13 @@ public class ForceRepel_TopDown : MonoBehaviour
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            
+            move.SpeedReset();
+
             //uIcontrol.SuckingCDBar(canSucc);
             if (!SuckInCD)
             {
                 SuckInCD = true;
-                Timer = 0;
-                move.SpeedFast(_SpeedSlow);
+                Timer = 0;              
             }              
             if (savedObject != null)
             {
@@ -156,7 +156,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 if (hit.transform.tag == "Boss")
                 {
                     var cubeRenderer = Range.GetComponent<Renderer>();
-                    cubeRenderer.material.SetColor("", Color.green);
+                    cubeRenderer.material.SetColor("Range", Color.green);
 
                     BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
                     Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
