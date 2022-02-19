@@ -26,7 +26,9 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     [Header("State")]
     [SerializeField] bool FriendCD = false;
- 
+    BossSpawnObject BossSpwO;
+    bool TextSpawning;
+
     Quaternion OldQuate;
 
     [Header("P2 Attack CD")]
@@ -41,6 +43,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     private void Start()
     {
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         _OldForce = _force;
     }
 
@@ -73,6 +76,8 @@ public class ForceRepel_TopDown : MonoBehaviour
         {
             if (!SuckInCD)
                 ButtonDonwEvent();
+            else
+                uIcontrol.flyText(2, Color.red, "Sucking Was In CD Now!");
         }         
         if (Input.GetButton("Fire2"))
         {
@@ -85,7 +90,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire2"))
         {
-
+            TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
@@ -157,20 +162,29 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     var cubeRenderer = Range.GetComponent<Renderer>();
                     cubeRenderer.material.SetColor("Range", Color.green);
-
-                    BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
-                    Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                    //Debug.Log(hitpoint);
-                    BossSpwO.ObjectSpawn(hit.point, spawnRotation);
-                    if (BossSpwO.lastSpawned != null)
+                    if (BossSpwO.SpawnedCount <= BossSpwO.SpawnendMax)
                     {
-                        savedObject = BossSpwO.lastSpawned;
-                        savedObject.GetComponent<ObjectDestroy>().isSucked = true;
-                        savedObject.GetComponent<Bullet>().bossToSuck = true;
-                        BossSpwO.lastSpawned = null;
-                        //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
-                        //rb.useGravity = false;
+                        Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        //Debug.Log(hitpoint);
+                        BossSpwO.ObjectSpawn(hit.point, spawnRotation);
+                        if (BossSpwO.lastSpawned != null)
+                        {
+                            savedObject = BossSpwO.lastSpawned;
+                            savedObject.GetComponent<ObjectDestroy>().isSucked = true;
+                            savedObject.GetComponent<Bullet>().bossToSuck = true;
+                            BossSpwO.lastSpawned = null;
+                            //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
+                            //rb.useGravity = false;
+                        }
                     }
+                    else
+                    {
+                        if(!TextSpawning)
+                        {
+                            uIcontrol.flyText(2, Color.red, "Sucking Count Was Full!");
+                            TextSpawning = true;
+                        }                      
+                    }                    
                 }
                 //if(hit.transform.tag=="Objcet")
                 //{

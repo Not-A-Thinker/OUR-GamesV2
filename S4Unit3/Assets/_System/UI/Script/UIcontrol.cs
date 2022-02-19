@@ -47,7 +47,7 @@ public class UIcontrol : MonoBehaviour
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
     }
-
+    
     private void Update()
     {
         if (pushing) 
@@ -57,11 +57,12 @@ public class UIcontrol : MonoBehaviour
             pushing.transform.position = wantedPos;
         }
 
+        Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+        P1pos.y = P1pos.y + 130;
         Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
         P2pos.y = P2pos.y + 130;
         //SuckObjectCount.transform.position = P2pos;
     }
-
     private void FixedUpdate()
     {
         if (BossHP.value <= 0 && BossAI.IsStage2)
@@ -69,7 +70,7 @@ public class UIcontrol : MonoBehaviour
             YouWin();
         }
     }
-
+    #region GameSystemUI
     //hp
     public void hp_decrease(int new_hp,int playerCount)
     {
@@ -123,6 +124,20 @@ public class UIcontrol : MonoBehaviour
         DeadCounter.text = DeadCount.ToString();
     }
 
+    //end game
+    public void GameOver()
+    {
+        sceneControl = new SceneControl();
+        sceneControl.GameOverScene();
+    }
+    public void YouWin()
+    {
+        sceneControl = new SceneControl();
+        sceneControl.WinScene();
+    }
+    #endregion
+
+    #region PlayerUI
     //pushing
     public void PushingBar(float load)
     {
@@ -135,7 +150,20 @@ public class UIcontrol : MonoBehaviour
 
         push_slider.value = 0;
     }
-
+    //Warnning Text(¼È®É©Ê)
+    public void flyText(int PlayerNum, Color color, string content)
+    {
+        Vector3 Player_pos;
+        if (PlayerNum==1)       
+            Player_pos = Camera.main.WorldToScreenPoint(P1.transform.position);     
+        else
+            Player_pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+        GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
+        go.transform.SetParent(GameObject.Find("GUI").transform);
+        UI_FlyText ft = go.GetComponent<UI_FlyText>();
+        ft.color = color;
+        ft.content = content;
+    }
     //PlayerSuckPushCD
     public void PushingCDBar(float load)
     {
@@ -147,19 +175,6 @@ public class UIcontrol : MonoBehaviour
         //SuckingCD.SetActive(Ready);
         SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
     }
-
-    //end game
-    public void GameOver()
-    {
-        sceneControl = new SceneControl();
-        sceneControl.GameOverScene();
-    }
-    public void YouWin()
-    {
-        sceneControl = new SceneControl();
-        sceneControl.WinScene();
-    }
-
     public void EnergyBarChange(float NowEnergy, int playerCount)
     {
         if (playerCount == 1)
@@ -167,6 +182,7 @@ public class UIcontrol : MonoBehaviour
         else if (playerCount == 2)
             Player2Energy.value = NowEnergy * 0.01f;
     }
+    #endregion
 
     //public void SuckCount(int Count)
     //{

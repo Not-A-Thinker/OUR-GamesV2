@@ -8,7 +8,9 @@ public class BossSpawnObject : MonoBehaviour
 
     public GameObject lastSpawned;
 
-    [SerializeField] int SpawnedCount;
+    public int SpawnedCount;
+
+    public int SpawnendMax;
 
     private void Start()
     {
@@ -24,14 +26,11 @@ public class BossSpawnObject : MonoBehaviour
 
     public void ObjectSpawn(Vector3 P2Pos,Quaternion SpawnQuat)
     {
-        if (SpawnedCount<6)
-        {
-            lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
-            //Debug.Log(lastSpawned.gameObject.name);
-            bossHealth.TakeDamage(5);
-            SpawnedCount++;
-            //Debug.Log(P2Pos);
-        }
+        lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
+        //Debug.Log(lastSpawned.gameObject.name);
+        bossHealth.TakeDamage(5);
+        SpawnedCount++;
+        //Debug.Log(P2Pos);
     }
 
     public void SpawnedCountDecrease()
