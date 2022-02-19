@@ -41,7 +41,7 @@ public class ForceCast_TopDown : MonoBehaviour
         ///射擊前充能
         if (Charge)
         {
-            if (!ShootInCD)
+            if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 SetOldQue();
                 Accumulate();
@@ -55,7 +55,7 @@ public class ForceCast_TopDown : MonoBehaviour
         ///射擊
         if (isShooted)
         {
-            if (!ShootInCD)
+            if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 Shoot();
                 rangeObj.SetActive(false);
@@ -90,6 +90,9 @@ public class ForceCast_TopDown : MonoBehaviour
         ///OldInput備案 如果New Input手把不能用的時候打開
         if (Input.GetButtonDown("Fire1"))
         {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+                P1_Aim_Slow();
+
             Charge = true;
         }
         if (Input.GetButtonUp("Fire1"))
@@ -107,18 +110,21 @@ public class ForceCast_TopDown : MonoBehaviour
         }
     }
 
+    public void P1_Aim_Slow()
+    {
+        Move move = GetComponent<Move>();
+        move.SpeedSlow(speedSlow);
+    }
+
     private void Shoot()
     {
         ///檢查手上有沒有方塊
         //Debug.Log(force);
-        if (objectParent.transform.childCount > 0)
-        {
-            //CD跟蓄力
-            Timer = 0;      
-            StartCoroutine(ShootCD(PushMaxCD));
-            //設置方塊
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
-        }
+        //CD跟蓄力
+        Timer = 0;      
+        StartCoroutine(ShootCD(PushMaxCD));
+        //設置方塊
+         gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
 
         Move move = GetComponent<Move>();
         move.SpeedFast(speedSlow);
@@ -165,10 +171,7 @@ public class ForceCast_TopDown : MonoBehaviour
             countFloat = 0;
         ///蓄力條UI
         float BarValue = countFloat/CountMax;
-        UIcontrol.PushingBar(BarValue);
-
-        Move move = GetComponent<Move>();
-        move.SpeedSlow(speedSlow);
+        UIcontrol.PushingBar(BarValue);    
     }
 
     private void FriendlyPushed()

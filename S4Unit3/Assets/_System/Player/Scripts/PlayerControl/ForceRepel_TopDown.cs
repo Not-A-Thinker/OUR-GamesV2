@@ -71,13 +71,17 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-             ButtonDonwEvent();
+            if (!SuckInCD)
+                ButtonDonwEvent();
         }         
         if (Input.GetButton("Fire2"))
         {
-             GetComponent<BoxCollider>().isTrigger = true;
-             Range.SetActive(true);
-             Repel();       
+            if (!SuckInCD)
+            {
+                GetComponent<BoxCollider>().isTrigger = true;
+                Range.SetActive(true);
+                Repel();
+            }                  
         }
         if (Input.GetButtonUp("Fire2"))
         {

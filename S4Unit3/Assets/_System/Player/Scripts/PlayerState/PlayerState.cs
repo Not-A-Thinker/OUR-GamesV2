@@ -43,7 +43,7 @@ public class PlayerState : MonoBehaviour
        //ÀË¬dª±®a½s¸¹
         if (isPlayer1)
         {
-            _maxHealth = 5;
+            _maxHealth = 4;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
         }
         if(isPlayer2)

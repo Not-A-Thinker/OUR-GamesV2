@@ -143,8 +143,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052817167976939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15}
-  m_LocalScale: {x: 0.05, y: 0, z: 2.35}
+  m_LocalPosition: {x: 0, y: 0, z: 11}
+  m_LocalScale: {x: 0.05, y: 0, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2328266511673429320}
@@ -434,9 +434,9 @@ MonoBehaviour:
   isShooted: 0
   _attackTrigger: 0
   countFloat: 0
-  CountMax: 2
+  CountMax: 1.5
   Timer: 2
-  PushMaxCD: 2
+  PushMaxCD: 3
   speedSlow: 0.5
 --- !u!114 &500052818044258932
 MonoBehaviour:
