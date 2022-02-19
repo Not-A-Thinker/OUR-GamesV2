@@ -20,7 +20,8 @@ public class PlayerState : MonoBehaviour
     public bool  isPlayer2;
 
     [Header("Player GetComponent")]
-     UIcontrol UIcontrol;
+    CapsuleCollider _Collider;
+     UIcontrol UIcontrol ;
     [SerializeField] GameObject Resurrect_range;
      Move move;
      PlayerTotalDead playerTotalDead;
@@ -35,6 +36,7 @@ public class PlayerState : MonoBehaviour
     {           
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
+        _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
 
         if(GetComponent<JoyStickMovement>())
@@ -210,10 +212,12 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
-       
+        _Collider.enabled = false;
+
         yield return new WaitForSeconds(time);
         CancelInvoke();
-        _renderer.enabled = true;   
+        _renderer.enabled = true;
+        _Collider.enabled = true;
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }

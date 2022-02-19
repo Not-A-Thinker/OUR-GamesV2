@@ -49,6 +49,7 @@ public class Move : MonoBehaviour
 
     [Header("Player Dash")]
     //dash
+    CapsuleCollider _Collider;
     public float dashSpeed;
     public float dashTime;
 
@@ -60,6 +61,7 @@ public class Move : MonoBehaviour
 
     void Start()
     {
+        _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
@@ -133,6 +135,7 @@ public class Move : MonoBehaviour
                 else if (Input.GetButtonUp("JumpP1"))
                 {
                     isDashed = false;
+                    
                     _animation.PlayerDash(false);
                 }
             }
@@ -291,6 +294,7 @@ public class Move : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
+        
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
@@ -299,9 +303,17 @@ public class Move : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            _Collider.enabled = false;
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);        
+            yield return null;          
+        }
+
+        while(Time.time>=startTime+dashTime)
+        {
+            _Collider.enabled = true;
             yield return null;
         }
+
     }
     public IEnumerator GetFriendlyControl(Vector3 velocity)
     {
