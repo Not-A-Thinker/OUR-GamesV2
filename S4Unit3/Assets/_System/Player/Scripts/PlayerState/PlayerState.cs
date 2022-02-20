@@ -92,34 +92,35 @@ public class PlayerState : MonoBehaviour
     {
         _currentHealth--;
 
-        if (isPlayer1)
+        if(!isInvincible)
         {
-            ///P1受傷要把方塊都丟掉
-            P1GetCube p1GetCube= GetComponent<P1GetCube>();
-            p1GetCube.PlayerGoneCube();
-        }
-        //Debug.Log(_currentHealth);     
-        if (_currentHealth > 0)
-        {
-            ///受攻擊無敵
-            StartCoroutine(Invincible(3));
-        }
-        if (_currentHealth == 0)
-        {
-            PlayerIsDead();
-        }
-        if (_currentHealth < 0)
-            _currentHealth = 0;
-        int playerCount=1;
-        if (isPlayer1)
-            playerCount = 1;
-        if (isPlayer2)
-            playerCount = 2;
-
-        ///UI
-        UIcontrol.hp_decrease(_currentHealth, playerCount);
-        StartCoroutine(_animation.PlayerDamaged()) ;
-        
+            if (isPlayer1)
+            {
+                ///P1受傷要把方塊都丟掉
+                P1GetCube p1GetCube = GetComponent<P1GetCube>();
+                p1GetCube.PlayerGoneCube();
+            }
+            //Debug.Log(_currentHealth);     
+            if (_currentHealth > 0)
+            {
+                ///受攻擊無敵
+                StartCoroutine(Invincible(3));
+            }
+            if (_currentHealth == 0)
+            {
+                PlayerIsDead();
+            }
+            if (_currentHealth < 0)
+                _currentHealth = 0;
+            int playerCount = 1;
+            if (isPlayer1)
+                playerCount = 1;
+            if (isPlayer2)
+                playerCount = 2;
+            ///UI
+            UIcontrol.hp_decrease(_currentHealth, playerCount);
+            StartCoroutine(_animation.PlayerDamaged());
+        }          
     }
 
     public void hp_increase()

@@ -96,7 +96,7 @@ public class ForceCast_TopDown : MonoBehaviour
                 Charge = true;
             }
             else
-                UIcontrol.flyText(1, Color.red, "You Cant Attack Now!");       
+                UIcontrol.flyText(1, Color.red, "Cant Attack!");       
         }
         if (Input.GetButtonUp("Fire1"))
         {

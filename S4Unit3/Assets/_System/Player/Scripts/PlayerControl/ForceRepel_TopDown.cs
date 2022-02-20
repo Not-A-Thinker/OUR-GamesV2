@@ -21,7 +21,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
-    [SerializeField] private AnimationCurve curve;
+    //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
     [Header("State")]
@@ -77,7 +77,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (!SuckInCD)
                 ButtonDonwEvent();
             else
-                uIcontrol.flyText(2, Color.red, "Sucking Was In CD Now!");
+                uIcontrol.flyText(2, Color.red, "Sucking CD!");
         }         
         if (Input.GetButton("Fire2"))
         {
@@ -181,7 +181,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     {
                         if(!TextSpawning)
                         {
-                            uIcontrol.flyText(2, Color.red, "Sucking Count Was Full!");
+                            uIcontrol.flyText(2, Color.red, "Full!");
                             TextSpawning = true;
                         }                      
                     }                    
