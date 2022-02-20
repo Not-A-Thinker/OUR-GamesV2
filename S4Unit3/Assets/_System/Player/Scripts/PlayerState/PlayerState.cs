@@ -89,11 +89,10 @@ public class PlayerState : MonoBehaviour
     }
 
     public void hp_decrease()
-    {
-        _currentHealth--;
-
+    {      
         if(!isInvincible)
         {
+            _currentHealth--;
             if (isPlayer1)
             {
                 ///P1受傷要把方塊都丟掉

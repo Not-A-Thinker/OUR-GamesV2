@@ -154,13 +154,12 @@ public class Move : MonoBehaviour
                 angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                 //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                 Quaternion target = Quaternion.Euler(0, angle, 0);
-                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 500f * Time.deltaTime);
+                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 300f * Time.deltaTime);
                 //Debug.Log(angle);
             }
-
-            if (Input.GetButtonDown("LockOnP1"))
+            else
             {
-                Debug.Log("locked Boss!");
+                //Debug.Log("locked Boss!");
                 BossLockOn();
             }                          
         }
@@ -237,11 +236,11 @@ public class Move : MonoBehaviour
                     angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                     //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                     Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 300f * Time.deltaTime);
                     //Debug.Log(angle);
                 }
-
-                if (Input.GetButtonDown("LockOnP2"))
+                //if (Input.GetButtonDown("LockOnP2"))
+                else
                 {
                     Debug.Log("locked Boss!");
                     BossLockOn();
@@ -401,7 +400,7 @@ public class Move : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - ShootRot.transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
-        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 400f * Time.deltaTime);
+        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 100f * Time.deltaTime);
     }
 }
 
