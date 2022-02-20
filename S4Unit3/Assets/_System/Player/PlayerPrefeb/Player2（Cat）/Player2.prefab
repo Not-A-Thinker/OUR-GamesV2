@@ -113,39 +113,7 @@ MonoBehaviour:
   clipParent: {fileID: 749153411712952852}
   move: {fileID: 1860544261278244878}
   Mother: {fileID: 1860544261278244872}
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.6425149
-      outSlope: 0.6425149
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4826749
-      value: 0.3101258
-      inSlope: 0.98802793
-      outSlope: 0.98802793
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.3335409
-      outSlope: 1.3335409
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  Renderer: {fileID: 1860544260377549298}
   FriendCD: 0
   SuccMaxCD: 2
   Timer: 2

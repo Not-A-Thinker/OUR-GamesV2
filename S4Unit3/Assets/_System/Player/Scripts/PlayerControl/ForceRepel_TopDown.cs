@@ -21,6 +21,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
+    [SerializeField] private Renderer Renderer;
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
@@ -90,6 +91,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire2"))
         {
+            Renderer.material.color = Color.red;
             TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);
@@ -115,6 +117,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (savedObject)
         {
+            Renderer.material.color = Color.green;
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
             Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -149,19 +152,20 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     if (hit.transform.name.Contains("Tornado SForm"))
                     {
+                        Renderer.material.color = Color.green;
                         hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
                         S_Tonado = hit.transform.gameObject;
                     }
                     else
                     {
+                        Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
                     }
                 }
                 //rb.useGravity = !rb.useGravity;       
                 if (hit.transform.tag == "Boss")
-                {
-                    var cubeRenderer = Range.GetComponent<Renderer>();
-                    cubeRenderer.material.SetColor("Range", Color.green);
+                {          
+                    Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount <= BossSpwO.SpawnendMax)
                     {
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
@@ -193,7 +197,9 @@ public class ForceRepel_TopDown : MonoBehaviour
                 //}
 
                 else
-                { }
+                {
+                    Renderer.material.color = Color.red;
+                }
             }
             if (SuckCount == 3)
             {

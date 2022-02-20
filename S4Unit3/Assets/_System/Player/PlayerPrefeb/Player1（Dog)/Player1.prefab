@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c2842c4181169843944f3bcb667fc12, type: 2}
+  - {fileID: 2100000, guid: dbc9bc5996cb4874ab7d9bb570a09abe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -426,9 +426,10 @@ MonoBehaviour:
   objectParent: {fileID: 500052817746688516}
   rangeObj: {fileID: 500052817167976939}
   RangeBigObj: {fileID: 500052817520157419}
+  Renderer: {fileID: 500052817167976941}
   Charitor: {fileID: 5381467380246077115}
   _force: 500
-  _range: 25
+  _range: 20
   isfriendPushed: 0
   Charge: 0
   isShooted: 0

@@ -9,12 +9,13 @@ public class ForceCast_TopDown : MonoBehaviour
 
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
+    [SerializeField] private Renderer Renderer;
 
-     UIcontrol UIcontrol;
+    UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
     [Header("P1 Push State")]
     public float _force = 500f;
-    public float _range = 15f;
+    public float _range = 20f;
     public bool isfriendPushed, Charge, isShooted ;//控制器觸發用的
     bool friendPushed, ShootInCD;//檢查用
 
@@ -38,13 +39,24 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Update()
     {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = transform.forward;     
+        RaycastHit hit;
+        if (Physics.Raycast(startPos, endPos, out hit, _range))
+        {
+            if (hit.transform.tag == "Boss")
+                Renderer.material.color = Color.green;
+
+            else
+                Renderer.material.color = Color.red;
+        }
         ///射擊前充能
         if (Charge)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 SetOldQue();
-                Accumulate();
+                Accumulate();         
             }
             else
             {
@@ -57,6 +69,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
+                Renderer.material.color = Color.red;
                 Shoot();
                 rangeObj.SetActive(false);
                 UIcontrol.PushingStop();
@@ -168,8 +181,8 @@ public class ForceCast_TopDown : MonoBehaviour
         ///地毯開啟
         rangeObj.SetActive(true);
 
-        ///蓄力條蓄力計算
-        countFloat += Time.deltaTime;
+            ///蓄力條蓄力計算
+            countFloat += Time.deltaTime;
         if (countFloat > CountMax +1f)
             countFloat = 0;
         ///蓄力條UI
