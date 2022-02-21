@@ -116,8 +116,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             }          
         }
         if (savedObject)
-        {
-            Renderer.material.color = Color.green;
+        {       
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
             Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -148,6 +147,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             //Debug.Log(hit.transform.name + "." + hit.transform.tag);
             if (hit.transform.gameObject.layer == 6 && SuckCount < 3 && !SuckInCD)
             {
+                //Debug.Log(hit.transform.tag);
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
                     if (hit.transform.name.Contains("Tornado SForm"))
@@ -163,7 +163,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     }
                 }
                 //rb.useGravity = !rb.useGravity;       
-                if (hit.transform.tag == "Boss")
+               else if (hit.transform.tag == "Boss")
                 {          
                     Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount <= BossSpwO.SpawnendMax)
@@ -190,11 +190,12 @@ public class ForceRepel_TopDown : MonoBehaviour
                         }                      
                     }                    
                 }
-                //if(hit.transform.tag=="Objcet")
-                //{
+                else if (hit.transform.tag == "Objcet")
+                {
+                    Renderer.material.color = Color.green;
+                }
                 //    hit.transform.rotation = new Quaternion(0, 0, 0, 0);
                 //    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, curve.Evaluate(0.15f));                
-                //}
 
                 else
                 {

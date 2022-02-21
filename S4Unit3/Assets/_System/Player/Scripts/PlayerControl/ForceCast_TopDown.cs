@@ -64,6 +64,22 @@ public class ForceCast_TopDown : MonoBehaviour
             }
         }
 
+        if (!Charge)
+        {
+            if (countFloat > 0)
+            {
+                countFloat -= 0.5f * Time.deltaTime;
+                float BarValue = countFloat / CountMax;
+                UIcontrol.PushingBar(BarValue);
+            }
+
+            else
+            {
+                countFloat = 0;
+                UIcontrol.PushingStop();
+            }                     
+        }
+
         ///射擊
         if (isShooted)
         {
@@ -72,7 +88,6 @@ public class ForceCast_TopDown : MonoBehaviour
                 Renderer.material.color = Color.red;
                 Shoot();
                 rangeObj.SetActive(false);
-                UIcontrol.PushingStop();
             }
             else
                 isShooted = false;
@@ -166,7 +181,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //}
 
         ///重置狀態
-        countFloat = 0;
         isShooted = false;
         Charge = false;
     }
@@ -181,8 +195,8 @@ public class ForceCast_TopDown : MonoBehaviour
         ///地毯開啟
         rangeObj.SetActive(true);
 
-            ///蓄力條蓄力計算
-            countFloat += Time.deltaTime;
+        ///蓄力條蓄力計算
+        countFloat += Time.deltaTime;
         if (countFloat > CountMax +1f)
             countFloat = 0;
         ///蓄力條UI

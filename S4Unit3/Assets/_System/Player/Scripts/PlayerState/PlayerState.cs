@@ -98,6 +98,8 @@ public class PlayerState : MonoBehaviour
                 ///P1受傷要把方塊都丟掉
                 P1GetCube p1GetCube = GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
+                ForceCast_TopDown _TopDown = GetComponent<ForceCast_TopDown>();
+                _TopDown.ResetOldQue();
             }
             //Debug.Log(_currentHealth);     
             if (_currentHealth > 0)
