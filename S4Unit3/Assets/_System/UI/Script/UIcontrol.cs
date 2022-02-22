@@ -57,11 +57,20 @@ public class UIcontrol : MonoBehaviour
             pushing.transform.position = wantedPos;
         }
 
-        Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
-        P1pos.y = P1pos.y + 130;
-        Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
-        P2pos.y = P2pos.y + 130;
-        //SuckObjectCount.transform.position = P2pos;
+        if(pushingCD.activeInHierarchy)
+        {
+            Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+            P1pos.x = P1pos.x + 35;
+            P1pos.y = P1pos.y + 10;
+            pushingCD.transform.position = P1pos;
+        }
+        if (SuckingCD.activeInHierarchy)
+        {
+            Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+            P2pos.x = P2pos.x + 35;
+            P2pos.y = P2pos.y + 10;
+            SuckingCD.transform.position = P2pos;
+        }               
     }
     private void FixedUpdate()
     {
@@ -169,11 +178,19 @@ public class UIcontrol : MonoBehaviour
     {
         //pushingCD.SetActive(Ready);
         pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+        if (load == 1)
+            pushingCD.SetActive(false);
+        else
+            pushingCD.SetActive(true);
     }
     public void SuckingCDBar(float load)
     {
         //SuckingCD.SetActive(Ready);
         SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
+        if (load == 1)
+            SuckingCD.SetActive(false);
+        else
+            SuckingCD.SetActive(true);
     }
     public void EnergyBarChange(float NowEnergy, int playerCount)
     {
