@@ -11,6 +11,8 @@ public class UIcontrol : MonoBehaviour
     [SerializeField] GameObject[] Player2Hp;
     [SerializeField] Slider Player1Energy;
     [SerializeField] Slider Player2Energy;
+    [SerializeField] GameObject[] Player1EnergyImg;
+    [SerializeField] GameObject[] Player2EnergyImg;
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
@@ -194,10 +196,16 @@ public class UIcontrol : MonoBehaviour
     }
     public void EnergyBarChange(float NowEnergy, int playerCount)
     {
-        if (playerCount == 1)
-            Player1Energy.value = NowEnergy * 0.01f;
-        else if (playerCount == 2)
-            Player2Energy.value = NowEnergy * 0.01f;
+        if(Player1Energy.isActiveAndEnabled)
+        {
+            if (playerCount == 1)
+                Player1Energy.value = NowEnergy * 0.01f;
+            else if (playerCount == 2)
+                Player2Energy.value = NowEnergy * 0.01f;
+
+        }
+
+
     }
     #endregion
 

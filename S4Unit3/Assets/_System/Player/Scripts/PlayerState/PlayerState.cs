@@ -61,10 +61,10 @@ public class PlayerState : MonoBehaviour
     {
         //isColliding = false;
 
-        if(isPlayer2)
-        {
-            UIcontrol.EnergyBarChange(move.DashBar, 2);
-        }
+        //if(isPlayer2)
+        //{
+        //    UIcontrol.EnergyBarChange(move._DashBar, 2);
+        //}
 
         //Invincible§@¹ú
         if (Input.GetKeyDown(KeyCode.CapsLock))
