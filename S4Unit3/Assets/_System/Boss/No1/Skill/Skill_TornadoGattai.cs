@@ -15,6 +15,7 @@ public class Skill_TornadoGattai : MonoBehaviour
     BossAI_Wind bossAI;
     BossCameraControl cameraControl;
 
+    [Tooltip("Don't need anything to put in.")]
     public GameObject _Player1;
     public GameObject _Player2;
 

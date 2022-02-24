@@ -9,8 +9,8 @@ public class Skill_TornadoBigOne : MonoBehaviour
     BossAI_Wind bossAI;
     BossCameraControl cameraControl;
 
-    private GameObject _Player1;
-    private GameObject _Player2;
+    public GameObject _Player1;
+    public GameObject _Player2;
 
     [Header("Tracking Mode")]
     [Tooltip("Mode 1 is using counter, 2 is using timer for tracking")]
@@ -19,7 +19,6 @@ public class Skill_TornadoBigOne : MonoBehaviour
     [Header("Tracking Basic Setting")]
     [SerializeField] float speed = 6f;
     [SerializeField] float _rotationSpeed = 8f;
-
     public int playerSelect = 1;
 
     [Header("Track Mode 1 Setting")]
@@ -47,8 +46,10 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
     void Start()
     {
-        _Player1 = GameObject.Find("Player1");
-        _Player2 = GameObject.Find("Player2");
+        if (_Player1 == null && playerSelect == 1)
+        { _Player1 = GameObject.Find("Player1"); }
+        else if (_Player2 == null && playerSelect == 2)
+        { _Player2 = GameObject.Find("Player2"); }
 
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
 
