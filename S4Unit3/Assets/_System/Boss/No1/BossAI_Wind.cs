@@ -634,6 +634,7 @@ public class BossAI_Wind : MonoBehaviour
             yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 6);
 
             isMoveFinished = true;
+
             agent.SetDestination(transform.position);
             Debug.Log("Is Moved!");
         }

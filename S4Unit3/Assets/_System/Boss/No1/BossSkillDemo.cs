@@ -224,7 +224,11 @@ public class BossSkillDemo : MonoBehaviour
                 GameObject go = Instantiate(tornadoSmall, ranPos, Quaternion.identity);
                 go.name = "tornadoSmall_" + id;
                 id++;
-                go.GetComponent<Skill_TornadoGattai>().playerSelect = playerRan;
+                Skill_TornadoGattai goSkill = go.GetComponent<Skill_TornadoGattai>();
+                goSkill.playerSelect = playerRan;
+                if (goSkill.playerSelect == 1) { goSkill._Player1 = _Player1; }
+                else if (goSkill.playerSelect == 2) { goSkill._Player2 = _Player2; }
+                
             }
             else { i--; }
 

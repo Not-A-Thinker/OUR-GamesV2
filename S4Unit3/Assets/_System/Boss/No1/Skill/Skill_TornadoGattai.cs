@@ -15,8 +15,8 @@ public class Skill_TornadoGattai : MonoBehaviour
     BossAI_Wind bossAI;
     BossCameraControl cameraControl;
 
-    private GameObject _Player1;
-    private GameObject _Player2;
+    public GameObject _Player1;
+    public GameObject _Player2;
 
     public GameObject TornadoBigOne;
 
@@ -27,8 +27,14 @@ public class Skill_TornadoGattai : MonoBehaviour
 
     void Start()
     {
-        _Player1 = GameObject.Find("Player1");
-        _Player2 = GameObject.Find("Player2");
+        if (_Player1 == null && playerSelect == 1)
+        {
+            _Player1 = GameObject.Find("Player1");
+        }
+        else if (_Player2 == null && playerSelect == 2)
+        {
+            _Player2 = GameObject.Find("Player2");
+        }
 
         bossAI = GameObject.Find("Boss").GetComponent<BossAI_Wind>();
         
