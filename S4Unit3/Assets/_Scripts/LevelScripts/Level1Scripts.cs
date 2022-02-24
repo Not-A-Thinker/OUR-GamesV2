@@ -9,7 +9,11 @@ public class Level1Scripts : MonoBehaviour
     [SerializeField] Transform[] _crystalAlter;
     [Tooltip("This is use for controlling the height of crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalHeight = 6f;
-        
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
 
     void Start()
     {
