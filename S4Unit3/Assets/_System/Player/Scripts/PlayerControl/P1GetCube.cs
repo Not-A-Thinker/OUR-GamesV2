@@ -10,6 +10,8 @@ public class P1GetCube : MonoBehaviour
 
     public Transform SpawnPoint;
 
+    public float SpeedToSlowDown;
+
     Move move;
 
     public void PlayerGetCube(GameObject cube)
@@ -18,7 +20,7 @@ public class P1GetCube : MonoBehaviour
         if (objectParent.transform.childCount < 3)
         {
             move = GetComponent<Move>();
-            move.SpeedSlow();
+            move.SpeedSlow(SpeedToSlowDown);
 
             ///用於初始化方塊的位置
             cube.transform.parent = objectParent.transform;
@@ -68,9 +70,9 @@ public class P1GetCube : MonoBehaviour
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
             Rigidbody Rb = cube.GetComponent<Rigidbody>();
-            if (!cube.GetComponent<ObjectDestroy>())
+            cube.GetComponent<ObjectRotation>()._isInCount = false;
+            if (cube.GetComponent<ObjectDestroy>())
             {
-                if (cube.GetComponent<ObjectDestroy>().isSucked)
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
             }
             //重置方塊掉落狀態
@@ -85,7 +87,7 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-        move.SpeedFast();
+        move.SpeedFast(SpeedToSlowDown);
 
         int caseNum = 0;
 
@@ -108,7 +110,10 @@ public class P1GetCube : MonoBehaviour
         cube.transform.parent = null;
 
         cube.GetComponent<Bullet>().isAttacking = true;
-
+        if (cube.GetComponent<ObjectDestroy>())
+        {
+            cube.GetComponent<ObjectDestroy>().isSucked = false;
+        }
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;

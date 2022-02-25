@@ -9,6 +9,7 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     [Header("Suck Force")]
     public float _force = 5f;
+    float _OldForce = 5f;
     public float _range = 15f;
 
     [Header("Suck OBJ")]
@@ -20,12 +21,15 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
-    [SerializeField] private AnimationCurve curve;
+    [SerializeField] private Renderer Renderer;
+    //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
     [Header("State")]
     [SerializeField] bool FriendCD = false;
- 
+    BossSpawnObject BossSpwO;
+    bool TextSpawning;
+
     Quaternion OldQuate;
 
     [Header("P2 Attack CD")]
@@ -33,12 +37,15 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public bool SuckInCD;
     public int SuckCount;
+    public float _SpeedSlow;
 
     //clip
 
     private void Start()
     {
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
+        _OldForce = _force;
     }
 
     void Update()
@@ -60,7 +67,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Timer = SuccMaxCD;
 
         uIcontrol.SuckingCDBar(Timer/SuccMaxCD);
-        uIcontrol.SuckCount(SuckCount);
+        //uIcontrol.SuckCount(SuckCount);
 
         if (Input.GetButton("HelpFriendP2"))
         {
@@ -68,26 +75,35 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         if (Input.GetButtonDown("Fire2"))
         {
-             ButtonDonwEvent();
+            if (!SuckInCD)
+                ButtonDonwEvent();
+            else
+                uIcontrol.flyText(2, Color.red, "Sucking CD!");
         }         
         if (Input.GetButton("Fire2"))
         {
-             GetComponent<BoxCollider>().isTrigger = true;
-             Range.SetActive(true);
-             Repel();       
+            if (!SuckInCD)
+            {
+                GetComponent<BoxCollider>().isTrigger = true;
+                Range.SetActive(true);
+                Repel();
+            }                  
         }
         if (Input.GetButtonUp("Fire2"))
         {
+            Renderer.material.color = Color.red;
+            TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            move.inCC = false;        
+            move.SpeedReset();
+
             //uIcontrol.SuckingCDBar(canSucc);
             if (!SuckInCD)
             {
                 SuckInCD = true;
-                Timer = 0;
+                Timer = 0;              
             }              
             if (savedObject != null)
             {
@@ -100,18 +116,20 @@ public class ForceRepel_TopDown : MonoBehaviour
             }          
         }
         if (savedObject)
-        {
+        {       
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
             Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-            savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, curve.Evaluate(0.6f));
+            savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, _force * Time.deltaTime);
+            _force = _force + _force* 2 *Time.deltaTime;
+            // curve.Evaluate(0.6f)
         }
     }
 
     public void ButtonDonwEvent()
     {
         OldQuate = ChaRot.transform.rotation;
-        move.inCC = true;
+        move.SpeedSlow(_SpeedSlow);
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()
@@ -129,43 +147,60 @@ public class ForceRepel_TopDown : MonoBehaviour
             //Debug.Log(hit.transform.name + "." + hit.transform.tag);
             if (hit.transform.gameObject.layer == 6 && SuckCount < 3 && !SuckInCD)
             {
+                //Debug.Log(hit.transform.tag);
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
                     if (hit.transform.name.Contains("Tornado SForm"))
                     {
+                        Renderer.material.color = Color.green;
                         hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
                         S_Tonado = hit.transform.gameObject;
                     }
                     else
                     {
+                        Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
                     }
                 }
                 //rb.useGravity = !rb.useGravity;       
-                if (hit.transform.tag == "Boss")
-                {
-                    BossSpawnObject BossSpwO = hit.transform.gameObject.GetComponent<BossSpawnObject>();
-                    Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                    //Debug.Log(hitpoint);
-                    BossSpwO.ObjectSpawn(hit.point, spawnRotation);
-                    if (BossSpwO.lastSpawned != null)
+               else if (hit.transform.tag == "Boss")
+                {          
+                    Renderer.material.color = Color.green;
+                    if (BossSpwO.SpawnedCount <= BossSpwO.SpawnendMax)
                     {
-                        savedObject = BossSpwO.lastSpawned;
-                        savedObject.GetComponent<ObjectDestroy>().isSucked = true;
-                        savedObject.GetComponent<Bullet>().bossToSuck = true;
-                        BossSpwO.lastSpawned = null;
-                        //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
-                        //rb.useGravity = false;
+                        Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        //Debug.Log(hitpoint);
+                        BossSpwO.ObjectSpawn(hit.point, spawnRotation);
+                        if (BossSpwO.lastSpawned != null)
+                        {
+                            savedObject = BossSpwO.lastSpawned;
+                            savedObject.GetComponent<ObjectDestroy>().isSucked = true;
+                            savedObject.GetComponent<Bullet>().bossToSuck = true;
+                            BossSpwO.lastSpawned = null;
+                            //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
+                            //rb.useGravity = false;
+                        }
                     }
+                    else
+                    {
+                        if(!TextSpawning)
+                        {
+                            uIcontrol.flyText(2, Color.red, "Full!");
+                            TextSpawning = true;
+                        }                      
+                    }                    
                 }
-                //if(hit.transform.tag=="Objcet")
-                //{
+                else if (hit.transform.tag == "Objcet")
+                {
+                    Renderer.material.color = Color.green;
+                }
                 //    hit.transform.rotation = new Quaternion(0, 0, 0, 0);
                 //    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, curve.Evaluate(0.15f));                
-                //}
 
                 else
-                { }
+                {
+                    Renderer.material.color = Color.red;
+                }
             }
             if (SuckCount == 3)
             {
@@ -209,6 +244,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
             }             
             savedObject = null;
+            _force = _OldForce;
         }
            
         //if (savedObject.tag=="Object")

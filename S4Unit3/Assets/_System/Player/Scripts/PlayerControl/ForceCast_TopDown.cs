@@ -9,12 +9,13 @@ public class ForceCast_TopDown : MonoBehaviour
 
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
+    [SerializeField] private Renderer Renderer;
 
-     UIcontrol UIcontrol;
+    UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
     [Header("P1 Push State")]
     public float _force = 500f;
-    public float _range = 15f;
+    public float _range = 20f;
     public bool isfriendPushed, Charge, isShooted ;//控制器觸發用的
     bool friendPushed, ShootInCD;//檢查用
 
@@ -29,6 +30,8 @@ public class ForceCast_TopDown : MonoBehaviour
     [SerializeField] float Timer = 1;
     public int PushMaxCD = 1;
 
+    public float speedSlow;
+
     void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -36,13 +39,24 @@ public class ForceCast_TopDown : MonoBehaviour
 
     void Update()
     {
+        Vector3 startPos = transform.position;
+        Vector3 endPos = transform.forward;     
+        RaycastHit hit;
+        if (Physics.Raycast(startPos, endPos, out hit, _range))
+        {
+            if (hit.transform.tag == "Boss")
+                Renderer.material.color = Color.green;
+
+            else
+                Renderer.material.color = Color.red;
+        }
         ///射擊前充能
         if (Charge)
         {
-            if (!ShootInCD)
+            if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 SetOldQue();
-                Accumulate();
+                Accumulate();         
             }
             else
             {
@@ -50,14 +64,30 @@ public class ForceCast_TopDown : MonoBehaviour
             }
         }
 
+        if (!Charge)
+        {
+            if (countFloat > 0)
+            {
+                countFloat -= 0.5f * Time.deltaTime;
+                float BarValue = countFloat / CountMax;
+                UIcontrol.PushingBar(BarValue);
+            }
+
+            else
+            {
+                countFloat = 0;
+                UIcontrol.PushingStop();
+            }                     
+        }
+
         ///射擊
         if (isShooted)
         {
-            if (!ShootInCD)
+            if (!ShootInCD && objectParent.transform.childCount > 0)
             {
+                Renderer.material.color = Color.red;
                 Shoot();
                 rangeObj.SetActive(false);
-                UIcontrol.PushingStop();
             }
             else
                 isShooted = false;
@@ -88,7 +118,13 @@ public class ForceCast_TopDown : MonoBehaviour
         ///OldInput備案 如果New Input手把不能用的時候打開
         if (Input.GetButtonDown("Fire1"))
         {
-            Charge = true;
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                P1_Aim_Slow();
+                Charge = true;
+            }
+            else
+                UIcontrol.flyText(1, Color.red, "Cant Attack!");       
         }
         if (Input.GetButtonUp("Fire1"))
         {
@@ -103,21 +139,26 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             isfriendPushed = false;
         }
+    }
 
+    public void P1_Aim_Slow()
+    {
+        Move move = GetComponent<Move>();
+        move.SpeedSlow(speedSlow);
     }
 
     private void Shoot()
     {
         ///檢查手上有沒有方塊
         //Debug.Log(force);
-        if (objectParent.transform.childCount > 0)
-        {
-            //CD跟蓄力
-            Timer = 0;      
-            StartCoroutine(ShootCD(PushMaxCD));
-            //設置方塊
-            gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
-        }
+        //CD跟蓄力
+        Timer = 0;      
+        StartCoroutine(ShootCD(PushMaxCD));
+        //設置方塊
+         gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
+
+        Move move = GetComponent<Move>();
+        move.SpeedFast(speedSlow);
         //else
         //{
         //    _attackTrigger = true;
@@ -140,7 +181,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //}
 
         ///重置狀態
-        countFloat = 0;
         isShooted = false;
         Charge = false;
     }
@@ -161,7 +201,7 @@ public class ForceCast_TopDown : MonoBehaviour
             countFloat = 0;
         ///蓄力條UI
         float BarValue = countFloat/CountMax;
-        UIcontrol.PushingBar(BarValue);
+        UIcontrol.PushingBar(BarValue);    
     }
 
     private void FriendlyPushed()

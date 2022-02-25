@@ -24,7 +24,7 @@ public class Boss1Animator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.X))
         {
             impulseSource.GenerateImpulse();
         }

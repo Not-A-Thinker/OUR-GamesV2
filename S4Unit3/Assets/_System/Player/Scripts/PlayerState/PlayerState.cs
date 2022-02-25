@@ -20,7 +20,8 @@ public class PlayerState : MonoBehaviour
     public bool  isPlayer2;
 
     [Header("Player GetComponent")]
-     UIcontrol UIcontrol;
+    CapsuleCollider _Collider;
+     UIcontrol UIcontrol ;
     [SerializeField] GameObject Resurrect_range;
      Move move;
      PlayerTotalDead playerTotalDead;
@@ -35,15 +36,14 @@ public class PlayerState : MonoBehaviour
     {           
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
+        _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
 
-        if(GetComponent<JoyStickMovement>())
-
-
+        //if(GetComponent<JoyStickMovement>())
        //檢查玩家編號
         if (isPlayer1)
         {
-            _maxHealth = 5;
+            _maxHealth = 4;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
         }
         if(isPlayer2)
@@ -61,15 +61,18 @@ public class PlayerState : MonoBehaviour
     {
         //isColliding = false;
 
-        if(isPlayer2)
-        {
-            UIcontrol.EnergyBarChange(move.DashBar, 2);
-        }
+        //if(isPlayer2)
+        //{
+        //    UIcontrol.EnergyBarChange(move._DashBar, 2);
+        //}
 
         //Invincible作弊
         if (Input.GetKeyDown(KeyCode.CapsLock))
         {
+            ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
             isInvincible = !isInvincible;
+            _Collider.enabled = !isInvincible;
+
             Debug.Log("Player Invincible is" + isInvincible);
         }
            
@@ -86,16 +89,17 @@ public class PlayerState : MonoBehaviour
     }
 
     public void hp_decrease()
-    {
-        if (!isInvincible)
+    {      
+        if(!isInvincible)
         {
             _currentHealth--;
-
             if (isPlayer1)
             {
                 ///P1受傷要把方塊都丟掉
-                P1GetCube p1GetCube= GetComponent<P1GetCube>();
+                P1GetCube p1GetCube = GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
+                ForceCast_TopDown _TopDown = GetComponent<ForceCast_TopDown>();
+                _TopDown.ResetOldQue();
             }
             //Debug.Log(_currentHealth);     
             if (_currentHealth > 0)
@@ -109,16 +113,15 @@ public class PlayerState : MonoBehaviour
             }
             if (_currentHealth < 0)
                 _currentHealth = 0;
-            int playerCount=1;
+            int playerCount = 1;
             if (isPlayer1)
                 playerCount = 1;
             if (isPlayer2)
                 playerCount = 2;
-
             ///UI
             UIcontrol.hp_decrease(_currentHealth, playerCount);
-            StartCoroutine(_animation.PlayerDamaged()) ;
-        }
+            StartCoroutine(_animation.PlayerDamaged());
+        }          
     }
 
     public void hp_increase()
@@ -140,7 +143,7 @@ public class PlayerState : MonoBehaviour
         isDead = false;
         Resurrect_range.SetActive(false);
         _currentHealth = _maxHealth;
-        move.inCC = false;
+        move.SpeedReset();
         GetComponent<CapsuleCollider>().enabled = true;
         StartCoroutine(Invincible(1));
 
@@ -164,7 +167,7 @@ public class PlayerState : MonoBehaviour
         isDead = true;
         Resurrect_range.SetActive(true);
         move.isKnockUp = false;
-        move.inCC = true;    
+        move.SpeedSlow(0.25f);
         GetComponent<CapsuleCollider>().enabled = false;
         //rb.useGravity = false;
 
@@ -210,18 +213,18 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
-       
         yield return new WaitForSeconds(time);
         CancelInvoke();
-        _renderer.enabled = true;   
+        _renderer.enabled = true;
+        _Collider.enabled = true;
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }
 
-    //Cheat
+    //閃爍
     void InvincibleRend()
     {
-        ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
+        _Collider.enabled = false;
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIcontrol : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class UIcontrol : MonoBehaviour
     [SerializeField] GameObject[] Player2Hp;
     [SerializeField] Slider Player1Energy;
     [SerializeField] Slider Player2Energy;
+    [SerializeField] GameObject[] Player1EnergyImg;
+    [SerializeField] GameObject[] Player2EnergyImg;
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
@@ -17,7 +20,7 @@ public class UIcontrol : MonoBehaviour
 
     [Header("Respawn")]
     [SerializeField] GameObject RespawnLoad;
-    [SerializeField] Text LoadingText;
+    [SerializeField] TextMeshProUGUI LoadingText;
     [SerializeField] Slider slider;
     SceneControl sceneControl;
     //[SerializeField] Text DeadCount;
@@ -37,16 +40,16 @@ public class UIcontrol : MonoBehaviour
     //bool IsGameOver, IsWinGame;
     [Header("Other")]
     [SerializeField] float smoothing = 5;
-    [SerializeField] Text DeadCounter;
+    [SerializeField] TextMeshProUGUI DeadCounter;
     [SerializeField] GameObject P1,P2;
-    [SerializeField] Image SuckObjectCount;
+    //[SerializeField] Image SuckObjectCount;
 
     private void Start()
     {
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
     }
-
+    
     private void Update()
     {
         if (pushing) 
@@ -56,11 +59,21 @@ public class UIcontrol : MonoBehaviour
             pushing.transform.position = wantedPos;
         }
 
-        Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
-        P2pos.y = P2pos.y + 130;
-        SuckObjectCount.transform.position = P2pos;
+        if(pushingCD.activeInHierarchy)
+        {
+            Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+            P1pos.x = P1pos.x + 35;
+            P1pos.y = P1pos.y + 10;
+            pushingCD.transform.position = P1pos;
+        }
+        if (SuckingCD.activeInHierarchy)
+        {
+            Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+            P2pos.x = P2pos.x + 35;
+            P2pos.y = P2pos.y + 10;
+            SuckingCD.transform.position = P2pos;
+        }               
     }
-
     private void FixedUpdate()
     {
         if (BossHP.value <= 0 && BossAI.IsStage2)
@@ -68,7 +81,7 @@ public class UIcontrol : MonoBehaviour
             YouWin();
         }
     }
-
+    #region GameSystemUI
     //hp
     public void hp_decrease(int new_hp,int playerCount)
     {
@@ -122,6 +135,20 @@ public class UIcontrol : MonoBehaviour
         DeadCounter.text = DeadCount.ToString();
     }
 
+    //end game
+    public void GameOver()
+    {
+        sceneControl = new SceneControl();
+        sceneControl.GameOverScene();
+    }
+    public void YouWin()
+    {
+        sceneControl = new SceneControl();
+        sceneControl.WinScene();
+    }
+    #endregion
+
+    #region PlayerUI
     //pushing
     public void PushingBar(float load)
     {
@@ -134,46 +161,61 @@ public class UIcontrol : MonoBehaviour
 
         push_slider.value = 0;
     }
-
+    //Warnning Text(¼È®É©Ê)
+    public void flyText(int PlayerNum, Color color, string content)
+    {
+        Vector3 Player_pos;
+        if (PlayerNum==1)       
+            Player_pos = Camera.main.WorldToScreenPoint(P1.transform.position);     
+        else
+            Player_pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+        GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
+        go.transform.SetParent(GameObject.Find("GUI").transform);
+        UI_FlyText ft = go.GetComponent<UI_FlyText>();
+        ft.color = color;
+        ft.content = content;
+    }
     //PlayerSuckPushCD
     public void PushingCDBar(float load)
     {
         //pushingCD.SetActive(Ready);
         pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+        if (load == 1)
+            pushingCD.SetActive(false);
+        else
+            pushingCD.SetActive(true);
     }
     public void SuckingCDBar(float load)
     {
         //SuckingCD.SetActive(Ready);
         SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
+        if (load == 1)
+            SuckingCD.SetActive(false);
+        else
+            SuckingCD.SetActive(true);
     }
-
-    //end game
-    public void GameOver()
-    {
-        sceneControl = new SceneControl();
-        sceneControl.GameOverScene();
-    }
-    public void YouWin()
-    {
-        sceneControl = new SceneControl();
-        sceneControl.WinScene();
-    }
-
     public void EnergyBarChange(float NowEnergy, int playerCount)
     {
-        if (playerCount == 1)
-            Player1Energy.value = NowEnergy * 0.01f;
-        else if (playerCount == 2)
-            Player2Energy.value = NowEnergy * 0.01f;
-    }
+        if(Player1Energy.isActiveAndEnabled)
+        {
+            if (playerCount == 1)
+                Player1Energy.value = NowEnergy * 0.01f;
+            else if (playerCount == 2)
+                Player2Energy.value = NowEnergy * 0.01f;
 
-    public void SuckCount(int Count)
-    {
-        if (Count < 2)
-            SuckObjectCount.color = new Color32(0, 130, 0, 255);
-        else if (Count == 2)
-            SuckObjectCount.color = new Color32(255, 230, 0, 255);
-        else
-            SuckObjectCount.color = new Color32(255, 0, 0, 255);
+        }
+
+
     }
+    #endregion
+
+    //public void SuckCount(int Count)
+    //{
+    //    if (Count < 2)
+    //        SuckObjectCount.color = new Color32(0, 130, 0, 255);
+    //    else if (Count == 2)
+    //        SuckObjectCount.color = new Color32(255, 230, 0, 255);
+    //    else
+    //        SuckObjectCount.color = new Color32(255, 0, 0, 255);
+    //}
 }

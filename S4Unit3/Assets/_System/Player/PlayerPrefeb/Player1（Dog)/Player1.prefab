@@ -143,8 +143,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052817167976939}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.7299995}
-  m_LocalScale: {x: 0.05, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 11}
+  m_LocalScale: {x: 0.05, y: 0, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2328266511673429320}
@@ -183,7 +183,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c2842c4181169843944f3bcb667fc12, type: 2}
+  - {fileID: 2100000, guid: dbc9bc5996cb4874ab7d9bb570a09abe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -426,18 +426,19 @@ MonoBehaviour:
   objectParent: {fileID: 500052817746688516}
   rangeObj: {fileID: 500052817167976939}
   RangeBigObj: {fileID: 500052817520157419}
+  Renderer: {fileID: 500052817167976941}
   Charitor: {fileID: 5381467380246077115}
   _force: 500
-  _range: 25
-  friendPushed: 0
+  _range: 20
+  isfriendPushed: 0
   Charge: 0
-  Shooted: 0
-  ShootInCD: 0
+  isShooted: 0
   _attackTrigger: 0
   countFloat: 0
-  CountMax: 2
+  CountMax: 1.5
   Timer: 2
-  PushMaxCD: 2
+  PushMaxCD: 3
+  speedSlow: 0.5
 --- !u!114 &500052818044258932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +454,7 @@ MonoBehaviour:
   objectParent: {fileID: 500052817746688516}
   direction: {fileID: 9195968397510403553}
   SpawnPoint: {fileID: 500052817520157418}
+  SpeedToSlowDown: 0.85
 --- !u!114 &500052818044258935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,7 +490,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
   maximumSpeed: 11
-  rotationSpeed: 40
+  rotationSpeed: 50
   characterController: {fileID: 500052818044258931}
   _animation: {fileID: 628926013}
   ShootRot: {fileID: 9195968397510403553}
@@ -499,10 +501,11 @@ MonoBehaviour:
   isSlowed: 0
   isImMobilized: 0
   isDashed: 0
+  isKnockUp: 0
   inCC: 0
   dashSpeed: 25
   dashTime: 0.25
-  DashBar: 100
+  _DashTotal: 2
   DashUsed: 49
   DashRestore: 25
 --- !u!54 &500052818044258936

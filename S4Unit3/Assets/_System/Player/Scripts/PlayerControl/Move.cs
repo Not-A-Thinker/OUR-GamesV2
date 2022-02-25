@@ -46,25 +46,32 @@ public class Move : MonoBehaviour
 
     float gravity= 20f;
     float vSpeed = 0f;
-
-    [Header("Player Dash")]
     //dash
+    [Header("Player Dash")]
+
+    CapsuleCollider _Collider;
     public float dashSpeed;
     public float dashTime;
 
-    public float DashBar = 100f;
-    public float DashUsed;
-    public float DashRestore;
+    int _DashTotal;
+    int _DashNow;
+    float DashBar = 100f;
+    public int DashUsed;
+    public int DashRestore;
 
     float angle;
 
+
     void Start()
     {
+        _DashNow = _DashTotal;
+        _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
+        _DashTotal = (int)DashBar / DashUsed ;
     }
 
     void Update()
@@ -80,16 +87,25 @@ public class Move : MonoBehaviour
             vSpeed = 0; // grounded character has vSpeed = 0...
         }
 
+        ///閃避條充能
         if (DashBar < 100)
         {
             DashBar = DashBar + DashRestore * Time.deltaTime;
-        }
-      
-        ///沒用Move的時候這邊記得要註解掉
-        UIcontrol.EnergyBarChange(DashBar, 1);
+
+            for (int i = 1 ; i <= _DashTotal ; i++)
+            {
+                if (DashBar == DashUsed * i)
+                {
+                    ///restore one Dash
+                    _DashNow++;
+                }
+            }
+        }           
 
         if (isPlayer1)//wasd
         {
+            UIcontrol.EnergyBarChange(DashBar, 1);
+
             if (inCC == false)
             {
                 isKnockUp = false;
@@ -122,17 +138,19 @@ public class Move : MonoBehaviour
                     _animation.PlayerWalk(false);
                 }
 
-                if (Input.GetButtonDown("JumpP1") && DashBar >= DashUsed)
+                if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
                 {
                     isDashed = true;
                     _animation.PlayerDash(true);
                     //Debug.Log("P1 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                    _DashNow = _DashNow - 1;
                     DashBar = DashBar - DashUsed;
                 }
                 else if (Input.GetButtonUp("JumpP1"))
                 {
                     isDashed = false;
+                    
                     _animation.PlayerDash(false);
                 }
             }
@@ -151,19 +169,19 @@ public class Move : MonoBehaviour
                 angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                 //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                 Quaternion target = Quaternion.Euler(0, angle, 0);
-                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 500f * Time.deltaTime);
-                //Debug.Log(angle);
+                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
+                Debug.Log(angle);
             }
-
-            if (Input.GetButtonDown("LockOnP1"))
+            else
             {
-                Debug.Log("locked Boss!");
+                //Debug.Log("locked Boss!");
                 BossLockOn();
             }                          
         }
 
         if (isPlayer2)//arrows
         {
+            UIcontrol.EnergyBarChange(DashBar, 2);
             if (inCC == false)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -208,6 +226,7 @@ public class Move : MonoBehaviour
                     //Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                     DashBar = DashBar - DashUsed;
+                    _DashNow = _DashNow - 1;
                 }
 
                 else if (Input.GetButtonUp("JumpP2"))
@@ -234,13 +253,13 @@ public class Move : MonoBehaviour
                     angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                     //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                     Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
                     //Debug.Log(angle);
                 }
-
-                if (Input.GetButtonDown("LockOnP2"))
+                //if (Input.GetButtonDown("LockOnP2"))
+                else
                 {
-                    Debug.Log("locked Boss!");
+                    //Debug.Log("locked Boss!");
                     BossLockOn();
                 }
             }
@@ -277,20 +296,21 @@ public class Move : MonoBehaviour
         maximumSpeed = tempSpeed;
     }
 
-    IEnumerator ImMobilzer(int sec)
-    {
-        //Debug.Log(transform.name + " is ImMobilze!");
-        isImMobilized = true;
-        maximumSpeed = 0;
-        yield return new WaitForSeconds(sec);
-        isImMobilized = false;
-        maximumSpeed = tempSpeed;
-    }
+    //IEnumerator ImMobilzer(int sec)
+    //{
+    //    //Debug.Log(transform.name + " is ImMobilze!");
+    //    isImMobilized = true;
+    //    maximumSpeed = 0;
+    //    yield return new WaitForSeconds(sec);
+    //    isImMobilized = false;
+    //    maximumSpeed = tempSpeed;
+    //}
     IEnumerator Dash(Vector3 velocity, float horizontalInput, float verticalInput)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
+        
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
@@ -299,9 +319,17 @@ public class Move : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            _Collider.enabled = false;
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);        
+            yield return null;          
+        }
+
+        while(Time.time>=startTime+dashTime)
+        {
+            _Collider.enabled = true;
             yield return null;
         }
+
     }
     public IEnumerator GetFriendlyControl(Vector3 velocity)
     {
@@ -366,13 +394,15 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(3);
         inCC = false;      
     }
-    public void SpeedSlow()
+
+    ///Only For P1 While Getting New Cube
+    public void SpeedSlow(float SpeedDec)
     {
-        maximumSpeed = (float)maximumSpeed * 0.85f;
+        maximumSpeed = (float)maximumSpeed * SpeedDec;
     }
-    public void SpeedFast()
+    public void SpeedFast(float SpeedInc)
     {
-        maximumSpeed = (float)maximumSpeed / 0.85f;
+        maximumSpeed = (float)maximumSpeed / SpeedInc;
     }
 
     public void SpeedReset()
@@ -387,7 +417,7 @@ public class Move : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - ShootRot.transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
-        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 400f * Time.deltaTime);
+        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.deltaTime);
     }
 }
 

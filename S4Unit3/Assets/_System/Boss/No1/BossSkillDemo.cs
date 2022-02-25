@@ -84,7 +84,6 @@ public class BossSkillDemo : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
         orgPos = transform.position;
     }
 
@@ -224,7 +223,11 @@ public class BossSkillDemo : MonoBehaviour
                 GameObject go = Instantiate(tornadoSmall, ranPos, Quaternion.identity);
                 go.name = "tornadoSmall_" + id;
                 id++;
-                go.GetComponent<Skill_TornadoGattai>().playerSelect = playerRan;
+                Skill_TornadoGattai goSkill = go.GetComponent<Skill_TornadoGattai>();
+                goSkill.playerSelect = playerRan;
+                if (goSkill.playerSelect == 1) { goSkill._Player1 = _Player1; }
+                else if (goSkill.playerSelect == 2) { goSkill._Player2 = _Player2; }
+                
             }
             else { i--; }
 
@@ -244,8 +247,11 @@ public class BossSkillDemo : MonoBehaviour
         yield return new WaitUntil(() => tornado1.b_CanGattai);
 
         GameObject go = Instantiate(TornadoBigOne, tornado1.transform.position, Quaternion.identity);
-        go.GetComponent<Skill_TornadoBigOne>().playerSelect = tornado1.playerSelect;
-
+        Skill_TornadoBigOne goBigOne = go.GetComponent<Skill_TornadoBigOne>();
+        goBigOne.playerSelect = tornado1.playerSelect;
+        if(goBigOne.playerSelect == 1) { goBigOne._Player1 = _Player1; }
+        else if (goBigOne.playerSelect == 2) { goBigOne._Player2 = _Player2; }
+        
         tornadoGattaiIsExisted = false;
         Debug.Log("Here's come the big one! And select:" + tornado1.playerSelect);
 
