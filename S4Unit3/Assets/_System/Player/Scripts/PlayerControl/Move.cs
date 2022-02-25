@@ -138,7 +138,7 @@ public class Move : MonoBehaviour
                     _animation.PlayerWalk(false);
                 }
 
-                if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
+                if (Input.GetButtonDown("JumpP1") && DashBar >= DashUsed)
                 {
                     isDashed = true;
                     _animation.PlayerDash(true);
