@@ -301,7 +301,7 @@ public class BossAI_Wind : MonoBehaviour
             }
             else
             {
-                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4 && !isStando)
                 { AIDecision = 33; }
             }
         }
