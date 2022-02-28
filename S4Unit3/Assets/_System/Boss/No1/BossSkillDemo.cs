@@ -96,7 +96,8 @@ public class BossSkillDemo : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 //WindBlade();
-                StartCoroutine(WindBlade16(2));
+                //StartCoroutine(WindBlade16(2));
+                WindBlade16AnimationTrigger();
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -158,7 +159,7 @@ public class BossSkillDemo : MonoBehaviour
                 GameObject go = Instantiate(windBlade, instantiatePoint.transform.position, angle);
                 go.name = "WB_" + i + "," + j + "," + go.transform.localEulerAngles.y;
             }          
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.5f);
         }
 
         Boss1Animator.SetBool("isBlade", false);
