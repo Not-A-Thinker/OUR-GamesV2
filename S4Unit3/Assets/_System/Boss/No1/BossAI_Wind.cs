@@ -377,8 +377,11 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         //WindBlade 16發風刃 * 3 + S形龍捲風
-                        yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
-                        BossSkill.TornadoAttack();
+                        //yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
+                        //BossSkill.TornadoAttack();
+
+                        //WindBlade 16發風刃 * 3
+                        BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
@@ -399,8 +402,9 @@ public class BossAI_Wind : MonoBehaviour
                     else if (rndNum >= 40 && rndNum < 67)
                     {
                         //WindBlade 16發風刃 * 4 + S形龍捲風
-                        yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(4));
+                        //yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(4));
                         BossSkill.TornadoAttack();
+
                     }
                     else if (rndNum >= 67 && rndNum < 100)
                     {
@@ -430,12 +434,14 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
 
+                #region Stage1_Case21-23
                 //If there are player2 perf. then should change the skill.
                 case 21:
                     if (rndNum < 50)
                     {
                         //WindBlade 16發風刃 * 1
-                        BossSkill.StartCoroutine(BossSkill.WindBlade16(1));
+                        //BossSkill.StartCoroutine(BossSkill.WindBlade16(1));
+                        BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
@@ -455,7 +461,8 @@ public class BossAI_Wind : MonoBehaviour
                     else if (rndNum >= 33 && rndNum < 67)
                     {
                         //WindBlade 16發風刃 * 2
-                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        //BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 67 && rndNum < 100)
                     {
@@ -475,12 +482,14 @@ public class BossAI_Wind : MonoBehaviour
                         BossSkill.TornadoAttack();
                     }
                     break;
+                #endregion
 
                 case 31:
                     if (rndNum < 50)
                     {
                         //WindBlade 16發風刃 * 2
-                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        //BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
@@ -492,7 +501,8 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         //WindBlade 16發風刃 * 2
-                        BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        //BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
+                        BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {

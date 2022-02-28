@@ -30,6 +30,11 @@ public class Boss1Animator : MonoBehaviour
         }
     }
 
+    public void Animation_BossWindBladeAttack()
+    {
+        BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
+    }
+
     public void Animation_BossTailAttack()
     {
         BossSkill.BossTailAttackAnimation();

@@ -149,7 +149,7 @@ public class BossSkillDemo : MonoBehaviour
         Boss1Animator.SetBool("isBlade", true);
         for (int i = 0; i < wave; i++)//Wave to spawn
         {
-            Boss1Animator.SetTrigger("Skill_WindBlade");
+            //Boss1Animator.SetTrigger("Skill_WindBlade");
             for (int j = 0; j < 16; j++)
             {
                 float angleValue = (22.5f * j + (22.5f / 2 * i) + i) % 360f + 45;
@@ -163,6 +163,11 @@ public class BossSkillDemo : MonoBehaviour
 
         Boss1Animator.SetBool("isBlade", false);
         yield return null;
+    }
+
+    public void WindBlade16AnimationTrigger()
+    {
+        Boss1Animator.SetTrigger("Skill_WindBlade");
     }
 
     public void VacuumPressure()
@@ -414,7 +419,6 @@ public class BossSkillDemo : MonoBehaviour
                         yield return new WaitForSeconds(0.15f);
                     }
                     else { j--; }
-
                 }
                 else { j--; }
             }
