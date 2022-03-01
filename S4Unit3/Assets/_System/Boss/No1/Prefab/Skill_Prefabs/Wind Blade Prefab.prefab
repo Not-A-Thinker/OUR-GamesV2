@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4919489863347522359}
   - component: {fileID: 4570923729681811789}
   - component: {fileID: 3637532199967096908}
+  - component: {fileID: 4365996113063144523}
   m_Layer: 0
   m_Name: Wind Blade Prefab
   m_TagString: BossSkill
@@ -198,6 +199,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   secondToDie: 4
+--- !u!114 &4365996113063144523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798214951064251751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f4b1e246aacb04ebb20fd75761f8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitParticle: {fileID: 5722454692403711595, guid: af448784b5c81d14fb84000e22e25bdc, type: 3}
+  Hitobj: 
+  Traget: {fileID: 0}
 --- !u!1 &7471461010013820971
 GameObject:
   m_ObjectHideFlags: 0
