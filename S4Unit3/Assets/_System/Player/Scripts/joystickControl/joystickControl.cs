@@ -24,7 +24,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
     ""name"": ""joystickControl"",
     ""maps"": [
         {
-            ""name"": ""GamePlay"",
+            ""name"": ""P1Control"",
             ""id"": ""078d26a4-c160-41f5-b52e-0fe211842e87"",
             ""actions"": [
                 {
@@ -55,7 +55,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Succ"",
+                    ""name"": ""Push"",
                     ""type"": ""Button"",
                     ""id"": ""5f03c65b-64a4-44a8-8964-77e02b741b91"",
                     ""expectedControlType"": ""Button"",
@@ -113,7 +113,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Arow"",
                     ""id"": ""e2ef9b71-6ab4-48c8-9b7d-75318f289f87"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -181,22 +181,22 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c76c62e9-b587-4f58-85d0-92769dce0b49"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""JoyStick"",
-                    ""action"": ""Succ"",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""2f69ff5c-ae15-4b8a-9435-b320078be653"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""JoyStick"",
-                    ""action"": ""Succ"",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -207,7 +207,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
-                    ""action"": ""Succ"",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -225,7 +225,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab6578df-260a-4699-88c9-d7cfd4b9e351"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""JoyStick"",
@@ -257,6 +257,17 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""95149937-3e09-4cdc-b2fc-2a49768a1fb0"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4a6dd4d6-de14-430d-9ce3-8d040d262e23"",
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
@@ -280,7 +291,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""afaffb37-830f-47e5-818b-9dea1ab9a1c3"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""JoyStick"",
@@ -291,11 +302,328 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2ed8f9fa-f7dd-43ba-b247-8d92b2b0914f"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""P2Control"",
+            ""id"": ""d3f177e6-af13-4ae8-8f1c-f661ccecdb9f"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""f5b34b81-0605-4f33-b185-971385ba5838"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateMouse"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""53c48b9b-20b4-40cb-82d7-7afb3f387ab2"",
+                    ""expectedControlType"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""de01ca48-e6fc-41a2-8a40-c04f703063b3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Push"",
+                    ""type"": ""Button"",
+                    ""id"": ""13236695-fc8a-4d08-bd21-21f3101569e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SuccFriendlyObject"",
+                    ""type"": ""Button"",
+                    ""id"": ""e5e5cef8-93e8-4bd9-8925-b28078792160"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""fe53a8e0-6706-446a-987d-9f00b6f71342"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockBoss"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e291aea-f792-44f0-9051-6d519ef9bef8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Respawn"",
+                    ""type"": ""Button"",
+                    ""id"": ""78b8579c-2a26-4203-a23c-090d7fce0668"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7c6ca1cb-c00e-4a22-a082-471caab5bba2"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone(min=0.3,max=1)"",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arow"",
+                    ""id"": ""444e80f7-254b-463a-b542-332cf7633609"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""35bb4f8b-e679-474d-8efc-c1bf01573596"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""92d7f30b-a63b-4fea-ac60-5aa44e55d896"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c712459f-3a14-4156-99c9-0355f2a776c5"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""bcdf15e1-72ac-433e-b115-a08442a64743"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5837fec3-6640-4fb8-970a-1dc1abd56d15"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone(min=0.3,max=1)"",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""471d53f1-b432-4e6f-845c-65b6958af4b5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Push"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3303e341-6333-45b7-8f69-e978c440aaac"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Push"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87c05771-43e0-4c00-ab8d-15e76a3ae8f0"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Push"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37ba01bb-5a36-41ec-ad65-770eebe50fda"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""SuccFriendlyObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cc21047-b3b2-4759-8e64-3af9fa425d2e"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""SuccFriendlyObject"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4f253d7-6bff-4a50-85f5-d01742dc475e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5e93f7a-d735-49e4-85c0-e66be6ae1557"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""297f9354-4e91-4859-966c-98fb6c6e9077"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19886818-15c3-4946-835f-b91c222b91e1"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""LockBoss"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9e9a5ed-becc-4db5-b758-45f0e299cf36"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse And Keyboard"",
+                    ""action"": ""RotateMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4fed8f65-0661-49ce-9373-254d6c1b9a95"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""JoyStick"",
+                    ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4874f49-f8fb-411f-ae8b-f4e2480d549b"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
                     ""action"": ""Respawn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UIControl"",
+            ""id"": ""3b720408-aee3-4846-971e-45e65d8048d2"",
+            ""actions"": [
+                {
+                    ""name"": ""Pre"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d4dddf7-d85b-4280-ac0a-ba3eac5108ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c6546fe5-6ea9-4b75-b597-2d665725d7a4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pre"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -337,16 +665,29 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // GamePlay
-        m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
-        m_GamePlay_Move = m_GamePlay.FindAction("Move", throwIfNotFound: true);
-        m_GamePlay_RotateMouse = m_GamePlay.FindAction("RotateMouse", throwIfNotFound: true);
-        m_GamePlay_Rotate = m_GamePlay.FindAction("Rotate", throwIfNotFound: true);
-        m_GamePlay_Succ = m_GamePlay.FindAction("Succ", throwIfNotFound: true);
-        m_GamePlay_SuccFriendlyObject = m_GamePlay.FindAction("SuccFriendlyObject", throwIfNotFound: true);
-        m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
-        m_GamePlay_LockBoss = m_GamePlay.FindAction("LockBoss", throwIfNotFound: true);
-        m_GamePlay_Respawn = m_GamePlay.FindAction("Respawn", throwIfNotFound: true);
+        // P1Control
+        m_P1Control = asset.FindActionMap("P1Control", throwIfNotFound: true);
+        m_P1Control_Move = m_P1Control.FindAction("Move", throwIfNotFound: true);
+        m_P1Control_RotateMouse = m_P1Control.FindAction("RotateMouse", throwIfNotFound: true);
+        m_P1Control_Rotate = m_P1Control.FindAction("Rotate", throwIfNotFound: true);
+        m_P1Control_Push = m_P1Control.FindAction("Push", throwIfNotFound: true);
+        m_P1Control_SuccFriendlyObject = m_P1Control.FindAction("SuccFriendlyObject", throwIfNotFound: true);
+        m_P1Control_Dash = m_P1Control.FindAction("Dash", throwIfNotFound: true);
+        m_P1Control_LockBoss = m_P1Control.FindAction("LockBoss", throwIfNotFound: true);
+        m_P1Control_Respawn = m_P1Control.FindAction("Respawn", throwIfNotFound: true);
+        // P2Control
+        m_P2Control = asset.FindActionMap("P2Control", throwIfNotFound: true);
+        m_P2Control_Move = m_P2Control.FindAction("Move", throwIfNotFound: true);
+        m_P2Control_RotateMouse = m_P2Control.FindAction("RotateMouse", throwIfNotFound: true);
+        m_P2Control_Rotate = m_P2Control.FindAction("Rotate", throwIfNotFound: true);
+        m_P2Control_Push = m_P2Control.FindAction("Push", throwIfNotFound: true);
+        m_P2Control_SuccFriendlyObject = m_P2Control.FindAction("SuccFriendlyObject", throwIfNotFound: true);
+        m_P2Control_Dash = m_P2Control.FindAction("Dash", throwIfNotFound: true);
+        m_P2Control_LockBoss = m_P2Control.FindAction("LockBoss", throwIfNotFound: true);
+        m_P2Control_Respawn = m_P2Control.FindAction("Respawn", throwIfNotFound: true);
+        // UIControl
+        m_UIControl = asset.FindActionMap("UIControl", throwIfNotFound: true);
+        m_UIControl_Pre = m_UIControl.FindAction("Pre", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,64 +744,64 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // GamePlay
-    private readonly InputActionMap m_GamePlay;
-    private IGamePlayActions m_GamePlayActionsCallbackInterface;
-    private readonly InputAction m_GamePlay_Move;
-    private readonly InputAction m_GamePlay_RotateMouse;
-    private readonly InputAction m_GamePlay_Rotate;
-    private readonly InputAction m_GamePlay_Succ;
-    private readonly InputAction m_GamePlay_SuccFriendlyObject;
-    private readonly InputAction m_GamePlay_Dash;
-    private readonly InputAction m_GamePlay_LockBoss;
-    private readonly InputAction m_GamePlay_Respawn;
-    public struct GamePlayActions
+    // P1Control
+    private readonly InputActionMap m_P1Control;
+    private IP1ControlActions m_P1ControlActionsCallbackInterface;
+    private readonly InputAction m_P1Control_Move;
+    private readonly InputAction m_P1Control_RotateMouse;
+    private readonly InputAction m_P1Control_Rotate;
+    private readonly InputAction m_P1Control_Push;
+    private readonly InputAction m_P1Control_SuccFriendlyObject;
+    private readonly InputAction m_P1Control_Dash;
+    private readonly InputAction m_P1Control_LockBoss;
+    private readonly InputAction m_P1Control_Respawn;
+    public struct P1ControlActions
     {
         private @JoystickControl m_Wrapper;
-        public GamePlayActions(@JoystickControl wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_GamePlay_Move;
-        public InputAction @RotateMouse => m_Wrapper.m_GamePlay_RotateMouse;
-        public InputAction @Rotate => m_Wrapper.m_GamePlay_Rotate;
-        public InputAction @Succ => m_Wrapper.m_GamePlay_Succ;
-        public InputAction @SuccFriendlyObject => m_Wrapper.m_GamePlay_SuccFriendlyObject;
-        public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
-        public InputAction @LockBoss => m_Wrapper.m_GamePlay_LockBoss;
-        public InputAction @Respawn => m_Wrapper.m_GamePlay_Respawn;
-        public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
+        public P1ControlActions(@JoystickControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_P1Control_Move;
+        public InputAction @RotateMouse => m_Wrapper.m_P1Control_RotateMouse;
+        public InputAction @Rotate => m_Wrapper.m_P1Control_Rotate;
+        public InputAction @Push => m_Wrapper.m_P1Control_Push;
+        public InputAction @SuccFriendlyObject => m_Wrapper.m_P1Control_SuccFriendlyObject;
+        public InputAction @Dash => m_Wrapper.m_P1Control_Dash;
+        public InputAction @LockBoss => m_Wrapper.m_P1Control_LockBoss;
+        public InputAction @Respawn => m_Wrapper.m_P1Control_Respawn;
+        public InputActionMap Get() { return m_Wrapper.m_P1Control; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GamePlayActions set) { return set.Get(); }
-        public void SetCallbacks(IGamePlayActions instance)
+        public static implicit operator InputActionMap(P1ControlActions set) { return set.Get(); }
+        public void SetCallbacks(IP1ControlActions instance)
         {
-            if (m_Wrapper.m_GamePlayActionsCallbackInterface != null)
+            if (m_Wrapper.m_P1ControlActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnMove;
-                @RotateMouse.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotateMouse;
-                @RotateMouse.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotateMouse;
-                @RotateMouse.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotateMouse;
-                @Rotate.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
-                @Rotate.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
-                @Rotate.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRotate;
-                @Succ.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSucc;
-                @Succ.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSucc;
-                @Succ.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSucc;
-                @SuccFriendlyObject.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSuccFriendlyObject;
-                @SuccFriendlyObject.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSuccFriendlyObject;
-                @SuccFriendlyObject.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSuccFriendlyObject;
-                @Dash.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDash;
-                @LockBoss.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLockBoss;
-                @LockBoss.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLockBoss;
-                @LockBoss.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLockBoss;
-                @Respawn.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRespawn;
-                @Respawn.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRespawn;
-                @Respawn.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRespawn;
+                @Move.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnMove;
+                @RotateMouse.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotateMouse;
+                @RotateMouse.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotateMouse;
+                @RotateMouse.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotateMouse;
+                @Rotate.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRotate;
+                @Push.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnPush;
+                @Push.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnPush;
+                @Push.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnPush;
+                @SuccFriendlyObject.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @SuccFriendlyObject.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @SuccFriendlyObject.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @Dash.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnDash;
+                @LockBoss.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnLockBoss;
+                @LockBoss.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnLockBoss;
+                @LockBoss.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnLockBoss;
+                @Respawn.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
+                @Respawn.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
+                @Respawn.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
             }
-            m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
+            m_Wrapper.m_P1ControlActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
@@ -472,9 +813,9 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
-                @Succ.started += instance.OnSucc;
-                @Succ.performed += instance.OnSucc;
-                @Succ.canceled += instance.OnSucc;
+                @Push.started += instance.OnPush;
+                @Push.performed += instance.OnPush;
+                @Push.canceled += instance.OnPush;
                 @SuccFriendlyObject.started += instance.OnSuccFriendlyObject;
                 @SuccFriendlyObject.performed += instance.OnSuccFriendlyObject;
                 @SuccFriendlyObject.canceled += instance.OnSuccFriendlyObject;
@@ -490,7 +831,129 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
             }
         }
     }
-    public GamePlayActions @GamePlay => new GamePlayActions(this);
+    public P1ControlActions @P1Control => new P1ControlActions(this);
+
+    // P2Control
+    private readonly InputActionMap m_P2Control;
+    private IP2ControlActions m_P2ControlActionsCallbackInterface;
+    private readonly InputAction m_P2Control_Move;
+    private readonly InputAction m_P2Control_RotateMouse;
+    private readonly InputAction m_P2Control_Rotate;
+    private readonly InputAction m_P2Control_Push;
+    private readonly InputAction m_P2Control_SuccFriendlyObject;
+    private readonly InputAction m_P2Control_Dash;
+    private readonly InputAction m_P2Control_LockBoss;
+    private readonly InputAction m_P2Control_Respawn;
+    public struct P2ControlActions
+    {
+        private @JoystickControl m_Wrapper;
+        public P2ControlActions(@JoystickControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_P2Control_Move;
+        public InputAction @RotateMouse => m_Wrapper.m_P2Control_RotateMouse;
+        public InputAction @Rotate => m_Wrapper.m_P2Control_Rotate;
+        public InputAction @Push => m_Wrapper.m_P2Control_Push;
+        public InputAction @SuccFriendlyObject => m_Wrapper.m_P2Control_SuccFriendlyObject;
+        public InputAction @Dash => m_Wrapper.m_P2Control_Dash;
+        public InputAction @LockBoss => m_Wrapper.m_P2Control_LockBoss;
+        public InputAction @Respawn => m_Wrapper.m_P2Control_Respawn;
+        public InputActionMap Get() { return m_Wrapper.m_P2Control; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(P2ControlActions set) { return set.Get(); }
+        public void SetCallbacks(IP2ControlActions instance)
+        {
+            if (m_Wrapper.m_P2ControlActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnMove;
+                @RotateMouse.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotateMouse;
+                @RotateMouse.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotateMouse;
+                @RotateMouse.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotateMouse;
+                @Rotate.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRotate;
+                @Push.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnPush;
+                @Push.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnPush;
+                @Push.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnPush;
+                @SuccFriendlyObject.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @SuccFriendlyObject.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @SuccFriendlyObject.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnSuccFriendlyObject;
+                @Dash.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnDash;
+                @LockBoss.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnLockBoss;
+                @LockBoss.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnLockBoss;
+                @LockBoss.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnLockBoss;
+                @Respawn.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
+                @Respawn.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
+                @Respawn.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
+            }
+            m_Wrapper.m_P2ControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @RotateMouse.started += instance.OnRotateMouse;
+                @RotateMouse.performed += instance.OnRotateMouse;
+                @RotateMouse.canceled += instance.OnRotateMouse;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
+                @Push.started += instance.OnPush;
+                @Push.performed += instance.OnPush;
+                @Push.canceled += instance.OnPush;
+                @SuccFriendlyObject.started += instance.OnSuccFriendlyObject;
+                @SuccFriendlyObject.performed += instance.OnSuccFriendlyObject;
+                @SuccFriendlyObject.canceled += instance.OnSuccFriendlyObject;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @LockBoss.started += instance.OnLockBoss;
+                @LockBoss.performed += instance.OnLockBoss;
+                @LockBoss.canceled += instance.OnLockBoss;
+                @Respawn.started += instance.OnRespawn;
+                @Respawn.performed += instance.OnRespawn;
+                @Respawn.canceled += instance.OnRespawn;
+            }
+        }
+    }
+    public P2ControlActions @P2Control => new P2ControlActions(this);
+
+    // UIControl
+    private readonly InputActionMap m_UIControl;
+    private IUIControlActions m_UIControlActionsCallbackInterface;
+    private readonly InputAction m_UIControl_Pre;
+    public struct UIControlActions
+    {
+        private @JoystickControl m_Wrapper;
+        public UIControlActions(@JoystickControl wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pre => m_Wrapper.m_UIControl_Pre;
+        public InputActionMap Get() { return m_Wrapper.m_UIControl; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIControlActions set) { return set.Get(); }
+        public void SetCallbacks(IUIControlActions instance)
+        {
+            if (m_Wrapper.m_UIControlActionsCallbackInterface != null)
+            {
+                @Pre.started -= m_Wrapper.m_UIControlActionsCallbackInterface.OnPre;
+                @Pre.performed -= m_Wrapper.m_UIControlActionsCallbackInterface.OnPre;
+                @Pre.canceled -= m_Wrapper.m_UIControlActionsCallbackInterface.OnPre;
+            }
+            m_Wrapper.m_UIControlActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pre.started += instance.OnPre;
+                @Pre.performed += instance.OnPre;
+                @Pre.canceled += instance.OnPre;
+            }
+        }
+    }
+    public UIControlActions @UIControl => new UIControlActions(this);
     private int m_MouseAndKeyboardSchemeIndex = -1;
     public InputControlScheme MouseAndKeyboardScheme
     {
@@ -509,15 +972,30 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_JoyStickSchemeIndex];
         }
     }
-    public interface IGamePlayActions
+    public interface IP1ControlActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnRotateMouse(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
-        void OnSucc(InputAction.CallbackContext context);
+        void OnPush(InputAction.CallbackContext context);
         void OnSuccFriendlyObject(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLockBoss(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+    }
+    public interface IP2ControlActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnRotateMouse(InputAction.CallbackContext context);
+        void OnRotate(InputAction.CallbackContext context);
+        void OnPush(InputAction.CallbackContext context);
+        void OnSuccFriendlyObject(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnLockBoss(InputAction.CallbackContext context);
+        void OnRespawn(InputAction.CallbackContext context);
+    }
+    public interface IUIControlActions
+    {
+        void OnPre(InputAction.CallbackContext context);
     }
 }
