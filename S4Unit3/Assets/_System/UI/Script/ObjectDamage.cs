@@ -39,7 +39,8 @@ public class ObjectDamage : MonoBehaviour
     {
         ///¤è¶ô²¾°Ê
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
-        transform.position += Direction * Speed * Time.deltaTime;   
+        transform.position += Direction * Speed * Time.deltaTime;
+        Speed = Speed * 0.8f * Time.deltaTime;
     }
 
     //Do You Know YourDamage

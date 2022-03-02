@@ -121,7 +121,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Vector3 toTarget = transform.position - savedObject.transform.position;
             savedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
             savedObject.transform.position = Vector3.MoveTowards(savedObject.transform.position, transform.position, _force * Time.deltaTime);
-            _force = _force + _force* 2 *Time.deltaTime;
+            _force = _force + _force* 5 *Time.deltaTime;
             // curve.Evaluate(0.6f)
         }
     }
