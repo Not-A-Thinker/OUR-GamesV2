@@ -18,13 +18,15 @@ public class ObjectDamage : MonoBehaviour
     [Header("Cube Attact State")]
     public Vector3 Direction;
     public int Damage = 15;
-    public float Speed = 50;
+    public float Speed ;
 
     private void Start()
     {
         chip = Resources.Load("Prefabs/Clip") as GameObject;
         bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
-      
+
+        Speed = 50;
+
         if (this.gameObject.name.Contains("SpecialAttack"))
             isSpcecialAttack = true;
         ///到指定時間會自己消失
@@ -40,7 +42,7 @@ public class ObjectDamage : MonoBehaviour
         ///方塊移動
         //Rb.AddForceAtPosition(Direction * 2000 * Time.deltaTime, transform.position, ForceMode.Impulse);
         transform.position += Direction * Speed * Time.deltaTime;
-        Speed = Speed * 0.8f * Time.deltaTime;
+        //Speed = Speed-- * Time.deltaTime;
     }
 
     //Do You Know YourDamage
