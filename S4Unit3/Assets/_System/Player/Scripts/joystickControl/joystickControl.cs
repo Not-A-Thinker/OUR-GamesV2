@@ -78,7 +78,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""id"": ""dfcaff73-5a2c-4444-96a5-de3fb2825550"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -237,7 +237,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2eac9f95-4eb9-4156-8d00-05805c3805b1"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""JoyStick"",
                     ""action"": ""Dash"",
@@ -248,7 +248,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1a22990f-a706-4780-92c9-ac6c996320e3"",
                     ""path"": ""<Keyboard>/numpad0"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Mouse And Keyboard"",
                     ""action"": ""Dash"",
@@ -259,7 +259,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""95149937-3e09-4cdc-b2fc-2a49768a1fb0"",
                     ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
@@ -367,7 +367,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""id"": ""fe53a8e0-6706-446a-987d-9f00b6f71342"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {
