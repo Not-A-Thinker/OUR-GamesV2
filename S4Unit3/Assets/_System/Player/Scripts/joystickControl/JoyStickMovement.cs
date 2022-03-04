@@ -45,8 +45,8 @@ public class JoyStickMovement : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    public float DashBar = 100f;
-    public float DashUsed;
+    public int DashBar = 100;
+    public int DashUsed;
     public float DashRestore;
     int _DashTotal;
     int _DashNow;
@@ -65,6 +65,7 @@ public class JoyStickMovement : MonoBehaviour
     private void Awake()
     {
         tempSpeed = moveSpeed;
+        _DashNow = DashBar / DashUsed;
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
@@ -181,7 +182,7 @@ public class JoyStickMovement : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
-
+        _DashNow--;
         if (velocity == Vector3.zero)
         {
             velocity = -transform.forward * 0.1f * tempSpeed;
@@ -189,7 +190,7 @@ public class JoyStickMovement : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);          
             yield return null;
         }
     }
@@ -255,28 +256,34 @@ public class JoyStickMovement : MonoBehaviour
         }
 
         vector3d = new Vector3(vector2d.x, 0, vector2d.y);
+
         if (DashBar < 100)
         {
-            DashBar = DashBar + DashRestore * Time.deltaTime;
-
+            DashBar = (int)(DashBar + DashRestore * Time.deltaTime * 1.5);
             for (int i = 1; i <= _DashTotal; i++)
             {
                 if (DashBar == DashUsed * i)
                 {
                     ///restore one Dash
                     _DashNow++;
+                    int playerCount = 0;
+                    if (isPlayer1)
+                        playerCount = 1;
+                    if (isPlayer2)
+                        playerCount = 2;
+                    UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+                    Debug.Log("DashRestored!");
                 }
             }
         }
 
-        if(!inCC)
+        if (!inCC)
         {
             DashOn();
             Move(vector3d);
             Rotate();
             //DashOn(vector3d);
-            Shoot();
-            UIcontrol.EnergyBarChange(DashBar, 1);
+            Shoot();          
 
             vSpeed -= gravity * Time.deltaTime;
             vector3d.y = vSpeed;

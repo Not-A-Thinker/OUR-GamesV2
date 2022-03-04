@@ -194,18 +194,33 @@ public class UIcontrol : MonoBehaviour
         else
             SuckingCD.SetActive(true);
     }
-    public void EnergyBarChange(float NowEnergy, int playerCount)
+    public void EnergyBarChange(int playerCount, int _DashNow, bool _DashWasUsed)//float NowEnergy,
     {
-        if(Player1Energy.isActiveAndEnabled)
+        ///ÂÂ°{Á×±øUI¥Î
+        //if (Player1Energy.isActiveAndEnabled)
+        //{
+        //    if (playerCount == 1)
+        //        Player1Energy.value = NowEnergy * 0.01f;
+        //    else if (playerCount == 2)
+        //        Player2Energy.value = NowEnergy * 0.01f;
+        //}
+        if (Player1EnergyImg[0].activeInHierarchy)
         {
-            if (playerCount == 1)
-                Player1Energy.value = NowEnergy * 0.01f;
-            else if (playerCount == 2)
-                Player2Energy.value = NowEnergy * 0.01f;
-
+            if(_DashWasUsed)
+            {
+                if (playerCount == 1)
+                    Player1EnergyImg[_DashNow - 1].SetActive(false);
+                else if (playerCount == 2)
+                    Player2EnergyImg[_DashNow - 1].SetActive(false);
+            }
+            else
+            {
+                if (playerCount == 1)
+                    Player1EnergyImg[_DashNow - 1].SetActive(true);
+                else if (playerCount == 2)
+                    Player2EnergyImg[_DashNow - 1].SetActive(true);
+            }
         }
-
-
     }
     #endregion
 

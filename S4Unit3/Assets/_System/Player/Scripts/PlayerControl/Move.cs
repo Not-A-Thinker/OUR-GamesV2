@@ -55,7 +55,7 @@ public class Move : MonoBehaviour
 
     int _DashTotal;
     int _DashNow;
-    float DashBar = 100f;
+    int DashBar = 100;
     public int DashUsed;
     public int DashRestore;
 
@@ -64,14 +64,15 @@ public class Move : MonoBehaviour
 
     void Start()
     {
+        _DashTotal = DashBar / DashUsed;
         _DashNow = _DashTotal;
+
         _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
-        _DashTotal = (int)DashBar / DashUsed ;
     }
 
     void Update()
@@ -90,22 +91,26 @@ public class Move : MonoBehaviour
         ///°{Á×±ø¥R¯à
         if (DashBar < 100)
         {
-            DashBar = DashBar + DashRestore * Time.deltaTime;
-
+            DashBar = (int)(DashBar + DashRestore * Time.deltaTime *1.5);
             for (int i = 1 ; i <= _DashTotal ; i++)
             {
                 if (DashBar == DashUsed * i)
                 {
                     ///restore one Dash
                     _DashNow++;
+                    int playerCount = 0;
+                    if (isPlayer1)
+                        playerCount = 1;
+                    if (isPlayer2)
+                        playerCount = 2;
+                    UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+                    Debug.Log("DashRestored!");
                 }
             }
         }           
 
         if (isPlayer1)//wasd
-        {
-            UIcontrol.EnergyBarChange(DashBar, 1);
-
+        {         
             if (inCC == false)
             {
                 isKnockUp = false;
@@ -140,6 +145,7 @@ public class Move : MonoBehaviour
 
                 if (Input.GetButtonDown("JumpP1") && DashBar >= DashUsed)
                 {
+                    UIcontrol.EnergyBarChange(2, _DashNow, true);
                     isDashed = true;
                     _animation.PlayerDash(true);
                     //Debug.Log("P1 Dashed");
@@ -181,7 +187,7 @@ public class Move : MonoBehaviour
 
         if (isPlayer2)//arrows
         {
-            UIcontrol.EnergyBarChange(DashBar, 2);
+           
             if (inCC == false)
             {
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -222,6 +228,7 @@ public class Move : MonoBehaviour
 
                 if (Input.GetButtonDown("JumpP2") && DashBar >= DashUsed)
                 {
+                    UIcontrol.EnergyBarChange(2, _DashNow, true);
                     isDashed = true;
                     //Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
