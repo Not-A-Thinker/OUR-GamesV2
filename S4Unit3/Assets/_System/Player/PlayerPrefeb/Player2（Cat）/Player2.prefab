@@ -465,8 +465,8 @@ MonoBehaviour:
   inCC: 0
   dashSpeed: 30
   dashTime: 0.25
-  DashUsed: 99
-  DashRestore: 50
+  _DashTotal: 1
+  DashCD: 2
 --- !u!54 &1860544261278244864
 Rigidbody:
   m_ObjectHideFlags: 0

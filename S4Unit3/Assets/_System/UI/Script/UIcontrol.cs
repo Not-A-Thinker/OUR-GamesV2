@@ -9,10 +9,10 @@ public class UIcontrol : MonoBehaviour
     [Header("Player")]
     [SerializeField] GameObject[] Player1Hp;
     [SerializeField] GameObject[] Player2Hp;
-    [SerializeField] Slider Player1Energy;
-    [SerializeField] Slider Player2Energy;
-    [SerializeField] GameObject[] Player1EnergyImg;
-    [SerializeField] GameObject[] Player2EnergyImg;
+    //[SerializeField] Slider Player1Energy;
+    //[SerializeField] Slider Player2Energy;
+    [SerializeField] Image[] Player1EnergyImg;
+    [SerializeField] Image[] Player2EnergyImg;
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
@@ -204,23 +204,23 @@ public class UIcontrol : MonoBehaviour
         //    else if (playerCount == 2)
         //        Player2Energy.value = NowEnergy * 0.01f;
         //}
-        if (Player1EnergyImg[0].activeInHierarchy)
-        {
+        //if (Player1EnergyImg[0].isActiveAndEnabled)
+        //{
             if(_DashWasUsed)
             {
                 if (playerCount == 1)
-                    Player1EnergyImg[_DashNow - 1].SetActive(false);
+                    Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
                 else if (playerCount == 2)
-                    Player2EnergyImg[_DashNow - 1].SetActive(false);
+                    Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
             }
             else
             {
                 if (playerCount == 1)
-                    Player1EnergyImg[_DashNow - 1].SetActive(true);
+                    Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite; 
                 else if (playerCount == 2)
-                    Player2EnergyImg[_DashNow - 1].SetActive(true);
+                    Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite; 
             }
-        }
+        //}
     }
     #endregion
 

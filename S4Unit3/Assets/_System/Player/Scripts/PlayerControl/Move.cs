@@ -53,18 +53,19 @@ public class Move : MonoBehaviour
     public float dashSpeed;
     public float dashTime;
 
-    int _DashTotal;
+    public int _DashTotal;
     int _DashNow;
-    int DashBar = 100;
-    public int DashUsed;
-    public int DashRestore;
+    public int DashCD;
+    //float _DashNowFloat;
+    //int DashBar = 100;
+    //public int DashUsed;
+    //public int DashRestore;
 
     float angle;
 
 
     void Start()
     {
-        _DashTotal = DashBar / DashUsed;
         _DashNow = _DashTotal;
 
         _Collider = GetComponent<CapsuleCollider>();
@@ -74,6 +75,8 @@ public class Move : MonoBehaviour
         tempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
     }
+
+
 
     void Update()
     {
@@ -89,30 +92,34 @@ public class Move : MonoBehaviour
         }
 
         ///°{Á×±ø¥R¯à
-        if (DashBar < 100)
-        {
-            DashBar = (int)(DashBar + DashRestore * Time.deltaTime *1.5);
-            for (int i = 1 ; i <= _DashTotal ; i++)
-            {
-                if (DashBar == DashUsed * i)
-                {
-                    ///restore one Dash
-                    _DashNow++;
-                    int playerCount = 0;
-                    if (isPlayer1)
-                        playerCount = 1;
-                    if (isPlayer2)
-                        playerCount = 2;
-                    UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
-                    Debug.Log("DashRestored!");
-                }
-            }
-        }           
+        //if (_DashNow < _DashTotal)
+        //{
+            //_DashNowFloat = DashBar;
+            //_DashNowFloat += DashRestore * Time.deltaTime;
+            //DashBar = Mathf.RoundToInt(_DashNowFloat);
+            //Debug.Log(DashBar);
+            //for (int i = 1 ; i <= _DashTotal ; i++)
+            //{
+            //    if (DashBar == DashUsed * i)
+            //    {
+            //        ///restore one Dash
+            //        _DashNow++;
+            //        int playerCount = 0;
+            //        if (isPlayer1)
+            //            playerCount = 1;
+            //        if (isPlayer2)
+            //            playerCount = 2;
+            //        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+            //        Debug.Log("DashRestored!");
+            //    }
+            //}
+        //}           
 
         if (isPlayer1)//wasd
         {         
             if (inCC == false)
             {
+                
                 isKnockUp = false;
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 //Move
@@ -143,15 +150,15 @@ public class Move : MonoBehaviour
                     _animation.PlayerWalk(false);
                 }
 
-                if (Input.GetButtonDown("JumpP1") && DashBar >= DashUsed)
+                if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
                 {
-                    UIcontrol.EnergyBarChange(2, _DashNow, true);
+                    UIcontrol.EnergyBarChange(1, _DashNow, true);
                     isDashed = true;
                     _animation.PlayerDash(true);
                     //Debug.Log("P1 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                    StartCoroutine(DashRestore());
                     _DashNow = _DashNow - 1;
-                    DashBar = DashBar - DashUsed;
                 }
                 else if (Input.GetButtonUp("JumpP1"))
                 {
@@ -226,14 +233,14 @@ public class Move : MonoBehaviour
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
                
 
-                if (Input.GetButtonDown("JumpP2") && DashBar >= DashUsed)
+                if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
                 {
                     UIcontrol.EnergyBarChange(2, _DashNow, true);
                     isDashed = true;
                     //Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
-                    DashBar = DashBar - DashUsed;
-                    _DashNow = _DashNow - 1;
+                    StartCoroutine(DashRestore());
+                    _DashNow = _DashNow - 1;       
                 }
 
                 else if (Input.GetButtonUp("JumpP2"))
@@ -336,7 +343,18 @@ public class Move : MonoBehaviour
             _Collider.enabled = true;
             yield return null;
         }
-
+    }
+    IEnumerator DashRestore()
+    {
+        yield return new WaitForSeconds(DashCD);
+        _DashNow++;
+        int playerCount = 0;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        Debug.Log("DashRestored!");
     }
     public IEnumerator GetFriendlyControl(Vector3 velocity)
     {

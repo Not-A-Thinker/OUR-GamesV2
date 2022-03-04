@@ -182,7 +182,15 @@ public class JoyStickMovement : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
+
         _DashNow--;
+        int playerCount = 0;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+
         if (velocity == Vector3.zero)
         {
             velocity = -transform.forward * 0.1f * tempSpeed;
@@ -258,8 +266,9 @@ public class JoyStickMovement : MonoBehaviour
         vector3d = new Vector3(vector2d.x, 0, vector2d.y);
 
         if (DashBar < 100)
-        {
+        {       
             DashBar = (int)(DashBar + DashRestore * Time.deltaTime * 1.5);
+            Debug.Log(DashBar);
             for (int i = 1; i <= _DashTotal; i++)
             {
                 if (DashBar == DashUsed * i)
