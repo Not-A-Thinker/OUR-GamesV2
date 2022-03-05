@@ -98,6 +98,15 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JoinAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f3c3937-b998-44d8-88de-a1ee8e1ef549"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -309,6 +318,17 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""action"": ""Respawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89ab6553-b9b5-42bd-97ff-60c2216a6457"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JoinAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -383,6 +403,15 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""name"": ""Respawn"",
                     ""type"": ""Button"",
                     ""id"": ""78b8579c-2a26-4203-a23c-090d7fce0668"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""JoinAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""cece8a7d-2938-4b0a-8368-2d0473322072"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -598,6 +627,17 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""action"": ""Respawn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b45796fc-3a77-4150-b23c-d92481bf4b77"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JoinAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -675,6 +715,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         m_P1Control_Dash = m_P1Control.FindAction("Dash", throwIfNotFound: true);
         m_P1Control_LockBoss = m_P1Control.FindAction("LockBoss", throwIfNotFound: true);
         m_P1Control_Respawn = m_P1Control.FindAction("Respawn", throwIfNotFound: true);
+        m_P1Control_JoinAction = m_P1Control.FindAction("JoinAction", throwIfNotFound: true);
         // P2Control
         m_P2Control = asset.FindActionMap("P2Control", throwIfNotFound: true);
         m_P2Control_Move = m_P2Control.FindAction("Move", throwIfNotFound: true);
@@ -685,6 +726,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         m_P2Control_Dash = m_P2Control.FindAction("Dash", throwIfNotFound: true);
         m_P2Control_LockBoss = m_P2Control.FindAction("LockBoss", throwIfNotFound: true);
         m_P2Control_Respawn = m_P2Control.FindAction("Respawn", throwIfNotFound: true);
+        m_P2Control_JoinAction = m_P2Control.FindAction("JoinAction", throwIfNotFound: true);
         // UIControl
         m_UIControl = asset.FindActionMap("UIControl", throwIfNotFound: true);
         m_UIControl_Pre = m_UIControl.FindAction("Pre", throwIfNotFound: true);
@@ -755,6 +797,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_P1Control_Dash;
     private readonly InputAction m_P1Control_LockBoss;
     private readonly InputAction m_P1Control_Respawn;
+    private readonly InputAction m_P1Control_JoinAction;
     public struct P1ControlActions
     {
         private @JoystickControl m_Wrapper;
@@ -767,6 +810,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_P1Control_Dash;
         public InputAction @LockBoss => m_Wrapper.m_P1Control_LockBoss;
         public InputAction @Respawn => m_Wrapper.m_P1Control_Respawn;
+        public InputAction @JoinAction => m_Wrapper.m_P1Control_JoinAction;
         public InputActionMap Get() { return m_Wrapper.m_P1Control; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -800,6 +844,9 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 @Respawn.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
                 @Respawn.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
                 @Respawn.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnRespawn;
+                @JoinAction.started -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnJoinAction;
+                @JoinAction.performed -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnJoinAction;
+                @JoinAction.canceled -= m_Wrapper.m_P1ControlActionsCallbackInterface.OnJoinAction;
             }
             m_Wrapper.m_P1ControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -828,6 +875,9 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 @Respawn.started += instance.OnRespawn;
                 @Respawn.performed += instance.OnRespawn;
                 @Respawn.canceled += instance.OnRespawn;
+                @JoinAction.started += instance.OnJoinAction;
+                @JoinAction.performed += instance.OnJoinAction;
+                @JoinAction.canceled += instance.OnJoinAction;
             }
         }
     }
@@ -844,6 +894,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
     private readonly InputAction m_P2Control_Dash;
     private readonly InputAction m_P2Control_LockBoss;
     private readonly InputAction m_P2Control_Respawn;
+    private readonly InputAction m_P2Control_JoinAction;
     public struct P2ControlActions
     {
         private @JoystickControl m_Wrapper;
@@ -856,6 +907,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_P2Control_Dash;
         public InputAction @LockBoss => m_Wrapper.m_P2Control_LockBoss;
         public InputAction @Respawn => m_Wrapper.m_P2Control_Respawn;
+        public InputAction @JoinAction => m_Wrapper.m_P2Control_JoinAction;
         public InputActionMap Get() { return m_Wrapper.m_P2Control; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -889,6 +941,9 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 @Respawn.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
                 @Respawn.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
                 @Respawn.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnRespawn;
+                @JoinAction.started -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnJoinAction;
+                @JoinAction.performed -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnJoinAction;
+                @JoinAction.canceled -= m_Wrapper.m_P2ControlActionsCallbackInterface.OnJoinAction;
             }
             m_Wrapper.m_P2ControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -917,6 +972,9 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                 @Respawn.started += instance.OnRespawn;
                 @Respawn.performed += instance.OnRespawn;
                 @Respawn.canceled += instance.OnRespawn;
+                @JoinAction.started += instance.OnJoinAction;
+                @JoinAction.performed += instance.OnJoinAction;
+                @JoinAction.canceled += instance.OnJoinAction;
             }
         }
     }
@@ -982,6 +1040,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnLockBoss(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+        void OnJoinAction(InputAction.CallbackContext context);
     }
     public interface IP2ControlActions
     {
@@ -993,6 +1052,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnLockBoss(InputAction.CallbackContext context);
         void OnRespawn(InputAction.CallbackContext context);
+        void OnJoinAction(InputAction.CallbackContext context);
     }
     public interface IUIControlActions
     {

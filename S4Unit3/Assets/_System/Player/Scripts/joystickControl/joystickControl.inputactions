@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "JoinAction",
+                    "type": "Button",
+                    "id": "4f3c3937-b998-44d8-88de-a1ee8e1ef549",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -287,6 +296,17 @@
                     "action": "Respawn",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89ab6553-b9b5-42bd-97ff-60c2216a6457",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -361,6 +381,15 @@
                     "name": "Respawn",
                     "type": "Button",
                     "id": "78b8579c-2a26-4203-a23c-090d7fce0668",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "JoinAction",
+                    "type": "Button",
+                    "id": "cece8a7d-2938-4b0a-8368-2d0473322072",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -574,6 +603,17 @@
                     "processors": "",
                     "groups": "Mouse And Keyboard",
                     "action": "Respawn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b45796fc-3a77-4150-b23c-d92481bf4b77",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JoinAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
