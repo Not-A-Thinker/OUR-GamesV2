@@ -206,20 +206,20 @@ public class UIcontrol : MonoBehaviour
         //}
         //if (Player1EnergyImg[0].isActiveAndEnabled)
         //{
-            if(_DashWasUsed)
-            {
-                if (playerCount == 1)
-                    Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
-                else if (playerCount == 2)
-                    Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
-            }
-            else
-            {
-                if (playerCount == 1)
-                    Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite; 
-                else if (playerCount == 2)
-                    Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite; 
-            }
+        if(_DashWasUsed)
+        {
+             if (playerCount == 1)
+                 Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
+             else if (playerCount == 2)
+                 Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
+        }
+        else
+        {
+             if (playerCount == 1)
+                Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite; 
+             else if (playerCount == 2)
+                Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite; 
+        }
         //}
     }
     #endregion

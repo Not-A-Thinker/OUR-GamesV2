@@ -78,7 +78,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""id"": ""dfcaff73-5a2c-4444-96a5-de3fb2825550"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -367,7 +367,7 @@ public partial class @JoystickControl : IInputActionCollection2, IDisposable
                     ""id"": ""fe53a8e0-6706-446a-987d-9f00b6f71342"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {

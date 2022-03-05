@@ -55,7 +55,7 @@ public class JoyStickMovement : MonoBehaviour
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
     Vector2 Rotvector2d = Vector2.zero;
-    Vector3 vector3d;
+    Vector3 vector3d = Vector3.zero;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -66,7 +66,7 @@ public class JoyStickMovement : MonoBehaviour
     private void Awake()
     {
         _DashNow = _DashTotal;
-
+        Debug.Log(_DashNow);
         tempSpeed = moveSpeed;
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -90,7 +90,10 @@ public class JoyStickMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        isDashed = context.ReadValueAsButton();       
+        if (context.performed)
+        {
+            isDashed = true;
+        }
     }
 
     public void OnRotate(InputAction.CallbackContext context)
@@ -161,6 +164,8 @@ public class JoyStickMovement : MonoBehaviour
             ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
             //Debug.Log(angle);
         }
+        else
+            BossLockOn();
     }
     //Dash
     private void DashOn()
@@ -170,25 +175,23 @@ public class JoyStickMovement : MonoBehaviour
             _animation.PlayerDash(true);
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
-        }
-        else if (!isDashed)
-        {
-            _animation.PlayerDash(false);
+            isDashed = false;
         }
     }
     IEnumerator Dash(Vector3 velocity)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
-        velocity = velocity.normalized;
-        _DashNow--;
+        velocity = velocity.normalized;  
         int playerCount = 0;
         if (isPlayer1)
             playerCount = 1;
         if (isPlayer2)
             playerCount = 2;
-        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
+        _DashNow--;
         StartCoroutine(DashRestore());
+        _animation.PlayerDash(false);
 
         if (velocity == Vector3.zero)
         {

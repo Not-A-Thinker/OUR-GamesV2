@@ -551,7 +551,7 @@ MonoBehaviour:
   isKnockUp: 0
   inCC: 0
   moveSpeed: 11
-  rotationSpeed: 50
+  rotationSpeed: 100
   dashSpeed: 25
   dashTime: 0.25
   DashCD: 3
@@ -734,7 +734,7 @@ MonoBehaviour:
     m_ActionId: 4d4dddf7-d85b-4280-ac0a-ba3eac5108ec
     m_ActionName: UIControl/Pre
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: JoyStick
+  m_DefaultControlScheme: 
   m_DefaultActionMap: P1Control
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
