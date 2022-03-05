@@ -44,12 +44,13 @@ public class JoyStickMovement : MonoBehaviour
     [Header("Player Dash")]
     public float dashSpeed;
     public float dashTime;
+    public int DashCD;
 
-    public int DashBar = 100;
-    public int DashUsed;
-    public float DashRestore;
-    int _DashTotal;
-    int _DashNow;
+    //public int DashBar = 100;
+    //public int DashUsed;
+    //public float DashRestore;
+     public int _DashTotal;
+     int _DashNow;
 
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
@@ -64,8 +65,9 @@ public class JoyStickMovement : MonoBehaviour
 #endif
     private void Awake()
     {
+        _DashNow = _DashTotal;
+
         tempSpeed = moveSpeed;
-        _DashNow = DashBar / DashUsed;
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
@@ -163,16 +165,13 @@ public class JoyStickMovement : MonoBehaviour
     //Dash
     private void DashOn()
     {
-        if (isDashed && DashBar >= DashUsed)
+        if (isDashed && _DashNow > 0)
         {
             _animation.PlayerDash(true);
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
-            DashBar = DashBar - DashUsed;
-
-            isDashed = false;
         }
-        if (!isDashed)
+        else if (!isDashed)
         {
             _animation.PlayerDash(false);
         }
@@ -182,7 +181,6 @@ public class JoyStickMovement : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;
-
         _DashNow--;
         int playerCount = 0;
         if (isPlayer1)
@@ -190,6 +188,7 @@ public class JoyStickMovement : MonoBehaviour
         if (isPlayer2)
             playerCount = 2;
         UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        StartCoroutine(DashRestore());
 
         if (velocity == Vector3.zero)
         {
@@ -201,6 +200,18 @@ public class JoyStickMovement : MonoBehaviour
             characterController.Move(velocity * dashSpeed * Time.deltaTime);          
             yield return null;
         }
+    }
+    IEnumerator DashRestore()
+    {
+        yield return new WaitForSeconds(DashCD);
+        _DashNow++;
+        int playerCount = 0;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        Debug.Log("DashRestored!");
     }
     //Shoot
     private void Shoot()
@@ -265,26 +276,26 @@ public class JoyStickMovement : MonoBehaviour
 
         vector3d = new Vector3(vector2d.x, 0, vector2d.y);
 
-        if (DashBar < 100)
-        {       
-            DashBar = (int)(DashBar + DashRestore * Time.deltaTime * 1.5);
-            Debug.Log(DashBar);
-            for (int i = 1; i <= _DashTotal; i++)
-            {
-                if (DashBar == DashUsed * i)
-                {
-                    ///restore one Dash
-                    _DashNow++;
-                    int playerCount = 0;
-                    if (isPlayer1)
-                        playerCount = 1;
-                    if (isPlayer2)
-                        playerCount = 2;
-                    UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
-                    Debug.Log("DashRestored!");
-                }
-            }
-        }
+        //if (DashBar < 100)
+        //{       
+        //    DashBar = (int)(DashBar + DashRestore * Time.deltaTime * 1.5);
+        //    Debug.Log(DashBar);
+        //    for (int i = 1; i <= _DashTotal; i++)
+        //    {
+        //        if (DashBar == DashUsed * i)
+        //        {
+        //            ///restore one Dash
+        //            _DashNow++;
+        //            int playerCount = 0;
+        //            if (isPlayer1)
+        //                playerCount = 1;
+        //            if (isPlayer2)
+        //                playerCount = 2;
+        //            UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        //            Debug.Log("DashRestored!");
+        //        }
+        //    }
+        //}
 
         if (!inCC)
         {
