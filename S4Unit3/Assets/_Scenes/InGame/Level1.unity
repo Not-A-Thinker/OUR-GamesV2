@@ -563,7 +563,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6006019, y: 1}
+    m_SensorSize: {x: 1.8400598, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -965,7 +965,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8049853, y: 1}
+    m_SensorSize: {x: 1.8623298, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5430,6 +5430,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118701557}
   m_CullTransparentMesh: 1
+--- !u!1 &1131053384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+  m_PrefabInstance: {fileID: 1860544260629513288}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1138091724
 GameObject:
   m_ObjectHideFlags: 0
@@ -6208,6 +6213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1275142066}
   - component: {fileID: 1275142065}
+  - component: {fileID: 1275142067}
   m_Layer: 0
   m_Name: PlayerInputManager
   m_TagString: Untagged
@@ -6274,6 +6280,21 @@ Transform:
   m_Father: {fileID: 561538710}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275142067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275142064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad1011a4bc3a164dbc74259f926af7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fighters:
+  - {fileID: 59152140}
+  - {fileID: 1131053384}
 --- !u!4 &1278463582 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1278463582, guid: 12a6c108c499d2e4b9b851a9385732b6, type: 3}

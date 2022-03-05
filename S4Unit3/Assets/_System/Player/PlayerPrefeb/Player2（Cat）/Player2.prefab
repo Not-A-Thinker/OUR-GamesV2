@@ -355,6 +355,8 @@ GameObject:
   - component: {fileID: 1860544261278244865}
   - component: {fileID: 1860544261278244878}
   - component: {fileID: 1860544261278244864}
+  - component: {fileID: 1507288138}
+  - component: {fileID: 1507288139}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -483,6 +485,221 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1507288138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860544261278244872}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3985f0a8284c1a24ba1236cbbc9a7a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIcontrol: {fileID: 0}
+  characterController: {fileID: 1860544261278244877}
+  Char: {fileID: 6214820614071332330}
+  _animation: {fileID: 317406783}
+  ShootRot: {fileID: 3501210754890408798}
+  playerRespawn: {fileID: 1860544260687256100}
+  isPlayer1: 0
+  isPlayer2: 1
+  isSlowed: 0
+  isImMobilized: 0
+  isDashed: 0
+  isShoot: 0
+  isFriendlyPush: 0
+  isKnockUp: 0
+  inCC: 0
+  moveSpeed: 13
+  rotationSpeed: 100
+  dashSpeed: 30
+  dashTime: 0.25
+  DashCD: 2
+  _DashTotal: 1
+--- !u!114 &1507288139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860544261278244872}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9cc68b417f389834c9a792501b29a6d6, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09569ab5-d2cc-411a-9cb0-b9b2c2cc650e
+    m_ActionName: P1Control/Move[/DualShock4GamepadHID/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17837a79-21c8-4e51-a205-3ff74b5707b0
+    m_ActionName: P1Control/RotateMouse[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75cfe72e-1fd2-4896-9c10-1dec78da6cca
+    m_ActionName: P1Control/Rotate[/DualShock4GamepadHID/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5f03c65b-64a4-44a8-8964-77e02b741b91
+    m_ActionName: P1Control/Push[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/rightShoulder,/Keyboard/numpad3]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3e5edc09-041b-4b26-9862-f9cb2788ec7a
+    m_ActionName: P1Control/SuccFriendlyObject[/Mouse/rightButton,/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dfcaff73-5a2c-4444-96a5-de3fb2825550
+    m_ActionName: P1Control/Dash[/DualShock4GamepadHID/buttonSouth,/Keyboard/numpad0,/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 496582f0-f095-4d4a-ae20-43e8151abe1b
+    m_ActionName: P1Control/LockBoss[/DualShock4GamepadHID/rightStickPress]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 231acc1b-0308-4b81-b551-f77557c42a9d
+    m_ActionName: P1Control/Respawn[/DualShock4GamepadHID/leftShoulder,/Keyboard/numpad2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f5b34b81-0605-4f33-b185-971385ba5838
+    m_ActionName: P2Control/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 53c48b9b-20b4-40cb-82d7-7afb3f387ab2
+    m_ActionName: P2Control/RotateMouse[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: de01ca48-e6fc-41a2-8a40-c04f703063b3
+    m_ActionName: P2Control/Rotate[/DualShock4GamepadHID/rightStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 13236695-fc8a-4d08-bd21-21f3101569e9
+    m_ActionName: P2Control/Push[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/rightShoulder,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnFriendlyHelp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5e5cef8-93e8-4bd9-8925-b28078792160
+    m_ActionName: P2Control/SuccFriendlyObject[/Mouse/rightButton,/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe53a8e0-6706-446a-987d-9f00b6f71342
+    m_ActionName: P2Control/Dash[/DualShock4GamepadHID/buttonSouth,/Keyboard/space,/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnLockedBoss
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2e291aea-f792-44f0-9051-6d519ef9bef8
+    m_ActionName: P2Control/LockBoss[/DualShock4GamepadHID/rightStickPress]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRespawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 78b8579c-2a26-4203-a23c-090d7fce0668
+    m_ActionName: P2Control/Respawn[/DualShock4GamepadHID/leftShoulder,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d4dddf7-d85b-4280-ac0a-ba3eac5108ec
+    m_ActionName: UIControl/Pre
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: P2Control
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2567008632491737150
 GameObject:
   m_ObjectHideFlags: 0
