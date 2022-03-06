@@ -34,7 +34,7 @@ public class Particle_Hit_WithPlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject == Traget)
         {
-            print("ddddd");
+            //print("ddddd");
             GameObject particleobj = Instantiate(hitParticle, other.gameObject.transform.position, Quaternion.identity);
             Destroy(particleobj, 5);
         }

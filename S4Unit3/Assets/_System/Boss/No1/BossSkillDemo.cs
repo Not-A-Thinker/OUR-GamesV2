@@ -90,7 +90,7 @@ public class BossSkillDemo : MonoBehaviour
     void Update()
     {
         #region KeyCodeSets
-        if (bossAI._TestingMode)
+        if (bossAI._TestingMode || true)
         {
             //This Key Input is Just for testing, should be remove after getting release.
             if (Input.GetKeyDown(KeyCode.Alpha1))
