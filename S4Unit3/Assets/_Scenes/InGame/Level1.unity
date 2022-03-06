@@ -618,6 +618,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 4f3c3937-b998-44d8-88de-a1ee8e1ef549
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: cece8a7d-2938-4b0a-8368-2d0473322072
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: P1Control/JoinAction[/Keyboard/enter]
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152141, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: P2Control/JoinAction[/Keyboard/enter]
+      objectReference: {fileID: 0}
     - target: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -665,6 +693,14 @@ PrefabInstance:
     - target: {fileID: 500052818044258928, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 500052818044258939, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124331809862700244, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
@@ -982,7 +1018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.04779023, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047790647, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4617,7 +4653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.04779023, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047790647, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10451,6 +10487,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1507288138, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 4f3c3937-b998-44d8-88de-a1ee8e1ef549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: cece8a7d-2938-4b0a-8368-2d0473322072
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: P1Control/JoinAction[/Keyboard/enter]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288139, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: P2Control/JoinAction[/Keyboard/enter]
+      objectReference: {fileID: 0}
     - target: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -10497,6 +10565,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1860544261278244876, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860544261278244878, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

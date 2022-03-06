@@ -72,10 +72,8 @@ public class JoyStickMovement : MonoBehaviour
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
             forceCast_TopDown = GetComponent<ForceCast_TopDown>();
-        else
-        {
-            ForceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
-        }
+        if (isPlayer2)       
+            ForceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();       
 
         inputActions = new JoystickControl();
         inputActions.Enable();
