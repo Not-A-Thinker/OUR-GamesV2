@@ -46,6 +46,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public ParticleSystem Smoke;
     public ParticleSystem SpeedLine;
+    public ParticleSystem Afterimage;
     public void PlayerSomke()
     {
         if (Smoke != null)
@@ -56,6 +57,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (SpeedLine != null)
             SpeedLine.Play();
+        if (Afterimage != null)
+            Afterimage.Play();
     }
 
 }
