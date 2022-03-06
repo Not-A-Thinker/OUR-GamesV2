@@ -41,7 +41,9 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] TextMeshProUGUI DeadCounter;
-    [SerializeField] GameObject P1,P2;
+    GameObject P1,P2;
+    bool _isPause = false;
+    [SerializeField] GameObject Pause_UI;
     //[SerializeField] Image SuckObjectCount;
 
     private void Start()
@@ -72,7 +74,13 @@ public class UIcontrol : MonoBehaviour
             P2pos.x = P2pos.x + 35;
             P2pos.y = P2pos.y + 10;
             SuckingCD.transform.position = P2pos;
-        }               
+        }    
+        
+        if (Input.GetButtonDown("Restart"))
+        {
+            _isPause = !_isPause;
+            Pause();
+        }
     }
     private void FixedUpdate()
     {
@@ -149,6 +157,19 @@ public class UIcontrol : MonoBehaviour
     #endregion
 
     #region PlayerUI
+    private void Pause()
+    {
+        if (_isPause)
+        {
+            Time.timeScale = 0;       
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+        Pause_UI.SetActive(_isPause);
+    }
     //pushing
     public void PushingBar(float load)
     {
