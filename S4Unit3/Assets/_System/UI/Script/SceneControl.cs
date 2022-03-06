@@ -7,8 +7,11 @@ public class SceneControl : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-            ToGameScene();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            if (Input.GetButton("Restart"))
+                ToGameScene();
+        }
     }
 
     public void WinScene()
