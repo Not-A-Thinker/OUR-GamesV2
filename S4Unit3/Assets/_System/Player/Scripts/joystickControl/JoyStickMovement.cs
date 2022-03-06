@@ -30,28 +30,32 @@ public class JoyStickMovement : MonoBehaviour
     public bool isDashed;
     public bool isShoot;
     public bool isFriendlyPush;
+    public bool isKnockUp;
 
     public bool inCC = false;
 
     [Header("Player Move Settings")]
     public float moveSpeed = 10;
     public float rotationSpeed = 100;
-
+    private float tempSpeed;
     float gravity = 9.8f;
     float vSpeed = 0f;
 
     [Header("Player Dash")]
     public float dashSpeed;
     public float dashTime;
+    public int DashCD;
 
-    public float DashBar = 100f;
-    public float DashUsed;
-    public float DashRestore;
+    //public int DashBar = 100;
+    //public int DashUsed;
+    //public float DashRestore;
+     public int _DashTotal;
+     int _DashNow;
 
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
     Vector2 Rotvector2d = Vector2.zero;
-    Vector3 vector3d;
+    Vector3 vector3d = Vector3.zero;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -61,6 +65,10 @@ public class JoyStickMovement : MonoBehaviour
 #endif
     private void Awake()
     {
+        _DashNow = _DashTotal;
+        //Debug.Log(_DashNow);
+        tempSpeed = moveSpeed;
+
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
             forceCast_TopDown = GetComponent<ForceCast_TopDown>();
@@ -82,15 +90,9 @@ public class JoyStickMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             isDashed = true;
-            DashOn();
-        }
-        if (context.canceled)
-        {
-            isDashed = false;
-            DashOn();
         }
     }
 
@@ -162,39 +164,57 @@ public class JoyStickMovement : MonoBehaviour
             ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 250f * Time.deltaTime);
             //Debug.Log(angle);
         }
+        else
+            BossLockOn();
     }
     //Dash
     private void DashOn()
     {
-        if (isDashed && DashBar >= DashUsed)
+        if (isDashed && _DashNow > 0)
         {
             _animation.PlayerDash(true);
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
-            DashBar = DashBar - DashUsed;
-
-        }
-        if (!isDashed)
-        {
-            _animation.PlayerDash(false);
+            isDashed = false;
         }
     }
     IEnumerator Dash(Vector3 velocity)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
-        velocity = velocity.normalized;
+        velocity = velocity.normalized;  
+        int playerCount = 0;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
+        _DashNow--;
+        StartCoroutine(DashRestore());
+        _animation.PlayerDash(false);
 
         if (velocity == Vector3.zero)
         {
-            velocity = -transform.forward * 0.1f * moveSpeed;
+            velocity = -transform.forward * 0.1f * tempSpeed;
         }
 
         while (Time.time < startTime + dashTime)
         {
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);          
             yield return null;
         }
+    }
+    IEnumerator DashRestore()
+    {
+        yield return new WaitForSeconds(DashCD);
+        _DashNow++;
+        int playerCount = 0;
+        if (isPlayer1)
+            playerCount = 1;
+        if (isPlayer2)
+            playerCount = 2;
+        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        Debug.Log("DashRestored!");
     }
     //Shoot
     private void Shoot()
@@ -226,26 +246,73 @@ public class JoyStickMovement : MonoBehaviour
         targetRotation.z = 0;
         ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 400f * Time.deltaTime);
     }
+    public IEnumerator KnockUp()
+    {
+        inCC = true;
+        isKnockUp = true;
+        Debug.Log("KnockUp!");
+
+        yield return new WaitForSeconds(3);
+        inCC = false;
+    }
+    ///Only For P1 While Getting New Cube
+    public void SpeedSlow(float SpeedDec)
+    {
+        tempSpeed = tempSpeed * SpeedDec;
+    }
+    public void SpeedFast(float SpeedInc)
+    {
+        tempSpeed = tempSpeed / SpeedInc;
+    }
+    public void SpeedReset()
+    {
+        tempSpeed = moveSpeed;
+    }
     #endregion
     private void Update()
     {
-        vector3d = new Vector3(vector2d.x, 0, vector2d.y);
-        if (DashBar < 100)
+        if (isKnockUp)
         {
-            DashBar = DashBar + DashRestore * Time.deltaTime;
+            characterController.Move(transform.up * 3 * Time.deltaTime);
+            characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0, 0);
         }
 
-        Move(vector3d);
-        Rotate();
-        //DashOn(vector3d);
-        Shoot();
-        UIcontrol.EnergyBarChange(DashBar, 1);
+        vector3d = new Vector3(vector2d.x, 0, vector2d.y);
 
-        vSpeed -= gravity * Time.deltaTime;
-        vector3d.y = vSpeed;
+        //if (DashBar < 100)
+        //{       
+        //    DashBar = (int)(DashBar + DashRestore * Time.deltaTime * 1.5);
+        //    Debug.Log(DashBar);
+        //    for (int i = 1; i <= _DashTotal; i++)
+        //    {
+        //        if (DashBar == DashUsed * i)
+        //        {
+        //            ///restore one Dash
+        //            _DashNow++;
+        //            int playerCount = 0;
+        //            if (isPlayer1)
+        //                playerCount = 1;
+        //            if (isPlayer2)
+        //                playerCount = 2;
+        //            UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        //            Debug.Log("DashRestored!");
+        //        }
+        //    }
+        //}
 
-        characterController.Move(vector3d * Time.deltaTime * moveSpeed);
+        if (!inCC)
+        {
+            DashOn();
+            Move(vector3d);
+            Rotate();
+            //DashOn(vector3d);
+            Shoot();          
 
+            vSpeed -= gravity * Time.deltaTime;
+            vector3d.y = vSpeed;
+
+            characterController.Move(vector3d * Time.deltaTime * tempSpeed);
+        }
         //Suck And Shoot
         //if (inputActions.GamePlay.Succ.WasPressedThisFrame())
         //{

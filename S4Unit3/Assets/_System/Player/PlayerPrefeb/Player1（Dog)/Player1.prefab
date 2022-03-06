@@ -506,8 +506,7 @@ MonoBehaviour:
   dashSpeed: 25
   dashTime: 0.25
   _DashTotal: 2
-  DashUsed: 49
-  DashRestore: 25
+  DashCD: 4
 --- !u!54 &500052818044258936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -549,14 +548,14 @@ MonoBehaviour:
   isDashed: 0
   isShoot: 0
   isFriendlyPush: 0
+  isKnockUp: 0
   inCC: 0
-  moveSpeed: 10
+  moveSpeed: 11
   rotationSpeed: 100
-  dashSpeed: 15
+  dashSpeed: 25
   dashTime: 0.25
-  DashBar: 100
-  DashUsed: 49
-  DashRestore: 25
+  DashCD: 3
+  _DashTotal: 2
 --- !u!114 &59152141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,9 +697,45 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 231acc1b-0308-4b81-b551-f77557c42a9d
     m_ActionName: GamePlay/Respawn[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f5b34b81-0605-4f33-b185-971385ba5838
+    m_ActionName: P2Control/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 53c48b9b-20b4-40cb-82d7-7afb3f387ab2
+    m_ActionName: P2Control/RotateMouse[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: de01ca48-e6fc-41a2-8a40-c04f703063b3
+    m_ActionName: P2Control/Rotate[/DualShock4GamepadHID/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 13236695-fc8a-4d08-bd21-21f3101569e9
+    m_ActionName: P2Control/Push[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/rightShoulder,/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e5e5cef8-93e8-4bd9-8925-b28078792160
+    m_ActionName: P2Control/SuccFriendlyObject[/Mouse/rightButton,/DualShock4GamepadHID/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fe53a8e0-6706-446a-987d-9f00b6f71342
+    m_ActionName: P2Control/Dash[/DualShock4GamepadHID/buttonSouth,/Keyboard/space,/DualShock4GamepadHID/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e291aea-f792-44f0-9051-6d519ef9bef8
+    m_ActionName: P2Control/LockBoss[/DualShock4GamepadHID/rightStickPress]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78b8579c-2a26-4203-a23c-090d7fce0668
+    m_ActionName: P2Control/Respawn[/DualShock4GamepadHID/leftShoulder,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4d4dddf7-d85b-4280-ac0a-ba3eac5108ec
+    m_ActionName: UIControl/Pre
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: JoyStick
-  m_DefaultActionMap: GamePlay
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: P1Control
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &9195968397510403553

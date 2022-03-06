@@ -9,10 +9,10 @@ public class UIcontrol : MonoBehaviour
     [Header("Player")]
     [SerializeField] GameObject[] Player1Hp;
     [SerializeField] GameObject[] Player2Hp;
-    [SerializeField] Slider Player1Energy;
-    [SerializeField] Slider Player2Energy;
-    [SerializeField] GameObject[] Player1EnergyImg;
-    [SerializeField] GameObject[] Player2EnergyImg;
+    //[SerializeField] Slider Player1Energy;
+    //[SerializeField] Slider Player2Energy;
+    [SerializeField] Image[] Player1EnergyImg;
+    [SerializeField] Image[] Player2EnergyImg;
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
@@ -41,7 +41,9 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] TextMeshProUGUI DeadCounter;
-    [SerializeField] GameObject P1,P2;
+    GameObject P1,P2;
+    bool _isPause = false;
+    [SerializeField] GameObject Pause_UI;
     //[SerializeField] Image SuckObjectCount;
 
     private void Start()
@@ -72,7 +74,13 @@ public class UIcontrol : MonoBehaviour
             P2pos.x = P2pos.x + 35;
             P2pos.y = P2pos.y + 10;
             SuckingCD.transform.position = P2pos;
-        }               
+        }    
+        
+        if (Input.GetButtonDown("Restart"))
+        {
+            _isPause = !_isPause;
+            Pause();
+        }
     }
     private void FixedUpdate()
     {
@@ -149,6 +157,19 @@ public class UIcontrol : MonoBehaviour
     #endregion
 
     #region PlayerUI
+    private void Pause()
+    {
+        if (_isPause)
+        {
+            Time.timeScale = 0;       
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
+        Pause_UI.SetActive(_isPause);
+    }
     //pushing
     public void PushingBar(float load)
     {
@@ -194,18 +215,33 @@ public class UIcontrol : MonoBehaviour
         else
             SuckingCD.SetActive(true);
     }
-    public void EnergyBarChange(float NowEnergy, int playerCount)
+    public void EnergyBarChange(int playerCount, int _DashNow, bool _DashWasUsed)//float NowEnergy,
     {
-        if(Player1Energy.isActiveAndEnabled)
+        ///ÂÂ°{Á×±øUI¥Î
+        //if (Player1Energy.isActiveAndEnabled)
+        //{
+        //    if (playerCount == 1)
+        //        Player1Energy.value = NowEnergy * 0.01f;
+        //    else if (playerCount == 2)
+        //        Player2Energy.value = NowEnergy * 0.01f;
+        //}
+        //if (Player1EnergyImg[0].isActiveAndEnabled)
+        //{
+        if(_DashWasUsed)
         {
-            if (playerCount == 1)
-                Player1Energy.value = NowEnergy * 0.01f;
-            else if (playerCount == 2)
-                Player2Energy.value = NowEnergy * 0.01f;
-
+             if (playerCount == 1)
+                 Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
+             else if (playerCount == 2)
+                 Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
         }
-
-
+        else
+        {
+             if (playerCount == 1)
+                Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite; 
+             else if (playerCount == 2)
+                Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite; 
+        }
+        //}
     }
     #endregion
 
