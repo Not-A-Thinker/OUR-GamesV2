@@ -66,7 +66,7 @@ public class JoyStickMovement : MonoBehaviour
     private void Awake()
     {
         _DashNow = _DashTotal;
-        Debug.Log(_DashNow);
+        //Debug.Log(_DashNow);
         tempSpeed = moveSpeed;
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
