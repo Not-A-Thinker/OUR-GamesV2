@@ -67,54 +67,21 @@ public class ForceRepel_TopDown : MonoBehaviour
             Timer = SuccMaxCD;
 
         uIcontrol.SuckingCDBar(Timer/SuccMaxCD);
+
         //uIcontrol.SuckCount(SuckCount);
+        ///open it while using move
+        //if (Input.GetButton("HelpFriendP2"))        
+        //    SuckFriend();
 
-        if (Input.GetButton("HelpFriendP2"))
-        {
-            SuckFriend();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            if (!SuckInCD)
-                ButtonDonwEvent();
-            else
-                uIcontrol.flyText(2, Color.red, "Sucking CD!");
-        }         
-        if (Input.GetButton("Fire2"))
-        {
-            if (!SuckInCD)
-            {
-                GetComponent<BoxCollider>().isTrigger = true;
-                Range.SetActive(true);
-                Repel();
-            }                  
-        }
-        if (Input.GetButtonUp("Fire2"))
-        {
-            Renderer.material.color = Color.red;
-            TextSpawning = false;
-            ChaRot.transform.rotation = OldQuate;
-            OldQuate = new Quaternion(0,0,0,0);
-            GetComponent<BoxCollider>().isTrigger = false;
-            Range.SetActive(false);
-            move.SpeedReset();
+        //if (Input.GetButtonDown("Fire2"))
+        //    ButtonDonwEvent();
 
-            //uIcontrol.SuckingCDBar(canSucc);
-            if (!SuckInCD)
-            {
-                SuckInCD = true;
-                Timer = 0;              
-            }              
-            if (savedObject != null)
-            {
-                resetObject();  
-            }    
-            if(S_Tonado!=null)
-            {
-                S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
-                S_Tonado = null;
-            }          
-        }
+        //if (Input.GetButton("Fire2"))
+        //    ButtonHoldEvent();
+
+        //if (Input.GetButtonUp("Fire2"))       
+        //    ButtonUpEvent();
+        
         if (savedObject)
         {       
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
@@ -128,9 +95,50 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     public void ButtonDonwEvent()
     {
-        OldQuate = ChaRot.transform.rotation;
-        move.SpeedSlow(_SpeedSlow);
+        if (!SuckInCD)
+        {
+            OldQuate = ChaRot.transform.rotation;
+            move.SpeedSlow(_SpeedSlow);
+        }
+        else
+            uIcontrol.flyText(2, Color.red, "Sucking CD!");
+       
         //uIcontrol.SuckingCDBar(false);
+    }
+    public void ButtonHoldEvent()
+    {
+        if (!SuckInCD)
+        {
+            GetComponent<BoxCollider>().isTrigger = true;
+            Range.SetActive(true);
+            Repel();
+        }
+    }
+    public void ButtonUpEvent()
+    {
+        Renderer.material.color = Color.red;
+        TextSpawning = false;
+        ChaRot.transform.rotation = OldQuate;
+        OldQuate = new Quaternion(0, 0, 0, 0);
+        GetComponent<BoxCollider>().isTrigger = false;
+        Range.SetActive(false);
+        move.SpeedReset();
+
+        //uIcontrol.SuckingCDBar(canSucc);
+        if (!SuckInCD)
+        {
+            SuckInCD = true;
+            Timer = 0;
+        }
+        if (savedObject != null)
+        {
+            resetObject();
+        }
+        if (S_Tonado != null)
+        {
+            S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
+            S_Tonado = null;
+        }
     }
     public void Repel()
     {

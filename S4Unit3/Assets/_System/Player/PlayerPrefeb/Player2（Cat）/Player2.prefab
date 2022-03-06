@@ -544,7 +544,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 09569ab5-d2cc-411a-9cb0-b9b2c2cc650e
     m_ActionName: P1Control/Move[/DualShock4GamepadHID/leftStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -552,19 +564,67 @@ MonoBehaviour:
     m_ActionId: 17837a79-21c8-4e51-a205-3ff74b5707b0
     m_ActionName: P1Control/RotateMouse[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 75cfe72e-1fd2-4896-9c10-1dec78da6cca
     m_ActionName: P1Control/Rotate[/DualShock4GamepadHID/rightStick]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5f03c65b-64a4-44a8-8964-77e02b741b91
     m_ActionName: P1Control/Push[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/rightShoulder,/Keyboard/numpad3]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnFriendlyHelp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3e5edc09-041b-4b26-9862-f9cb2788ec7a
     m_ActionName: P1Control/SuccFriendlyObject[/Mouse/rightButton,/DualShock4GamepadHID/leftShoulder]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: dfcaff73-5a2c-4444-96a5-de3fb2825550
     m_ActionName: P1Control/Dash[/DualShock4GamepadHID/buttonSouth,/Keyboard/numpad0,/DualShock4GamepadHID/leftTrigger]
   - m_PersistentCalls:
@@ -572,7 +632,19 @@ MonoBehaviour:
     m_ActionId: 496582f0-f095-4d4a-ae20-43e8151abe1b
     m_ActionName: P1Control/LockBoss[/DualShock4GamepadHID/rightStickPress]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1507288138}
+        m_TargetAssemblyTypeName: JoyStickMovement, Assembly-CSharp
+        m_MethodName: OnRespawn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 231acc1b-0308-4b81-b551-f77557c42a9d
     m_ActionName: P1Control/Respawn[/DualShock4GamepadHID/leftShoulder,/Keyboard/numpad2]
   - m_PersistentCalls:
@@ -695,9 +767,17 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4d4dddf7-d85b-4280-ac0a-ba3eac5108ec
     m_ActionName: UIControl/Pre
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f3c3937-b998-44d8-88de-a1ee8e1ef549
+    m_ActionName: P1Control/JoinAction[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cece8a7d-2938-4b0a-8368-2d0473322072
+    m_ActionName: P2Control/JoinAction[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: P2Control
+  m_DefaultActionMap: 078d26a4-c160-41f5-b52e-0fe211842e87
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &2567008632491737150

@@ -120,13 +120,24 @@ public class JoyStickMovement : MonoBehaviour
         }
         if (context.performed)
         {
+            if (isPlayer2)
+            {
+                ForceRepel_TopDown.ButtonHoldEvent();
+            }
             //Debug.Log("ShootAcumating");
         }
         //isShoot = context.action.triggered;
         if (context.canceled)
         {
             //Debug.Log("ShootUp");
-            forceCast_TopDown.isShooted = true;
+            if (isPlayer1)
+            {
+                forceCast_TopDown.isShooted = true;
+            }
+            if (isPlayer2)
+            {
+                ForceRepel_TopDown.ButtonUpEvent();
+            }
         }
     }
     public void OnFriendlyHelp(InputAction.CallbackContext context)
