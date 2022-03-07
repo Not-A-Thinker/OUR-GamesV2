@@ -2093,8 +2093,8 @@ ParticleSystem:
         m_RotationOrder: 4
     radial:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 1
+      minMaxState: 0
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5121,7 +5121,7 @@ MonoBehaviour:
   tailParticle: {fileID: 6926796485958506195}
   Traget: {fileID: 0}
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
-  hitParticle: {fileID: 3413306987961497365, guid: d1cc9ff88bc752b4895b608c8ff7ae56, type: 3}
+  hitParticle: {fileID: 386241461176020601, guid: cb33ede27e9e76a43aeba5959faa37bd, type: 3}
   CollisionParticle: {fileID: 7069681098808393521, guid: 355c06310d99f394893e21850e701f4f, type: 3}
 --- !u!1 &6443633644031450369
 GameObject:
