@@ -154,7 +154,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //CD¸ò»W¤O
         Timer = 0;
         Move move = GetComponent<Move>();
-        move.SpeedFast(speedSlow);
+        move.SpeedFast();
         StartCoroutine(ShootCD(PushMaxCD));
         //³]¸m¤è¶ô
          gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
