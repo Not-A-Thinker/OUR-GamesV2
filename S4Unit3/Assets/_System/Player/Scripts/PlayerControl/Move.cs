@@ -240,6 +240,7 @@ public class Move : MonoBehaviour
                     //Debug.Log("P2 Dashed");
                     StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                     StartCoroutine(DashRestore());
+                    _animation.PlayerDodge();
                     _DashNow = _DashNow - 1;       
                 }
 

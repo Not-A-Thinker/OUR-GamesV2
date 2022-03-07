@@ -18,7 +18,7 @@ public class ObjectDestroy : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Wall" && !isSucked)
+        if (col.gameObject.tag == "Wall" && !isSucked)           
             DestroyThis();
     }
 
@@ -38,6 +38,8 @@ public class ObjectDestroy : MonoBehaviour
 
     private void DestroyThis()
     {
+        BossSpawnObject bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
+        bossSpawn.SpawnedCountDecrease();
         Destroy(gameObject);
     }
 }
