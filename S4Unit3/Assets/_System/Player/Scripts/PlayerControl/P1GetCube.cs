@@ -87,7 +87,7 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-        move.SpeedFast(SpeedToSlowDown);
+        move.SpeedFast();
 
         int caseNum = 0;
 

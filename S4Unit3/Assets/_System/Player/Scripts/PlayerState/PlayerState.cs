@@ -105,7 +105,7 @@ public class PlayerState : MonoBehaviour
             if (_currentHealth > 0)
             {
                 ///¨ü§ðÀ»µL¼Ä
-                StartCoroutine(Invincible(3));
+                StartInvincible(3);
             }
             if (_currentHealth == 0)
             {
@@ -145,7 +145,7 @@ public class PlayerState : MonoBehaviour
         _currentHealth = _maxHealth;
         move.SpeedReset();
         GetComponent<CapsuleCollider>().enabled = true;
-        StartCoroutine(Invincible(1));
+        StartInvincible(1);
 
         if (isPlayer1)
         {
@@ -158,6 +158,11 @@ public class PlayerState : MonoBehaviour
             forceRepel_TopDown.enabled = true;
         }
         //rb.useGravity = true;
+    }
+
+    public void StartInvincible(int time)
+    {
+        StartCoroutine(Invincible(time));
     }
 
     //PlayerState Reset When Dead
@@ -207,7 +212,7 @@ public class PlayerState : MonoBehaviour
     }
 
     //Hyper Muteki Gamer
-    IEnumerator Invincible(int time)
+     IEnumerator Invincible(int time)
     {
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
