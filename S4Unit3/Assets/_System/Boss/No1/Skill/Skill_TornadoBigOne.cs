@@ -215,7 +215,7 @@ public class Skill_TornadoBigOne : MonoBehaviour
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
                 move = other.GetComponent<Move>();
-                move.isKnockUp = true;            
+                StartCoroutine(move.KnockUp());
             }
         }
 
