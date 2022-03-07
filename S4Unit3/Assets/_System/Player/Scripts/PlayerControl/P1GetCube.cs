@@ -87,11 +87,19 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-        move.SpeedFast();
+       
+       
 
         int caseNum = 0;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
+
+        if (parentMax==1)    
+            move.SpeedReset();       
+        else       
+            move.SpeedFast();
+        
+
         if (force >= 3)
             caseNum = 2;     
         else
