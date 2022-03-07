@@ -82,9 +82,14 @@ public class Move : MonoBehaviour
     {
         if(isKnockUp)
         {
+            if (!inCC)
+            {
+                StartCoroutine(KnockUp());
+            }          
             characterController.Move(transform.up * 3 *Time.deltaTime);
             characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
         }
+        
 
         if (characterController.isGrounded)
         {
@@ -418,7 +423,9 @@ public class Move : MonoBehaviour
         Debug.Log("KnockUp!");
 
         yield return new WaitForSeconds(3);
-        inCC = false;      
+        inCC = false;
+        isKnockUp = false;
+        GetComponent<PlayerState>().StartInvincible(1);
     }
 
     ///Only For P1 While Getting New Cube
