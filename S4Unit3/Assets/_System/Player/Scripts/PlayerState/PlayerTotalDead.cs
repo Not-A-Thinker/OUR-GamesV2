@@ -5,18 +5,30 @@ using UnityEngine;
 public class PlayerTotalDead : MonoBehaviour
 {
     [SerializeField] UIcontrol UIcontrol;
-    public int TotalLife =3 ;
+    public int TotalLife = 3 ;
+    public bool isTotalLifeOn;
     // Start is called before the first frame update
 
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Tab))
+        {
+            UIcontrol.TotalDeadCounterControl(isTotalLifeOn);
+            isTotalLifeOn = !isTotalLifeOn;        
+        }        
+    }
 
     public void TotalLifeDecrease()
     {
-        TotalLife--;
-        UIcontrol.TotalDead(TotalLife);
-        //Debug.Log("TotalLife:"+TotalLife);
-        //UIcontrol.TotalDead(TotalLife);
-        if (TotalLife < 0)
-            UIcontrol.GameOver();
+        if(isTotalLifeOn)
+        {
+            TotalLife--;
+            UIcontrol.TotalDead(TotalLife);
+            //Debug.Log("TotalLife:"+TotalLife);
+            //UIcontrol.TotalDead(TotalLife);
+            if (TotalLife < 0)
+                UIcontrol.GameOver();
+        }       
     }
     public void TotalLifeIncrease()
     {

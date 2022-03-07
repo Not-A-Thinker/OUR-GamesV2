@@ -41,6 +41,7 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] TextMeshProUGUI DeadCounter;
+    [SerializeField] GameObject DeadCounterGobj;
     GameObject P1,P2;
     bool _isPause = false;
     [SerializeField] GameObject Pause_UI;
@@ -141,6 +142,11 @@ public class UIcontrol : MonoBehaviour
     public void TotalDead(int DeadCount)
     {
         DeadCounter.text = DeadCount.ToString();
+    }
+
+    public void TotalDeadCounterControl(bool State)
+    {
+        DeadCounterGobj.SetActive(State);
     }
 
     //end game
