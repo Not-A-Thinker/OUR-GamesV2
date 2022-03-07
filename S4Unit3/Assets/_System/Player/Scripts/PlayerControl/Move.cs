@@ -12,9 +12,10 @@ public class Move : MonoBehaviour
     [Header("Player Move")]
     [SerializeField]
     private float maximumSpeed;
+    private float oldTempSpeed;
     private float tempSpeed;
 
-  
+
 
     [SerializeField] private float rotationSpeed;
 
@@ -309,11 +310,11 @@ public class Move : MonoBehaviour
     {
         //Debug.Log(transform.name + " is Slow!");
         isSlowed = true;
+        oldTempSpeed = maximumSpeed;
         maximumSpeed = maximumSpeed / 2;
-
         yield return new WaitForSeconds(3);
         isSlowed = false;
-        maximumSpeed = tempSpeed;
+        maximumSpeed = oldTempSpeed;
     }
 
     //IEnumerator ImMobilzer(int sec)
@@ -431,11 +432,12 @@ public class Move : MonoBehaviour
     ///Only For P1 While Getting New Cube
     public void SpeedSlow(float SpeedDec)
     {
+        oldTempSpeed = maximumSpeed;
         maximumSpeed = (float)maximumSpeed * SpeedDec;
     }
-    public void SpeedFast(float SpeedInc)
+    public void SpeedFast()
     {
-        maximumSpeed = (float)maximumSpeed / SpeedInc;
+        maximumSpeed = oldTempSpeed;
     }
 
     public void SpeedReset()
