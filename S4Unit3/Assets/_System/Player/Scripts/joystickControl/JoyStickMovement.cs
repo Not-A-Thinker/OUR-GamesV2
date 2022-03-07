@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
+using System.Linq;
 [RequireComponent(typeof(CharacterController))]
 
 public class JoyStickMovement : MonoBehaviour
@@ -49,8 +51,8 @@ public class JoyStickMovement : MonoBehaviour
     //public int DashBar = 100;
     //public int DashUsed;
     //public float DashRestore;
-     public int _DashTotal;
-     int _DashNow;
+    public int _DashTotal;
+    int _DashNow;
 
     [Header("Player Vectors")]
     Vector2 vector2d = Vector2.zero;
@@ -72,11 +74,21 @@ public class JoyStickMovement : MonoBehaviour
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         if (isPlayer1)
             forceCast_TopDown = GetComponent<ForceCast_TopDown>();
-        if (isPlayer2)       
-            ForceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();       
+        if (isPlayer2)
+            ForceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+
+        Debug.Log(InputUser.all.Count);
+
+       
+      
+
+
 
         inputActions = new JoystickControl();
         inputActions.Enable();
+
+        //PlayerInput.Instantiate(playerPrefab, controlScheme: "Keyboard&Mouse", devices: new[] { Keyboard.current, Mouse.current });
+        //GetComponent<PlayerInput>().de
     }
 
 
@@ -157,7 +169,7 @@ public class JoyStickMovement : MonoBehaviour
         {
             Quaternion toRotation = Quaternion.LookRotation(vector3d, Vector3.up);
             Char.transform.rotation = Quaternion.RotateTowards(Char.transform.rotation, toRotation, rotationSpeed * 5 * Time.deltaTime);
-            _animation.PlayerWalk(true);       
+            _animation.PlayerWalk(true);
         }
         else
             _animation.PlayerWalk(false);
@@ -191,7 +203,7 @@ public class JoyStickMovement : MonoBehaviour
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
-        velocity = velocity.normalized;  
+        velocity = velocity.normalized;
         int playerCount = 0;
         if (isPlayer1)
             playerCount = 1;
@@ -209,7 +221,7 @@ public class JoyStickMovement : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);          
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);
             yield return null;
         }
     }
@@ -315,7 +327,7 @@ public class JoyStickMovement : MonoBehaviour
             Move(vector3d);
             Rotate();
             //DashOn(vector3d);
-            Shoot();          
+            Shoot();
 
             vSpeed -= gravity * Time.deltaTime;
             vector3d.y = vSpeed;
