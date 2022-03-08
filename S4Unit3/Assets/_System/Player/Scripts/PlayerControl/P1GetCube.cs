@@ -32,7 +32,10 @@ public class P1GetCube : MonoBehaviour
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>()._isInCount = true;
-            cube.GetComponent<Bullet>().bossToSuck = false;
+            if (cube.GetComponent<Bullet>())
+            {
+                cube.GetComponent<Bullet>().bossToSuck = false;
+            }       
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -117,7 +120,11 @@ public class P1GetCube : MonoBehaviour
         cube.transform.position = SpawnPoint.position;
         cube.transform.parent = null;
 
-        cube.GetComponent<Bullet>().isAttacking = true;
+        if (cube.GetComponent<Bullet>())
+        {
+            cube.GetComponent<Bullet>().isAttacking = true;
+        }
+
         if (cube.GetComponent<ObjectDestroy>())
         {
             cube.GetComponent<ObjectDestroy>().isSucked = false;

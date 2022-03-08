@@ -10,7 +10,7 @@ public class GetTriggerObject : MonoBehaviour
     //getChip
     public GameObject ChipParent;
     float totalHight = 2f;
-    GameObject SpcAttack;
+    [SerializeField] GameObject SpcAttack;
     GameObject chip;
     P1GetCube getCube;
 
@@ -134,6 +134,7 @@ public class GetTriggerObject : MonoBehaviour
         }
         ///¥Í¦¨¯S®í§ðÀ»
         GameObject NewSpcAtk = Instantiate(SpcAttack);
+        Debug.Log(NewSpcAtk.name);
         getCube.PlayerGetCube(NewSpcAtk);
     }
 }
