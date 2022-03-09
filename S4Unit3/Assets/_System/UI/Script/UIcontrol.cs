@@ -58,7 +58,11 @@ public class UIcontrol : MonoBehaviour
         if (pushing) 
         {
             Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
-            wantedPos.y = wantedPos.y + 30;
+
+            if(pushingCD.activeInHierarchy)
+                wantedPos.y = wantedPos.y - 40 ;
+            else
+                wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;
         }
 
@@ -204,7 +208,7 @@ public class UIcontrol : MonoBehaviour
     public void PushingCDBar(float load)
     {
         //pushingCD.SetActive(Ready);
-        pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+        pushCD_slider.value = Mathf.Lerp(load, pushCD_slider.value, smoothing * Time.deltaTime);
         if (load == 1)
             pushingCD.SetActive(false);
         else
@@ -247,6 +251,13 @@ public class UIcontrol : MonoBehaviour
         }
         //}
     }
+    ///為什麼用你會閃爍
+    IEnumerator UiEndDelay(GameObject _DelayUi , int time)
+    {
+        yield return new WaitForSeconds(time);
+        _DelayUi.SetActive(false) ;
+    }
+
     #endregion
 
     //public void SuckCount(int Count)

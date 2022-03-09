@@ -6,15 +6,15 @@ public class PlayerTotalDead : MonoBehaviour
 {
     [SerializeField] UIcontrol UIcontrol;
     public int TotalLife = 3 ;
-    public bool isTotalLifeOn;
+    public bool isTotalLifeOn ;
     // Start is called before the first frame update
 
     private void Update()
     {
         if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Tab))
-        {
+        {          
+            isTotalLifeOn = !isTotalLifeOn;
             UIcontrol.TotalDeadCounterControl(isTotalLifeOn);
-            isTotalLifeOn = !isTotalLifeOn;        
         }        
     }
 
