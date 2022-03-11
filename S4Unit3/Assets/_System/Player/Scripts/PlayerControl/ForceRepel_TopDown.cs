@@ -33,16 +33,19 @@ public class ForceRepel_TopDown : MonoBehaviour
     Quaternion OldQuate;
 
     [Header("P2 Attack CD")]
-    public int SuccMaxCD = 1;
-    [SerializeField] float Timer = 1;
+    //public int SuccMaxCD = 1;
+    //float Timer = 0;
     public bool SuckInCD;
-    public int SuckCount;
+    public float SuckCount;
+    int SuckTotal;
     public float _SpeedSlow;
+    bool onSucking;
 
     //clip
 
     private void Start()
     {
+        SuckTotal = (int)SuckCount;
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         _OldForce = _force;
@@ -50,29 +53,39 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     void Update()
     {
-        if (SuckInCD)
+        if(!onSucking)
         {
-            if (Timer < SuccMaxCD)
+            if (SuckCount < SuckTotal)
             {
-                Timer += Time.deltaTime;
-            }
-            else
-            {
-                SuckInCD = false;
-                Timer = SuccMaxCD;
-                SuckCount = 0;
-            }
+                SuckCount += 1 * Time.deltaTime;
+                if (SuckCount >= 3)
+                {
+                    SuckCount = 3;
+                    if (SuckInCD)
+                        SuckInCD = false;
+                }                   
+            }            
         }
-        else
-            Timer = SuccMaxCD;
-
-        uIcontrol.SuckingCDBar(Timer/SuccMaxCD);
+        uIcontrol.SuckingCDBar(SuckCount);
+        //if (SuckInCD)
+        //{
+        //    if (Timer < SuckCount)
+        //    {
+        //        Timer += Time.deltaTime;
+        //    }
+        //    else
+        //    {
+        //        SuckInCD = false;             
+        //    }
+        //    Timer = SuckCount;
+        //}
+        //else
+        //    Timer = SuckCount;  
         //uIcontrol.SuckCount(SuckCount);
 
-        if (Input.GetButton("HelpFriendP2"))
-        {
+        if (Input.GetButton("HelpFriendP2"))       
             SuckFriend();
-        }
+        
         if (Input.GetButtonDown("Fire2"))
         {
             if (!SuckInCD)
@@ -98,13 +111,14 @@ public class ForceRepel_TopDown : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
             move.SpeedReset();
+            onSucking = false;
 
             //uIcontrol.SuckingCDBar(canSucc);
-            if (!SuckInCD)
-            {
-                SuckInCD = true;
-                Timer = 0;              
-            }              
+            //if (!SuckInCD)
+            //{
+            //    SuckInCD = true;
+            //    Timer = 0;              
+            //}              
             if (savedObject != null)
             {
                 resetObject();  
@@ -130,6 +144,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         OldQuate = ChaRot.transform.rotation;
         move.SpeedSlow(_SpeedSlow);
+        onSucking = true;
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()
@@ -145,7 +160,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
             //Debug.Log(hit.transform.name + "." + hit.transform.tag);
-            if (hit.transform.gameObject.layer == 6 && SuckCount < 3 && !SuckInCD)
+            if (hit.transform.gameObject.layer == 6 &&  SuckCount <= 3 && (int)SuckCount > 0 && !SuckInCD)
             {
                 //Debug.Log(hit.transform.tag);
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
@@ -166,7 +181,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                else if (hit.transform.tag == "Boss")
                 {          
                     Renderer.material.color = Color.green;
-                    if (BossSpwO.SpawnedCount <= BossSpwO.SpawnendMax)
+                    if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
@@ -202,10 +217,10 @@ public class ForceRepel_TopDown : MonoBehaviour
                     Renderer.material.color = Color.red;
                 }
             }
-            if (SuckCount == 3)
+            if (SuckCount == 0)
             {
                 SuckInCD = true;
-                Timer = 0;
+                //Timer = 0;
             }
 
         }
