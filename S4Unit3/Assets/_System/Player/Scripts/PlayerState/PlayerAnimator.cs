@@ -61,4 +61,10 @@ public class PlayerAnimator : MonoBehaviour
             Afterimage.Play();
     }
 
+    public void PlayerDamag()
+    {
+        if (SpeedLine != null)
+            SpeedLine.Play();
+    }
+
 }

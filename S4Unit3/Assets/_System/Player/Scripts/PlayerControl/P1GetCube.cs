@@ -22,13 +22,13 @@ public class P1GetCube : MonoBehaviour
             move = GetComponent<Move>();
             move.SpeedSlow(SpeedToSlowDown);
 
-            ///ç”¨æ–¼åˆå§‹åŒ–æ–¹å¡Šçš„ä½ç½®
+            ///¥Î©óªì©l¤Æ¤è¶ôªº¦ì¸m
             cube.transform.parent = objectParent.transform;
             cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
 
-            ///ç”¨æ–¼åˆå§‹åŒ–æ–¹å¡Šçš„"å…¬è½‰"
+            ///¥Î©óªì©l¤Æ¤è¶ôªº"¤½Âà"
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>()._isInCount = true;
@@ -44,13 +44,13 @@ public class P1GetCube : MonoBehaviour
             cube.transform.position = transform.forward * Time.deltaTime ;
     }
 
-    ///å°„æ“Šæ–¹å¡Šå‰ç½®è¨­ç½®
+    ///®gÀ»¤è¶ô«e¸m³]¸m
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
         //Debug.Log(force);
         int newForce = (int)force;
-        ///æ ¹æ“šåŠ›åº¦èª¿æ•´å°„æ“Šæ–¹æ³•ï¼ˆåœ¨è“„åŠ›é‚£é‚Šå·²ç¶“é™¤æœ€å¤§å€¼æ‰€ä»¥æœ€å¤§æ˜¯ä¸€æˆ–è€…å¤§æ–¼ä¸€ï¼‰
+        ///®Ú¾Ú¤O«×½Õ¾ã®gÀ»¤èªk¡]¦b»W¤O¨ºÃä¤w¸g°£³Ì¤j­È©Ò¥H³Ì¤j¬O¤@©ÎªÌ¤j©ó¤@¡^
         if (force>=1)
         {
             StartCoroutine(TheBigOne(parentMax, newForce));        
@@ -61,14 +61,14 @@ public class P1GetCube : MonoBehaviour
         }    
     }
 
-    // ç‹—ç‹—è¢«æ“Šä¸­æ™‚æœƒè§¸ç™¼
+    // ª¯ª¯³QÀ»¤¤®É·|Ä²µo
     public void PlayerGoneCube()
     {
         int parentMax = objectParent.transform.childCount;
         move = GetComponent<Move>();
         move.SpeedReset();
         //Debug.Log(parentMax);
-        // ç‹—ç‹—èº«ä¸Šçš„æ–¹å¡Šæ‰è½
+        // ª¯ª¯¨­¤Wªº¤è¶ô±¼¸¨
         for (int i=0;i< parentMax;i++)
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
@@ -78,7 +78,7 @@ public class P1GetCube : MonoBehaviour
             {
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
             }
-            //é‡ç½®æ–¹å¡Šæ‰è½ç‹€æ…‹
+            //­«¸m¤è¶ô±¼¸¨ª¬ºA
             Rb.constraints = RigidbodyConstraints.None;
             Rb.useGravity = true;
             cube.transform.position = SpawnPoint.position;
@@ -88,8 +88,10 @@ public class P1GetCube : MonoBehaviour
 
     void PlayerSetCube(int parentMax,int force)
     {
-        //æ¯å€‹æ–¹å¡Šå°„æ“Šå‰éƒ½è¦è¨­ç½®ä¸€æ¬¡
+        //¨C­Ó¤è¶ô®gÀ»«e³£­n³]¸m¤@¦¸
         move = GetComponent<Move>();
+       
+       
 
         int caseNum = 0;
 
@@ -137,7 +139,7 @@ public class P1GetCube : MonoBehaviour
 
     IEnumerator TheBigOne(int parentMax, int force)
     {      
-        //è“„åŠ›æˆåŠŸä¸‰é€£ç™¼
+        //»W¤O¦¨¥\¤T³sµo
         int Max = parentMax;
         for (int i = 0; i < Max; i++)
         {
