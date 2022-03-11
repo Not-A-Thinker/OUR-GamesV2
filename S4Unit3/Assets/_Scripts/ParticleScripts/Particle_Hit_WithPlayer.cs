@@ -23,7 +23,7 @@ public class Particle_Hit_WithPlayer : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag=="Player" )
+        if(collision.gameObject.tag=="Player")
         {
             GameObject particleobj = Instantiate(hitParticle, collision.gameObject.transform.position, Quaternion.identity);
             Destroy(particleobj, 3);
