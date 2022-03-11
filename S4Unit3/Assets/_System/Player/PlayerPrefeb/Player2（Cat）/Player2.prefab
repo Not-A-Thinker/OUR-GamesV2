@@ -887,32 +887,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1860544261278244876}
     m_Modifications:
     - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-      propertyPath: lengthInSec
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-      propertyPath: ShapeModule.m_Position.y
-      value: -0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-      propertyPath: ShapeModule.m_Position.z
-      value: 0
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.46226418
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.46226418
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.46226418
+      value: 0.6037736
+
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_RootOrder
@@ -920,15 +909,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.9999995
+      value: 5.7
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.9999995
+      value: 5.7
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5.9999995
+      value: 5.7
+
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalPosition.x
@@ -936,7 +926,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.8
+
       objectReference: {fileID: 0}
     - target: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
       propertyPath: m_LocalPosition.z
@@ -988,15 +979,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
---- !u!4 &8758789344787366072 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6943569471938289642, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-  m_PrefabInstance: {fileID: 1860544260343324498}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8758789344787366074 stripped
+--- !u!198 &8758789345619861326 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6943569471938289640, guid: e6d53c02cb9b1f24782c1c463fa40978, type: 3}
-  m_PrefabInstance: {fileID: 1860544260343324498}
+  m_PrefabInstance: {fileID: 1860544259829334182}
+
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1860544261549972234
 PrefabInstance:
@@ -1666,7 +1653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Smoke: {fileID: 8175927972799678628}
   SpeedLine: {fileID: 5639985815505963836}
-  Afterimage: {fileID: 8758789344787366074}
+  Afterimage: {fileID: 8758789345619861326}
+
 --- !u!4 &6734195116091602768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
