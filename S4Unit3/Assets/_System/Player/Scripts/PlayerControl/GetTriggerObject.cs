@@ -10,7 +10,7 @@ public class GetTriggerObject : MonoBehaviour
     //getChip
     public GameObject ChipParent;
     float totalHight = 2f;
-    [SerializeField] GameObject SpcAttack;
+    GameObject SpcAttack;
     GameObject chip;
     P1GetCube getCube;
 
@@ -66,7 +66,7 @@ public class GetTriggerObject : MonoBehaviour
                 Obj.transform.GetComponent<Collider>().isTrigger = false;
                 ForceRepel_TopDown forceRepel_TopDown = GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
-                forceRepel_TopDown.SuckCount--;
+                forceRepel_TopDown.SuckCount++;
 
                 //Obj_rb.useGravity = false;
                 //Debug.Log(Obj.name + "Trigger");             
@@ -103,7 +103,7 @@ public class GetTriggerObject : MonoBehaviour
                     getedObject.GetComponent<Collider>().isTrigger = false;
                     ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
                     forceRepel_TopDown.resetObject();
-                    forceRepel_TopDown.SuckCount--;
+                    forceRepel_TopDown.SuckCount++;
 
                     Obj_rb.useGravity = false;
 
@@ -134,7 +134,6 @@ public class GetTriggerObject : MonoBehaviour
         }
         ///¥Í¦¨¯S®í§ðÀ»
         GameObject NewSpcAtk = Instantiate(SpcAttack);
-        Debug.Log(NewSpcAtk.name);
         getCube.PlayerGetCube(NewSpcAtk);
     }
 }
