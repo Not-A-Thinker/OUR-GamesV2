@@ -22,17 +22,20 @@ public class P1GetCube : MonoBehaviour
             move = GetComponent<Move>();
             move.SpeedSlow(SpeedToSlowDown);
 
-            ///¥Î©óªì©l¤Æ¤è¶ôªº¦ì¸m
+            ///ç”¨æ–¼åˆå§‹åŒ–æ–¹å¡Šçš„ä½ç½®
             cube.transform.parent = objectParent.transform;
             cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
             cube.transform.rotation = new Quaternion(0, 0, 0, 0);
             cube.GetComponent<Rigidbody>().useGravity = false;
 
-            ///¥Î©óªì©l¤Æ¤è¶ôªº"¤½Âà"
+            ///ç”¨æ–¼åˆå§‹åŒ–æ–¹å¡Šçš„"å…¬è½‰"
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>()._isInCount = true;
-            cube.GetComponent<Bullet>().bossToSuck = false;
+            if (cube.GetComponent<Bullet>())
+            {
+                cube.GetComponent<Bullet>().bossToSuck = false;
+            }       
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -41,13 +44,13 @@ public class P1GetCube : MonoBehaviour
             cube.transform.position = transform.forward * Time.deltaTime ;
     }
 
-    ///®gÀ»¤è¶ô«e¸m³]¸m
+    ///å°„æ“Šæ–¹å¡Šå‰ç½®è¨­ç½®
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
         //Debug.Log(force);
         int newForce = (int)force;
-        ///®Ú¾Ú¤O«×½Õ¾ã®gÀ»¤èªk¡]¦b»W¤O¨ºÃä¤w¸g°£³Ì¤j­È©Ò¥H³Ì¤j¬O¤@©ÎªÌ¤j©ó¤@¡^
+        ///æ ¹æ“šåŠ›åº¦èª¿æ•´å°„æ“Šæ–¹æ³•ï¼ˆåœ¨è“„åŠ›é‚£é‚Šå·²ç¶“é™¤æœ€å¤§å€¼æ‰€ä»¥æœ€å¤§æ˜¯ä¸€æˆ–è€…å¤§æ–¼ä¸€ï¼‰
         if (force>=1)
         {
             StartCoroutine(TheBigOne(parentMax, newForce));        
@@ -58,14 +61,14 @@ public class P1GetCube : MonoBehaviour
         }    
     }
 
-    // ª¯ª¯³QÀ»¤¤®É·|Ä²µo
+    // ç‹—ç‹—è¢«æ“Šä¸­æ™‚æœƒè§¸ç™¼
     public void PlayerGoneCube()
     {
         int parentMax = objectParent.transform.childCount;
         move = GetComponent<Move>();
         move.SpeedReset();
         //Debug.Log(parentMax);
-        // ª¯ª¯¨­¤Wªº¤è¶ô±¼¸¨
+        // ç‹—ç‹—èº«ä¸Šçš„æ–¹å¡Šæ‰è½
         for (int i=0;i< parentMax;i++)
         {         
             GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
@@ -75,7 +78,7 @@ public class P1GetCube : MonoBehaviour
             {
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
             }
-            //­«¸m¤è¶ô±¼¸¨ª¬ºA
+            //é‡ç½®æ–¹å¡Šæ‰è½ç‹€æ…‹
             Rb.constraints = RigidbodyConstraints.None;
             Rb.useGravity = true;
             cube.transform.position = SpawnPoint.position;
@@ -85,13 +88,19 @@ public class P1GetCube : MonoBehaviour
 
     void PlayerSetCube(int parentMax,int force)
     {
-        //¨C­Ó¤è¶ô®gÀ»«e³£­n³]¸m¤@¦¸
+        //æ¯å€‹æ–¹å¡Šå°„æ“Šå‰éƒ½è¦è¨­ç½®ä¸€æ¬¡
         move = GetComponent<Move>();
-        move.SpeedFast(SpeedToSlowDown);
 
         int caseNum = 0;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
+
+        if (parentMax==1)    
+            move.SpeedReset();       
+        else       
+            move.SpeedFast();
+        
+
         if (force >= 3)
             caseNum = 2;     
         else
@@ -109,7 +118,11 @@ public class P1GetCube : MonoBehaviour
         cube.transform.position = SpawnPoint.position;
         cube.transform.parent = null;
 
-        cube.GetComponent<Bullet>().isAttacking = true;
+        if (cube.GetComponent<Bullet>())
+        {
+            cube.GetComponent<Bullet>().isAttacking = true;
+        }
+
         if (cube.GetComponent<ObjectDestroy>())
         {
             cube.GetComponent<ObjectDestroy>().isSucked = false;
@@ -124,7 +137,7 @@ public class P1GetCube : MonoBehaviour
 
     IEnumerator TheBigOne(int parentMax, int force)
     {      
-        //»W¤O¦¨¥\¤T³sµo
+        //è“„åŠ›æˆåŠŸä¸‰é€£ç™¼
         int Max = parentMax;
         for (int i = 0; i < Max; i++)
         {

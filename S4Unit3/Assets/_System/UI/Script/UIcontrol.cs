@@ -41,6 +41,7 @@ public class UIcontrol : MonoBehaviour
     [Header("Other")]
     [SerializeField] float smoothing = 5;
     [SerializeField] TextMeshProUGUI DeadCounter;
+    [SerializeField] GameObject DeadCounterGobj;
     GameObject P1,P2;
     bool _isPause = false;
     [SerializeField] GameObject Pause_UI;
@@ -57,22 +58,24 @@ public class UIcontrol : MonoBehaviour
         if (pushing) 
         {
             Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
-            wantedPos.y = wantedPos.y -20;
+
+            if(pushingCD.activeInHierarchy)
+                wantedPos.y = wantedPos.y - 40 ;
+            else
+                wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;
         }
 
         if(pushingCD.activeInHierarchy)
         {
             Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
-            P1pos.x = P1pos.x + 35;
-            P1pos.y = P1pos.y + 10;
+            P1pos.y = P1pos.y - 20;
             pushingCD.transform.position = P1pos;
         }
         if (SuckingCD.activeInHierarchy)
         {
             Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
-            P2pos.x = P2pos.x + 35;
-            P2pos.y = P2pos.y + 10;
+            P2pos.y = P2pos.y - 20;
             SuckingCD.transform.position = P2pos;
         }    
         
@@ -143,6 +146,11 @@ public class UIcontrol : MonoBehaviour
         DeadCounter.text = DeadCount.ToString();
     }
 
+    public void TotalDeadCounterControl(bool State)
+    {
+        DeadCounterGobj.SetActive(State);
+    }
+
     //end game
     public void GameOver()
     {
@@ -200,7 +208,7 @@ public class UIcontrol : MonoBehaviour
     public void PushingCDBar(float load)
     {
         //pushingCD.SetActive(Ready);
-        pushCD_slider.value = Mathf.Lerp(pushCD_slider.value, load, smoothing * Time.deltaTime);
+        pushCD_slider.value = Mathf.Lerp(load, pushCD_slider.value, smoothing * Time.deltaTime);
         if (load == 1)
             pushingCD.SetActive(false);
         else
@@ -210,7 +218,7 @@ public class UIcontrol : MonoBehaviour
     {
         //SuckingCD.SetActive(Ready);
         SuckCD_slider.value = Mathf.Lerp(load, SuckCD_slider.value, smoothing * Time.deltaTime);
-        if (load == 1)
+        if (load >= 3)
             SuckingCD.SetActive(false);
         else
             SuckingCD.SetActive(true);
@@ -243,6 +251,13 @@ public class UIcontrol : MonoBehaviour
         }
         //}
     }
+    ///為什麼用你會閃爍
+    IEnumerator UiEndDelay(GameObject _DelayUi , int time)
+    {
+        yield return new WaitForSeconds(time);
+        _DelayUi.SetActive(false) ;
+    }
+
     #endregion
 
     //public void SuckCount(int Count)

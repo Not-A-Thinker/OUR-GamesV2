@@ -72,7 +72,6 @@ public class ForceCast_TopDown : MonoBehaviour
                 float BarValue = countFloat / CountMax;
                 UIcontrol.PushingBar(BarValue);
             }
-
             else
             {
                 countFloat = 0;
