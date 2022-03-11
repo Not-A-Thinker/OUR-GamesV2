@@ -6,7 +6,7 @@ public class Particle_Hit_WithPlayer : MonoBehaviour
 {
     public GameObject hitParticle;
 
-    public bool Staying = false;
+    bool Staying = false;
     // Start is called before the first frame update
     void Start()
     {
