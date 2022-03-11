@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1821282364698396452}
   - component: {fileID: 1419916229750287267}
   - component: {fileID: 8298861067309844621}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wind Boomerang Prefab
   m_TagString: Boomerang
   m_Icon: {fileID: 0}
@@ -1040,7 +1040,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 75
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1911,7 +1911,7 @@ ParticleSystem:
     orbitalY:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 7
+      scalar: 5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
