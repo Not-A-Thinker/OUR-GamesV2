@@ -270,7 +270,7 @@ MonoBehaviour:
   SuckCD_slider: {fileID: 1138091726}
   smoothing: 5
   DeadCounter: {fileID: 206312106}
-  DeadCounterGobj: {fileID: 0}
+  DeadCounterGobj: {fileID: 206312102}
   Pause_UI: {fileID: 483758859}
 --- !u!1 &11841643
 GameObject:
@@ -1463,7 +1463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &206312103
 RectTransform:
   m_ObjectHideFlags: 0
