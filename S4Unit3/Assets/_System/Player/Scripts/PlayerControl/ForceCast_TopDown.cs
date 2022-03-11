@@ -151,13 +151,13 @@ public class ForceCast_TopDown : MonoBehaviour
         ///檢查手上有沒有方塊
         //Debug.Log(force);
         //CD跟蓄力
-        Timer = 0;
-        Move move = GetComponent<Move>();
-        move.SpeedFast();
+        Timer = 0;      
         StartCoroutine(ShootCD(PushMaxCD));
         //設置方塊
-         gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
+         gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);
 
+        Move move = GetComponent<Move>();
+        move.SpeedFast(speedSlow);
         //else
         //{
         //    _attackTrigger = true;

@@ -12,10 +12,9 @@ public class Move : MonoBehaviour
     [Header("Player Move")]
     [SerializeField]
     private float maximumSpeed;
-    private float oldTempSpeed;
     private float tempSpeed;
 
-
+  
 
     [SerializeField] private float rotationSpeed;
 
@@ -83,14 +82,9 @@ public class Move : MonoBehaviour
     {
         if(isKnockUp)
         {
-            if (!inCC)
-            {
-                StartCoroutine(KnockUp());
-            }          
             characterController.Move(transform.up * 3 *Time.deltaTime);
             characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
         }
-        
 
         if (characterController.isGrounded)
         {
@@ -310,11 +304,11 @@ public class Move : MonoBehaviour
     {
         //Debug.Log(transform.name + " is Slow!");
         isSlowed = true;
-        oldTempSpeed = maximumSpeed;
         maximumSpeed = maximumSpeed / 2;
+
         yield return new WaitForSeconds(3);
         isSlowed = false;
-        maximumSpeed = oldTempSpeed;
+        maximumSpeed = tempSpeed;
     }
 
     //IEnumerator ImMobilzer(int sec)
@@ -424,20 +418,17 @@ public class Move : MonoBehaviour
         Debug.Log("KnockUp!");
 
         yield return new WaitForSeconds(3);
-        inCC = false;
-        isKnockUp = false;
-        GetComponent<PlayerState>().StartInvincible(1);
+        inCC = false;      
     }
 
     ///Only For P1 While Getting New Cube
     public void SpeedSlow(float SpeedDec)
     {
-        oldTempSpeed = maximumSpeed;
         maximumSpeed = (float)maximumSpeed * SpeedDec;
     }
-    public void SpeedFast()
+    public void SpeedFast(float SpeedInc)
     {
-        maximumSpeed = oldTempSpeed;
+        maximumSpeed = (float)maximumSpeed / SpeedInc;
     }
 
     public void SpeedReset()
