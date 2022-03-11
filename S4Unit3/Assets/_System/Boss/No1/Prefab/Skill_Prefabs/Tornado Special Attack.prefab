@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitParticle: {fileID: 5722454692403711595, guid: af448784b5c81d14fb84000e22e25bdc, type: 3}
-  Traget: {fileID: 0}
 --- !u!1001 &5778360540051293488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,6 +220,14 @@ PrefabInstance:
     - target: {fileID: 1032457864176769751, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032457864176769752, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1032457864176769752, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864176769755, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_Name
