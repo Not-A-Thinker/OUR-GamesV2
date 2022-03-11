@@ -60,7 +60,7 @@ public class UIcontrol : MonoBehaviour
             Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
 
             if(pushingCD.activeInHierarchy)
-                wantedPos.y = wantedPos.y - 40 ;
+                wantedPos.y = wantedPos.y - 30 ;
             else
                 wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;
