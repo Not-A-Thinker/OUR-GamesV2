@@ -5,8 +5,9 @@ using UnityEngine;
 public class Particle_Hit_WithPlayer : MonoBehaviour
 {
     public GameObject hitParticle;
-    [Header("§ðÀ»¥Ø¼Ð(player)")]
-    public GameObject Traget;
+
+    bool Staying = false;
+
     // Start is called before the first frame update
     void Start()
     {
