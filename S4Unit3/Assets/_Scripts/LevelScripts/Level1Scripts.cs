@@ -12,12 +12,12 @@ public class Level1Scripts : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
     }
 
     void Start()
     {
-        //This is for handling the crystal movement animation.
+        //This is for handling the crystal moving animation.
         //哈利,這比Lerp好用
         foreach (var crystal in _crystalAlter)
         {

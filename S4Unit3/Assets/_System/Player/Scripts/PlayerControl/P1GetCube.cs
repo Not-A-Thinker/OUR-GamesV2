@@ -32,10 +32,7 @@ public class P1GetCube : MonoBehaviour
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>()._isInCount = true;
-            if (cube.GetComponent<Bullet>())
-            {
-                cube.GetComponent<Bullet>().bossToSuck = false;
-            }       
+            cube.GetComponent<Bullet>().bossToSuck = false;
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -90,19 +87,11 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-       
-       
+        move.SpeedFast(SpeedToSlowDown);
 
         int caseNum = 0;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
-
-        if (parentMax==1)    
-            move.SpeedReset();       
-        else       
-            move.SpeedFast();
-        
-
         if (force >= 3)
             caseNum = 2;     
         else
@@ -120,11 +109,7 @@ public class P1GetCube : MonoBehaviour
         cube.transform.position = SpawnPoint.position;
         cube.transform.parent = null;
 
-        if (cube.GetComponent<Bullet>())
-        {
-            cube.GetComponent<Bullet>().isAttacking = true;
-        }
-
+        cube.GetComponent<Bullet>().isAttacking = true;
         if (cube.GetComponent<ObjectDestroy>())
         {
             cube.GetComponent<ObjectDestroy>().isSucked = false;
