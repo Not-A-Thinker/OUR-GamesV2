@@ -10,7 +10,7 @@ public class GetTriggerObject : MonoBehaviour
     //getChip
     public GameObject ChipParent;
     float totalHight = 2f;
-    GameObject SpcAttack;
+    [SerializeField] GameObject SpcAttack;
     GameObject chip;
     P1GetCube getCube;
 
@@ -52,10 +52,12 @@ public class GetTriggerObject : MonoBehaviour
                 forceRepel_TopDown.resetObject();
                 //Obj_rb.useGravity = false;       
                 getedObject.transform.parent = ChipParent.transform;
-                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z );
-                totalHight = totalHight + 2;
+                //getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z );
+                //totalHight = totalHight + 2;
                 getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-                getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                getedObject.AddComponent<ObjectRotation>();
+                getedObject.GetComponent<ObjectRotation>().target = ChipParent;
+                getedObject.GetComponent<ObjectRotation>()._isInCount = true;
             }
             //處理方塊
             else if (Obj.transform.tag == "Object")
@@ -66,7 +68,7 @@ public class GetTriggerObject : MonoBehaviour
                 Obj.transform.GetComponent<Collider>().isTrigger = false;
                 ForceRepel_TopDown forceRepel_TopDown = GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
-                forceRepel_TopDown.SuckCount++;
+                forceRepel_TopDown.SuckCount--;
 
                 //Obj_rb.useGravity = false;
                 //Debug.Log(Obj.name + "Trigger");             
@@ -103,7 +105,7 @@ public class GetTriggerObject : MonoBehaviour
                     getedObject.GetComponent<Collider>().isTrigger = false;
                     ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
                     forceRepel_TopDown.resetObject();
-                    forceRepel_TopDown.SuckCount++;
+                    forceRepel_TopDown.SuckCount--;
 
                     Obj_rb.useGravity = false;
 
@@ -112,7 +114,10 @@ public class GetTriggerObject : MonoBehaviour
                     totalHight = totalHight + 2;
                     getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
                     getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-                    getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    getedObject.AddComponent<ObjectRotation>();
+                    getedObject.GetComponent<ObjectRotation>().target = ChipParent;
+                    getedObject.GetComponent<ObjectRotation>()._isInCount = true;
+                    //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 Destroy(Obj.transform.gameObject);
             }
@@ -134,6 +139,7 @@ public class GetTriggerObject : MonoBehaviour
         }
         ///生成特殊攻擊
         GameObject NewSpcAtk = Instantiate(SpcAttack);
+        Debug.Log(NewSpcAtk.name);
         getCube.PlayerGetCube(NewSpcAtk);
     }
 }

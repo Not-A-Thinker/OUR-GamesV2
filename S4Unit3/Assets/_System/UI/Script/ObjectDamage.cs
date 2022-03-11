@@ -48,9 +48,9 @@ public class ObjectDamage : MonoBehaviour
     //Do You Know YourDamage
     public void SetDamage(int DamageType)
     {
-        ///特殊攻擊基本傷害70
+        ///特殊攻擊基本傷害90
         if (isSpcecialAttack)
-            Damage = Damage + 55;
+            Damage = Damage + 75;
 
         switch (DamageType)
         {
@@ -119,8 +119,8 @@ public class ObjectDamage : MonoBehaviour
 
    IEnumerator DestroyTimer()
     {
-        ///射擊三秒後一定消失
-        yield return new WaitForSeconds(3);
+        ///射擊2秒後一定消失
+        yield return new WaitForSeconds(2);
         bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         bossSpawn.SpawnedCountDecrease();
         Destroy(this.gameObject);
