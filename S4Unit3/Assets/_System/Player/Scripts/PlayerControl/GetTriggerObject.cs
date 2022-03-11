@@ -52,10 +52,12 @@ public class GetTriggerObject : MonoBehaviour
                 forceRepel_TopDown.resetObject();
                 //Obj_rb.useGravity = false;       
                 getedObject.transform.parent = ChipParent.transform;
-                getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z );
-                totalHight = totalHight + 2;
+                //getedObject.transform.position = new Vector3(ChipParent.transform.position.x, totalHight, ChipParent.transform.position.z );
+                //totalHight = totalHight + 2;
                 getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-                getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                getedObject.AddComponent<ObjectRotation>();
+                getedObject.GetComponent<ObjectRotation>().target = ChipParent;
+                getedObject.GetComponent<ObjectRotation>()._isInCount = true;
             }
             //³B²z¤è¶ô
             else if (Obj.transform.tag == "Object")
@@ -112,7 +114,10 @@ public class GetTriggerObject : MonoBehaviour
                     totalHight = totalHight + 2;
                     getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
                     getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
-                    getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    getedObject.AddComponent<ObjectRotation>();
+                    getedObject.GetComponent<ObjectRotation>().target = ChipParent;
+                    getedObject.GetComponent<ObjectRotation>()._isInCount = true;
+                    //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 Destroy(Obj.transform.gameObject);
             }
