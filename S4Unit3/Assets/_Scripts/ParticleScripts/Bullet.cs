@@ -32,7 +32,11 @@ public class Bullet : MonoBehaviour
         {
             tailParticle.SetActive(true);
             particle_palm.Play();
-          //  Destroy(particle_palm, 1);
+            //  Destroy(particle_palm, 1);
+            if (GetComponent<MeshRenderer>() != null)
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
         }
     }
 
