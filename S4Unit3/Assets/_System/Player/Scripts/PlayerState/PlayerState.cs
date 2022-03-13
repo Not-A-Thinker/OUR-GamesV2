@@ -67,7 +67,7 @@ public class PlayerState : MonoBehaviour
         //}
 
         //Invincible作弊
-        if (Input.GetKey(KeyCode.LeftControl)&& Input.GetKeyDown(KeyCode.CapsLock))
+        if (Input.GetKeyDown(KeyCode.CapsLock))
         {
             ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
             isInvincible = !isInvincible;
