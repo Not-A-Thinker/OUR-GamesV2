@@ -22,6 +22,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
     [SerializeField] private Renderer Renderer;
+    [SerializeField] PlayerSoundEffect soundEffect;
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
 
@@ -67,6 +68,8 @@ public class ForceRepel_TopDown : MonoBehaviour
             }            
         }
         uIcontrol.SuckingCDBar(SuckCount);
+
+
         //if (SuckInCD)
         //{
         //    if (Timer < SuckCount)
@@ -167,12 +170,14 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     if (hit.transform.name.Contains("Tornado SForm"))
                     {
+                        soundEffect.OnAttackPlay();
                         Renderer.material.color = Color.green;
                         hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
                         S_Tonado = hit.transform.gameObject;
                     }
                     else
                     {
+                        soundEffect.OnAttackPlay();
                         Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
                     }
@@ -183,11 +188,13 @@ public class ForceRepel_TopDown : MonoBehaviour
                     Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
+
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);
                         if (BossSpwO.lastSpawned != null)
                         {
+                            soundEffect.OnAttackPlay();
                             savedObject = BossSpwO.lastSpawned;
                             savedObject.GetComponent<ObjectDestroy>().isSucked = true;
                             savedObject.GetComponent<Bullet>().bossToSuck = true;
@@ -219,6 +226,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             }
             if (SuckCount == 0)
             {
+                soundEffect.OnResetSound();
                 SuckInCD = true;
                 //Timer = 0;
             }

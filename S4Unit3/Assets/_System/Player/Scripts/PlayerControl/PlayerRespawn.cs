@@ -13,6 +13,8 @@ public class PlayerRespawn : MonoBehaviour
 
     [SerializeField] Move Move;
 
+    [SerializeField] PlayerSoundEffect soundEffect;
+
     public bool isPlayer1;
     public bool isPlayer2;
 
@@ -31,6 +33,7 @@ public class PlayerRespawn : MonoBehaviour
             {
                 if (Input.GetButton("RespawnP2")|| Respawning)
                 {
+                    soundEffect.OnRespawnPlay();
                     RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
                     RespawnCount = (int)RespawnCountRange;
                     UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
@@ -48,6 +51,7 @@ public class PlayerRespawn : MonoBehaviour
                 }
                 else if (Input.GetButtonUp("RespawnP2")|| !Respawning)
                 {
+                    soundEffect.OnResetSound();
                     RespawnCountRange = 0;
                     RespawnCount = 0;
                     UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
@@ -62,6 +66,7 @@ public class PlayerRespawn : MonoBehaviour
             {
                 if (Input.GetButton("RespawnP1") || Respawning)
                 {
+                    soundEffect.OnRespawnPlay();
                     RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
                     RespawnCount = (int)RespawnCountRange;
                     UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
@@ -79,6 +84,7 @@ public class PlayerRespawn : MonoBehaviour
                 }
                 else if (Input.GetButtonUp("RespawnP1") || Respawning)
                 {
+                    soundEffect.OnResetSound();
                     RespawnCountRange = 0;
                     RespawnCount = 0;
                     UIcontrol.PlayerRespawnStop();

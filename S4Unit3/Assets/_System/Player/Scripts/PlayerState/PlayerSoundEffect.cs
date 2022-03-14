@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerSoundEffect : MonoBehaviour
 {
 
-    [SerializeField] AudioSource OnMoveSound;
-    [SerializeField] AudioSource OnDashSound;
-    [SerializeField] AudioSource OnDamagedSound;
-    [SerializeField] AudioSource OnAttackSound;
-    [SerializeField] AudioSource OnRespawnSound;
-    [SerializeField] AudioSource OnDeadSound;
+    [SerializeField] AudioClip OnMoveSound;
+    [SerializeField] AudioClip OnDashSound;
+    [SerializeField] AudioClip OnDamagedSound;
+    [SerializeField] AudioClip OnAttackSound;
+    [SerializeField] AudioClip OnRespawnSound;
+    [SerializeField] AudioClip OnDeadSound;
     AudioSource _audioSource;
 
     // Start is called before the first frame update
@@ -21,14 +21,28 @@ public class PlayerSoundEffect : MonoBehaviour
 
     public void OnMovePlay()
     {
-
+        _audioSource.clip = OnMoveSound;
+        _audioSource.loop = true;
+        _audioSource.Play();
     }
     public void OnDashPlay()
     {
-
+        _audioSource.clip = OnDashSound;
+        _audioSource.Play();
     }
     public void OnRespawnPlay()
     {
-
+        _audioSource.clip = OnRespawnSound;
+        _audioSource.Play();
+    }
+    public void OnAttackPlay()
+    {
+        _audioSource.clip = OnAttackSound;
+        _audioSource.Play();
+    }
+    public void OnResetSound()
+    {
+        _audioSource.clip = null;
+        _audioSource.loop = false;
     }
 }

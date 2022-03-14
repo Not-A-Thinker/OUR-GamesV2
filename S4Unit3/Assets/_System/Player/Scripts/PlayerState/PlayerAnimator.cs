@@ -6,15 +6,24 @@ using UnityEngine.Animations;
 public class PlayerAnimator : MonoBehaviour
 {
     Animator PlayerAn;
+    PlayerSoundEffect playerSound;
 
     private void Awake()
     {
         PlayerAn = GetComponent<Animator>();
+        playerSound = GetComponent<PlayerSoundEffect>();
     }
 
     public void PlayerWalk(bool State)
     {
         PlayerAn.SetBool("IsWalk", State);
+        if(gameObject.name == "DogWithBon")
+        {
+            if (State == true)
+                playerSound.OnMovePlay();
+            else
+                playerSound.OnResetSound();
+        }     
     }
 
     public void PlayerShoot()
@@ -25,6 +34,11 @@ public class PlayerAnimator : MonoBehaviour
     public void PlayerDash(bool State)
     {
         PlayerAn.SetBool("isDash", State);
+        if (State == true)
+            playerSound.OnDashPlay();
+        else
+            playerSound.OnResetSound();
+        
     }
     public void PlayerDead()
     {
