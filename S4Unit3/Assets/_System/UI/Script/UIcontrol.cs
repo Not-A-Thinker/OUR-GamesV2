@@ -84,6 +84,19 @@ public class UIcontrol : MonoBehaviour
             _isPause = !_isPause;
             Pause();
         }
+
+        if(Input.GetKey(KeyCode.LeftControl))
+        {
+            if(Input.GetKeyDown(KeyCode.O))
+            {
+                GameOver();
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                YouWin();
+            }
+        }
     }
     private void FixedUpdate()
     {
