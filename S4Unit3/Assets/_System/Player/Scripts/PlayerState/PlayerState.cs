@@ -186,7 +186,7 @@ public class PlayerState : MonoBehaviour
             ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
             forceRepel_TopDown.enabled = false;
         }
-        playerTotalDead.TotalLifeDecrease();
+        //playerTotalDead.TotalLifeDecrease();
 
         if (OthePlayerState._currentHealth == 0)
         {
