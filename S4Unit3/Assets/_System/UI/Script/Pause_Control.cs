@@ -17,7 +17,7 @@ public class Pause_Control : MonoBehaviour
     {
         if(this.gameObject.activeInHierarchy)
         {
-            if(Input.GetButtonDown("Submit"))
+            if(Input.GetButton("Submit"))
             {
                 sceneControl.ToStarScence();
             }

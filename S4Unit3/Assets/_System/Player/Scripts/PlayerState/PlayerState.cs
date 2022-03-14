@@ -35,7 +35,7 @@ public class PlayerState : MonoBehaviour
     private void Start()
     {           
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
-        playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
+        //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
 
