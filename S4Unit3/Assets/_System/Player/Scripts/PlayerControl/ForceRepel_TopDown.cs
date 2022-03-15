@@ -116,6 +116,13 @@ public class ForceRepel_TopDown : MonoBehaviour
                     Repel();
                 }
             }
+            if(Input.GetButtonUp("Fire2"))
+            {
+                if (savedObject != null)
+                {
+                    resetObject();
+                }
+            }
         }
        
         if (Input.GetButtonUp("AimP2"))
@@ -136,10 +143,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             //    SuckInCD = true;
             //    Timer = 0;              
             //}              
-            if (savedObject != null)
-            {
-                resetObject();  
-            }    
+            
             if(S_Tonado!=null)
             {
                 S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
@@ -285,6 +289,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
             }             
+            savedObject.GetComponent<ObjectDestroy>().isSucked = false;
             savedObject = null;
             _force = _OldForce;
         }

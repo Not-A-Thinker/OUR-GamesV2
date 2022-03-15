@@ -39,6 +39,7 @@ public class Move : MonoBehaviour
     public bool isImMobilized;
     public bool isDashed;
     public bool isKnockUp;
+    public bool isDead;
 
     public bool inCC = false;
 
@@ -124,8 +125,7 @@ public class Move : MonoBehaviour
         if (isPlayer1)//wasd
         {         
             if (inCC == false)
-            {
-                
+            {              
                 isKnockUp = false;
                 rb.constraints = RigidbodyConstraints.FreezeRotation;
                 //Move
@@ -156,22 +156,25 @@ public class Move : MonoBehaviour
                     _animation.PlayerWalk(false);
                 }
 
-                if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
+                if(!isDead)
                 {
-                    UIcontrol.EnergyBarChange(1, _DashNow, true);
-                    isDashed = true;
-                    _animation.PlayerDash(true);
-                    //Debug.Log("P1 Dashed");
-                    StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
-                    StartCoroutine(DashRestore());
-                    _DashNow = _DashNow - 1;
-                }
-                else if (Input.GetButtonUp("JumpP1"))
-                {
-                    isDashed = false;
-                    
-                    _animation.PlayerDash(false);
-                }
+                    if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
+                    {
+                        UIcontrol.EnergyBarChange(1, _DashNow, true);
+                        isDashed = true;
+                        _animation.PlayerDash(true);
+                        //Debug.Log("P1 Dashed");
+                        StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                        StartCoroutine(DashRestore());
+                        _DashNow = _DashNow - 1;
+                    }
+                    else if (Input.GetButtonUp("JumpP1"))
+                    {
+                        isDashed = false;
+
+                        _animation.PlayerDash(false);
+                    }
+                }          
             }
             else
             {

@@ -144,6 +144,8 @@ public class PlayerState : MonoBehaviour
         Resurrect_range.SetActive(false);
         _currentHealth = _maxHealth;
         move.SpeedReset();
+        move.isDead = false;
+        move.inCC = false;
         GetComponent<CapsuleCollider>().enabled = true;
         StartInvincible(1);
 
@@ -173,6 +175,7 @@ public class PlayerState : MonoBehaviour
         Resurrect_range.SetActive(true);
         move.isKnockUp = false;
         move.SpeedSlow(0.25f);
+        move.isDead = true;
         GetComponent<CapsuleCollider>().enabled = false;
         //rb.useGravity = false;
 

@@ -90,6 +90,7 @@ public class ObjectDamage : MonoBehaviour
                 ///
                 bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
                 bossSpawn.SpawnedCountDecrease();
+                Debug.Log("HitBoss");
                 //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);
