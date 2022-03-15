@@ -51,6 +51,7 @@ public class UIcontrol : MonoBehaviour
     {
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
+        Time.timeScale = 1;
     }
     
     private void Update()
@@ -60,7 +61,7 @@ public class UIcontrol : MonoBehaviour
             Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
 
             if(pushingCD.activeInHierarchy)
-                wantedPos.y = wantedPos.y - 30 ;
+                wantedPos.y = wantedPos.y - 40;
             else
                 wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;

@@ -114,7 +114,7 @@ MonoBehaviour:
   PlayerState: {fileID: 500052818044258935}
   UIcontrol: {fileID: 0}
   Move: {fileID: 500052818044258939}
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 1162209142}
   isPlayer1: 1
   isPlayer2: 0
   Respawning: 0
@@ -436,6 +436,7 @@ MonoBehaviour:
   isfriendPushed: 0
   Charge: 0
   isShooted: 0
+  isAim: 0
   _attackTrigger: 0
   countFloat: 0
   CountMax: 1.5
@@ -505,6 +506,7 @@ MonoBehaviour:
   isImMobilized: 0
   isDashed: 0
   isKnockUp: 0
+  isDead: 0
   inCC: 0
   dashSpeed: 25
   dashTime: 0.25

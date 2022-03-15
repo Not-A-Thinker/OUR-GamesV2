@@ -6,7 +6,8 @@ public class ObjectDestroy : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isSucked=false;
-    public float DestroyTime=15;
+    public float DestroyTime = 15;
+    bool isDestroy;
 
     private void Update()
     {
@@ -18,8 +19,11 @@ public class ObjectDestroy : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Wall" && !isSucked)           
-            DestroyThis();
+        if (!isSucked)
+        {
+           if(col.gameObject.tag == "Wall" || col.gameObject.tag == "")
+                DestroyThis();
+        }        
     }
 
     //private void OnCollisionStay(Collision col)
@@ -38,8 +42,12 @@ public class ObjectDestroy : MonoBehaviour
 
     private void DestroyThis()
     {
-        BossSpawnObject bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
-        bossSpawn.SpawnedCountDecrease();
+        if(!isDestroy)
+        {
+            BossSpawnObject bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
+            bossSpawn.SpawnedCountDecrease();
+            isDestroy = true;
+        }  
         Destroy(gameObject);
     }
 }

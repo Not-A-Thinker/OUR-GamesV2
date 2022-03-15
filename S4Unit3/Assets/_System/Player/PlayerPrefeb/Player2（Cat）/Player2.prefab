@@ -338,7 +338,7 @@ MonoBehaviour:
   PlayerState: {fileID: 1860544261278244865}
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
-  soundEffect: {fileID: 0}
+  soundEffect: {fileID: 774615582}
   isPlayer1: 0
   isPlayer2: 1
   Respawning: 0
@@ -469,6 +469,7 @@ MonoBehaviour:
   isImMobilized: 0
   isDashed: 0
   isKnockUp: 0
+  isDead: 0
   inCC: 0
   dashSpeed: 30
   dashTime: 0.25

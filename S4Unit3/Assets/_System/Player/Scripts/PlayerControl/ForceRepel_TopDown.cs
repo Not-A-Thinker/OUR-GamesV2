@@ -25,6 +25,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] PlayerSoundEffect soundEffect;
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
+    bool IsAiming;
 
     [Header("State")]
     [SerializeField] bool FriendCD = false;
@@ -85,27 +86,46 @@ public class ForceRepel_TopDown : MonoBehaviour
         //else
         //    Timer = SuckCount;  
         //uIcontrol.SuckCount(SuckCount);
-
-        if (Input.GetButton("HelpFriendP2"))       
-            SuckFriend();
         
-        if (Input.GetButtonDown("Fire2"))
+
+
+        if (Input.GetButtonDown("AimP2"))
         {
             if (!SuckInCD)
                 ButtonDonwEvent();
             else
                 uIcontrol.flyText(2, Color.red, "Sucking CD!");
-        }         
-        if (Input.GetButton("Fire2"))
+            Range.SetActive(true);
+        }       
+        
+        if(IsAiming)
         {
-            if (!SuckInCD)
+            if (Input.GetButton("HelpFriendP2"))
+                SuckFriend();
+
+            if (Input.GetButtonDown("Fire2"))
             {
-                GetComponent<BoxCollider>().isTrigger = true;
-                Range.SetActive(true);
-                Repel();
-            }                  
+                onSucking = true;
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                if (!SuckInCD)
+                {
+                    GetComponent<BoxCollider>().isTrigger = true;
+                  
+                    Repel();
+                }
+            }
+            if(Input.GetButtonUp("Fire2"))
+            {
+                if (savedObject != null)
+                {
+                    resetObject();
+                }
+            }
         }
-        if (Input.GetButtonUp("Fire2"))
+       
+        if (Input.GetButtonUp("AimP2"))
         {
             Renderer.material.color = Color.red;
             TextSpawning = false;
@@ -115,6 +135,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Range.SetActive(false);
             move.SpeedReset();
             onSucking = false;
+            IsAiming = false;
 
             //uIcontrol.SuckingCDBar(canSucc);
             //if (!SuckInCD)
@@ -122,16 +143,14 @@ public class ForceRepel_TopDown : MonoBehaviour
             //    SuckInCD = true;
             //    Timer = 0;              
             //}              
-            if (savedObject != null)
-            {
-                resetObject();  
-            }    
+            
             if(S_Tonado!=null)
             {
                 S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
                 S_Tonado = null;
             }          
         }
+
         if (savedObject)
         {       
             Vector3 NowPos = Vector3.Lerp(savedObject.transform.position, transform.position, 0.2f);
@@ -146,8 +165,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void ButtonDonwEvent()
     {
         OldQuate = ChaRot.transform.rotation;
-        move.SpeedSlow(_SpeedSlow);
-        onSucking = true;
+        move.SpeedSlow(_SpeedSlow);      
+        IsAiming = true;
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()
@@ -228,6 +247,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 soundEffect.OnResetSound();
                 SuckInCD = true;
+                Range.SetActive(false);
                 //Timer = 0;
             }
 
@@ -236,6 +256,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void SuckFriend()
     {
         ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
+
+        Range.SetActive(true);
 
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.forward;
@@ -251,6 +273,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 Move move = hit.transform.GetComponent<Move>();
                 StartCoroutine(move.GetFriendlyControl(this.transform.position));
                 StartCoroutine(FriendlyCD());
+                Range.SetActive(false);
                 //Vector3 NowPos = Vector3.Lerp(hit.transform.position, transform.position, 0.2f);
                 //Vector3 toTarget = this.transform.position - hit.transform.position;      
                 //hit.transform.Translate(toTarget * _force * Time.deltaTime);
@@ -266,6 +289,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
             }             
+            savedObject.GetComponent<ObjectDestroy>().isSucked = false;
             savedObject = null;
             _force = _OldForce;
         }

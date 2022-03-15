@@ -296,8 +296,9 @@ public class BossAI_Wind : MonoBehaviour
             //第一階大技
             if (basicState.isHealthMerge && !isStando)
             {
-                if (healthBar.health <= healthBar.maxHealth / 2 - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount && BossSkill._STACount < 4)
                 { AIDecision = 33; }
+                Debug.Log(healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount);
             }
             else
             {
@@ -352,7 +353,7 @@ public class BossAI_Wind : MonoBehaviour
             {AIDecision = 64;}
         }
 
-        Debug.Log("Skill is select!");
+        //Debug.Log("Skill is select!");
         coroutineAtk = StartCoroutine(AIOnAttack(AIDecision));
 
         //This is the End of Skill Selection.
@@ -515,6 +516,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
+                    yield return new WaitForSeconds(1f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
@@ -636,12 +638,13 @@ public class BossAI_Wind : MonoBehaviour
     {
         isMoveFinished = false;
 
+        StartCoroutine(BossRedestinationTimer());
         if (lookAtP1)
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 6);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 10);
 
             isMoveFinished = true;
 
@@ -653,7 +656,7 @@ public class BossAI_Wind : MonoBehaviour
             agent.SetDestination(_Player2.transform.position);
             //transform.LookAt(_Player2.transform);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 6);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 10);
 
             isMoveFinished = true;
 
@@ -666,12 +669,31 @@ public class BossAI_Wind : MonoBehaviour
         //agent.SetDestination(orgPos);
     }
 
+    IEnumerator BossRedestinationTimer()
+    {
+
+        yield return new WaitForSeconds(4f);
+        if (!isMoveFinished)
+        {
+            isMoveFinished = true;
+            agent.SetDestination(transform.position);
+            StopCoroutine(BossAttackMovement());
+
+            StopCoroutine(coroutineAtk);
+            StopCoroutine(coroutineThink);
+
+            coroutineThink = StartCoroutine(TimeOfThink());
+
+            Debug.Log("Shit Reseted.");
+        }
+
+        yield return null;
+    }
+
     void BossSetDestination(Vector3 tarPos)
     {
         if (isStando || IsStage1)
-        {
-            return;
-        }
+        { return; }
 
         if (!isMoveFinished)
         { agent.SetDestination(tarPos); }

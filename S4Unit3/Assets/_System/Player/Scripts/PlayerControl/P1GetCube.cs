@@ -90,9 +90,7 @@ public class P1GetCube : MonoBehaviour
     {
         //每個方塊射擊前都要設置一次
         move = GetComponent<Move>();
-       
-       
-
+            
         int caseNum = 0;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;

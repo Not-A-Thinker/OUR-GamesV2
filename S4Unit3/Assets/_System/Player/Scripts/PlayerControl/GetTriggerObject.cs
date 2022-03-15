@@ -38,12 +38,13 @@ public class GetTriggerObject : MonoBehaviour
     private void OnTriggerEnter(Collider Obj)
     {
         //Debug.Log(Obj.tag);
-        if (Obj.transform.gameObject.layer == 6&&Obj.transform.tag!="Player")
+        if (Obj.transform.gameObject.layer == 6 && Obj.transform.tag!="Player")
         {
             ///處理碎片
             if (Obj.transform.tag == "Clip")
             {
                 ///初始化碎片
+                Obj.transform.tag = "Object";
                 GameObject getedObject = Obj.gameObject;
                 getedObject.GetComponent<Rigidbody>();
                 getedObject.GetComponent<Collider>().isTrigger = false;
@@ -101,6 +102,7 @@ public class GetTriggerObject : MonoBehaviour
                 {
                     GameObject getedObject = Instantiate(chip, Obj.transform.position, Quaternion.identity);
                     ///重置clip
+                    getedObject.tag = "Object";
                     Rigidbody Obj_rb = transform.parent.parent.GetComponent<Rigidbody>();
                     getedObject.GetComponent<Collider>().isTrigger = false;
                     ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
@@ -112,11 +114,12 @@ public class GetTriggerObject : MonoBehaviour
                     ///設置clip到Count上
                     getedObject.transform.parent = ChipParent.transform;
                     totalHight = totalHight + 2;
-                    getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+                    //getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
                     getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
                     getedObject.AddComponent<ObjectRotation>();
                     getedObject.GetComponent<ObjectRotation>().target = ChipParent;
                     getedObject.GetComponent<ObjectRotation>()._isInCount = true;
+                    
                     //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 Destroy(Obj.transform.gameObject);
