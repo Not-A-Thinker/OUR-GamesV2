@@ -296,8 +296,9 @@ public class BossAI_Wind : MonoBehaviour
             //第一階大技
             if (basicState.isHealthMerge && !isStando)
             {
-                if (healthBar.health <= healthBar.maxHealth / 2 - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount && BossSkill._STACount < 4)
                 { AIDecision = 33; }
+                Debug.Log(healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount);
             }
             else
             {
@@ -515,6 +516,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
+                    yield return new WaitForSeconds(1f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
@@ -730,7 +732,7 @@ public class BossAI_Wind : MonoBehaviour
             isMeleeAttacking = false;
 
             yield return new WaitForSeconds(aiReactTimeStage1);
-            //Debug.Log("Will Start Again...");
+            Debug.Log("Will Start Again...");
         }
 
         if (IsStage2)
