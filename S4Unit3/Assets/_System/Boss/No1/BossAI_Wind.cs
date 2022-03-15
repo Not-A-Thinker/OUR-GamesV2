@@ -638,12 +638,13 @@ public class BossAI_Wind : MonoBehaviour
     {
         isMoveFinished = false;
 
+        StartCoroutine(BossRedestinationTimer());
         if (lookAtP1)
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 6);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player1.transform.position) <= 10);
 
             isMoveFinished = true;
 
@@ -655,7 +656,7 @@ public class BossAI_Wind : MonoBehaviour
             agent.SetDestination(_Player2.transform.position);
             //transform.LookAt(_Player2.transform);
 
-            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 6);
+            yield return new WaitUntil(() => Vector3.Distance(transform.position, _Player2.transform.position) <= 10);
 
             isMoveFinished = true;
 
@@ -668,12 +669,31 @@ public class BossAI_Wind : MonoBehaviour
         //agent.SetDestination(orgPos);
     }
 
+    IEnumerator BossRedestinationTimer()
+    {
+
+        yield return new WaitForSeconds(4f);
+        if (!isMoveFinished)
+        {
+            isMoveFinished = true;
+            agent.SetDestination(transform.position);
+            StopCoroutine(BossAttackMovement());
+
+            StopCoroutine(coroutineAtk);
+            StopCoroutine(coroutineThink);
+
+            coroutineThink = StartCoroutine(TimeOfThink());
+
+            Debug.Log("Shit Reseted.");
+        }
+
+        yield return null;
+    }
+
     void BossSetDestination(Vector3 tarPos)
     {
         if (isStando || IsStage1)
-        {
-            return;
-        }
+        { return; }
 
         if (!isMoveFinished)
         { agent.SetDestination(tarPos); }
