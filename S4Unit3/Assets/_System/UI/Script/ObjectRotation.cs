@@ -15,11 +15,13 @@ public class ObjectRotation : MonoBehaviour
     private float own = 20;
 
     private float distance;
+
     Vector3 dir;
 
     void Start()
     {
-        dir = transform.position - target.transform.position;
+        if(target)
+           dir = transform.position - target.transform.position;
 
         distance = Vector3.Distance(transform.position, target.transform.position);
     }

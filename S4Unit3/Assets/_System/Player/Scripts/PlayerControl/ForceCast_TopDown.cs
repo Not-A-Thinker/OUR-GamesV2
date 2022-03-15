@@ -16,7 +16,7 @@ public class ForceCast_TopDown : MonoBehaviour
     [Header("P1 Push State")]
     public float _force = 500f;
     public float _range = 20f;
-    public bool isfriendPushed, Charge, isShooted ;//控制器觸發用的
+    public bool isfriendPushed, Charge, isShooted,isAim ;//控制器觸發用的
     bool friendPushed, ShootInCD;//檢查用
 
     public bool _attackTrigger = false;
@@ -36,17 +36,18 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
-
+    /// <summary>
+    /// 記得如果要用new input要在設定一次新按鈕
+    /// </summary>
     void Update()
     {
         Vector3 startPos = transform.position;
-        Vector3 endPos = transform.forward;     
+        Vector3 endPos = transform.forward;
         RaycastHit hit;
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
             if (hit.transform.tag == "Boss")
                 Renderer.material.color = Color.green;
-
             else
                 Renderer.material.color = Color.red;
         }
@@ -54,9 +55,8 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Charge)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
-            {
-                SetOldQue();
-                Accumulate();         
+            {       
+                Accumulate();
             }
             else
             {
@@ -76,7 +76,7 @@ public class ForceCast_TopDown : MonoBehaviour
             {
                 countFloat = 0;
                 UIcontrol.PushingStop();
-            }                     
+            }
         }
 
         ///射擊
@@ -115,28 +115,39 @@ public class ForceCast_TopDown : MonoBehaviour
         UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
         ///OldInput備案 如果New Input手把不能用的時候打開
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("AimP1"))
         {
+            SetOldQue();
+            isAim = true;        
+
+            if (Input.GetButton("HelpFriendP1"))
+            {
+                isfriendPushed = true;
+            }
+            if (Input.GetButtonUp("HelpFriendP1"))
+            {
+                isfriendPushed = false;
+            }
+
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 P1_Aim_Slow();
                 Charge = true;
             }
             else
-                UIcontrol.flyText(1, Color.red, "Cant Attack!");       
+                UIcontrol.flyText(1, Color.red, "Cant Attack!");
         }
-        if (Input.GetButtonUp("Fire1"))
+
+
+
+        if (Input.GetButtonDown("Fire1"))
         {
             isShooted = true;
+        }
+
+        if (Input.GetButtonUp("AimP1"))
+        {
             ResetOldQue();
-        }
-        if(Input.GetButton("HelpFriendP1"))
-        {
-            isfriendPushed = true;
-        }
-        if (Input.GetButtonUp("HelpFriendP1"))
-        {
-            isfriendPushed = false;
         }
     }
 
@@ -152,8 +163,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //Debug.Log(force);
         //CD跟蓄力
         Timer = 0;
-        Move move = GetComponent<Move>();
-        move.SpeedFast();
+
         StartCoroutine(ShootCD(PushMaxCD));
         //設置方塊
          gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
@@ -267,9 +277,12 @@ public class ForceCast_TopDown : MonoBehaviour
     ///重置成射擊前方位
     public void ResetOldQue()
     {
+        isAim = false;
         Charitor.transform.rotation = OldQuate;
         OldQuate = new Quaternion(0, 0, 0, 0);
         rangeObj.SetActive(false);
+        Move move = GetComponent<Move>();
+        move.SpeedFast();
     }
 }
 

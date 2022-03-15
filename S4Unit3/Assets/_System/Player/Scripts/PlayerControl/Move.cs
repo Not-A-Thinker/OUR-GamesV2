@@ -438,11 +438,14 @@ public class Move : MonoBehaviour
     public void SpeedFast()
     {
         maximumSpeed = oldTempSpeed;
+        oldTempSpeed = maximumSpeed;
+        //Debug.Log(oldTempSpeed);
     }
 
     public void SpeedReset()
     {
         maximumSpeed = tempSpeed;
+        oldTempSpeed = tempSpeed;
     }
 
     //demo1Used look at boss
@@ -454,5 +457,7 @@ public class Move : MonoBehaviour
         targetRotation.z = 0;
         ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.deltaTime);
     }
+
+    
 }
 

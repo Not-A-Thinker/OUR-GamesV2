@@ -114,11 +114,12 @@ public class GetTriggerObject : MonoBehaviour
                     ///≥]∏mclip®ÏCount§W
                     getedObject.transform.parent = ChipParent.transform;
                     totalHight = totalHight + 2;
-                    getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
+                    //getedObject.transform.position = new Vector3(this.transform.position.x, totalHight, this.transform.position.z);
                     getedObject.transform.rotation = new Quaternion(0, 0, 0, 0);
                     getedObject.AddComponent<ObjectRotation>();
                     getedObject.GetComponent<ObjectRotation>().target = ChipParent;
                     getedObject.GetComponent<ObjectRotation>()._isInCount = true;
+                    
                     //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 Destroy(Obj.transform.gameObject);
