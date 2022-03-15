@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerState : MonoBehaviour
 {
-
+    private CinemachineCollisionImpulseSource CCIS;
     private Animator animator;
 
     [Header("Player Health")]
@@ -38,6 +39,8 @@ public class PlayerState : MonoBehaviour
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
+
+        CCIS = GetComponent<CinemachineCollisionImpulseSource>();
 
         //if(GetComponent<JoyStickMovement>())
        //ÀË¬dª±®a½s¸¹
@@ -220,11 +223,15 @@ public class PlayerState : MonoBehaviour
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
+        CCIS.enabled = false;
+
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(time);
         CancelInvoke();
         _renderer.enabled = true;
         _Collider.enabled = true;
+        CCIS.enabled = true;
+
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }
