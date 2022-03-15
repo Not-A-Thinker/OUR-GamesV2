@@ -51,6 +51,7 @@ public class UIcontrol : MonoBehaviour
     {
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
+        Time.timeScale = 1;
     }
     
     private void Update()
