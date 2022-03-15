@@ -38,12 +38,13 @@ public class GetTriggerObject : MonoBehaviour
     private void OnTriggerEnter(Collider Obj)
     {
         //Debug.Log(Obj.tag);
-        if (Obj.transform.gameObject.layer == 6&&Obj.transform.tag!="Player")
+        if (Obj.transform.gameObject.layer == 6 && Obj.transform.tag!="Player")
         {
             ///處理碎片
             if (Obj.transform.tag == "Clip")
             {
                 ///初始化碎片
+                Obj.transform.tag = "Object";
                 GameObject getedObject = Obj.gameObject;
                 getedObject.GetComponent<Rigidbody>();
                 getedObject.GetComponent<Collider>().isTrigger = false;
@@ -101,6 +102,7 @@ public class GetTriggerObject : MonoBehaviour
                 {
                     GameObject getedObject = Instantiate(chip, Obj.transform.position, Quaternion.identity);
                     ///重置clip
+                    getedObject.tag = "Object";
                     Rigidbody Obj_rb = transform.parent.parent.GetComponent<Rigidbody>();
                     getedObject.GetComponent<Collider>().isTrigger = false;
                     ForceRepel_TopDown forceRepel_TopDown = transform.gameObject.GetComponent<ForceRepel_TopDown>();
