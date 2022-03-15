@@ -353,7 +353,7 @@ public class BossAI_Wind : MonoBehaviour
             {AIDecision = 64;}
         }
 
-        Debug.Log("Skill is select!");
+        //Debug.Log("Skill is select!");
         coroutineAtk = StartCoroutine(AIOnAttack(AIDecision));
 
         //This is the End of Skill Selection.
@@ -752,7 +752,7 @@ public class BossAI_Wind : MonoBehaviour
             isMeleeAttacking = false;
 
             yield return new WaitForSeconds(aiReactTimeStage1);
-            Debug.Log("Will Start Again...");
+            //Debug.Log("Will Start Again...");
         }
 
         if (IsStage2)
