@@ -237,25 +237,26 @@ public class Move : MonoBehaviour
                 //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 //Debug.Log(angle);
 
-                               //Vector3 v_movement = characterController.transform.forward * verticalInput;
+                //Vector3 v_movement = characterController.transform.forward * verticalInput;
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
-               
 
-                if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
+                if (!isDead)
                 {
-                    UIcontrol.EnergyBarChange(2, _DashNow, true);
-                    isDashed = true;
-                    //Debug.Log("P2 Dashed");
-                    StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
-                    StartCoroutine(DashRestore());
-                    _animation.PlayerDodge();
-                    _DashNow = _DashNow - 1;       
-                }
+                    if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
+                    {
+                        UIcontrol.EnergyBarChange(2, _DashNow, true);
+                        isDashed = true;
+                        //Debug.Log("P2 Dashed");
+                        StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
+                        StartCoroutine(DashRestore());
+                        _animation.PlayerDodge();
+                        _DashNow = _DashNow - 1;
+                    }
 
-                else if (Input.GetButtonUp("JumpP2"))
-                    isDashed = false;
-
+                    else if (Input.GetButtonUp("JumpP2"))
+                        isDashed = false;
+                }           
                 //float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
                 //float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
                 //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
