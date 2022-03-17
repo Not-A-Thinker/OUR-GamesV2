@@ -5,6 +5,7 @@ using UnityEngine;
 public class Skill_WindHole : MonoBehaviour
 {
     [SerializeField] float secondToDie = 12f;
+    [SerializeField] float ActiveTime = 1f;
 
     PlayerState playerState;
 
@@ -22,7 +23,7 @@ public class Skill_WindHole : MonoBehaviour
     IEnumerator StartTimer()
     {
         
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(ActiveTime);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         gameObject.transform.GetChild(1).gameObject.SetActive(true);
     }
