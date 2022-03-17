@@ -288,8 +288,12 @@ public class ForceRepel_TopDown : MonoBehaviour
             if(savedObject.transform.gameObject.layer != 6)
             {
                 savedObject.GetComponent<Rigidbody>().useGravity = true;
-            }             
-            savedObject.GetComponent<ObjectDestroy>().isSucked = false;
+            }    
+
+            if (savedObject.GetComponent<ObjectDestroy>())
+            {
+                savedObject.GetComponent<ObjectDestroy>().isSucked = false;
+            }         
             savedObject = null;
             _force = _OldForce;
         }
