@@ -387,10 +387,7 @@ public class Move : MonoBehaviour
 
                 yield return null;
 
-                if (GetComponent<PlayerState>().isDead == false)
-                {
-                    inCC = false;
-                }
+                inCC = false;                
             }
             //yield return new WaitForSeconds(10);
         }
@@ -412,10 +409,7 @@ public class Move : MonoBehaviour
 
                 yield return null;
 
-                if (GetComponent<PlayerState>().isDead == false)
-                {
-                    inCC = false;
-                }
+                inCC = false;
             }
             //yield return new WaitForSeconds(10);
         }
