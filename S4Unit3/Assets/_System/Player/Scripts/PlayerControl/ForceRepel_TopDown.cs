@@ -108,8 +108,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (Input.GetButtonDown("Fire2"))
             {
                 if (!SuckInCD)
-                {
-                    GetComponent<BoxCollider>().isTrigger = true;
+                {                 
                     onSucking = true;
                 }
                 else
@@ -119,6 +118,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 if (!SuckInCD)
                 {
+                    GetComponent<BoxCollider>().isTrigger = true;
                     Repel();
                 } 
             }
@@ -127,6 +127,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 if (savedObject != null)
                 {
                     resetObject();
+                    GetComponent<BoxCollider>().isTrigger = false;
                 }
                 onSucking = false;
             }
@@ -137,8 +138,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Renderer.material.color = Color.red;
             TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
-            OldQuate = new Quaternion(0,0,0,0);
-            GetComponent<BoxCollider>().isTrigger = false;
+            OldQuate = new Quaternion(0,0,0,0);         
             Range.SetActive(false);
             move.SpeedReset();
             move.isDashClose = false;

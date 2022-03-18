@@ -150,11 +150,9 @@ public class PlayerState : MonoBehaviour
         Resurrect_range.SetActive(false);
         //Resurrect_range.GetComponent<SpriteRenderer>().color = color;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
-        _currentHealth = _maxHealth;
-        move.SpeedFast();
-        move.isDashClose = false;
-        move.inCC = false;
+        _currentHealth = _maxHealth;   
         GetComponent<CapsuleCollider>().enabled = true;
+        StopCoroutine(Invincible(0));
         StartInvincible(1);
 
         if (isPlayer1)
@@ -168,6 +166,9 @@ public class PlayerState : MonoBehaviour
             forceRepel_TopDown.enabled = true;
         }
         //rb.useGravity = true;
+        move.SpeedFast();
+        move.isDashClose = false;
+        move.inCC = false;
     }
 
     public void StartInvincible(int time)
@@ -183,12 +184,9 @@ public class PlayerState : MonoBehaviour
         Resurrect_range.SetActive(true);
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
-        move.isKnockUp = false;
-        move.SpeedSlow(0.25f);
-        move.isDashClose = true;
         GetComponent<CapsuleCollider>().enabled = false;
         //rb.useGravity = false;
-
+        StartCoroutine(Invincible(999));
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
@@ -201,7 +199,9 @@ public class PlayerState : MonoBehaviour
             forceRepel_TopDown.resetObject();
             forceRepel_TopDown.enabled = false;
         }
-
+        move.isKnockUp = false;
+        move.SpeedSlow(0.25f);
+        move.isDashClose = true;
         //playerTotalDead.TotalLifeDecrease();
 
         if (OthePlayerState._currentHealth == 0)

@@ -69,28 +69,26 @@ public class P1GetCube : MonoBehaviour
         Debug.Log(parentMax);
         if (parentMax > 0)
         {
-            if(!GetComponent<PlayerState>().isDead)
+            if (!GetComponent<PlayerState>().isDead)
             {
                 move = GetComponent<Move>();
                 move.SpeedReset();
-            }          
-            //Debug.Log(parentMax);
-            // ª¯ª¯¨­¤Wªº¤è¶ô±¼¸¨
-            for (int i = 0; i < parentMax; i++)
-            {
-                GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount - 1).gameObject;
-                Rigidbody Rb = cube.GetComponent<Rigidbody>();
-                cube.GetComponent<ObjectRotation>()._isInCount = false;
-                if (cube.GetComponent<ObjectDestroy>())
+                for (int i = 0; i < parentMax; i++)
                 {
-                    cube.GetComponent<ObjectDestroy>().isSucked = false;
+                    GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount - 1).gameObject;
+                    Rigidbody Rb = cube.GetComponent<Rigidbody>();
+                    cube.GetComponent<ObjectRotation>()._isInCount = false;
+                    if (cube.GetComponent<ObjectDestroy>())
+                        cube.GetComponent<ObjectDestroy>().isSucked = false;
+                    //­«¸m¤è¶ô±¼¸¨ª¬ºA
+                    Rb.constraints = RigidbodyConstraints.None;
+                    Rb.useGravity = true;
+                    cube.transform.position = SpawnPoint.position;
+                    cube.transform.parent = null;
                 }
-                //­«¸m¤è¶ô±¼¸¨ª¬ºA
-                Rb.constraints = RigidbodyConstraints.None;
-                Rb.useGravity = true;
-                cube.transform.position = SpawnPoint.position;
-                cube.transform.parent = null;
             }
+            //Debug.Log(parentMax);
+            // ª¯ª¯¨­¤Wªº¤è¶ô±¼¸¨                   
         }     
     }
 

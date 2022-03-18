@@ -21,9 +21,10 @@ public class ObjectRotation : MonoBehaviour
     void Start()
     {
         if(target)
-           dir = transform.position - target.transform.position;
-
-        distance = Vector3.Distance(transform.position, target.transform.position);
+        {
+            dir = transform.position - target.transform.position;
+            distance = Vector3.Distance(transform.position, target.transform.position);
+        }         
     }
 
     void Update()
