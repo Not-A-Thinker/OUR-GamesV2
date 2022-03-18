@@ -38,7 +38,7 @@ public class ParticleCollision : MonoBehaviour
                 //Vector3 pos = collisionEvents[i].intersection;
                 //Vector3 force = collisionEvents[i].velocity * 10;
                 //rb.AddForce(force);
-                print(gameObject.name+ " On Collision " + other.gameObject.name);
+                //print(gameObject.name+ " On Collision " + other.gameObject.name);
             }
             i++;
         }
