@@ -33,6 +33,7 @@ public class BossAI_Wind : MonoBehaviour
 
     [Header("Test Tweak")]
     public bool _TestingMode = false;
+    public bool _DrawGizmos = true;
 
     [Header("Player LockOn")]
     [SerializeField] bool lookAtP1;
@@ -787,13 +788,16 @@ public class BossAI_Wind : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //This is for showing the skill range on the editor or in play mode.
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, skillRange1);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, skillRange2);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, skillRange3);
+        if (_DrawGizmos)
+        {
+            //This is for showing the skill range on the editor or in play mode.
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, skillRange1);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, skillRange2);
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, skillRange3);
+        }
     }
 
     private void OnDestroy()
