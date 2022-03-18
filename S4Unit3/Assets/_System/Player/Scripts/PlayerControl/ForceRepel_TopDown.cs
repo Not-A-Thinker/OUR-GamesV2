@@ -91,12 +91,13 @@ public class ForceRepel_TopDown : MonoBehaviour
 
         if (Input.GetButtonDown("AimP2"))
         {
-            if (!SuckInCD)
-                ButtonDonwEvent();
-            else
-                uIcontrol.flyText(2, Color.red, "Sucking CD!");
-            Range.SetActive(true);
+            ButtonDonwEvent();           
         }       
+
+        if (Input.GetButton("AimP2"))
+        {
+            Range.SetActive(true);
+        }
         
         if(IsAiming)
         {
@@ -105,16 +106,20 @@ public class ForceRepel_TopDown : MonoBehaviour
 
             if (Input.GetButtonDown("Fire2"))
             {
-                onSucking = true;
+                if (!SuckInCD)
+                {
+                    GetComponent<BoxCollider>().isTrigger = true;
+                    onSucking = true;
+                }
+                else
+                    uIcontrol.flyText(2, Color.red, "Sucking CD!");
             }
             if (Input.GetButton("Fire2"))
             {
                 if (!SuckInCD)
                 {
-                    GetComponent<BoxCollider>().isTrigger = true;
-                  
                     Repel();
-                }
+                } 
             }
             if(Input.GetButtonUp("Fire2"))
             {
@@ -122,6 +127,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     resetObject();
                 }
+                onSucking = false;
             }
         }
        
@@ -133,8 +139,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            move.SpeedReset();
-            onSucking = false;
+            move.SpeedReset();          
             IsAiming = false;
 
             //uIcontrol.SuckingCDBar(canSucc);
@@ -245,9 +250,10 @@ public class ForceRepel_TopDown : MonoBehaviour
             }
             if (SuckCount == 0)
             {
+                Renderer.material.color = Color.red;
                 soundEffect.OnResetSound();
                 SuckInCD = true;
-                Range.SetActive(false);
+                //Range.SetActive(false);
                 //Timer = 0;
             }
 

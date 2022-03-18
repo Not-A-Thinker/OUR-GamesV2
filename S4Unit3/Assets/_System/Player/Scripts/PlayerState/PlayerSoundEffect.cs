@@ -44,5 +44,6 @@ public class PlayerSoundEffect : MonoBehaviour
     {
         _audioSource.clip = null;
         _audioSource.loop = false;
+        _audioSource.Stop();
     }
 }
