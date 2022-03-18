@@ -111,7 +111,7 @@ public class PlayerState : MonoBehaviour
             if (_currentHealth > 0)
             {
                 ///¨ü§ðÀ»µL¼Ä
-                StartInvincible(3);
+                StartInvincible(3);     
             }
             if (_currentHealth == 0)
             {
@@ -232,16 +232,14 @@ public class PlayerState : MonoBehaviour
     {
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
-        _renderer.enabled = false;
-        CCIS.enabled = false;
+        _renderer.enabled = false;     
 
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(time);
         CancelInvoke();
         _renderer.enabled = true;
         _Collider.enabled = true;
-        CCIS.enabled = true;
-
+      
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }

@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using Cinemachine;
 
 public class PlayerAnimator : MonoBehaviour
 {
     Animator PlayerAn;
     PlayerSoundEffect playerSound;
+    private CinemachineCollisionImpulseSource CCIS;
 
     private void Awake()
     {
         PlayerAn = GetComponent<Animator>();
         playerSound = GetComponent<PlayerSoundEffect>();
+        CCIS = GetComponentInParent<CinemachineCollisionImpulseSource>();
     }
 
     public void PlayerWalk(bool State)
@@ -51,10 +54,12 @@ public class PlayerAnimator : MonoBehaviour
     }
     public IEnumerator PlayerDamaged()
     {
+        CCIS.enabled = false;
         PlayerAn.SetBool("Dammagerd", true);
 
         yield return new WaitForSeconds(0.5f);
         PlayerAn.SetBool("Dammagerd", false);
+        CCIS.enabled = true;
     }
 
 
