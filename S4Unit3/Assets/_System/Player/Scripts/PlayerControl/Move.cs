@@ -42,6 +42,7 @@ public class Move : MonoBehaviour
     public bool isDashClose;
 
     public bool inCC = false;
+    public bool autoLockBoss = true;
 
     //demo1 used
     private GameObject Boss;
@@ -186,20 +187,26 @@ public class Move : MonoBehaviour
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
 
-            if (RothorizontalInput != 0 && RotverticalInput != 0)
+            if (Input.GetButtonDown("LockOnP1"))
             {
-                //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-                angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-                //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
-                Quaternion target = Quaternion.Euler(0, angle, 0);
-                ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
-                Debug.Log(angle);
+                autoLockBoss = !autoLockBoss;
+            }         
+            if (autoLockBoss)
+            {
+                BossLockOn();
             }
             else
             {
-                //Debug.Log("locked Boss!");
-                BossLockOn();
-            }                          
+                if (RothorizontalInput != 0 && RotverticalInput != 0)
+                {
+                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                    Quaternion target = Quaternion.Euler(0, angle, 0);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
+                    //Debug.Log(angle);
+                }
+            }
         }
 
         if (isPlayer2)//arrows
@@ -272,22 +279,31 @@ public class Move : MonoBehaviour
             {
                 float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
                 float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
+                if (Input.GetButtonDown("LockOnP2"))
+                    autoLockBoss = !autoLockBoss;
 
-                if (RothorizontalInput != 0 && RotverticalInput != 0)
+                if(autoLockBoss)
                 {
-                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
-                    Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
-                    //Debug.Log(angle);
-                }
-                //if (Input.GetButtonDown("LockOnP2"))
-                else
-                {
-                    //Debug.Log("locked Boss!");
                     BossLockOn();
                 }
+                else
+                {
+                    if (RothorizontalInput != 0 && RotverticalInput != 0)
+                    {
+                        //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                        angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                        //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                        Quaternion target = Quaternion.Euler(0, angle, 0);
+                        ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
+                        //Debug.Log(angle);
+                    }
+                }           
+                //if (Input.GetButtonDown("LockOnP2"))
+                //else
+                //{
+                //    //Debug.Log("locked Boss!");
+                  
+                //}
             }
             //else
             //{
