@@ -715,11 +715,9 @@ public class BossAI_Wind : MonoBehaviour
 
     IEnumerator AIRestartTimer()
     {
-        yield return new WaitForSeconds(aiStartTime);
+        //yield return new WaitForSeconds(aiStartTime);
         while (true)
         {
-            if (_aiEnable)
-                yield return new WaitUntil(() => !_aiEnable);
             if (!_aiEnable)
                 yield return new WaitUntil(() => _aiEnable);
             if (_aiEnable && coroutineThink != null)
