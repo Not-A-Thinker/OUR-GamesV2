@@ -376,7 +376,7 @@ public class Move : MonoBehaviour
             velocity.y = 0;
             float startTime = Time.time;
 
-            velocity = velocity - this.transform.position;
+            velocity = velocity - transform.position;
             velocity = velocity.normalized * 2f;
 
             //Debug.Log(velocity);

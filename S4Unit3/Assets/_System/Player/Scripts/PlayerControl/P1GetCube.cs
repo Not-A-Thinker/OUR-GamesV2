@@ -66,10 +66,14 @@ public class P1GetCube : MonoBehaviour
     {
         
         int parentMax = objectParent.transform.childCount;
-        if (parentMax != 0)
+        Debug.Log(parentMax);
+        if (parentMax > 0)
         {
-            move = GetComponent<Move>();
-            move.SpeedReset();
+            if(!GetComponent<PlayerState>().isDead)
+            {
+                move = GetComponent<Move>();
+                move.SpeedReset();
+            }          
             //Debug.Log(parentMax);
             // 狗狗身上的方塊掉落
             for (int i = 0; i < parentMax; i++)
