@@ -122,6 +122,7 @@ public class GetTriggerObject : MonoBehaviour
                     
                     //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
+
                 Destroy(Obj.transform.gameObject);
             }
         }     
