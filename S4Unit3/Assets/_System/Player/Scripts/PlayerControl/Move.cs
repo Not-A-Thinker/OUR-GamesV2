@@ -191,6 +191,7 @@ public class Move : MonoBehaviour
             {
                 autoLockBoss = !autoLockBoss;
             }         
+
             if (autoLockBoss)
             {
                 BossLockOn();
@@ -351,8 +352,7 @@ public class Move : MonoBehaviour
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
-        velocity = velocity.normalized;
-        
+        velocity = velocity.normalized;      
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
@@ -408,6 +408,7 @@ public class Move : MonoBehaviour
             }
             //yield return new WaitForSeconds(10);
         }
+
         if (isPlayer2)
         {
             inCC = true;
