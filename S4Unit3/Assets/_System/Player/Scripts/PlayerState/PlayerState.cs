@@ -29,12 +29,15 @@ public class PlayerState : MonoBehaviour
      PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
+    Color color;
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
 
     bool isInvincible = false;
     private void Start()
-    {           
+    {
+        color = Resurrect_range.GetComponent<SpriteRenderer>().color;
+
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         _Collider = GetComponent<CapsuleCollider>();
@@ -57,7 +60,7 @@ public class PlayerState : MonoBehaviour
         ///_currentHealth當前血量 _maxHealth最大血量
         _currentHealth = _maxHealth;
 
-        Resurrect_range.SetActive(false);
+        //Resurrect_range.SetActive(false);
     }
 
     void Update()
@@ -144,7 +147,8 @@ public class PlayerState : MonoBehaviour
     {
         ///重置玩家成初始狀態
         isDead = false;
-        Resurrect_range.SetActive(false);
+        //Resurrect_range.SetActive(false);
+        Resurrect_range.GetComponent<SpriteRenderer>().color = color;
         _currentHealth = _maxHealth;
         move.SpeedReset();
         move.isDead = false;
@@ -154,12 +158,12 @@ public class PlayerState : MonoBehaviour
 
         if (isPlayer1)
         {
-            ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+            ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();                      
             forceCast_TopDown.enabled = true;
         }
         else
         {
-            ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+            ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();          
             forceRepel_TopDown.enabled = true;
         }
         //rb.useGravity = true;
@@ -175,7 +179,8 @@ public class PlayerState : MonoBehaviour
     {
         //死亡設置
         isDead = true;
-        Resurrect_range.SetActive(true);
+        //Resurrect_range.SetActive(true);
+        Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         move.isKnockUp = false;
         move.SpeedSlow(0.25f);
         move.isDead = true;
@@ -185,13 +190,16 @@ public class PlayerState : MonoBehaviour
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
+            forceCast_TopDown.ResetOldQue();
             forceCast_TopDown.enabled = false;
         }
         else
         {
             ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+            forceRepel_TopDown.resetObject();
             forceRepel_TopDown.enabled = false;
         }
+
         //playerTotalDead.TotalLifeDecrease();
 
         if (OthePlayerState._currentHealth == 0)
