@@ -149,6 +149,7 @@ public class PlayerState : MonoBehaviour
         isDead = false;
         //Resurrect_range.SetActive(false);
         Resurrect_range.GetComponent<SpriteRenderer>().color = color;
+        Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
         _currentHealth = _maxHealth;
         move.SpeedReset();
         move.isDead = false;
@@ -178,9 +179,10 @@ public class PlayerState : MonoBehaviour
     public void PlayerIsDead()
     {
         //¦º¤`³]¸m
-        isDead = true;
+        isDead = true;    
         //Resurrect_range.SetActive(true);
         Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
+        Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         move.isKnockUp = false;
         move.SpeedSlow(0.25f);
         move.isDead = true;
