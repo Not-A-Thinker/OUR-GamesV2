@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-909936376458708846
+--- !u!114 &-8583559966161138374
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: element-small
+  m_Name: torch_L1
   m_Shader: {fileID: -6465566751694194690, guid: 424bb3751945a4044b9f8ea2bf4b0db0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -77,7 +77,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: ca51a055278db074dad018e4df85a59f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 096a4da75448e704fae2920966e8fe97, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -106,7 +106,7 @@ Material:
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
-    - _Glossiness: 32
+    - _Glossiness: 500
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
@@ -124,9 +124,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - MainColor: {r: 0.41568628, g: 1, b: 1, a: 1}
+    - MainColor: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 0}
     - Rim_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _AmbientColor: {r: 11.984314, g: 11.984314, b: 11.984314, a: 0}
+    - _AmbientColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
