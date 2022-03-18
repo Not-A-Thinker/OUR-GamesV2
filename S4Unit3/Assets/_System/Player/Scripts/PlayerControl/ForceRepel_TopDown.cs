@@ -23,6 +23,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] GameObject Mother;
     [SerializeField] private Renderer Renderer;
     [SerializeField] PlayerSoundEffect soundEffect;
+    [SerializeField] ParticleSystem _Suck_Effect;
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
     bool IsAiming;
@@ -194,6 +195,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     if (hit.transform.name.Contains("Tornado SForm"))
                     {
+                        if (_Suck_Effect != null)
+                            _Suck_Effect.Play();
                         soundEffect.OnAttackPlay();
                         Renderer.material.color = Color.green;
                         hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
@@ -201,6 +204,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                     }
                     else
                     {
+                        if (_Suck_Effect != null)
+                            _Suck_Effect.Play();
                         soundEffect.OnAttackPlay();
                         Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
@@ -208,7 +213,10 @@ public class ForceRepel_TopDown : MonoBehaviour
                 }
                 //rb.useGravity = !rb.useGravity;       
                else if (hit.transform.tag == "Boss")
-                {          
+                {
+                    if (_Suck_Effect != null)
+                        _Suck_Effect.Play();
+
                     Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {

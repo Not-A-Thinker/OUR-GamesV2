@@ -25,10 +25,10 @@ public class PlayerRespawn : MonoBehaviour
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
 
-    public void RespawnRangeTrigger(bool IsOn)
-    {
-        GetComponent<SphereCollider>().isTrigger = IsOn;
-    }
+    //public void RespawnRangeTrigger(bool IsOn)
+    //{
+    //    GetComponent<SphereCollider>().isTrigger = IsOn;
+    //}
 
     private void OnTriggerStay(Collider obj)
     {
