@@ -90,8 +90,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 2}
-  m_Center: {x: 0, y: 0.2, z: 0}
+  m_Size: {x: 1, y: 2, z: 1.6111659}
+  m_Center: {x: 0, y: 0.19999999, z: -0.41179425}
 --- !u!114 &2842147967310750790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,6 +472,7 @@ MonoBehaviour:
   isKnockUp: 0
   isDashClose: 0
   inCC: 0
+  autoLockBoss: 1
   dashSpeed: 30
   dashTime: 0.25
   _DashTotal: 1

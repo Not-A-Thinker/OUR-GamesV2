@@ -432,7 +432,7 @@ MonoBehaviour:
   RangeBigObj: {fileID: 500052817520157419}
   Renderer: {fileID: 500052817167976941}
   Charitor: {fileID: 5381467380246077115}
-  _force: 500
+  _force: 400
   _range: 20
   isfriendPushed: 0
   Charge: 0
@@ -509,6 +509,7 @@ MonoBehaviour:
   isKnockUp: 0
   isDashClose: 0
   inCC: 0
+  autoLockBoss: 1
   dashSpeed: 25
   dashTime: 0.25
   _DashTotal: 2

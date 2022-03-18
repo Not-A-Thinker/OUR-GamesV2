@@ -8,6 +8,7 @@ public class ObjectRotation : MonoBehaviour
     [Header("自轉公轉")]
     [Tooltip("This is only for debug testing, don't touch it.")]
     public bool _isInCount;
+    public bool _isClip;
 
     public GameObject target;
 
@@ -31,7 +32,8 @@ public class ObjectRotation : MonoBehaviour
     {
         if (_isInCount)
         {
-            transform.localScale = new Vector3(1f,1f,1f);
+            if(!_isClip)
+                transform.localScale = new Vector3(1f,1f,1f);
             //Debug.Log(distance);
 
             transform.position = target.transform.position + dir.normalized * distance;

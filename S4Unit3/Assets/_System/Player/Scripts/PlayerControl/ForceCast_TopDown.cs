@@ -117,18 +117,21 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Input.GetButtonDown("AimP1"))
         {
             SetOldQue();
-            P1_Aim_Slow();
-        
+            P1_Aim_Slow();      
         }
 
         if (Input.GetButton("AimP1"))
         {
             isAim = true;
             rangeObj.SetActive(true);
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+                Charge = true;
+
             if (Input.GetButton("HelpFriendP1"))
             {
                 isfriendPushed = true;
             }
+
             if (Input.GetButtonUp("HelpFriendP1"))
             {
                 isfriendPushed = false;
@@ -140,8 +143,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
                 if (!ShootInCD && objectParent.transform.childCount > 0)
                 {
-                    if (!ShootInCD && objectParent.transform.childCount > 0)
-                        Charge = true;
+                    
                 }
                 else
                     UIcontrol.flyText(1, Color.red, "Cant Attack!");
