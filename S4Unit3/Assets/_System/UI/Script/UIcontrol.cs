@@ -212,6 +212,7 @@ public class UIcontrol : MonoBehaviour
             Player_pos = Camera.main.WorldToScreenPoint(P1.transform.position);     
         else
             Player_pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+
         GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
         go.transform.SetParent(GameObject.Find("GUI").transform);
         UI_FlyText ft = go.GetComponent<UI_FlyText>();

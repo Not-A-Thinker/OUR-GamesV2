@@ -112,7 +112,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     onSucking = true;
                 }
                 else
-                    uIcontrol.flyText(2, Color.red, "Sucking CD!");
+                    uIcontrol.flyText(2, Color.red, "CD!!!!");
             }
             if (Input.GetButton("Fire2"))
             {
@@ -231,7 +231,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     {
                         if(!TextSpawning)
                         {
-                            uIcontrol.flyText(2, Color.red, "Full!");
+                            uIcontrol.flyText(2, Color.red, "Full!!!!");
                             TextSpawning = true;
                         }                      
                     }                    
@@ -248,7 +248,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     Renderer.material.color = Color.red;
                 }
             }
-            if (SuckCount == 0)
+            if (SuckCount <= 0)
             {
                 Renderer.material.color = Color.red;
                 soundEffect.OnResetSound();

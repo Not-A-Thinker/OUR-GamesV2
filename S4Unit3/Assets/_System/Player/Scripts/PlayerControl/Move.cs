@@ -69,12 +69,13 @@ public class Move : MonoBehaviour
     void Start()
     {
         _DashNow = _DashTotal;
-
+        
         _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
+        oldTempSpeed = maximumSpeed;
         Boss = GameObject.Find("Boss");
     }
 
