@@ -117,9 +117,13 @@ public class ForceCast_TopDown : MonoBehaviour
         ///OldInput備案 如果New Input手把不能用的時候打開
         if (Input.GetButtonDown("AimP1"))
         {
-            SetOldQue();
-            isAim = true;        
+            SetOldQue();                   
+        }
 
+        if (Input.GetButton("AimP1"))
+        {
+            isAim = true;
+            P1_Aim_Slow();
             if (Input.GetButton("HelpFriendP1"))
             {
                 isfriendPushed = true;
@@ -129,24 +133,22 @@ public class ForceCast_TopDown : MonoBehaviour
                 isfriendPushed = false;
             }
 
-            if (!ShootInCD && objectParent.transform.childCount > 0)
+            if (Input.GetButtonDown("Fire1"))
             {
-                P1_Aim_Slow();
-                Charge = true;
+                isShooted = true;
+                if (!ShootInCD && objectParent.transform.childCount > 0)
+                {
+                    if (!ShootInCD && objectParent.transform.childCount > 0)
+                        Charge = true;
+                }
+                else
+                    UIcontrol.flyText(1, Color.red, "Cant Attack!");
             }
-            else
-                UIcontrol.flyText(1, Color.red, "Cant Attack!");
-        }
-
-
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            isShooted = true;
         }
 
         if (Input.GetButtonUp("AimP1"))
         {
+            isAim = false;
             ResetOldQue();
         }
     }
