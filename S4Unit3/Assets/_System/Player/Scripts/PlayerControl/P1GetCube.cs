@@ -64,26 +64,30 @@ public class P1GetCube : MonoBehaviour
     // 狗狗被擊中時會觸發
     public void PlayerGoneCube()
     {
+        
         int parentMax = objectParent.transform.childCount;
-        move = GetComponent<Move>();
-        move.SpeedReset();
-        //Debug.Log(parentMax);
-        // 狗狗身上的方塊掉落
-        for (int i=0;i< parentMax;i++)
-        {         
-            GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount-1).gameObject;
-            Rigidbody Rb = cube.GetComponent<Rigidbody>();
-            cube.GetComponent<ObjectRotation>()._isInCount = false;
-            if (cube.GetComponent<ObjectDestroy>())
+        if (parentMax != 0)
+        {
+            move = GetComponent<Move>();
+            move.SpeedReset();
+            //Debug.Log(parentMax);
+            // 狗狗身上的方塊掉落
+            for (int i = 0; i < parentMax; i++)
             {
+                GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount - 1).gameObject;
+                Rigidbody Rb = cube.GetComponent<Rigidbody>();
+                cube.GetComponent<ObjectRotation>()._isInCount = false;
+                if (cube.GetComponent<ObjectDestroy>())
+                {
                     cube.GetComponent<ObjectDestroy>().isSucked = false;
+                }
+                //重置方塊掉落狀態
+                Rb.constraints = RigidbodyConstraints.None;
+                Rb.useGravity = true;
+                cube.transform.position = SpawnPoint.position;
+                cube.transform.parent = null;
             }
-            //重置方塊掉落狀態
-            Rb.constraints = RigidbodyConstraints.None;
-            Rb.useGravity = true;
-            cube.transform.position = SpawnPoint.position;
-            cube.transform.parent = null;
-        }
+        }     
     }
 
     void PlayerSetCube(int parentMax,int force)

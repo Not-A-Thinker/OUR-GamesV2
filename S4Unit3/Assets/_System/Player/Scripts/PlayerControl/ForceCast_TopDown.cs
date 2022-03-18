@@ -85,8 +85,7 @@ public class ForceCast_TopDown : MonoBehaviour
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 Renderer.material.color = Color.red;
-                Shoot();
-                rangeObj.SetActive(false);
+                Shoot();               
             }
             else
                 isShooted = false;
@@ -117,13 +116,14 @@ public class ForceCast_TopDown : MonoBehaviour
         ///OldInput備案 如果New Input手把不能用的時候打開
         if (Input.GetButtonDown("AimP1"))
         {
-            SetOldQue();                   
+            SetOldQue();
+            P1_Aim_Slow();
         }
 
         if (Input.GetButton("AimP1"))
         {
             isAim = true;
-            P1_Aim_Slow();
+            rangeObj.SetActive(true);
             if (Input.GetButton("HelpFriendP1"))
             {
                 isfriendPushed = true;
@@ -136,6 +136,7 @@ public class ForceCast_TopDown : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 isShooted = true;
+
                 if (!ShootInCD && objectParent.transform.childCount > 0)
                 {
                     if (!ShootInCD && objectParent.transform.childCount > 0)
