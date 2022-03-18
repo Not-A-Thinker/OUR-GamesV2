@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500052817520157419}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 3.5}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -507,7 +507,7 @@ MonoBehaviour:
   isImMobilized: 0
   isDashed: 0
   isKnockUp: 0
-  isDead: 0
+  isDashClose: 0
   inCC: 0
   dashSpeed: 25
   dashTime: 0.25
@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 3182026638429766464}
   m_Layer: 0
   m_Name: Hula
-  m_TagString: ResurrectRange
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

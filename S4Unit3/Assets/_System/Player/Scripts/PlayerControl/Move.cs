@@ -39,7 +39,7 @@ public class Move : MonoBehaviour
     public bool isImMobilized;
     public bool isDashed;
     public bool isKnockUp;
-    public bool isDead;
+    public bool isDashClose;
 
     public bool inCC = false;
 
@@ -157,7 +157,7 @@ public class Move : MonoBehaviour
                     _animation.PlayerWalk(false);
                 }
 
-                if(!isDead)
+                if(!isDashClose)
                 {
                     if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
                     {
@@ -242,7 +242,7 @@ public class Move : MonoBehaviour
                 //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
                 //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
 
-                if (!isDead)
+                if (!isDashClose)
                 {
                     if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
                     {

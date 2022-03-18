@@ -118,6 +118,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             SetOldQue();
             P1_Aim_Slow();
+        
         }
 
         if (Input.GetButton("AimP1"))
@@ -158,6 +159,7 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         Move move = GetComponent<Move>();
         move.SpeedSlow(speedSlow);
+        move.isDashClose = true;
     }
 
     private void Shoot()
@@ -218,18 +220,18 @@ public class ForceCast_TopDown : MonoBehaviour
 
     private void FriendlyPushed()
     {
-        Charitor.transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
+        Charitor.transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, transform.rotation, 15f * Time.deltaTime);
         ///®g½u
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.up;
         RaycastHit isPlayerHit;
         if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
         {
-            //Debug.Log(isPlayerHit.transform.tag+"+"+isPlayerHit.transform.name);
+            Debug.Log(isPlayerHit.transform.tag + "+" + isPlayerHit.transform.name);
             //Debug.DrawRay(startPos, endPos * _range);
             //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
 
-            if (isPlayerHit.transform.tag == "Player" && friendPushed == false)
+            if (isPlayerHit.transform.tag == "Player" && friendPushed == false && isPlayerHit.transform.name != name)
             {
                 rangeObj.SetActive(true);
                 if (isPlayerHit.transform.gameObject != this.gameObject)
@@ -287,6 +289,7 @@ public class ForceCast_TopDown : MonoBehaviour
         rangeObj.SetActive(false);
         Move move = GetComponent<Move>();
         move.SpeedFast();
+        move.isDashClose = false;
     }
 }
 

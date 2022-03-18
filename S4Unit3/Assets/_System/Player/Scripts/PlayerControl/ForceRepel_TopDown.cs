@@ -140,7 +140,8 @@ public class ForceRepel_TopDown : MonoBehaviour
             OldQuate = new Quaternion(0,0,0,0);
             GetComponent<BoxCollider>().isTrigger = false;
             Range.SetActive(false);
-            move.SpeedReset();          
+            move.SpeedReset();
+            move.isDashClose = false;
             IsAiming = false;
 
             //uIcontrol.SuckingCDBar(canSucc);
@@ -171,7 +172,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void ButtonDonwEvent()
     {
         OldQuate = ChaRot.transform.rotation;
-        move.SpeedSlow(_SpeedSlow);      
+        move.SpeedSlow(_SpeedSlow);
+        move.isDashClose = true;
         IsAiming = true;
         //uIcontrol.SuckingCDBar(false);
     }
@@ -278,9 +280,10 @@ public class ForceRepel_TopDown : MonoBehaviour
         //Debug.DrawRay(startPos, endPos);
 
         RaycastHit hit;
+
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
-            //Debug.Log("Hit" + hit.transform.name);
+            Debug.Log("Hit" + hit.transform.name);
             if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
             {
                 //Debug.Log("Hit"+hit.transform.name);
