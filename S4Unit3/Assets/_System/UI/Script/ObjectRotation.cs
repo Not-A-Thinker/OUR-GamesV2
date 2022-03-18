@@ -30,7 +30,7 @@ public class ObjectRotation : MonoBehaviour
     {
         if (_isInCount)
         {
-            transform.localScale = new Vector3(0.7f,0.7f,0.7f);
+            transform.localScale = new Vector3(1f,1f,1f);
             //Debug.Log(distance);
 
             transform.position = target.transform.position + dir.normalized * distance;
