@@ -45,6 +45,6 @@ public class ObjectRotation : MonoBehaviour
             transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
         }
         else
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
     }
 }

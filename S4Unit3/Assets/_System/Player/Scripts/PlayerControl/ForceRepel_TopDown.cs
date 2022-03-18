@@ -316,7 +316,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         FriendCD = true;
      
-        yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(4);
 
         FriendCD = false;
     }

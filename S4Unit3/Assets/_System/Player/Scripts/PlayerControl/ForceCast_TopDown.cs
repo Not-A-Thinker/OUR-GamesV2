@@ -235,7 +235,7 @@ public class ForceCast_TopDown : MonoBehaviour
                     Move move = isPlayerHit.transform.GetComponent<Move>();
                     StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
                     ///CD
-                    StartCoroutine(FriendCD(8));
+                    StartCoroutine(FriendCD(4));
                     rangeObj.SetActive(false);
                 }
             }
