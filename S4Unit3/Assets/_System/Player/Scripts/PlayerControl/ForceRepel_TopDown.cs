@@ -286,7 +286,7 @@ public class ForceRepel_TopDown : MonoBehaviour
 
         if (Physics.Raycast(startPos, endPos, out hit, _range))
         {
-            Debug.Log("Hit" + hit.transform.name);
+            //Debug.Log("Hit" + hit.transform.name);
             if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
             {
                 //Debug.Log("Hit" + hit.transform.name);
