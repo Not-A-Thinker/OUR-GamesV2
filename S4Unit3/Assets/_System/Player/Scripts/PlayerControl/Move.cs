@@ -164,7 +164,7 @@ public class Move : MonoBehaviour
                     {
                         UIcontrol.EnergyBarChange(1, _DashNow, true);
                         isDashed = true;
-                        StartCoroutine(_animation.PlayerDash(dashTime)) ;
+                        StartCoroutine(DashDelay()) ;
                         //Debug.Log("P1 Dashed");
                         StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
                         StartCoroutine(DashRestore());
@@ -255,7 +255,7 @@ public class Move : MonoBehaviour
                         UIcontrol.EnergyBarChange(2, _DashNow, true);
                         isDashed = true;
                         //Debug.Log("P2 Dashed");
-                        StartCoroutine(_animation.PlayerDash(dashTime));
+                        StartCoroutine(DashDelay());
                         StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                         StartCoroutine(DashRestore());
                         _animation.PlayerDodge();
@@ -325,6 +325,11 @@ public class Move : MonoBehaviour
 
 
         }
+    }
+    IEnumerator DashDelay()
+    {
+        yield return new WaitForSeconds(0.05f);
+        StartCoroutine(_animation.PlayerDash(dashTime)); 
     }
 
     IEnumerator SlowEffectTimer()
