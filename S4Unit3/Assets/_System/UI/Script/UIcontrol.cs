@@ -196,7 +196,7 @@ public class UIcontrol : MonoBehaviour
     public void PushingBar(float load)
     {
         pushing.SetActive(true);
-        push_slider.value = Mathf.Lerp(push_slider.value, load, smoothing * Time.deltaTime);
+        push_slider.value = Mathf.Lerp(load, push_slider.value, smoothing * Time.deltaTime);
     }
     public void PushingStop()
     {
