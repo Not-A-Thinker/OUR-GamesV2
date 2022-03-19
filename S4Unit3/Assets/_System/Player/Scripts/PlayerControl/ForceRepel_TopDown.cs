@@ -289,7 +289,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             Debug.Log("Hit" + hit.transform.name);
             if (hit.transform.tag == "Player" && FriendCD == false && hit.transform.name != Mother.name)
             {
-                //Debug.Log("Hit"+hit.transform.name);
+                //Debug.Log("Hit" + hit.transform.name);
                 Move move = hit.transform.GetComponent<Move>();
                 StartCoroutine(move.GetFriendlyControl(this.transform.position));
                 StartCoroutine(FriendlyCD());

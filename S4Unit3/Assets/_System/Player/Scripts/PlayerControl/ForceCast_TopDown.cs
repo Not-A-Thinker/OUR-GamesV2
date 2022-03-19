@@ -224,12 +224,12 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         Charitor.transform.rotation = Quaternion.Slerp(Charitor.transform.rotation, transform.rotation, 15f * Time.deltaTime);
         ///射線
-        Vector3 startPos = transform.position;
-        Vector3 endPos = transform.up;
+        Vector3 startPos = RangeBigObj.transform.position;
+        Vector3 endPos = RangeBigObj.transform.up;
         RaycastHit isPlayerHit;
         if (Physics.Raycast(startPos, endPos, out isPlayerHit, _range))
         {
-            Debug.Log(isPlayerHit.transform.tag + "+" + isPlayerHit.transform.name);
+            //Debug.Log(isPlayerHit.transform.tag + "+" + isPlayerHit.transform.name);
             //Debug.DrawRay(startPos, endPos * _range);
             //Debug.DrawLine(transform.position, hit.point, Color.red,0.5f, false);
 
@@ -241,7 +241,7 @@ public class ForceCast_TopDown : MonoBehaviour
                     ///不能讓對方動
                     //Debug.Log(isPlayerHit.transform.gameObject.name);
                     Move move = isPlayerHit.transform.GetComponent<Move>();
-                    StartCoroutine(move.GetFriendlyControl(transform.forward));
+                    StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
                     ///CD
                     StartCoroutine(FriendCD(4));
                     rangeObj.SetActive(false);
