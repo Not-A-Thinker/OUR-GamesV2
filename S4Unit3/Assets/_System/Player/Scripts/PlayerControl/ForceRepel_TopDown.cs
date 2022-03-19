@@ -98,6 +98,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Input.GetButton("AimP2"))
         {
             Range.SetActive(true);
+            IsAiming = true;
         }
         
         if(IsAiming)
@@ -175,7 +176,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         OldQuate = ChaRot.transform.rotation;
         move.SpeedSlow(_SpeedSlow);
         move.isDashClose = true;
-        IsAiming = true;
+        
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()

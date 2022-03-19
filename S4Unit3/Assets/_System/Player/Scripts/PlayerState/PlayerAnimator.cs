@@ -9,6 +9,7 @@ public class PlayerAnimator : MonoBehaviour
     Animator PlayerAn;
     PlayerSoundEffect playerSound;
     private CinemachineCollisionImpulseSource CCIS;
+    [SerializeField] Collider _Collider;
 
     private void Awake()
     {
@@ -34,14 +35,17 @@ public class PlayerAnimator : MonoBehaviour
         PlayerAn.SetTrigger("Shoot");
     }
 
-    public void PlayerDash(bool State)
+    public IEnumerator PlayerDash(float time)
     {
-        PlayerAn.SetBool("isDash", State);
-        if (State == true)
-            playerSound.OnDashPlay();
-        else
-            playerSound.OnResetSound();
-        
+        PlayerAn.SetBool("isDash", true);
+        playerSound.OnDashPlay();
+        _Collider.enabled = false;
+
+        yield return new WaitForSeconds(time);
+
+        PlayerAn.SetBool("isDash", false);
+        playerSound.OnResetSound();
+        _Collider.enabled = true;
     }
     public void PlayerDead()
     {
