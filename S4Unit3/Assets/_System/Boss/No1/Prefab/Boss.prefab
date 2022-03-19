@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 3547116887273196987}
   - component: {fileID: 188733293806428879}
   - component: {fileID: 3547116887273196985}
+  - component: {fileID: 7378916186051149143}
   - component: {fileID: 3547116887273196982}
   - component: {fileID: 3547116887273196991}
   - component: {fileID: 3547116887273196983}
@@ -191,6 +192,7 @@ MonoBehaviour:
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
   _TestingMode: 0
+  _DrawGizmos: 1
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
@@ -268,6 +270,19 @@ MonoBehaviour:
   tailForwardForce: 20000
   _skillRange: 45
   Boss1Animator: {fileID: 8650027658515693968}
+--- !u!114 &7378916186051149143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3547116887273196990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ad830908920f443905cdcfcfff1489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 2a48967f47306bb459bdf8a7e544ca24, type: 2}
 --- !u!114 &3547116887273196982
 MonoBehaviour:
   m_ObjectHideFlags: 0
