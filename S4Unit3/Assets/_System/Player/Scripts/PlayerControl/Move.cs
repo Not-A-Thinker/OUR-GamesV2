@@ -164,7 +164,7 @@ public class Move : MonoBehaviour
                     {
                         UIcontrol.EnergyBarChange(1, _DashNow, true);
                         isDashed = true;
-                        _animation.PlayerDash(true);
+                        StartCoroutine(_animation.PlayerDash(dashTime)) ;
                         //Debug.Log("P1 Dashed");
                         StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
                         StartCoroutine(DashRestore());
@@ -173,8 +173,6 @@ public class Move : MonoBehaviour
                     else if (Input.GetButtonUp("JumpP1"))
                     {
                         isDashed = false;
-
-                        _animation.PlayerDash(false);
                     }
                 }          
             }
@@ -257,6 +255,7 @@ public class Move : MonoBehaviour
                         UIcontrol.EnergyBarChange(2, _DashNow, true);
                         isDashed = true;
                         //Debug.Log("P2 Dashed");
+                        StartCoroutine(_animation.PlayerDash(dashTime));
                         StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
                         StartCoroutine(DashRestore());
                         _animation.PlayerDodge();
@@ -352,6 +351,7 @@ public class Move : MonoBehaviour
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
+
         velocity = velocity.normalized;      
 
         if (horizontalInput == 0 && verticalInput == 0)
@@ -361,14 +361,14 @@ public class Move : MonoBehaviour
 
         while (Time.time < startTime + dashTime)
         {
-            _Collider.enabled = false;
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);        
-            yield return null;          
+            //_Collider.enabled = false;
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            yield return null;
         }
 
         while(Time.time>=startTime+dashTime)
         {
-            _Collider.enabled = true;
+            //_Collider.enabled = true;
             yield return null;
         }
     }

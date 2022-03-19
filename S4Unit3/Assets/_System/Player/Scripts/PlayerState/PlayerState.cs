@@ -230,6 +230,7 @@ public class PlayerState : MonoBehaviour
     //Hyper Muteki Gamer
      IEnumerator Invincible(int time)
     {
+        _Collider.enabled = false;
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;     
@@ -247,7 +248,7 @@ public class PlayerState : MonoBehaviour
     //°{Ã{
     void InvincibleRend()
     {
-        _Collider.enabled = false;
+        
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else

@@ -473,8 +473,8 @@ MonoBehaviour:
   isDashClose: 0
   inCC: 0
   autoLockBoss: 1
-  dashSpeed: 30
-  dashTime: 0.25
+  dashSpeed: 15
+  dashTime: 0.5
   _DashTotal: 1
   DashCD: 2
 --- !u!54 &1860544261278244864
@@ -1908,6 +1908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de34969679d25489f13482414405eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Collider: {fileID: 1860544261278244873}
   Smoke: {fileID: 8175927972799678628}
   SpeedLine: {fileID: 5639985815505963836}
   Afterimage: {fileID: 0}

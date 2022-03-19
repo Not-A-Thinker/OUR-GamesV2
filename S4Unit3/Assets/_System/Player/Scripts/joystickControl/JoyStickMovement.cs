@@ -172,7 +172,7 @@ public class JoyStickMovement : MonoBehaviour
     {
         if (isDashed && _DashNow > 0)
         {
-            _animation.PlayerDash(true);
+            StartCoroutine(_animation.PlayerDash(dashTime));
             //Debug.Log("P1 Dashed");
             StartCoroutine(Dash(vector3d));
             isDashed = false;
@@ -191,7 +191,6 @@ public class JoyStickMovement : MonoBehaviour
         UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
         _DashNow--;
         StartCoroutine(DashRestore());
-        _animation.PlayerDash(false);
 
         if (velocity == Vector3.zero)
         {
