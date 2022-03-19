@@ -869,7 +869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.047791064, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047791123, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9625,7 +9625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.047791064, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047791123, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10475,6 +10475,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206988478}
   m_CullTransparentMesh: 1
+--- !u!114 &1213026272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+  m_PrefabInstance: {fileID: 1558560915}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ad830908920f443905cdcfcfff1489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216341165
 GameObject:
   m_ObjectHideFlags: 0
@@ -11697,6 +11708,34 @@ PrefabInstance:
     - target: {fileID: 3547116887273196990, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1213026272}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ColorChangeTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BossDamageIndicator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378916186051149143, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: OnDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3547116887273196984, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
