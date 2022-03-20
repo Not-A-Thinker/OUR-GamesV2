@@ -171,7 +171,7 @@ public class PlayerState : MonoBehaviour
         move.inCC = false;
     }
 
-    public void StartInvincible(int time)
+    public void StartInvincible(float time)
     {
         StartCoroutine(Invincible(time));
     }
@@ -228,7 +228,7 @@ public class PlayerState : MonoBehaviour
     }
 
     //Hyper Muteki Gamer
-     IEnumerator Invincible(int time)
+     IEnumerator Invincible(float time)
     {
         _Collider.enabled = false;
         isInvincible = true;

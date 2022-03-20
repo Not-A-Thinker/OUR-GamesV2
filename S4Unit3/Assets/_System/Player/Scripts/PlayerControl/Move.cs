@@ -202,7 +202,7 @@ public class Move : MonoBehaviour
                     angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                     //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                     Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1000f * Time.deltaTime);
                     //Debug.Log(angle);
                 }
             }
@@ -294,7 +294,7 @@ public class Move : MonoBehaviour
                         angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
                         //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
                         Quaternion target = Quaternion.Euler(0, angle, 0);
-                        ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1500f * Time.deltaTime);
+                        ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1000f * Time.deltaTime);
                         //Debug.Log(angle);
                     }
                 }           
@@ -447,7 +447,7 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(3);
         inCC = false;
         isKnockUp = false;
-        GetComponent<PlayerState>().StartInvincible(1);
+        GetComponent<PlayerState>().StartInvincible(1.5f);
     }
 
     ///Only For P1 While Getting New Cube
