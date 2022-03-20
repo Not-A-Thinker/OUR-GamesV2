@@ -21,29 +21,44 @@ public class PlayerSoundEffect : MonoBehaviour
 
     public void OnMovePlay()
     {
-        _audioSource.clip = OnMoveSound;
-        _audioSource.loop = true;
-        _audioSource.Play();
+        if(_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = OnMoveSound;
+            _audioSource.loop = true;
+            _audioSource.Play();
+        }      
     }
     public void OnDashPlay()
     {
-        _audioSource.clip = OnDashSound;
-        _audioSource.Play();
+        if (_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = OnDashSound;
+            _audioSource.Play();
+        }         
     }
     public void OnRespawnPlay()
     {
-        _audioSource.clip = OnRespawnSound;
-        _audioSource.Play();
+        if (_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = OnRespawnSound;
+            _audioSource.Play();
+        }
     }
     public void OnAttackPlay()
     {
-        _audioSource.clip = OnAttackSound;
-        _audioSource.Play();
+        if (_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = OnAttackSound;
+            _audioSource.Play();
+        }        
     }
     public void OnResetSound()
     {
-        _audioSource.clip = null;
-        _audioSource.loop = false;
-        _audioSource.Stop();
+        if (_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = null;
+            _audioSource.loop = false;
+            _audioSource.Stop();
+        }          
     }
 }
