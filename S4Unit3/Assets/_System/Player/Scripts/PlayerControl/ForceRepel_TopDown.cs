@@ -14,14 +14,14 @@ public class ForceRepel_TopDown : MonoBehaviour
 
     [Header("Suck OBJ")]
     [SerializeField] GameObject savedObject;
-    [SerializeField] GameObject S_Tonado;
+    //[SerializeField] GameObject S_Tonado;
     //public GameObject CubeCount;
     //int CubeConter=0;
     [SerializeField] GameObject Range;
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
-    [SerializeField] private Renderer Renderer;
+    //[SerializeField] private Renderer Renderer;
     [SerializeField] PlayerSoundEffect soundEffect;
     [SerializeField] ParticleSystem _Suck_Effect;
     //[SerializeField] private AnimationCurve curve;
@@ -137,7 +137,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Input.GetButtonUp("AimP2"))
         {
             onSucking = false;
-            Renderer.material.color = Color.white;
+            //Renderer.material.color = Color.white;
             TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);         
@@ -153,11 +153,11 @@ public class ForceRepel_TopDown : MonoBehaviour
             //    Timer = 0;              
             //}              
             
-            if(S_Tonado!=null)
-            {
-                S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
-                S_Tonado = null;
-            }          
+            //if(S_Tonado!=null)
+            //{
+            //    S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
+            //    S_Tonado = null;
+            //}          
         }
 
         if (savedObject)
@@ -197,23 +197,23 @@ public class ForceRepel_TopDown : MonoBehaviour
                 //Debug.Log(hit.transform.tag);
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
-                    if (hit.transform.name.Contains("Tornado SForm"))
-                    {
+                    //if (hit.transform.name.Contains("Tornado SForm"))
+                    //{
+                    //    if (_Suck_Effect != null)
+                    //        _Suck_Effect.Play();
+                    //    soundEffect.OnAttackPlay();
+                    //    //Renderer.material.color = Color.green;
+                    //    hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
+                    //    S_Tonado = hit.transform.gameObject;
+                    //}
+                    //else
+                    //{
                         if (_Suck_Effect != null)
                             _Suck_Effect.Play();
                         soundEffect.OnAttackPlay();
-                        Renderer.material.color = Color.green;
-                        hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
-                        S_Tonado = hit.transform.gameObject;
-                    }
-                    else
-                    {
-                        if (_Suck_Effect != null)
-                            _Suck_Effect.Play();
-                        soundEffect.OnAttackPlay();
-                        Renderer.material.color = Color.green;
+                        //Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
-                    }
+                    //}
                 }
                 //rb.useGravity = !rb.useGravity;       
                else if (hit.transform.tag == "Boss")
@@ -221,7 +221,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     if (_Suck_Effect != null)
                         _Suck_Effect.Play();
 
-                    Renderer.material.color = Color.green;
+                    //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
 
@@ -250,20 +250,20 @@ public class ForceRepel_TopDown : MonoBehaviour
                 }
                 else if (hit.transform.tag == "Objcet")
                 {
-                    Renderer.material.color = Color.green;
+                    //Renderer.material.color = Color.green;
                 }
                 //    hit.transform.rotation = new Quaternion(0, 0, 0, 0);
                 //    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, curve.Evaluate(0.15f));                
 
                 else
                 {
-                    Renderer.material.color = Color.white;
+                    //Renderer.material.color = Color.white;
                 }
             }
             if (SuckCount <= 0)
             {
                 onSucking = false;
-                Renderer.material.color = Color.white;
+                //Renderer.material.color = Color.white;
                 soundEffect.OnResetSound();
                 SuckInCD = true;
                 GetComponent<BoxCollider>().isTrigger = false;

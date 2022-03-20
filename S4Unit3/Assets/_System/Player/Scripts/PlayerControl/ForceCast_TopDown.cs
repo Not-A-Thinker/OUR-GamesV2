@@ -9,7 +9,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
-    [SerializeField] private Renderer Renderer;
+    //[SerializeField] private Renderer Renderer;
 
     UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
@@ -41,16 +41,16 @@ public class ForceCast_TopDown : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Vector3 startPos = transform.position;
-        Vector3 endPos = transform.forward;
-        RaycastHit hit;
-        if (Physics.Raycast(startPos, endPos, out hit, _range))
-        {
-            if (hit.transform.tag == "Boss")
-                Renderer.material.color = Color.green;
-            else
-                Renderer.material.color = Color.white;
-        }
+        //Vector3 startPos = transform.position;
+        //Vector3 endPos = transform.forward;
+        //RaycastHit hit;
+        //if (Physics.Raycast(startPos, endPos, out hit, _range))
+        //{
+        //    if (hit.transform.tag == "Boss")
+        //        Renderer.material.color = Color.green;
+        //    else
+        //        Renderer.material.color = Color.white;
+        //}
         ///®gÀ»«e¥R¯à
         if (Charge)
         {
@@ -84,7 +84,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
-                Renderer.material.color = Color.white;
+                //Renderer.material.color = Color.white;
                 Shoot();               
             }
             else
