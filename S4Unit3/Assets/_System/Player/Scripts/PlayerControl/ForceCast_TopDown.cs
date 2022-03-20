@@ -49,7 +49,7 @@ public class ForceCast_TopDown : MonoBehaviour
             if (hit.transform.tag == "Boss")
                 Renderer.material.color = Color.green;
             else
-                Renderer.material.color = Color.red;
+                Renderer.material.color = Color.white;
         }
         ///®gÀ»«e¥R¯à
         if (Charge)
@@ -84,7 +84,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
-                Renderer.material.color = Color.red;
+                Renderer.material.color = Color.white;
                 Shoot();               
             }
             else
@@ -146,7 +146,7 @@ public class ForceCast_TopDown : MonoBehaviour
                     
                 }
                 else
-                    UIcontrol.flyText(1, Color.red, "Cant Attack!");
+                    UIcontrol.flyText(1, Color.red, "CD!!!");
             }
         }
 

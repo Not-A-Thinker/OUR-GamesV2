@@ -137,7 +137,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         if (Input.GetButtonUp("AimP2"))
         {
             onSucking = false;
-            Renderer.material.color = Color.red;
+            Renderer.material.color = Color.white;
             TextSpawning = false;
             ChaRot.transform.rotation = OldQuate;
             OldQuate = new Quaternion(0,0,0,0);         
@@ -257,13 +257,13 @@ public class ForceRepel_TopDown : MonoBehaviour
 
                 else
                 {
-                    Renderer.material.color = Color.red;
+                    Renderer.material.color = Color.white;
                 }
             }
             if (SuckCount <= 0)
             {
                 onSucking = false;
-                Renderer.material.color = Color.red;
+                Renderer.material.color = Color.white;
                 soundEffect.OnResetSound();
                 SuckInCD = true;
                 GetComponent<BoxCollider>().isTrigger = false;
