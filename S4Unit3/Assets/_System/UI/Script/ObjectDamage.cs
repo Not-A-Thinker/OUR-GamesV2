@@ -121,7 +121,7 @@ public class ObjectDamage : MonoBehaviour
    IEnumerator DestroyTimer()
     {
         ///射擊2秒後一定消失
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         bossSpawn = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         bossSpawn.SpawnedCountDecrease();
         Destroy(this.gameObject);
