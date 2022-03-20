@@ -283,6 +283,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 2a48967f47306bb459bdf8a7e544ca24, type: 2}
+  colorTemp: {r: 0, g: 0, b: 0, a: 0}
+  colorNormal: {r: 1, g: 1, b: 1, a: 1}
+  colorDamage: {r: 1, g: 0, b: 0, a: 1}
+  smoothing: 0.5
+  OnDamageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7378916186051149143}
+        m_TargetAssemblyTypeName: BossDamageIndicator, Assembly-CSharp
+        m_MethodName: ColorChangeTrigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3547116887273196982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastSpawned: {fileID: 0}
   SpawnedCount: 0
-  SpawnendMax: 6
+  SpawnendMax: 5
 --- !u!136 &3547116887273196991
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1142,7 +1161,7 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -10, z: 0}
+  m_DefaultVelocity: {x: 0, y: -18, z: 0}
 --- !u!4 &3087408816934859753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a400392811d8641abec7fab7d3310b, type: 3}

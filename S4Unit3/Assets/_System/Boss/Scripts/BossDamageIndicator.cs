@@ -24,21 +24,19 @@ public class BossDamageIndicator : MonoBehaviour
     void Start()
     {
         material.SetColor("MainColor", new Color(1,1,1));
-        Debug.Log(material.GetColor("MainColor"));
         colorTemp = material.GetColor("MainColor");
     }
 
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    ColorValueChange();
-        //}
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ColorValueChange();
+        }
 
         if (colorTemp != colorNormal)
         {
-            Debug.Log("Is changing!");
             elapsedTime += Time.deltaTime;
             float percentageComplete = elapsedTime / smoothing;
 

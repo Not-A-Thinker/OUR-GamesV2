@@ -54,6 +54,7 @@ public class BossSkillDemo : MonoBehaviour
     public bool tornadoGattaiIsExisted;
 
     [Header("Skill Wind Hole")]
+    public Transform skillPoint;
     public GameObject windHole;
     public LayerMask layerMask;
     public Vector3[] otherPos = new Vector3[5];
@@ -391,8 +392,8 @@ public class BossSkillDemo : MonoBehaviour
 
             for (int j = 0; j < spawnNum; j++)
             {
-                float ranX = Random.Range(transform.position.x - _skillRange + 1, transform.position.x + _skillRange - 1);
-                float ranY = Random.Range(transform.position.z - _skillRange + 1, transform.position.z + _skillRange - 1);
+                float ranX = Random.Range(skillPoint.position.x - _skillRange + 1, skillPoint.position.x + _skillRange - 1);
+                float ranY = Random.Range(skillPoint.position.z - _skillRange + 1, skillPoint.position.z + _skillRange - 1);
                 Vector3 ranPos = new Vector3(ranX, 0.1f, ranY);
 
                 otherPos[j] = ranPos;
