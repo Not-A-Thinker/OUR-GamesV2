@@ -382,7 +382,7 @@ public class BossSkillDemo : MonoBehaviour
     #region Stage2_SkillSets
     public IEnumerator WindHole(int wave, int spawnNum)
     {
-        Boss1Animator.SetTrigger("Skill_Tornado");
+        Boss1Animator.SetTrigger("Skill_WindHole");
         for (int i = 0; i < wave; i++)
         {
             for (int p = 0; p < otherPos.Length; p++)
