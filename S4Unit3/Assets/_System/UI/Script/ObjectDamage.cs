@@ -81,11 +81,15 @@ public class ObjectDamage : MonoBehaviour
 
         if (col.gameObject.layer == 6)
         {
-            ///如果擊中分身
+            ///如果擊中Boss
             if (col.transform.tag == "Boss")
             {
                 ///扣血
                 bossHealth.TakeDamage(Damage);
+
+                ///擊中時改顏色
+                col.gameObject.GetComponentInParent<BossDamageIndicator>().ColorValueChange();
+
                 ///Boss Count -1
                 ///
                 bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
