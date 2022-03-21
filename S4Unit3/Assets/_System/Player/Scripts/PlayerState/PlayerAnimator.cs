@@ -66,7 +66,6 @@ public class PlayerAnimator : MonoBehaviour
         CCIS.enabled = true;
     }
 
-
     public ParticleSystem Smoke;
     public ParticleSystem SpeedLine;
     public ParticleSystem Afterimage;

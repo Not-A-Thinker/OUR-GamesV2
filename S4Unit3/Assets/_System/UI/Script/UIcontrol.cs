@@ -111,16 +111,22 @@ public class UIcontrol : MonoBehaviour
     public void hp_decrease(int new_hp,int playerCount)
     {
         if(playerCount==1)
-            Player1Hp[new_hp].SetActive(false);
+            StartCoroutine(PlayerHealthAnimation(Player1Hp[new_hp], true));
         else if(playerCount==2)
-            Player2Hp[new_hp].SetActive(false);
+            StartCoroutine(PlayerHealthAnimation(Player2Hp[new_hp], true));
     }
     public void hp_increase(int new_hp, int playerCount)
     {
         if (playerCount == 1)
+        {
+            Player1Hp[new_hp].GetComponent<Animator>().SetBool("IsDamaged", false);
             Player1Hp[new_hp].SetActive(true);
+        }
         else if (playerCount == 2)
+        {
+            Player2Hp[new_hp].GetComponent<Animator>().SetBool("IsDamaged", false);
             Player2Hp[new_hp].SetActive(true);
+        }
     }
 
     //respawn
@@ -144,17 +150,27 @@ public class UIcontrol : MonoBehaviour
         {
             for (int i = 0; i < Player1Hp.Length; i++)
             {
-                Player1Hp[i].SetActive(true);
+                Player1Hp[i].GetComponent<Animator>().SetBool("IsDamaged", false);
+                Player1Hp[i].SetActive(true);           
             }
         }
         else
         {
             for (int i = 0; i < Player2Hp.Length; i++)
             {
+                Player2Hp[i].GetComponent<Animator>().SetBool("IsDamaged", false);
                 Player2Hp[i].SetActive(true);
             }
         }
     }
+
+    IEnumerator PlayerHealthAnimation(GameObject Hp, bool state)
+    {
+        Hp.GetComponent<Animator>().SetBool("IsDamaged", state);
+        yield return new WaitForSeconds(1);
+        Hp.SetActive(!state);
+    }
+
     public void TotalDead(int DeadCount)
     {
         DeadCounter.text = DeadCount.ToString();
