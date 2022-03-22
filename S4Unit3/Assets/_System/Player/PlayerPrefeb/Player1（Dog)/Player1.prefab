@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectParent: {fileID: 500052817746688516}
   rangeObj: {fileID: 4770574582621549281}
-  RangeBigObj: {fileID: 9195968397510403553}
+  RangeBigObj: {fileID: 6650813026434954676}
   Charitor: {fileID: 5381467380246077115}
   _force: 400
   _range: 20
@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1541540555798731560, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1541540555798731560, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_Materials.Array.data[1]
