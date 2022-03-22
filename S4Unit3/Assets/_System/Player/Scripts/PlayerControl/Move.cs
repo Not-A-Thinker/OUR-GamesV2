@@ -59,6 +59,8 @@ public class Move : MonoBehaviour
     public int _DashTotal;
     int _DashNow;
     public int DashCD;
+
+    float friendControlTime = 0.25f;
     //float _DashNowFloat;
     //int DashBar = 100;
     //public int DashUsed;
@@ -403,7 +405,7 @@ public class Move : MonoBehaviour
             //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
-            while (Time.time < startTime + dashTime)
+            while (Time.time < startTime + friendControlTime)
             {
                 characterController.Move(velocity * 30 * Time.deltaTime);
 
@@ -426,7 +428,7 @@ public class Move : MonoBehaviour
             //Debug.Log(velocity);
             //velocity = velocity.normalized;
 
-            while (Time.time < startTime + dashTime)
+            while (Time.time < startTime + friendControlTime)
             {
                 characterController.Move(velocity * 30 * Time.deltaTime);
 
