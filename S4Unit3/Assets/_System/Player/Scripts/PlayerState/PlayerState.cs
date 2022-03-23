@@ -29,6 +29,7 @@ public class PlayerState : MonoBehaviour
      PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
+    [SerializeField] GameObject Hula;
     Color color;
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
@@ -36,7 +37,7 @@ public class PlayerState : MonoBehaviour
     bool isInvincible = false;
     private void Start()
     {
-        color = Resurrect_range.GetComponent<SpriteRenderer>().color;
+        color = Hula.GetComponent<SpriteRenderer>().color;
 
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
@@ -88,7 +89,6 @@ public class PlayerState : MonoBehaviour
         //    _animation.PlayerWalk(false);
 
     }
-
     public bool GetPlayerIsDead()
     {
         return isDead;
@@ -148,7 +148,7 @@ public class PlayerState : MonoBehaviour
         ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
-        //Resurrect_range.GetComponent<SpriteRenderer>().color = color;
+        Hula.GetComponent<SpriteRenderer>().color = color;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
         _currentHealth = _maxHealth;   
         GetComponent<CapsuleCollider>().enabled = true;
@@ -182,16 +182,19 @@ public class PlayerState : MonoBehaviour
         //死亡設置
         isDead = true;
         Resurrect_range.SetActive(true);
+        Hula.GetComponent<SpriteRenderer>().color =Color.gray;
+       
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
+        UIcontrol.RespawnText();
         //rb.useGravity = false;
         StartCoroutine(Invincible(999));
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.ResetOldQue();
-            forceCast_TopDown.enabled = false;
+            forceCast_TopDown.enabled = false;        
         }
         else
         {

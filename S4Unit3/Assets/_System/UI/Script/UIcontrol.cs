@@ -46,6 +46,7 @@ public class UIcontrol : MonoBehaviour
     bool _isPause = false;
     [SerializeField] GameObject Pause_UI;
     //[SerializeField] Image SuckObjectCount;
+    [SerializeField] GameObject HelpText;
 
     private void Start()
     {
@@ -66,7 +67,23 @@ public class UIcontrol : MonoBehaviour
                 wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;
         }
-
+        if(HelpText.activeInHierarchy)
+        {
+            if(P1.GetComponent<PlayerState>().isDead)
+            {
+                Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+                P1pos.y = P1pos.y + 80;
+                P1pos.x = P1pos.x + 40;
+                HelpText.transform.position = P1pos;
+            }         
+            else if (P2.GetComponent<PlayerState>().isDead)
+            {
+                Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+                P2pos.y = P2pos.y + 80;
+                P2pos.x = P2pos.x + 40;
+                HelpText.transform.position = P2pos;
+            }
+        }
         if(pushingCD.activeInHierarchy)
         {
             Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
@@ -143,6 +160,8 @@ public class UIcontrol : MonoBehaviour
         RespawnLoad.SetActive(false);
 
         slider.value = 0;
+
+        HelpText.SetActive(false);
     }
     public void PlayerHpRefew(string playerName)
     {
@@ -191,6 +210,10 @@ public class UIcontrol : MonoBehaviour
     {
         sceneControl = new SceneControl();
         sceneControl.WinScene();
+    }
+    public void RespawnText()
+    {
+        HelpText.SetActive(true);
     }
     #endregion
 
