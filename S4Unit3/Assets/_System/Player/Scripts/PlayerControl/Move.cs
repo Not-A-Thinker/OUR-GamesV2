@@ -190,6 +190,10 @@ public class Move : MonoBehaviour
             if (Input.GetButtonDown("LockOnP1"))
             {
                 autoLockBoss = !autoLockBoss;
+                if (autoLockBoss)
+                    UIcontrol.flyText(1, Color.red, "Boss Locked!!");
+                else
+                    UIcontrol.flyText(1, Color.red, "Boss UnLocked!!");
             }         
 
             if (autoLockBoss)
@@ -287,6 +291,10 @@ public class Move : MonoBehaviour
                 if(autoLockBoss)
                 {
                     BossLockOn();
+                    if (autoLockBoss)
+                        UIcontrol.flyText(2, Color.red, "Boss Locked!!");
+                    else
+                        UIcontrol.flyText(2, Color.red, "Boss UnLocked!!");
                 }
                 else
                 {
@@ -491,8 +499,6 @@ public class Move : MonoBehaviour
         targetRotation.x = 0;
         targetRotation.z = 0;
         ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.deltaTime);
-    }
-
-    
+    }  
 }
 
