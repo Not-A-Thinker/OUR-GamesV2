@@ -34,10 +34,9 @@ public class P1GetCube : MonoBehaviour
             cube.AddComponent<ObjectRotation>();
             cube.GetComponent<ObjectRotation>().target = objectParent;
             cube.GetComponent<ObjectRotation>()._isInCount = true;
+
             if (cube.GetComponent<Bullet>())
-            {
                 cube.GetComponent<Bullet>().bossToSuck = false;
-            }
 
             move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -56,20 +55,16 @@ public class P1GetCube : MonoBehaviour
         int newForce = (int)force;
         ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
         if (force>=1)
-        {
             StartCoroutine(TheBigOne(parentMax, newForce));        
-        }
         else
-        {
-            PlayerSetCube(parentMax, newForce);
-        }    
+            PlayerSetCube(parentMax, newForce);   
     }
 
     // 狗狗被擊中時會觸發
     public void PlayerGoneCube()
     {        
         int parentMax = objectParent.transform.childCount;
-        Debug.Log(parentMax);
+        //Debug.Log(parentMax);
         if (parentMax > 0)
         {
             if (!GetComponent<PlayerState>().isDead)
@@ -80,7 +75,9 @@ public class P1GetCube : MonoBehaviour
                 {
                     GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount - 1).gameObject;
                     Rigidbody Rb = cube.GetComponent<Rigidbody>();
-                    cube.GetComponent<ObjectRotation>()._isInCount = false;
+                    if (cube.GetComponent<ObjectRotation>())
+                        cube.GetComponent<ObjectRotation>()._isInCount = false;
+
                     if (cube.GetComponent<ObjectDestroy>())
                         cube.GetComponent<ObjectDestroy>().isSucked = false;
                     //重置方塊掉落狀態
@@ -129,14 +126,12 @@ public class P1GetCube : MonoBehaviour
         cube.transform.parent = null;
 
         if (cube.GetComponent<Bullet>())
-        {
             cube.GetComponent<Bullet>().isAttacking = true;
-        }
 
         if (cube.GetComponent<ObjectDestroy>())
-        {
             cube.GetComponent<ObjectDestroy>().isSucked = false;
-        }
+        
+
         cube.AddComponent<ObjectDamage>();
         cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
         cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;

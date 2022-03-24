@@ -9,11 +9,11 @@ public class ObjectRotation : MonoBehaviour
     [Tooltip("This is only for debug testing, don't touch it.")]
     public bool _isInCount;
     public bool _isClip;
-
+    Vector3 vector;
     public GameObject target;
 
     private float step = 180;
-    private float own = 20;
+    private float own = 80;
 
     private float distance;
 
@@ -21,7 +21,9 @@ public class ObjectRotation : MonoBehaviour
 
     void Start()
     {
-        if(target)
+        vector = transform.localScale;
+        //Debug.Log(vector);
+        if (target)
         {
             dir = transform.position - target.transform.position;
             distance = Vector3.Distance(transform.position, target.transform.position);
@@ -32,8 +34,13 @@ public class ObjectRotation : MonoBehaviour
     {
         if (_isInCount)
         {
-            if(!_isClip)
-                transform.localScale = new Vector3(1f,1f,1f);
+            //if(!_isClip)
+            //    transform.localScale = new Vector3(1.5f,1.5f,1.5f);
+            //else
+            //    transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+            //transform.localScale = vector * 0.75f;
+
             //Debug.Log(distance);
 
             transform.position = target.transform.position + dir.normalized * distance;
@@ -48,6 +55,6 @@ public class ObjectRotation : MonoBehaviour
             transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
         }
         else
-            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            transform.localScale = vector;
     }
 }
