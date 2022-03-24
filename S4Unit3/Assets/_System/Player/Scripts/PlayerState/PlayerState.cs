@@ -227,7 +227,6 @@ public class PlayerState : MonoBehaviour
             hp_decrease();
             Debug.Log("Tail Hit!");
         }
-
     }
 
     //Hyper Muteki Gamer

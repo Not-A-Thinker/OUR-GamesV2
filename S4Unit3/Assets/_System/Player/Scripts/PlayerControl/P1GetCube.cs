@@ -14,14 +14,16 @@ public class P1GetCube : MonoBehaviour
 
     Move move;
 
+    private void Start()
+    {
+        move = GetComponent<Move>();
+    }
+
     public void PlayerGetCube(GameObject cube)
     {
         // Saveing Cube on the Top of dog head
         if (objectParent.transform.childCount < 3)
-        {
-            move = GetComponent<Move>();
-            move.SpeedSlow(SpeedToSlowDown);
-
+        {                 
             ///用於初始化方塊的位置
             cube.transform.parent = objectParent.transform;
             cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
@@ -35,7 +37,9 @@ public class P1GetCube : MonoBehaviour
             if (cube.GetComponent<Bullet>())
             {
                 cube.GetComponent<Bullet>().bossToSuck = false;
-            }       
+            }
+
+            move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
             //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //if (!cube.gameObject.GetComponent<ObjectDestroy>())
             //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -63,8 +67,7 @@ public class P1GetCube : MonoBehaviour
 
     // 狗狗被擊中時會觸發
     public void PlayerGoneCube()
-    {
-        
+    {        
         int parentMax = objectParent.transform.childCount;
         Debug.Log(parentMax);
         if (parentMax > 0)
@@ -95,16 +98,17 @@ public class P1GetCube : MonoBehaviour
     void PlayerSetCube(int parentMax,int force)
     {
         //每個方塊射擊前都要設置一次
-        move = GetComponent<Move>();
             
         int caseNum = 0;
 
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
 
-        if (parentMax==1)    
-            move.SpeedReset();       
-        else       
-            move.SpeedFast();
+        //Debug.Log(parentMax);
+
+        if (parentMax == 1)
+            move.SpeedReset();
+        else
+            move.CubeSpeedDown(parentMax, SpeedToSlowDown);
         
 
         if (force >= 3)

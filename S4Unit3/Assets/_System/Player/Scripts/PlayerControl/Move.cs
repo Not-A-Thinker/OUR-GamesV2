@@ -11,9 +11,9 @@ public class Move : MonoBehaviour
 
     [Header("Player Move")]
     [SerializeField]
-    private float maximumSpeed;
-    private float oldTempSpeed;
-    private float tempSpeed;
+    private float maximumSpeed;//可於外部改變速度
+    private float oldTempSpeed;//記錄變更前速度
+    private float tempSpeed; //記錄用最大速度
 
 
 
@@ -78,7 +78,7 @@ public class Move : MonoBehaviour
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         rb = GetComponent<Rigidbody>();
         tempSpeed = maximumSpeed;
-        oldTempSpeed = maximumSpeed;
+        oldTempSpeed = tempSpeed;
         Boss = GameObject.Find("Boss");
     }
 
@@ -462,13 +462,25 @@ public class Move : MonoBehaviour
     {
         maximumSpeed = oldTempSpeed;
         oldTempSpeed = maximumSpeed;
-        //Debug.Log(oldTempSpeed);
     }
 
     public void SpeedReset()
     {
         maximumSpeed = tempSpeed;
         oldTempSpeed = tempSpeed;
+    }
+
+    public void CubeSpeedDown(int cubeCount,float speedToDecrease)
+    {
+        float speed = tempSpeed;
+
+        for(int i=0;i<cubeCount;i++)
+        {
+            speed = speed * speedToDecrease;
+            //Debug.Log(speed);
+        }
+       maximumSpeed = speed;
+       oldTempSpeed = maximumSpeed;
     }
 
     //demo1Used look at boss
