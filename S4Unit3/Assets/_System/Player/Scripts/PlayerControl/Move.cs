@@ -286,15 +286,18 @@ public class Move : MonoBehaviour
                 float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
                 float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
                 if (Input.GetButtonDown("LockOnP2"))
-                    autoLockBoss = !autoLockBoss;
-
-                if(autoLockBoss)
                 {
-                    BossLockOn();
+                    autoLockBoss = !autoLockBoss;
                     if (autoLockBoss)
                         UIcontrol.flyText(2, Color.red, "Boss Locked!!");
                     else
                         UIcontrol.flyText(2, Color.red, "Boss UnLocked!!");
+                }
+                    
+
+                if(autoLockBoss)
+                {
+                    BossLockOn();               
                 }
                 else
                 {
