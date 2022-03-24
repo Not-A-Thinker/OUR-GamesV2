@@ -160,8 +160,6 @@ public class UIcontrol : MonoBehaviour
         RespawnLoad.SetActive(false);
 
         slider.value = 0;
-
-        HelpText.SetActive(false);
     }
     public void PlayerHpRefew(string playerName)
     {
@@ -211,9 +209,9 @@ public class UIcontrol : MonoBehaviour
         sceneControl = new SceneControl();
         sceneControl.WinScene();
     }
-    public void RespawnText()
+    public void RespawnText(bool state)
     {
-        HelpText.SetActive(true);
+        HelpText.SetActive(state);
     }
     #endregion
 

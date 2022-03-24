@@ -152,6 +152,7 @@ public class PlayerState : MonoBehaviour
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
         _currentHealth = _maxHealth;   
         GetComponent<CapsuleCollider>().enabled = true;
+        UIcontrol.RespawnText(false);
         StopCoroutine(Invincible(0));
         StartInvincible(1);
 
@@ -187,7 +188,7 @@ public class PlayerState : MonoBehaviour
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
-        UIcontrol.RespawnText();
+        UIcontrol.RespawnText(true);
         //rb.useGravity = false;
         StartCoroutine(Invincible(999));
         if (isPlayer1)
@@ -250,7 +251,6 @@ public class PlayerState : MonoBehaviour
     //°{Ã{
     void InvincibleRend()
     {
-        
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else

@@ -292,8 +292,7 @@ public class Move : MonoBehaviour
                         UIcontrol.flyText(2, Color.red, "Boss Locked!!");
                     else
                         UIcontrol.flyText(2, Color.red, "Boss UnLocked!!");
-                }
-                    
+                }                   
 
                 if(autoLockBoss)
                 {

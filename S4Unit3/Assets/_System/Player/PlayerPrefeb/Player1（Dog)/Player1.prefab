@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &500052815962489651
 Transform:
   m_ObjectHideFlags: 0
@@ -269,7 +269,7 @@ MonoBehaviour:
   countFloat: 0
   CountMax: 1.5
   Timer: 2
-  PushMaxCD: 3
+  PushMaxCD: 2
   speedSlow: 0.5
 --- !u!114 &500052818044258932
 MonoBehaviour:
