@@ -13,7 +13,6 @@ public class SceneControl : MonoBehaviour
                 ToGameScene();
         }
     }
-
     public void WinScene()
     {
         SceneManager.LoadScene(3);
