@@ -188,7 +188,7 @@ public class JoyStickMovement : MonoBehaviour
             playerCount = 1;
         if (isPlayer2)
             playerCount = 2;
-        UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
+        //UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
         _DashNow--;
         StartCoroutine(DashRestore());
 
@@ -212,7 +212,7 @@ public class JoyStickMovement : MonoBehaviour
             playerCount = 1;
         if (isPlayer2)
             playerCount = 2;
-        UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
+        //UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
         Debug.Log("DashRestored!");
     }
     //Shoot

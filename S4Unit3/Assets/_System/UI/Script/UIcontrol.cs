@@ -11,8 +11,8 @@ public class UIcontrol : MonoBehaviour
     [SerializeField] GameObject[] Player2Hp;
     //[SerializeField] Slider Player1Energy;
     //[SerializeField] Slider Player2Energy;
-    [SerializeField] Image[] Player1EnergyImg;
-    [SerializeField] Image[] Player2EnergyImg;
+    [SerializeField] Slider[] Player1EnergyImg;
+    [SerializeField] Slider[] Player2EnergyImg;
 
     [Header("Boss")]
     [SerializeField] Slider BossHP;
@@ -275,7 +275,7 @@ public class UIcontrol : MonoBehaviour
         else
             SuckingCD.SetActive(true);
     }
-    public void EnergyBarChange(int playerCount, int _DashNow, bool _DashWasUsed)//float NowEnergy,
+    public void EnergyBarChange(int playerCount, int _DashNow, bool _DashWasUsed, float NowEnergy)//float NowEnergy,
     {
         ///舊閃避條UI用
         //if (Player1Energy.isActiveAndEnabled)
@@ -285,22 +285,42 @@ public class UIcontrol : MonoBehaviour
         //    else if (playerCount == 2)
         //        Player2Energy.value = NowEnergy * 0.01f;
         //}
-        //if (Player1EnergyImg[0].isActiveAndEnabled)
+
+        if (playerCount == 1)
+        {
+            if (Player1EnergyImg[_DashNow] != null)
+            {
+                Player1EnergyImg[_DashNow].value = NowEnergy * 0.02f;
+                if (_DashNow == 0)
+                    Player1EnergyImg[_DashNow + 1].value = 0;
+            }
+        }
+
+        if (playerCount == 2)
+        {
+            if (Player2EnergyImg[_DashNow] != null)
+            {
+                Player2EnergyImg[_DashNow].value = NowEnergy * 0.01f;
+                //Debug.Log("Player2EnergyImgRestore!");
+            }
+        }
+              
+                    
+
+        ///舊閃避條（換圖）UI用
+        //if (_DashWasUsed)
         //{
-        if(_DashWasUsed)
-        {
-             if (playerCount == 1)
-                 Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
-             else if (playerCount == 2)
-                 Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
-        }
-        else
-        {
-             if (playerCount == 1)
-                Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite; 
-             else if (playerCount == 2)
-                Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite; 
-        }
+        //    if (playerCount == 1)
+        //        Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge_BG", typeof(Sprite)) as Sprite;
+        //    else if (playerCount == 2)
+        //        Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge_BG", typeof(Sprite)) as Sprite;
+        //}
+        //else
+        //{
+        //    if (playerCount == 1)
+        //        Player1EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Dog_Dodge", typeof(Sprite)) as Sprite;
+        //    else if (playerCount == 2)
+        //        Player2EnergyImg[_DashNow - 1].sprite = Resources.Load("UIImage/UI_Player_Cat_Dodge", typeof(Sprite)) as Sprite;
         //}
     }
     ///為什麼用你會閃爍
