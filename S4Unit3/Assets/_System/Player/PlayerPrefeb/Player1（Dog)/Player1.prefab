@@ -342,6 +342,7 @@ MonoBehaviour:
   dashTime: 0.5
   _DashTotal: 2
   DashCD: 4
+  _DashRestore: 25
 --- !u!54 &500052818044258936
 Rigidbody:
   m_ObjectHideFlags: 0

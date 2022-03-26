@@ -30,15 +30,15 @@ public class PlayerState : MonoBehaviour
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     [SerializeField] GameObject Hula;
-    Color color;
+    Color color;  
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
 
     bool isInvincible = false;
     private void Start()
     {
-        color = Hula.GetComponent<SpriteRenderer>().color;
-
+        color = _renderer.material.GetColor("MainColor");
+        //color = playerMat.shader.;     
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
         _Collider = GetComponent<CapsuleCollider>();
@@ -145,6 +145,7 @@ public class PlayerState : MonoBehaviour
     //Player RespawnReset
     public void PlayerRespawn()
     {
+        _renderer.material.SetColor("MainColor", color);
         ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
@@ -155,7 +156,6 @@ public class PlayerState : MonoBehaviour
         UIcontrol.RespawnText(false);
         StopCoroutine(Invincible(0));
         StartInvincible(1);
-
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();                      
@@ -184,7 +184,7 @@ public class PlayerState : MonoBehaviour
         isDead = true;
         Resurrect_range.SetActive(true);
         Hula.GetComponent<SpriteRenderer>().color =Color.gray;
-       
+        _renderer.material.SetColor("MainColor", Color.gray);
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
