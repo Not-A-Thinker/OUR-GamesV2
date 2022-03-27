@@ -83,6 +83,8 @@ public class BossAI_Wind : MonoBehaviour
         _Player1 = GameObject.Find("Player1");
         _Player2 = GameObject.Find("Player2");
 
+        preMoveCount = 0;
+
         StartCoroutine(AIStartTimer());
     }
 
@@ -517,10 +519,11 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
-                    yield return new WaitForSeconds(1f);
+                    //yield return new WaitForSeconds(1f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
+            //yield return new WaitForSeconds(1f);
         }
 
         if (IsStage2 && !isStando)
@@ -608,7 +611,8 @@ public class BossAI_Wind : MonoBehaviour
 
             }
         }
-        yield return null;
+        //yield return null;
+        yield return new WaitForSeconds(.5f);
         //This is the End of AI Attack.
     }
 
@@ -616,14 +620,14 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (preMoveCount <= 2)
         {
-            if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 2))
+            if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 1.5f))
             {
                 ani.SetTrigger("IsBackwarding");
                 yield return new WaitForSeconds(timing);
                 rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
                 preMoveCount++;
             }
-            if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 2))
+            if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 1.5f))
             {
                 ani.SetTrigger("IsBackwarding");
                 yield return new WaitForSeconds(timing);
