@@ -6,7 +6,7 @@ public class ForceCast_TopDown : MonoBehaviour
 {
     [Header("Component")]
     public GameObject objectParent;
-
+    Move move;
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
     //[SerializeField] private Renderer Renderer;
@@ -28,12 +28,13 @@ public class ForceCast_TopDown : MonoBehaviour
 
     [Header("P1 Attack CD")]
     [SerializeField] float Timer = 1;
+ 
     public int PushMaxCD = 1;
-
     public float speedSlow;
 
     void Start()
     {
+        move = GetComponent<Move>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
     }
     /// <summary>
@@ -158,8 +159,7 @@ public class ForceCast_TopDown : MonoBehaviour
     }
 
     public void P1_Aim_Slow()
-    {
-        Move move = GetComponent<Move>();
+    {    
         move.SpeedSlow(speedSlow);
         move.isDashClose = true;
     }
@@ -240,8 +240,8 @@ public class ForceCast_TopDown : MonoBehaviour
                 {
                     ///不能讓對方動
                     //Debug.Log(isPlayerHit.transform.gameObject.name);
-                    Move move = isPlayerHit.transform.GetComponent<Move>();
-                    StartCoroutine(move.GetFriendlyControl(RangeBigObj.transform.forward));
+                    Move P1move = isPlayerHit.transform.GetComponent<Move>();
+                    StartCoroutine(P1move.GetFriendlyControl(RangeBigObj.transform.forward));
                     ///CD
                     StartCoroutine(FriendCD(4));
                     rangeObj.SetActive(false);
@@ -289,7 +289,6 @@ public class ForceCast_TopDown : MonoBehaviour
         Charitor.transform.rotation = OldQuate;
         OldQuate = new Quaternion(0, 0, 0, 0);
         rangeObj.SetActive(false);
-        Move move = GetComponent<Move>();
         move.SpeedFast();
         move.isDashClose = false;
     }

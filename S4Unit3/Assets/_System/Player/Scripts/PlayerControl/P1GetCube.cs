@@ -31,9 +31,9 @@ public class P1GetCube : MonoBehaviour
             cube.GetComponent<Rigidbody>().useGravity = false;
 
             ///用於初始化方塊的"公轉"
-            cube.AddComponent<ObjectRotation>();
-            cube.GetComponent<ObjectRotation>().target = objectParent;
-            cube.GetComponent<ObjectRotation>()._isInCount = true;
+            ObjectRotation objectRotation = cube.AddComponent<ObjectRotation>();
+            objectRotation.target = objectParent;
+            objectRotation._isInCount = true;
 
             if (cube.GetComponent<Bullet>())
                 cube.GetComponent<Bullet>().bossToSuck = false;
@@ -130,11 +130,11 @@ public class P1GetCube : MonoBehaviour
 
         if (cube.GetComponent<ObjectDestroy>())
             cube.GetComponent<ObjectDestroy>().isSucked = false;
-        
 
-        cube.AddComponent<ObjectDamage>();
-        cube.GetComponent<ObjectDamage>().SetDamage(caseNum);
-        cube.GetComponent<ObjectDamage>().Direction = direction.transform.forward;
+
+        ObjectDamage objectDamage = cube.AddComponent<ObjectDamage>();
+        objectDamage.SetDamage(caseNum);
+        objectDamage.Direction = direction.transform.forward;
 
         cube.GetComponent<ObjectRotation>()._isInCount = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
