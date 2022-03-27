@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 609656492285098036}
   - component: {fileID: 609656492285098037}
   - component: {fileID: 609656492285098038}
-  - component: {fileID: 609656492285098039}
   - component: {fileID: 609656492285098024}
   - component: {fileID: 609656492285098025}
+  - component: {fileID: 8318064208091821026}
   m_Layer: 7
   m_Name: Tornado Special Attack
   m_TagString: STA
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609656492285098026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87,20 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &609656492285098039
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609656492285098026}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 3.4853761
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0.7426878, z: -0.00000011920929}
 --- !u!114 &609656492285098024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +118,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!135 &8318064208091821026
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609656492285098026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!1001 &5778360540051293488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864176769751, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864176769751, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_LocalPosition.z
