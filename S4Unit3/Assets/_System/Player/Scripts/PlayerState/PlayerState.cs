@@ -183,8 +183,8 @@ public class PlayerState : MonoBehaviour
         //¦º¤`³]¸m
         isDead = true;
         Resurrect_range.SetActive(true);
-        Hula.GetComponent<SpriteRenderer>().color =Color.gray;
-        _renderer.material.SetColor("MainColor", Color.gray);
+        Hula.GetComponent<SpriteRenderer>().color = new Color(128, 128, 128);
+        _renderer.material.SetColor("MainColor", new Color(128,128,128));
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
