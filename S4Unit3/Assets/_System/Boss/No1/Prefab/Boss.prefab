@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3547116886111481973}
   - component: {fileID: 3547116886111481970}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Free Flat Arrow 1 N Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3547116887089412504}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Instante Point
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -387,7 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -427,7 +427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854777, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
