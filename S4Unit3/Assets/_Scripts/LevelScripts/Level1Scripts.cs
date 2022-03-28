@@ -10,6 +10,7 @@ public class Level1Scripts : MonoBehaviour
     [Tooltip("This is use for controlling the height of crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalHeight = 6f;
 
+
     private void Awake()
     {
         Application.targetFrameRate = 120;
@@ -24,6 +25,7 @@ public class Level1Scripts : MonoBehaviour
             crystal.DOMoveY(_crystalHeight, Random.Range(1.8f, 2f)).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutCubic);
             crystal.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Incremental).SetEase(Ease.Linear);
         }
+
     }
 
     
