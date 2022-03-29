@@ -118,11 +118,11 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Input.GetButtonDown("AimP1"))
         {
             SetOldQue();
-            P1_Aim_Slow();      
+            P1_Aim_Slow();
         }
 
         if (Input.GetButton("AimP1"))
-        {
+        {       
             isAim = true;
             rangeObj.SetActive(true);
             if (!ShootInCD && objectParent.transform.childCount > 0)
@@ -144,7 +144,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
                 if (!ShootInCD && objectParent.transform.childCount > 0)
                 {
-                    
+                   
                 }
                 else
                     UIcontrol.flyText(1, Color.red, "CD!!!");
@@ -175,27 +175,6 @@ public class ForceCast_TopDown : MonoBehaviour
         //設置方塊
          gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
 
-        //else
-        //{
-        //    _attackTrigger = true;
-        //    Vector3 startPos = transform.position;
-        //    Vector3 endPos = transform.forward * 10;
-        //    //Debug.DrawRay(startPos, endPos);
-
-        //    RaycastHit hit;
-        //    if (Physics.Raycast(startPos, endPos, out hit, _range))
-        //    {
-        //        //Debug.Log(hit.transform.name + "." + hit.transform.tag);
-
-        //        if (hit.transform.tag == "Object")
-        //        {
-        //            hit.rigidbody.AddForceAtPosition(transform.forward * force* Time.deltaTime, hit.transform.position, ForceMode.Impulse);
-        //        }
-
-        //    }
-        //    _attackTrigger = false;
-        //}
-
         ///重置狀態
         isShooted = false;
         Charge = false;
@@ -209,7 +188,7 @@ public class ForceCast_TopDown : MonoBehaviour
         //rangeObjRed.material.SetColor("_Color", Color.green);
         
         ///地毯開啟
-        rangeObj.SetActive(true);
+        //rangeObj.SetActive(true);
 
         ///蓄力條蓄力計算
         countFloat += Time.deltaTime;
@@ -285,12 +264,13 @@ public class ForceCast_TopDown : MonoBehaviour
     ///重置成射擊前方位
     public void ResetOldQue()
     {
+        rangeObj.SetActive(false);
         isAim = false;
         Charitor.transform.rotation = OldQuate;
         OldQuate = new Quaternion(0, 0, 0, 0);
-        rangeObj.SetActive(false);
         move.SpeedFast();
         move.isDashClose = false;
+        Debug.Log("Reset");
     }
 }
 
