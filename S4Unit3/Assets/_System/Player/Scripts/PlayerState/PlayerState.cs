@@ -30,7 +30,8 @@ public class PlayerState : MonoBehaviour
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     [SerializeField] GameObject Hula;
-    Color color;  
+    Color color;
+    public Color DeadColor;
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
 
@@ -184,8 +185,8 @@ public class PlayerState : MonoBehaviour
         //¦º¤`³]¸m
         isDead = true;
         Resurrect_range.SetActive(true);
-        Hula.GetComponent<SpriteRenderer>().color = new Color(128, 128, 128);
-        _renderer.material.SetColor("_MainColor", new Color(128, 128, 128));
+        Hula.GetComponent<SpriteRenderer>().color = DeadColor;
+        _renderer.material.SetColor("_MainColor", DeadColor);
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
