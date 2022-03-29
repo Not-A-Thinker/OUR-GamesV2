@@ -35,9 +35,10 @@ public class PlayerState : MonoBehaviour
     //bool isColliding;
 
     bool isInvincible = false;
+    
     private void Start()
     {
-        color = _renderer.material.GetColor("MainColor");
+        color = _renderer.material.GetColor("_MainColor");
         //color = playerMat.shader.;     
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
@@ -145,7 +146,7 @@ public class PlayerState : MonoBehaviour
     //Player RespawnReset
     public void PlayerRespawn()
     {
-        _renderer.material.SetColor("MainColor", color);
+        _renderer.material.SetColor("_MainColor", color);
         ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
@@ -184,7 +185,7 @@ public class PlayerState : MonoBehaviour
         isDead = true;
         Resurrect_range.SetActive(true);
         Hula.GetComponent<SpriteRenderer>().color = new Color(128, 128, 128);
-        _renderer.material.SetColor("MainColor", new Color(128,128,128));
+        _renderer.material.SetColor("_MainColor", new Color(128, 128, 128));
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
         GetComponent<CapsuleCollider>().enabled = false;
