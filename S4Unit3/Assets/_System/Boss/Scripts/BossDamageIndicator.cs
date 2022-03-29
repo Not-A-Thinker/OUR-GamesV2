@@ -23,8 +23,8 @@ public class BossDamageIndicator : MonoBehaviour
 
     void Start()
     {
-        material.SetColor("MainColor", new Color(1,1,1));
-        colorTemp = material.GetColor("MainColor");
+        material.SetColor("_MainColor", new Color(1,1,1));
+        colorTemp = material.GetColor("_MainColor");
     }
 
 
@@ -45,14 +45,14 @@ public class BossDamageIndicator : MonoBehaviour
             float b = Mathf.Lerp(colorDamage.b, colorNormal.b, percentageComplete);
             colorTemp = new Color(r, g, b);
 
-            material.SetColor("MainColor", colorTemp);
+            material.SetColor("_MainColor", colorTemp);
         }
     }
 
     public void ColorValueChange()
     {
-        material.SetColor("MainColor", colorDamage);
-        colorTemp = material.GetColor("MainColor");
+        material.SetColor("_MainColor", colorDamage);
+        colorTemp = material.GetColor("_MainColor");
 
         elapsedTime = 0;
     }
@@ -64,10 +64,10 @@ public class BossDamageIndicator : MonoBehaviour
 
     public IEnumerator ColorChange()
     {
-        material.SetColor("MainColor", Color.red);
-        colorTemp = material.GetColor("MainColor");
+        material.SetColor("_MainColor", Color.red);
+        colorTemp = material.GetColor("_MainColor");
         yield return new WaitForSeconds(0.5f);
-        material.SetColor("MainColor", new Color(1, 1, 1));
+        material.SetColor("_MainColor", new Color(1, 1, 1));
     }
 
 
