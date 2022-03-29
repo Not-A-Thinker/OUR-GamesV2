@@ -354,6 +354,7 @@ MonoBehaviour:
   _renderer: {fileID: 374276327143788823}
   _animation: {fileID: 317406783}
   Hula: {fileID: 2807088081117093564}
+  DeadColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
 --- !u!114 &1860544261278244878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1557,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6734195116091602768}
     m_Modifications:
+    - target: {fileID: 7541066511211048048, guid: c8e49cb8618568f4885e0f0dc87a0d33, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7541066511211048048, guid: c8e49cb8618568f4885e0f0dc87a0d33, type: 3}
       propertyPath: playOnAwake
       value: 0
