@@ -307,8 +307,9 @@ MonoBehaviour:
   Resurrect_range: {fileID: 500052815962489648}
   _renderer: {fileID: 5983910854311786690}
   _animation: {fileID: 628926013}
-  Hula: {fileID: 3154285472339458235}
-  DeadColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
+  Hula: {fileID: 3182026638429766464}
+  Arrow: {fileID: 460469690090250323}
+  DeadColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
 --- !u!114 &500052818044258939
 MonoBehaviour:
   m_ObjectHideFlags: 0

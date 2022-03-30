@@ -30,8 +30,10 @@ public class PlayerState : MonoBehaviour
      PlayerState OthePlayerState;
     [SerializeField] Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
-    [SerializeField] GameObject Hula;
-    Color color;
+    [SerializeField] SpriteRenderer Hula;
+    [SerializeField] SpriteRenderer Arrow;
+    Color color,hula_color,ArrowColor;
+
     public Color DeadColor;
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
@@ -41,6 +43,8 @@ public class PlayerState : MonoBehaviour
     private void Start()
     {    
         color = _renderer.material.GetColor("_MainColor");
+        hula_color = Hula.color;
+        ArrowColor = Arrow.color;
         //color = playerMat.shader.;     
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         //playerTotalDead = GameObject.Find("PlayerDeadCount").GetComponent<PlayerTotalDead>();
@@ -153,7 +157,8 @@ public class PlayerState : MonoBehaviour
         ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
-        Hula.GetComponent<SpriteRenderer>().color = color;
+        Hula.color = hula_color;
+        Arrow.color = ArrowColor;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
         _currentHealth = _maxHealth;   
         GetComponent<CapsuleCollider>().enabled = true;
@@ -188,6 +193,7 @@ public class PlayerState : MonoBehaviour
         isDead = true;
         Resurrect_range.SetActive(true);
         Hula.GetComponent<SpriteRenderer>().color = DeadColor;
+        Arrow.GetComponent<SpriteRenderer>().color = DeadColor;
         _renderer.material.SetColor("_MainColor", DeadColor);
         //Resurrect_range.GetComponent<SpriteRenderer>().color = Color.red;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(true);
@@ -261,7 +267,6 @@ public class PlayerState : MonoBehaviour
             _renderer.enabled = true;
     }
 
- 
     private static IEnumerator Vibration(float lowFrequency, // 低周波（左）モーターの強さ（0.0 ～ 1.0）
     float highFrequency )// 高周波（右）モーターの強さ（0.0 ～ 1.0）
     {
