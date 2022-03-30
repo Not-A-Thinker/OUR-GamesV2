@@ -1,7 +1,8 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerState : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class PlayerState : MonoBehaviour
     bool isInvincible = false;
     
     private void Start()
-    {
+    {    
         color = _renderer.material.GetColor("_MainColor");
         //color = playerMat.shader.;     
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -49,7 +50,7 @@ public class PlayerState : MonoBehaviour
         CCIS = GetComponent<CinemachineCollisionImpulseSource>();
 
         //if(GetComponent<JoyStickMovement>())
-       //ÀË¬dª±®a½s¸¹
+       //æª¢æŸ¥ç©å®¶ç·¨è™Ÿ
         if (isPlayer1)
         {
             _maxHealth = 4;
@@ -60,7 +61,7 @@ public class PlayerState : MonoBehaviour
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
         }
 
-        ///_currentHealth·í«e¦å¶q _maxHealth³Ì¤j¦å¶q
+        ///_currentHealthç•¶å‰è¡€é‡ _maxHealthæœ€å¤§è¡€é‡
         _currentHealth = _maxHealth;
 
         //Resurrect_range.SetActive(false);
@@ -74,11 +75,11 @@ public class PlayerState : MonoBehaviour
         //{
         //    UIcontrol.EnergyBarChange(move._DashBar, 2);
         //}
-
-        //Invincible§@¹ú
+        var gamepad = Gamepad.current;
+        //Invincibleä½œå¼Š
         if (Input.GetKey(KeyCode.LeftControl)&& Input.GetKeyDown(KeyCode.CapsLock))
         {
-            ///½Ğ¦b¨S¨ü¶Ëªº®É­Ô¶}³o­ÓµL¼Ä ¤£µM·|­«¸mµM«á¥¢¥hµL¼Ä
+            ///è«‹åœ¨æ²’å—å‚·çš„æ™‚å€™é–‹é€™å€‹ç„¡æ•µ ä¸ç„¶æœƒé‡ç½®ç„¶å¾Œå¤±å»ç„¡æ•µ
             isInvincible = !isInvincible;
             _Collider.enabled = !isInvincible;
 
@@ -100,10 +101,11 @@ public class PlayerState : MonoBehaviour
     {      
         if(!isInvincible)
         {
+            StartCoroutine(Vibration(0.7f, 0));
             _currentHealth--;
             if (isPlayer1)
             {
-                ///P1¨ü¶Ë­n§â¤è¶ô³£¥á±¼
+                ///P1å—å‚·è¦æŠŠæ–¹å¡Šéƒ½ä¸Ÿæ‰
                 P1GetCube p1GetCube = GetComponent<P1GetCube>();
                 p1GetCube.PlayerGoneCube();
                 ForceCast_TopDown _TopDown = GetComponent<ForceCast_TopDown>();
@@ -112,7 +114,7 @@ public class PlayerState : MonoBehaviour
             //Debug.Log(_currentHealth);     
             if (_currentHealth > 0)
             {
-                ///¨ü§ğÀ»µL¼Ä
+                ///å—æ”»æ“Šç„¡æ•µ
                 StartInvincible(3);     
             }
             if (_currentHealth == 0)
@@ -134,7 +136,7 @@ public class PlayerState : MonoBehaviour
 
     public void hp_increase()
     {
-        ///¦^¦å
+        ///å›è¡€
         int playerCount = 1;
         if (isPlayer1)
             playerCount = 1;
@@ -148,7 +150,7 @@ public class PlayerState : MonoBehaviour
     public void PlayerRespawn()
     {
         _renderer.material.SetColor("_MainColor", color);
-        ///­«¸mª±®a¦¨ªì©lª¬ºA
+        ///é‡ç½®ç©å®¶æˆåˆå§‹ç‹€æ…‹
         isDead = false;
         Resurrect_range.SetActive(false);
         Hula.GetComponent<SpriteRenderer>().color = color;
@@ -182,7 +184,7 @@ public class PlayerState : MonoBehaviour
     //PlayerState Reset When Dead
     public void PlayerIsDead()
     {
-        //¦º¤`³]¸m
+        //æ­»äº¡è¨­ç½®
         isDead = true;
         Resurrect_range.SetActive(true);
         Hula.GetComponent<SpriteRenderer>().color = DeadColor;
@@ -250,12 +252,22 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Invincible" + isInvincible);
     }
 
-    //°{Ã{
+    //é–ƒçˆ
     void InvincibleRend()
     {
         if (_renderer.enabled == true)       
             _renderer.enabled = false;      
         else
             _renderer.enabled = true;
+    }
+
+ 
+    private static IEnumerator Vibration(float lowFrequency, // ä½å‘¨æ³¢ï¼ˆå·¦ï¼‰ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®å¼·ã•ï¼ˆ0.0 ï½ 1.0ï¼‰
+    float highFrequency )// é«˜å‘¨æ³¢ï¼ˆå³ï¼‰ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®å¼·ã•ï¼ˆ0.0 ï½ 1.0ï¼‰
+    {
+        var gamepad = Gamepad.current;
+        gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+        yield return new WaitForSeconds(0.5f); // 1 ç§’é–“æŒ¯å‹•ã•ã›ã‚‹
+        gamepad.SetMotorSpeeds(0, 0);
     }
 }
