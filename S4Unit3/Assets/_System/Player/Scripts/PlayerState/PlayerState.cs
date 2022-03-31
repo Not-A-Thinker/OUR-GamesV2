@@ -271,8 +271,11 @@ public class PlayerState : MonoBehaviour
     float highFrequency )// 高周波（右）モーターの強さ（0.0 ～ 1.0）
     {
         var gamepad = Gamepad.current;
-        gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
-        yield return new WaitForSeconds(0.5f); // 1 秒間振動させる
-        gamepad.SetMotorSpeeds(0, 0);
+        if(gamepad != null)
+        {
+            gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
+            yield return new WaitForSeconds(0.5f); // 1 秒間振動させる
+            gamepad.SetMotorSpeeds(0, 0);
+        }      
     }
 }
