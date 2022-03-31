@@ -246,7 +246,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bccad01942a114b8a80f49cca0c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerState: {fileID: 1860544261278244865}
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
   soundEffect: {fileID: 774615582}
@@ -1566,6 +1565,10 @@ PrefabInstance:
     - target: {fileID: 7541066511211048048, guid: c8e49cb8618568f4885e0f0dc87a0d33, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541066511211048048, guid: c8e49cb8618568f4885e0f0dc87a0d33, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.39215687
       objectReference: {fileID: 0}
     - target: {fileID: 7541066511211048050, guid: c8e49cb8618568f4885e0f0dc87a0d33, type: 3}
       propertyPath: m_RootOrder
