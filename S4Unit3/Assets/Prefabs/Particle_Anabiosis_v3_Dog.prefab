@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5538216030756878162}
   - component: {fileID: 5538216030756878165}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Particle_Anabiosis_Palm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6313726, g: 0.9529412, b: 0.5529412, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -285,7 +285,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4819,7 +4819,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34523363542413e428267b48367812e1, type: 2}
+  - {fileID: 2100000, guid: 81405606894a3d14caf3bb0fd5dca7bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5039,8 +5039,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5
-      minScalar: 2
+      scalar: 7
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5093,7 +5093,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5155,8 +5155,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.1
+      scalar: 1.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5471,7 +5471,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 50
+    maxNumParticles: 30
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5737,7 +5737,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 30
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6233,16 +6233,16 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.12606835, g: 1, b: 0, a: 0.19607843}
-        key1: {r: 0, g: 3.9999995, b: 2.1054037, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0.627451}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0.8696546, g: 0.8696546, b: 0.8696546, a: 0}
-        key3: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 0}
+        key3: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 0.39215687}
         key4: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 1}
         key5: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 60331
+        ctime1: 65535
         ctime2: 63029
         ctime3: 65535
         ctime4: 65535
@@ -6250,9 +6250,9 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 27672
-        atime2: 56075
-        atime3: 56075
+        atime1: 52906
+        atime2: 65535
+        atime3: 65535
         atime4: 65535
         atime5: 65535
         atime6: 0
@@ -9752,7 +9752,7 @@ GameObject:
   - component: {fileID: 5538216031409070925}
   - component: {fileID: 5538216031409070924}
   m_Layer: 0
-  m_Name: Particle_Anabiosis_v3 (1)
+  m_Name: Particle_Anabiosis_v3_Dog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9766,9 +9766,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5538216031409070927}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 79.15, y: 0.1, z: -0}
+  m_LocalPosition: {x: 0, y: 0.1, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5538216031207843570}
   - {fileID: 5538216031883633381}
@@ -9966,7 +9966,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6301973, g: 0.9528302, b: 0.5519224, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14729,8 +14729,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 0.5
+      scalar: 1
+      minScalar: 0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15214,7 +15214,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 15
+    maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -15361,7 +15361,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 4
+      value: 3.5
       mode: 0
       spread: 0
       speed:
@@ -15480,7 +15480,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -15976,26 +15976,26 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.12606835, g: 1, b: 0, a: 0.19607843}
-        key1: {r: 0, g: 3.9999995, b: 2.1054037, a: 1}
+        key0: {r: 1, g: 1, b: 1, a: 0.627451}
+        key1: {r: 0.5, g: 0.5, b: 0.5, a: 1}
         key2: {r: 0.8696546, g: 0.8696546, b: 0.8696546, a: 0}
-        key3: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 0}
+        key3: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 0.39215687}
         key4: {r: 0.8765452, g: 0.8765452, b: 0.8765452, a: 1}
         key5: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 60331
+        ctime1: 65535
         ctime2: 63029
         ctime3: 65535
         ctime4: 65535
         ctime5: 65535
         ctime6: 0
         ctime7: 0
-        atime0: 14750
-        atime1: 27672
-        atime2: 42422
-        atime3: 56075
+        atime0: 0
+        atime1: 52906
+        atime2: 65535
+        atime3: 65535
         atime4: 65535
         atime5: 65535
         atime6: 0
