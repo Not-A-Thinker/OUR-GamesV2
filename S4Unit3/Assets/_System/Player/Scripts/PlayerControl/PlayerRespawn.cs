@@ -7,7 +7,7 @@ public class PlayerRespawn : MonoBehaviour
     float RespawnCountRange = 0;
     int RespawnCount = 0;
 
-    [SerializeField] PlayerState PlayerState;
+    PlayerState PlayerState;
 
     [SerializeField] UIcontrol UIcontrol;
 
@@ -23,6 +23,7 @@ public class PlayerRespawn : MonoBehaviour
     private void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
     }
 
     //public void RespawnRangeTrigger(bool IsOn)
@@ -42,17 +43,16 @@ public class PlayerRespawn : MonoBehaviour
                     {
                         soundEffect.OnRespawnPlay();
                         RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
-                        RespawnCount = (int)RespawnCountRange;
-                        UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
-                        Debug.Log(RespawnCount);
-                        if (RespawnCount == 2)
+                        //RespawnCount = (int)RespawnCountRange;
+                        UIcontrol.PlayerRespawn(RespawnCountRange,transform.parent.name);
+                        //Debug.Log(RespawnCount);
+                        if (RespawnCountRange >= 2)
                         {
-                            PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCountRange = 0;
-                            RespawnCount = 0;
+                            //RespawnCount = 0;
                             return;
                         }
                     }
@@ -60,10 +60,9 @@ public class PlayerRespawn : MonoBehaviour
                     {
                         soundEffect.OnResetSound();
                         RespawnCountRange = 0;
-                        RespawnCount = 0;
-                        UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
+                        //RespawnCount = 0;
                         UIcontrol.PlayerRespawnStop();
-                        //Debug.Log("RespawnCountReset");
+                        Debug.Log("RespawnCountReset");
                     }
                 }                         
             }
@@ -78,27 +77,26 @@ public class PlayerRespawn : MonoBehaviour
                     {
                         soundEffect.OnRespawnPlay();
                         RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
-                        RespawnCount = (int)RespawnCountRange;
-                        UIcontrol.PlayerRespawn(RespawnCountRange, RespawnCount, transform.parent.name);
+                        //RespawnCount = (int)RespawnCountRange;
+                        UIcontrol.PlayerRespawn(RespawnCountRange, transform.parent.name);
                         //Debug.Log(RespawnCount);
-                        if (RespawnCount == 2)
+                        if (RespawnCountRange >= 2)
                         {
-                            PlayerState = transform.parent.gameObject.GetComponentInParent<PlayerState>();
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCountRange = 0;
-                            RespawnCount = 0;
+                            //RespawnCount = 0;
                             //Debug.Log("RespawnCountReset");
                         }
                     }
-                    else if (Input.GetButtonUp("RespawnP1") || Respawning)
+                    else if (Input.GetButtonUp("RespawnP1") || !Respawning)
                     {
                         soundEffect.OnResetSound();
                         RespawnCountRange = 0;
-                        RespawnCount = 0;
+                        //RespawnCount = 0;
                         UIcontrol.PlayerRespawnStop();
-                        //Debug.Log("RespawnCountReset");
+                        Debug.Log("RespawnCountReset");
                     }
                 }
             }              
