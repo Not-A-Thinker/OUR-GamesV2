@@ -241,7 +241,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -190}
-  m_SizeDelta: {x: 200, y: 70}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39621667
 MonoBehaviour:
@@ -342,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &65385055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: c2860a89df55dde4088e3fb6bfc35e28, type: 3}
+  m_Texture: {fileID: 2800000, guid: 1429eb88c5efb23429f4cc751d3bca37, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -962,6 +962,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d850e17b558daca428ad52b5c26f1556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  optionsMenu: {fileID: 0}
+  optionsFirstButton: {fileID: 0}
+  optionsCloseButton: {fileID: 0}
 --- !u!1 &1514924070
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,8 +1002,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -245}
-  m_SizeDelta: {x: 200, y: 70}
+  m_AnchoredPosition: {x: 0, y: -250}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514924072
 MonoBehaviour:
@@ -1441,7 +1444,7 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: -8006772220433030211, guid: 9cc68b417f389834c9a792501b29a6d6, type: 3}
   m_TrackedDevicePositionAction: {fileID: 3316955749966733286, guid: 9cc68b417f389834c9a792501b29a6d6, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7380336194608921517, guid: 9cc68b417f389834c9a792501b29a6d6, type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
 --- !u!1 &1927479360
 GameObject:
@@ -1480,8 +1483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 200, y: 70}
+  m_AnchoredPosition: {x: 0, y: -130}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1927479362
 MonoBehaviour:
