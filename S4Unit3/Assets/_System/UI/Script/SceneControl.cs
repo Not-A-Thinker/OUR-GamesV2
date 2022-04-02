@@ -35,7 +35,7 @@ public class SceneControl : MonoBehaviour
     }
    IEnumerator Delay (int Scence)
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(Scence);
     }
 }
