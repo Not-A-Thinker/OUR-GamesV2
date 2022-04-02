@@ -104,9 +104,9 @@ public class BossSkillDemo : MonoBehaviour
             {
                 MistAttack();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
+            if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-
+                BossTailAttack();
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
