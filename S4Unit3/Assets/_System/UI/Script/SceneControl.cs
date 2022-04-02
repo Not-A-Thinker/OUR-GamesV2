@@ -15,22 +15,27 @@ public class SceneControl : MonoBehaviour
     }
     public void WinScene()
     {
-        SceneManager.LoadScene(3);
+        StartCoroutine(Delay(3));
     }
     public void GameOverScene()
     {
-        SceneManager.LoadScene(2);
+        StartCoroutine(Delay(2));
     }
     public void ToGameScene()
     {
-        SceneManager.LoadScene(1);
+        StartCoroutine(Delay(1));
     }
     public void ToStarScence()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(Delay(0));
     }
     public void ExitGame()
     {
         Application.Quit();
+    }
+   IEnumerator Delay (int Scence)
+    {
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene(Scence);
     }
 }
