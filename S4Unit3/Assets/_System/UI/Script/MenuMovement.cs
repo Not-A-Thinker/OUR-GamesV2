@@ -20,7 +20,7 @@ public class MenuMovement : MonoBehaviour
 
     public void CloseOptions()
     {
-        optionsMenu.SetActive(true);
+        optionsMenu.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(null);
 
