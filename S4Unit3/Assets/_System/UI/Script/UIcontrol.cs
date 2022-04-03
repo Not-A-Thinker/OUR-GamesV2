@@ -222,8 +222,7 @@ public class UIcontrol : MonoBehaviour
 
         if (_isPause)
         {
-            Time.timeScale = 0;  
-            
+            Time.timeScale = 0;             
         }
         else
         {

@@ -23,10 +23,12 @@ public class SceneControl : MonoBehaviour
     }
     public void ToGameScene()
     {
+        Time.timeScale = 1;
         StartCoroutine(Delay(1));
     }
     public void ToStarScence()
     {
+        Time.timeScale = 1;
         StartCoroutine(Delay(0));
     }
     public void ExitGame()
