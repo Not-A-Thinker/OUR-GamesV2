@@ -700,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 1162209143, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 24300002, guid: 88a845f8886774049b45763975d0648f, type: 2}
+      objectReference: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
     - target: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -950,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.047790825, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047790408, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3580,7 +3580,7 @@ AudioSource:
   m_GameObject: {fileID: 375013831}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
+  OutputAudioMixerGroup: {fileID: 8307771789951595663, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -11912,7 +11912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.047790825, y: 47.28805, z: -51.729034}
+  m_LocalPosition: {x: 0.047790408, y: 47.28805, z: -51.729034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18928,7 +18928,7 @@ PrefabInstance:
     - target: {fileID: 774615581, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 24300002, guid: 88a845f8886774049b45763975d0648f, type: 2}
+      objectReference: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
     - target: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: m_Name
       value: Player2
