@@ -43,9 +43,19 @@ public class SettingMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void SetVolume(float volume)
+    public void SetMainVolume(float volume)
     {
-        audioMixer.SetFloat("MainVolume",volume);
+        audioMixer.SetFloat("MainVolume", volume);
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        audioMixer.SetFloat("SFXVolume", volume);
     }
 
     public void SetFullscreen(bool isFullScreen)
