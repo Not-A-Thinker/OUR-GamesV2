@@ -6,6 +6,8 @@ public class Pause_Control : MonoBehaviour
 {
     SceneControl sceneControl;
 
+    GameObject WanningWindow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +17,19 @@ public class Pause_Control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.gameObject.activeInHierarchy)
-        {
-            if(Input.GetButton("Submit"))
-            {
-                sceneControl.ToStarScence();
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                sceneControl.ToGameScene();
-                Time.timeScale = 1;
-            }
-        }
+        //if(this.gameObject.activeInHierarchy)
+        //{
+        //    if(Input.GetButton("Submit"))
+        //    {
+        //        sceneControl.ToStarScence();
+        //    }
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        sceneControl.ToGameScene();
+        //        Time.timeScale = 1;
+        //    }
+        //}
     }
+
+
 }

@@ -53,6 +53,7 @@ public class UIcontrol : MonoBehaviour
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
         Time.timeScale = 1;
+        sceneControl = GetComponent<SceneControl>();
     }
     
     private void Update()
@@ -95,15 +96,15 @@ public class UIcontrol : MonoBehaviour
             Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
             P2pos.y = P2pos.y - 20;
             SuckingCD.transform.position = P2pos;
-        }    
-        
+        }
+
         if (Input.GetButtonDown("Restart"))
         {
-            _isPause = !_isPause;
+            //_isPause = !_isPause;
             Pause();
         }
 
-        if(Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             if(Input.GetKeyDown(KeyCode.O))
             {
@@ -200,12 +201,10 @@ public class UIcontrol : MonoBehaviour
     //end game
     public void GameOver()
     {
-        sceneControl = new SceneControl();
         sceneControl.GameOverScene();
     }
     public void YouWin()
     {
-        sceneControl = new SceneControl();
         sceneControl.WinScene();
     }
     public void RespawnText(bool state)
@@ -215,11 +214,16 @@ public class UIcontrol : MonoBehaviour
     #endregion
 
     #region PlayerUI
-    private void Pause()
+    public void Pause()
     {
+        _isPause = !_isPause;
+
+        Debug.Log(_isPause);
+
         if (_isPause)
         {
-            Time.timeScale = 0;       
+            Time.timeScale = 0;  
+            
         }
         else
         {
@@ -228,6 +232,17 @@ public class UIcontrol : MonoBehaviour
 
         Pause_UI.SetActive(_isPause);
     }
+
+    //public void RestartGame()
+    //{     
+    //    sceneControl.ToGameScene();
+    //}
+
+    //public void BackToMenu()
+    //{
+    //    sceneControl.ToStarScence();
+    //}
+
     //pushing
     public void PushingBar(float load)
     {
