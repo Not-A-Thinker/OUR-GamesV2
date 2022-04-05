@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8bccad01942a114b8a80f49cca0c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerState: {fileID: 500052818044258935}
   UIcontrol: {fileID: 0}
   Move: {fileID: 500052818044258939}
   soundEffect: {fileID: 1162209142}
@@ -1836,7 +1835,7 @@ AudioSource:
   m_GameObject: {fileID: 5381467380246077115}
   m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
