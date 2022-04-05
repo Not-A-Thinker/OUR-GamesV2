@@ -183,11 +183,11 @@ public class JoyStickMovement : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
         velocity = velocity.normalized;  
-        int playerCount = 0;
-        if (isPlayer1)
-            playerCount = 1;
-        if (isPlayer2)
-            playerCount = 2;
+        //int playerCount = 0;
+        //if (isPlayer1)
+        //    playerCount = 1;
+        //if (isPlayer2)
+        //    playerCount = 2;
         //UIcontrol.EnergyBarChange(playerCount, _DashNow, true);
         _DashNow--;
         StartCoroutine(DashRestore());
