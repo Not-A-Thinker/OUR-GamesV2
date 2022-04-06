@@ -1833,7 +1833,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5381467380246077115}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 0}
@@ -1970,10 +1970,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf91695a428a4c4283ba41867a15b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnMoveSound: {fileID: 8300000, guid: b6bd76f815e62b44a93dd474feab77f1, type: 3}
-  OnDashSound: {fileID: 8300000, guid: 7e31acb31c8a2e649ad8f6d7c2def7f7, type: 3}
-  OnDamagedSound: {fileID: 0}
-  OnAttackSound: {fileID: 0}
+  OnMoveSound: {fileID: 8300000, guid: 4ac3d75fe48dfb44dacc481c0e5e97c5, type: 3}
+  OnDashSound: {fileID: 8300000, guid: 3955b1c97f369ea43bbb5da800a370b0, type: 3}
+  OnDamagedSound: {fileID: 8300000, guid: 947e1bde47946194a8bf1cfd8580435d, type: 3}
+  OnAttackSound: {fileID: 8300000, guid: 924e3091502088c44a691b502c83887a, type: 3}
   OnRespawnSound: {fileID: 8300000, guid: 5553221b3b521a4498cb2c3d4808d45c, type: 3}
   OnDeadSound: {fileID: 0}
 --- !u!137 &5983910854311786690 stripped

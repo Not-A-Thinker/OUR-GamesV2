@@ -1905,11 +1905,11 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6214820614071332330}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2043,11 +2043,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnMoveSound: {fileID: 0}
-  OnDashSound: {fileID: 8300000, guid: 3745a9bcbed5ed44c857c1ff7eb14c1f, type: 3}
-  OnDamagedSound: {fileID: 0}
+  OnDashSound: {fileID: 8300000, guid: 3955b1c97f369ea43bbb5da800a370b0, type: 3}
+  OnDamagedSound: {fileID: 8300000, guid: 947e1bde47946194a8bf1cfd8580435d, type: 3}
   OnAttackSound: {fileID: 8300000, guid: ebb0f59f457d3944a97d7110c612ec5c, type: 3}
   OnRespawnSound: {fileID: 8300000, guid: 48aa3cf463afc994193d77f5e1908969, type: 3}
-  OnDeadSound: {fileID: 0}
+  OnDeadSound: {fileID: 8300000, guid: bd7b05dccbc3a6142976ae42e53589d6, type: 3}
 --- !u!4 &6734195116091602768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
