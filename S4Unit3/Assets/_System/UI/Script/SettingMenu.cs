@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 public class SettingMenu : MonoBehaviour
 {
 
-    public AudioMixer audioMixer;
+    public AudioMixer audioMixer,SFX;
 
     Resolution[] resolutions;
 
@@ -55,7 +55,7 @@ public class SettingMenu : MonoBehaviour
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("SFXVolume", volume);
+        SFX.SetFloat("SFXVolume", volume);
     }
 
     public void SetFullscreen(bool isFullScreen)
