@@ -61,4 +61,12 @@ public class PlayerSoundEffect : MonoBehaviour
             _audioSource.Stop();
         }          
     }
+    public void OnDamagePlay()
+    {
+        if (_audioSource.isActiveAndEnabled)
+        {
+            _audioSource.clip = OnDamagedSound;
+            _audioSource.Play();
+        }
+    }
 }

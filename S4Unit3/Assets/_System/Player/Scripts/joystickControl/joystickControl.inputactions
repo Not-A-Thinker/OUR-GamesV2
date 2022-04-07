@@ -942,7 +942,29 @@
                 {
                     "name": "",
                     "id": "10b92d30-b65c-4b71-9ba8-1fae5c72ec09",
-                    "path": "*/{Submit}",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1c77ba4-abbb-43a1-a19c-f2106d406f93",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7482ad75-80ef-47c6-b57f-c29dd8d93141",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

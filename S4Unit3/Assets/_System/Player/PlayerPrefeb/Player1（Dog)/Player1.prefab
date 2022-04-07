@@ -1974,7 +1974,7 @@ MonoBehaviour:
   OnDashSound: {fileID: 8300000, guid: 3955b1c97f369ea43bbb5da800a370b0, type: 3}
   OnDamagedSound: {fileID: 8300000, guid: 947e1bde47946194a8bf1cfd8580435d, type: 3}
   OnAttackSound: {fileID: 8300000, guid: 924e3091502088c44a691b502c83887a, type: 3}
-  OnRespawnSound: {fileID: 8300000, guid: 5553221b3b521a4498cb2c3d4808d45c, type: 3}
+  OnRespawnSound: {fileID: 0}
   OnDeadSound: {fileID: 0}
 --- !u!137 &5983910854311786690 stripped
 SkinnedMeshRenderer:
