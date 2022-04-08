@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ebd93627e17034fb77e60f73289315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _crystalAlter:
+  - {fileID: 98739368}
 --- !u!65 &98739365
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -23,10 +23,10 @@ MonoBehaviour:
   showUnityEditorReport: 0
   logBehaviour: 0
   drawGizmos: 1
-  defaultRecyclable: 0
+  defaultRecyclable: 1
   defaultAutoPlay: 3
   defaultUpdateType: 0
-  defaultTimeScaleIndependent: 0
+  defaultTimeScaleIndependent: 1
   defaultEaseType: 6
   defaultEaseOvershootOrAmplitude: 1.70158
   defaultEasePeriod: 0
@@ -49,5 +49,5 @@ MonoBehaviour:
     deUnityExtendedEnabled: 0
     epoOutlineEnabled: 0
   createASMDEF: 0
-  showPlayingTweens: 0
-  showPausedTweens: 0
+  showPlayingTweens: 1
+  showPausedTweens: 1
