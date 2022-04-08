@@ -10,6 +10,9 @@ public class PlayerState : MonoBehaviour
     private CinemachineImpulseSource CIS;
     private Animator animator;
 
+    [Header("Debug")]
+    [SerializeField] bool CamShakeOff = false;
+
     [Header("Player Health")]
     int _maxHealth = 3;
     [SerializeField] int _currentHealth;
@@ -109,7 +112,8 @@ public class PlayerState : MonoBehaviour
         {
             StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
-            CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
+            if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
+
             if (isPlayer1)
             {
                 ///P1受傷要把方塊都丟掉

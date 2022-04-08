@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Cinemachine;
 
 public class BossDamageIndicator : MonoBehaviour
 {
+    private CinemachineImpulseSource CIS;
+
     public Material material;
     [SerializeField] Color colorTemp;
     [SerializeField] Color colorNormal;
@@ -23,6 +26,8 @@ public class BossDamageIndicator : MonoBehaviour
 
     void Start()
     {
+        CIS = GetComponent<CinemachineImpulseSource>();
+
         material.SetColor("_MainColor", new Color(1,1,1));
         colorTemp = material.GetColor("_MainColor");
     }
@@ -30,9 +35,10 @@ public class BossDamageIndicator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKey(KeyCode.RightShift) && Input.GetKeyDown(KeyCode.K))
         {
             ColorValueChange();
+            CameraShake();
         }
 
         if (colorTemp != colorNormal)
@@ -70,5 +76,8 @@ public class BossDamageIndicator : MonoBehaviour
         material.SetColor("_MainColor", new Color(1, 1, 1));
     }
 
-
+    public void CameraShake()
+    {
+        CIS.GenerateImpulse();
+    }
 }

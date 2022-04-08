@@ -87,8 +87,9 @@ public class ObjectDamage : MonoBehaviour
                 ///扣血
                 bossHealth.TakeDamage(Damage);
 
-                ///擊中時改顏色
+                ///擊中時改顏色 + 鏡頭震動
                 col.gameObject.GetComponentInParent<BossDamageIndicator>().ColorValueChange();
+                col.gameObject.GetComponentInParent<BossDamageIndicator>().CameraShake();
 
                 ///Boss Count -1
                 ///
