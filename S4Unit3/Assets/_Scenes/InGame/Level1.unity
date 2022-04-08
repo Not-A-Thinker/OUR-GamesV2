@@ -697,6 +697,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 59152151, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 59152151, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -22251,6 +22259,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1507288141, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507288141, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: m_Name
       value: Player2
