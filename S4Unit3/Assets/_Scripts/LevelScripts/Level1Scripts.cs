@@ -13,7 +13,7 @@ public class Level1Scripts : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 120;
+        //Application.targetFrameRate = 120;
 
     }
 
@@ -25,10 +25,12 @@ public class Level1Scripts : MonoBehaviour
         {
             crystal.DOMoveY(_crystalHeight, Random.Range(1.8f, 2f))
                    .SetLoops(-1, LoopType.Yoyo)
-                   .SetEase(Ease.InOutCubic);
+                   .SetEase(Ease.InOutCubic)
+                   .SetUpdate(true);
             crystal.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360)
                    .SetLoops(-1, LoopType.Incremental)
-                   .SetEase(Ease.Linear);
+                   .SetEase(Ease.Linear)
+                   .SetUpdate(true);
         }
     }
 
