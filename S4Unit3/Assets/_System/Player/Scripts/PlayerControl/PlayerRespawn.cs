@@ -26,6 +26,12 @@ public class PlayerRespawn : MonoBehaviour
         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
     }
 
+    private void Update()
+    {
+        if (RespawnCountRange > 0)
+            RespawnCountRange = RespawnCountRange - (0.5f * Time.deltaTime);
+    }
+
     //public void RespawnRangeTrigger(bool IsOn)
     //{
     //    GetComponent<SphereCollider>().isTrigger = IsOn;
@@ -39,10 +45,15 @@ public class PlayerRespawn : MonoBehaviour
             {
                 if(PlayerState.isDead == true)
                 {
-                    if (Input.GetButton("RespawnP2") || Respawning)
+                    if(Input.GetButtonDown("RespawnP2"))
                     {
-                        soundEffect.OnRespawnPlay();
-                        RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
+                        RespawnCountRange = RespawnCountRange + (2 * Time.deltaTime);
+                    }
+
+                    else if (Input.GetButton("RespawnP2") || Respawning)
+                    {
+                        Respawning = true;
+                        soundEffect.OnRespawnPlay();                     
                         //RespawnCount = (int)RespawnCountRange;
                         UIcontrol.PlayerRespawn(RespawnCountRange,transform.parent.name);
                         //Debug.Log(RespawnCount);
@@ -58,10 +69,11 @@ public class PlayerRespawn : MonoBehaviour
                     }
                     else if (Input.GetButtonUp("RespawnP2") || !Respawning)
                     {
+                        Respawning = false;
                         soundEffect.OnResetSound();
-                        RespawnCountRange = 0;
+                       
                         //RespawnCount = 0;
-                        UIcontrol.PlayerRespawnStop();
+                        //UIcontrol.PlayerRespawnStop();
                         Debug.Log("RespawnCountReset");
                     }
                 }                         
@@ -73,10 +85,15 @@ public class PlayerRespawn : MonoBehaviour
             {
                 if (obj.tag == "Player" && obj.name != "Player2")
                 {
-                    if (Input.GetButton("RespawnP1") || Respawning)
+                    if (Input.GetButtonDown("RespawnP1"))
                     {
-                        soundEffect.OnRespawnPlay();
-                        RespawnCountRange = RespawnCountRange + (1 * Time.deltaTime);
+                        RespawnCountRange = RespawnCountRange + (2 * Time.deltaTime);
+                    }
+
+                    else if (Input.GetButton("RespawnP1") || Respawning)
+                    {
+                        Respawning = true;
+                        soundEffect.OnRespawnPlay();                   
                         //RespawnCount = (int)RespawnCountRange;
                         UIcontrol.PlayerRespawn(RespawnCountRange, transform.parent.name);
                         //Debug.Log(RespawnCount);
@@ -92,10 +109,13 @@ public class PlayerRespawn : MonoBehaviour
                     }
                     else if (Input.GetButtonUp("RespawnP1") || !Respawning)
                     {
+                        Respawning = false;
                         soundEffect.OnResetSound();
-                        RespawnCountRange = 0;
+                        if(RespawnCountRange>0)
+                            RespawnCountRange = RespawnCountRange - (0.5f * Time.deltaTime);
+                        //RespawnCountRange = 0;
                         //RespawnCount = 0;
-                        UIcontrol.PlayerRespawnStop();
+                        //UIcontrol.PlayerRespawnStop();
                         Debug.Log("RespawnCountReset");
                     }
                 }
