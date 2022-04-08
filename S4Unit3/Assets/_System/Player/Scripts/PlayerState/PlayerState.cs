@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerState : MonoBehaviour
 {
-    private CinemachineCollisionImpulseSource CCIS;
+    //private CinemachineCollisionImpulseSource CCIS; //Disable due to the unstable solution.
+    private CinemachineImpulseSource CIS;
     private Animator animator;
 
     [Header("Player Health")]
@@ -51,7 +52,8 @@ public class PlayerState : MonoBehaviour
         _Collider = GetComponent<CapsuleCollider>();
         move = GetComponent<Move>();
 
-        CCIS = GetComponent<CinemachineCollisionImpulseSource>();
+        //CCIS = GetComponent<CinemachineCollisionImpulseSource>();
+        CIS = GetComponent<CinemachineImpulseSource>();
 
         //if(GetComponent<JoyStickMovement>())
        //檢查玩家編號
@@ -107,6 +109,7 @@ public class PlayerState : MonoBehaviour
         {
             StartCoroutine(Vibration(0.7f, 0));
             _currentHealth--;
+            CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
             if (isPlayer1)
             {
                 ///P1受傷要把方塊都丟掉
