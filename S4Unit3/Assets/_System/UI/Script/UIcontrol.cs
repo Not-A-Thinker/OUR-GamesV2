@@ -153,7 +153,7 @@ public class UIcontrol : MonoBehaviour
         int count = (int)(load + 0.2f);    
         RespawnLoad.SetActive(true);
         slider.value = Mathf.Lerp(load/2, slider.value,smoothing * Time.deltaTime);    
-        LoadingText.text= playerName+" Respawning in " + count + "s";       
+        LoadingText.text= playerName+" Respawning";       
     }
     public void PlayerRespawnStop()
     {
