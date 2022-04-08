@@ -107,7 +107,7 @@ public class PlayerState : MonoBehaviour
     {      
         if(!isInvincible)
         {
-            StartCoroutine(Vibration(0.7f, 0));
+            StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
             CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
             if (isPlayer1)
@@ -277,7 +277,7 @@ public class PlayerState : MonoBehaviour
         if(gamepad != null)
         {
             gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
-            yield return new WaitForSeconds(0.5f); // 1 秒間振動させる
+            yield return new WaitForSeconds(0.3f); 
             gamepad.SetMotorSpeeds(0, 0);
         }      
     }
