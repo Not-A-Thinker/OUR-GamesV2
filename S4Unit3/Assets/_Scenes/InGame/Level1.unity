@@ -757,6 +757,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
   m_PrefabInstance: {fileID: 59152138}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &77403990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1938549390656703701, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
+  m_PrefabInstance: {fileID: 3700285518035001052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &91379813
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685486, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684907, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7630,11 +7635,14 @@ MonoBehaviour:
   _crystalMedium:
   - {fileID: 1965786770}
   - {fileID: 759020935}
-  _crystalMediumHeight: 36
+  _crystalMediumHeight: 38
   _crystalLarge:
   - {fileID: 1068398641}
   - {fileID: 1618215134}
   _crystalLargeHeight: 20
+  _crystalOuterIsland:
+  - {fileID: 77403990}
+  _crystalOuterIslandHeight: 7
 --- !u!4 &678540657
 Transform:
   m_ObjectHideFlags: 0
@@ -14315,7 +14323,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685486, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684907, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23222,6 +23230,10 @@ PrefabInstance:
       propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 769043215247177658, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 769043215666838868, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -23234,6 +23246,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9268ff378ff21ed4ca6206adde7011d8, type: 2}
+    - target: {fileID: 769043215841264048, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 769043215841264048, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: afb202c418c7b9e46beea84ae3d9347b, type: 2}
     - target: {fileID: 769043216019482437, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -23339,8 +23359,12 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1273617966806914671, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273617966806914671, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1938549389047829146, guid: acb334f6b3410754d9033805ea0fd405, type: 3}
       propertyPath: m_LocalPosition.x

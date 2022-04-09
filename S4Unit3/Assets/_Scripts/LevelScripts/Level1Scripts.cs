@@ -7,25 +7,22 @@ using DG.Tweening;
 public class Level1Scripts : MonoBehaviour
 {
     [SerializeField] Transform[] _crystalAlter;
-    [Tooltip("This is use for controlling the height of crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalHeight = 6f;
     [Space]
     [SerializeField] Transform[] _crystalOuterAlter;
-    [Tooltip("This is use for controlling the height of the outer crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalOuterHeight = 6f;
     [Space]
     [SerializeField] Transform[] _crystalMediumAlter;
-    [Tooltip("This is use for controlling the height of crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalMediumAlterHeight = 6f;
     [Space]
     [SerializeField] Transform[] _crystalMedium;
-    [Tooltip("This is use for controlling the height of the outer crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalMediumHeight = 15f;
     [Space]
     [SerializeField] Transform[] _crystalLarge;
-    [Tooltip("This is use for controlling the height of the outer crystals can flow based on LevelHandler.")]
     [SerializeField] float _crystalLargeHeight = 20f;
-
+    [Space]
+    [SerializeField] Transform[] _crystalOuterIsland;
+    [SerializeField] float _crystalOuterIslandHeight = 8f;
 
     private void Awake()
     {
@@ -36,7 +33,6 @@ public class Level1Scripts : MonoBehaviour
     void Start()
     {
         //This is for handling the crystal movement animation.
-        //哈利,這比Lerp好用
         foreach (var crystal in _crystalAlter)
         {
             crystal.DOMoveY(_crystalHeight, Random.Range(1.8f, 2f))
@@ -81,7 +77,7 @@ public class Level1Scripts : MonoBehaviour
 
         foreach (var crystalMedium in _crystalMedium)
         {
-            crystalMedium.DOMoveY(_crystalMediumHeight, Random.Range(3f, 4f))
+            crystalMedium.DOMoveY(_crystalMediumHeight, Random.Range(2f, 2.2f))
                    .SetLoops(-1, LoopType.Yoyo)
                    .SetEase(Ease.OutCirc)
                    .SetUpdate(true);
@@ -96,6 +92,18 @@ public class Level1Scripts : MonoBehaviour
             crystalLarge.DOMoveY(_crystalLargeHeight, Random.Range(3f, 4f))
                    .SetLoops(-1, LoopType.Yoyo)
                    .SetEase(Ease.OutCirc)
+                   .SetUpdate(true);
+        }
+
+        foreach (var crystal in _crystalOuterIsland)
+        {
+            crystal.DOMoveY(_crystalOuterIslandHeight, Random.Range(1.8f, 2f))
+                   .SetLoops(-1, LoopType.Yoyo)
+                   .SetEase(Ease.InOutCubic)
+                   .SetUpdate(true);
+            crystal.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360)
+                   .SetLoops(-1, LoopType.Incremental)
+                   .SetEase(Ease.Linear)
                    .SetUpdate(true);
         }
     }
