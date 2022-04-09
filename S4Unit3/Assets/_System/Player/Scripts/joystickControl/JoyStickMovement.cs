@@ -207,11 +207,11 @@ public class JoyStickMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(DashCD);
         _DashNow++;
-        int playerCount = 0;
-        if (isPlayer1)
-            playerCount = 1;
-        if (isPlayer2)
-            playerCount = 2;
+        //int playerCount = 0;
+        //if (isPlayer1)
+        //    playerCount = 1;
+        //if (isPlayer2)
+        //    playerCount = 2;
         //UIcontrol.EnergyBarChange(playerCount, _DashNow, false);
         Debug.Log("DashRestored!");
     }

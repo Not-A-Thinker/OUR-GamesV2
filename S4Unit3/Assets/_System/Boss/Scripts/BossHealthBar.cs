@@ -21,6 +21,7 @@ public class BossHealthBar : MonoBehaviour
     [SerializeField] float backerSmoothing = .5f;
     [Tooltip("Value smaller mean the yellow thing will move early")]
     [SerializeField] float _backerTTC = .8f;
+    [SerializeField] Animator _animator;
 
     float elapsedTime;
     float backerElapsedTime;
@@ -92,6 +93,8 @@ public class BossHealthBar : MonoBehaviour
         //    Debug.Log("No Damage!");
         //    return;
         //}
+        if (_animator)
+            _animator.SetBool("IsDamaged", true);
 
         if (health - value <= 0 )
         {
@@ -155,5 +158,7 @@ public class BossHealthBar : MonoBehaviour
 
         yield return new WaitForSeconds(_backerTTC);
         _isChanged = true;
+        if(_animator)
+            _animator.SetBool("IsDamaged", false);
     }
 }

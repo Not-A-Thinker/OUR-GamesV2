@@ -369,10 +369,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3d1c78af5d0024c88945ee6ec2993c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 12
   secondToDie: 15
   gattaiCount: 2
   count: 1
+  _Player1: {fileID: 0}
+  _Player2: {fileID: 0}
   TornadoBigOne: {fileID: 7699805585455492480, guid: 0d5a3efd9cecfaf42b4f6f134b5b47bd, type: 3}
   playerSelect: 0
   b_CanGattai: 0

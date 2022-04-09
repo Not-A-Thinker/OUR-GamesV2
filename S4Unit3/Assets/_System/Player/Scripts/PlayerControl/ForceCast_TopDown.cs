@@ -124,9 +124,7 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Input.GetButton("AimP1"))
         {       
             isAim = true;
-            rangeObj.SetActive(true);
-            if (!ShootInCD && objectParent.transform.childCount > 0)
-                Charge = true;
+            rangeObj.SetActive(true);           
 
             if (Input.GetButton("HelpFriendP1"))
             {
@@ -138,16 +136,22 @@ public class ForceCast_TopDown : MonoBehaviour
                 isfriendPushed = false;
             }
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonUp("Fire1"))
             {
-                isShooted = true;
-
                 if (!ShootInCD && objectParent.transform.childCount > 0)
-                {
-                   
-                }
-                else
+                    isShooted = true;    
+            }
+
+            if(Input.GetButtonDown("Fire1"))
+            {
+                if (ShootInCD || objectParent.transform.childCount == 0)
                     UIcontrol.flyText(1, Color.red, "CD!!!");
+            }
+
+            if(Input.GetButton("Fire1"))
+            {
+                if (!ShootInCD && objectParent.transform.childCount > 0)
+                    Charge = true;       
             }
         }
 
