@@ -14,8 +14,13 @@ public class BossSkillDemo : MonoBehaviour
 
     public GameObject instantiatePoint;
 
+    [Header("Debug")]
+    [SerializeField] bool DrawGizmo = false;
+    [SerializeField] float _wingBladeRange = 75f;
+
     [Header("Boss Skill Prefabs")]
     public GameObject windBlade;
+    public GameObject[] outerWindBlade;
     public GameObject vacuumArea;
     public GameObject bubbleAttack;
     public GameObject tornadoLinear;
@@ -480,8 +485,13 @@ public class BossSkillDemo : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, _skillRange);     
+        if (DrawGizmo)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, _skillRange);
+
+            Gizmos.DrawWireSphere(transform.position, _wingBladeRange);
+        }
     }
 
 
