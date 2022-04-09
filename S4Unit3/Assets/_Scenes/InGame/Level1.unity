@@ -17605,6 +17605,10 @@ PrefabInstance:
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1420706977, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: m_ImpulseDefinition.m_ImpulseDuration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1695610188, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: m_Name
       value: Particel_Boss_WingSpeedLine_L5
