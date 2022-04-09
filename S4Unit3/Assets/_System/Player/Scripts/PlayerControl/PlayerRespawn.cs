@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerRespawn : MonoBehaviour
 {
     float RespawnCountRange = 0;
-    int RespawnCount = 0;
+    //int RespawnCount = 0;
 
     PlayerState PlayerState;
 

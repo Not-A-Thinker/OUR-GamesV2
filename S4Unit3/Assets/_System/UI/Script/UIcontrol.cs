@@ -150,10 +150,10 @@ public class UIcontrol : MonoBehaviour
     //respawn
     public void PlayerRespawn(float load,string playerName)
     {
-        int count = (int)(load + 0.2f);    
+        int count = (int)(load + 0.2f);
         RespawnLoad.SetActive(true);
-        slider.value = Mathf.Lerp(load/2, slider.value,smoothing * Time.deltaTime);    
-        LoadingText.text= playerName+" Respawning";       
+        slider.value = Mathf.Lerp(load/2, slider.value, smoothing * Time.deltaTime);
+        LoadingText.text = playerName + " Respawning";
     }
     public void PlayerRespawnStop()
     {
