@@ -253,8 +253,7 @@ public class PlayerState : MonoBehaviour
         _Collider.enabled = false;
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
-        _renderer.enabled = false;     
-
+        _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(time);
         CancelInvoke();
