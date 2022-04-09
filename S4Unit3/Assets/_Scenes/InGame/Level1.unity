@@ -697,14 +697,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 59152151, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
-      propertyPath: m_DefaultVelocity.x
-      value: -1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 59152151, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
-      propertyPath: m_DefaultVelocity.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 500052818044258924, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -751,10 +743,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 500052818044258928, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4036098578310167947, guid: 01e60343b55fe044ca62fd218c26352e, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6103,7 +6091,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 80, y: 20}
+  m_SizeDelta: {x: 50, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &466738671
 CanvasRenderer:
@@ -19380,6 +19368,7 @@ MonoBehaviour:
   smoothing: 0.15
   backerSmoothing: 0.3
   _backerTTC: 0.5
+  _animator: {fileID: 1832013445}
   _isChanged: 0
 --- !u!1 &1751869057
 GameObject:
@@ -19791,6 +19780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1832013444}
+  - component: {fileID: 1832013445}
   m_Layer: 5
   m_Name: Boss
   m_TagString: Untagged
@@ -19822,6 +19812,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 149}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1832013445
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832013443}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5f327204286501418159926f10bac8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1843609833
 GameObject:
   m_ObjectHideFlags: 0
@@ -22547,18 +22557,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1507288133, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1507288141, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
-      propertyPath: m_DefaultVelocity.x
-      value: -1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1507288141, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
-      propertyPath: m_DefaultVelocity.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
       propertyPath: m_Name
       value: Player2
