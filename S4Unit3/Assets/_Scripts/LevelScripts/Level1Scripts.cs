@@ -85,10 +85,10 @@ public class Level1Scripts : MonoBehaviour
                    .SetLoops(-1, LoopType.Yoyo)
                    .SetEase(Ease.OutCirc)
                    .SetUpdate(true);
-            crystalMedium.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360)
-                   .SetLoops(-1, LoopType.Incremental)
-                   .SetEase(Ease.Linear)
-                   .SetUpdate(true);
+            //crystalMedium.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360)
+            //       .SetLoops(-1, LoopType.Incremental)
+            //       .SetEase(Ease.Linear)
+            //       .SetUpdate(true);
         }
 
         foreach (var crystalLarge in _crystalLarge)
