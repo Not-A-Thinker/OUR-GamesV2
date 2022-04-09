@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1839402245031848817}
   - component: {fileID: 1839402245031848818}
   - component: {fileID: 2355332093829667292}
+  - component: {fileID: 8666037719496285142}
   m_Layer: 0
   m_Name: Particle_palm (4)
   m_TagString: Untagged
@@ -4912,6 +4913,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetStr: Boss
+--- !u!114 &8666037719496285142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839402245031848819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46451c00be46c44bbf8a6f2d9c72a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 0}
+  BiggerEffect: {fileID: 0}
+  value: 0
+  LerpSpeed: 0.01
 --- !u!1 &2774420081290986442
 GameObject:
   m_ObjectHideFlags: 0
