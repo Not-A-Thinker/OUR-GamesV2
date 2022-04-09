@@ -52,7 +52,7 @@ public class ObjectRotation : MonoBehaviour
             dir = transform.position - target.transform.position;
 
             //¦ЫВа
-            transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
+            //transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
         }
         else
             transform.localScale = vector;
