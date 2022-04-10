@@ -56,6 +56,11 @@ public class BossSkillDemo : MonoBehaviour
     public int waveToSpawnTornado = 1;
     public int _STACount = 1;
 
+    [Header("Skill Outer WindBlade")]
+    [Tooltip("Mode1 是漸進,Mode2 是同步發射")]
+    [Range(1, 2)] [SerializeField] int owb_WorkMode = 1;
+    [SerializeField] bool owb_DebugLog = false;
+
     [Header("Skill Tornado Gattai")]
     public bool tornadoGattaiIsExisted;
 
@@ -207,14 +212,31 @@ public class BossSkillDemo : MonoBehaviour
                 iNum[i] = ran; //This make sure the 0 can a ran number from i.
             }
         }
-
-        for (int i = 0; i < sNum; i++)
+        if (owb_WorkMode == 1)
         {
-            Debug.Log(i +": "+ iNum[i]);
-            bossAI.outerWindBladeAlert[i].SetTrigger("WindBlade Alert");
-            yield return new WaitForSeconds(0.5f);
-            Instantiate(outerWindBlade, outerWindBladePoint[i].transform.position, outerWindBladePoint[i].transform.rotation);
+            for (int i = 0; i < sNum; i++)
+            {
+                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
+                
+                bossAI.outerWindBladeAlert[i].SetTrigger("WindBlade Alert");
+                yield return new WaitForSeconds(0.5f);
+                Instantiate(outerWindBlade, outerWindBladePoint[i].transform.position, outerWindBladePoint[i].transform.rotation);
+            }
         }
+        else if (owb_WorkMode == 2)
+        {
+            foreach (var num in iNum)
+            {
+                if (owb_DebugLog) Debug.Log(num + ": " + iNum[num]);
+                bossAI.outerWindBladeAlert[num].SetTrigger("WindBlade Alert");
+            }
+            yield return new WaitForSeconds(0.5f);
+            foreach (var num in iNum)
+            {
+                Instantiate(outerWindBlade, outerWindBladePoint[num].transform.position, outerWindBladePoint[num].transform.rotation);
+            }
+        }
+        
     }
 
     public void VacuumPressure()
