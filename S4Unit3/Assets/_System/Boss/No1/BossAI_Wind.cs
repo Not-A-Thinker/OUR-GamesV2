@@ -311,7 +311,7 @@ public class BossAI_Wind : MonoBehaviour
                 //{ AIDecision = 33; }
                 //Debug.Log(healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount);
 
-                if (healthBar.health <= 0)
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 2)
                 { AIDecision = 33; }
             }
             else if(!isStando)
@@ -319,7 +319,7 @@ public class BossAI_Wind : MonoBehaviour
                 //if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
                 //{ AIDecision = 33; }
 
-                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 2)
+                if (healthBar.health <= 0)
                 { AIDecision = 33; }
             }
         }
@@ -723,11 +723,11 @@ public class BossAI_Wind : MonoBehaviour
     IEnumerator AIStartTimer()
     {
         yield return new WaitForSeconds(aiStartTime);
-        if (_aiEnable){Debug.Log("'AI' Started");}
-        yield return new WaitForSeconds(3);
 
         if (_aiEnable)
         {
+            if (_aiEnable) { Debug.Log("'AI' Started"); }
+            yield return new WaitForSeconds(3);
             coroutineThink = StartCoroutine(TimeOfThink());
         }
     }
