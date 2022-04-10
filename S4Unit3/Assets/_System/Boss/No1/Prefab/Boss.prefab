@@ -57954,6 +57954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 8678587213662028274}
   boomerageAlert: {fileID: 4275804552186041929}
+  outerWindBladeAlert: []
   _TestingMode: 0
   _DrawGizmos: 0
   lookAtP1: 0
@@ -57994,7 +57995,8 @@ MonoBehaviour:
   DrawGizmo: 0
   _wingBladeRange: 70
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
-  outerWindBlade:
+  outerWindBlade: {fileID: 5798214951064251751, guid: 97f780d460f82d840a87c41861064850, type: 3}
+  outerWindBladePoint:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
