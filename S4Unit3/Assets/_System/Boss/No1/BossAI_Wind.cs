@@ -30,6 +30,7 @@ public class BossAI_Wind : MonoBehaviour
     [Header("Alerter")]
     public Animator attackAlert;
     public Animator boomerageAlert;
+    public Animator[] outerWindBladeAlert;
 
     [Header("Test Tweak")]
     public bool _TestingMode = false;
@@ -84,6 +85,12 @@ public class BossAI_Wind : MonoBehaviour
         _Player2 = GameObject.Find("Player2");
 
         preMoveCount = 0;
+
+        outerWindBladeAlert = new Animator[BossSkill.outerWindBladePoint.Length];
+        for (int i = 0; i < BossSkill.outerWindBladePoint.Length; i++)
+        {
+            outerWindBladeAlert[i] = BossSkill.outerWindBladePoint[i].GetComponent<Animator>();
+        }
 
         StartCoroutine(AIStartTimer());
     }

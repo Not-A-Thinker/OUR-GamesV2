@@ -20,7 +20,8 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Boss Skill Prefabs")]
     public GameObject windBlade;
-    public GameObject[] outerWindBlade;
+    public GameObject outerWindBlade;
+    public GameObject[] outerWindBladePoint;
     public GameObject vacuumArea;
     public GameObject bubbleAttack;
     public GameObject tornadoLinear;
@@ -111,7 +112,7 @@ public class BossSkillDemo : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
             {
-
+                StartCoroutine(OuterWindBlade(3));
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
@@ -175,6 +176,45 @@ public class BossSkillDemo : MonoBehaviour
     public void WindBlade16AnimationTrigger()
     {
         Boss1Animator.SetTrigger("Skill_WindBlade");
+    }
+
+    public IEnumerator OuterWindBlade(int sNum)
+    {
+        int[] iNum = new int[sNum];
+        
+        for (int i = 0; i < sNum; i++)
+        {
+            int ran = Random.Range(0, outerWindBladePoint.Length); //Draw a random number between the Length of outerWindBladePoint.
+
+            if (i > 1)
+            {
+                //This loop is use to detect does the number get a opposite side pos 
+                for (int j = 0; j < i; j++)
+                {
+                    if (iNum[j] == ran || iNum[j] - ran == 0)
+                    {
+                        i--;
+                        Debug.Log("Draw an Opposite or Same Number! And the Num is: " + ran + ", and the iNum is: "+ iNum[j]);
+                    }
+                    else
+                    {
+                        iNum[i] = ran;
+                    }
+                }
+            }
+            else
+            {
+                iNum[i] = ran; //This make sure the 0 can a ran number from i.
+            }
+        }
+
+        for (int i = 0; i < sNum; i++)
+        {
+            Debug.Log(i +": "+ iNum[i]);
+            bossAI.outerWindBladeAlert[i].SetTrigger("WindBlade Alert");
+            yield return new WaitForSeconds(0.5f);
+            Instantiate(outerWindBlade, outerWindBladePoint[i].transform.position, outerWindBladePoint[i].transform.rotation);
+        }
     }
 
     public void VacuumPressure()
