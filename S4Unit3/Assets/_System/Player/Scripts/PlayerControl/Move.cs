@@ -69,12 +69,12 @@ public class Move : MonoBehaviour
 
     float angle;
 
+    PlayerState playerState;
 
     void Start()
     {
         _DashNow = _DashTotal;
         DashBar = DashBar / _DashTotal;
-
 
         _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
@@ -83,6 +83,8 @@ public class Move : MonoBehaviour
         tempSpeed = maximumSpeed;
         oldTempSpeed = tempSpeed;
         Boss = GameObject.Find("Boss");
+
+        playerState = GetComponent<PlayerState>();
     }
 
 
@@ -267,7 +269,10 @@ public class Move : MonoBehaviour
                     }
 
                     else if (Input.GetButtonUp("JumpP2"))
+                    {
                         isDashed = false;
+                    }
+                        
                 }           
                 //float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
                 //float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
@@ -338,8 +343,11 @@ public class Move : MonoBehaviour
     }
     IEnumerator DashDelay()
     {
-        yield return new WaitForSeconds(0.05f);
-        StartCoroutine(_animation.PlayerDash(dashTime)); 
+        playerState.DashColorChange(true);
+        yield return new WaitForSeconds(0.05f);  
+        StartCoroutine(_animation.PlayerDash(dashTime));
+        yield return new WaitForSeconds(0.5f);
+        playerState.DashColorChange(false);
     }
 
     IEnumerator SlowEffectTimer()
@@ -377,13 +385,14 @@ public class Move : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             //_Collider.enabled = false;
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);
-            yield return null;
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);    
+             yield return null;
         }
 
         while(Time.time>=startTime+dashTime)
         {
             //_Collider.enabled = true;
+            //playerState.DashColorChange(false);
             yield return null;
         }
     }
@@ -459,7 +468,7 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(3);
         inCC = false;
         isKnockUp = false;
-        GetComponent<PlayerState>().StartInvincible(1.5f);
+        playerState.StartInvincible(1.5f);
     }
 
     ///Only For P1 While Getting New Cube

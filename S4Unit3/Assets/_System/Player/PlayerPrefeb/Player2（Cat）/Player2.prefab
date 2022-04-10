@@ -357,6 +357,8 @@ MonoBehaviour:
   Hula: {fileID: 2084490494798935632}
   Arrow: {fileID: 1790451745998638261}
   DeadColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  DamageColor: {r: 0.6666667, g: 0, b: 0, a: 1}
+  DashColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1860544261278244878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,8 +617,44 @@ MonoBehaviour:
     m_ActionName: P2Control/Respawn[/DualShock4GamepadHID/leftShoulder,/Keyboard/f]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 4d4dddf7-d85b-4280-ac0a-ba3eac5108ec
-    m_ActionName: UIControl/Pre
+    m_ActionId: 5c22ff8c-8b79-45a4-815b-f6355384d264
+    m_ActionName: UIControl/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 709d3da5-bd46-495d-99d9-3324a81b8c2b
+    m_ActionName: UIControl/Submit[/Keyboard/enter,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ff8c30c6-702d-43dd-a709-321e85345541
+    m_ActionName: UIControl/Point[/Mouse/position,/Pen/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c35f835a-d53d-49ef-b147-38c08db94186
+    m_ActionName: UIControl/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 94f77336-85c1-4578-a4e5-b6c325d60a5a
+    m_ActionName: UIControl/Click[/Mouse/leftButton,/Pen/tip]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed4a5311-6e55-4062-8bb0-74eac1f79486
+    m_ActionName: UIControl/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fb14cd93-d420-48a8-a68b-3fdbb0a1bb63
+    m_ActionName: UIControl/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 453e88e4-7edc-4866-9e32-8773188817a1
+    m_ActionName: UIControl/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e964bb8f-9972-4b29-8553-f12cd69ce5fe
+    m_ActionName: UIControl/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c0a95088-958e-436d-b150-d905cfb5db85
+    m_ActionName: UIControl/ScrollWheel[/Mouse/scroll]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: P2Control

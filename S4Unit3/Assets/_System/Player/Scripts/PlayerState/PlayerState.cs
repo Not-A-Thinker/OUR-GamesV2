@@ -38,7 +38,7 @@ public class PlayerState : MonoBehaviour
     [SerializeField] SpriteRenderer Arrow;
     Color color,hula_color,ArrowColor;
 
-    public Color DeadColor;
+    public Color DeadColor,DamageColor,DashColor;
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
 
@@ -112,6 +112,7 @@ public class PlayerState : MonoBehaviour
         {
             StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
+            _renderer.material.SetColor("_MainColor", DamageColor);
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
 
             if (isPlayer1)
@@ -207,7 +208,7 @@ public class PlayerState : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         UIcontrol.RespawnText(true);
         //rb.useGravity = false;
-        StartCoroutine(Invincible(999));
+        StartCoroutine(Invincible(999999));
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
@@ -255,6 +256,8 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
+        yield return new WaitForSeconds(0.6f);
+        _renderer.material.SetColor("_MainColor", color);
         yield return new WaitForSeconds(time);
         CancelInvoke();
         _renderer.enabled = true;
@@ -264,13 +267,30 @@ public class PlayerState : MonoBehaviour
         //Debug.Log("Invincible" + isInvincible);
     }
 
+    public void DashColorChange(bool isDsah)
+    {
+        if (isDsah) 
+        {
+            _renderer.material.SetColor("_MainColor", DashColor);
+        }
+        else
+        {
+            _renderer.material.SetColor("_MainColor", color);
+        }
+    }
+
     //閃爍
     void InvincibleRend()
     {
-        if (_renderer.enabled == true)       
-            _renderer.enabled = false;      
+        if (_renderer.enabled == true)
+        {
+            _renderer.enabled = false;
+        }           
         else
+        {
             _renderer.enabled = true;
+            _renderer.material.SetColor("_MainColor", color);
+        }         
     }
 
     private static IEnumerator Vibration(float lowFrequency, // 低周波（左）モーターの強さ（0.0 ～ 1.0）
