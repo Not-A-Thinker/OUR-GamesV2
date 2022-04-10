@@ -384,9 +384,12 @@ public class BossAI_Wind : MonoBehaviour
 
         //This is the attack alert animation,
         //and will have to wait at least 0.4 sec to response(may need to change).
-        attackAlert.SetTrigger("isAttacking");
-        yield return new WaitForSeconds(0.4f);
-
+        if (num != 33)
+        {
+            attackAlert.SetTrigger("isAttacking");
+            yield return new WaitForSeconds(0.4f);
+        }
+        
         if (IsStage1 || isStando)
         {
             switch (num)
