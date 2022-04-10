@@ -1003,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030684704, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684711, y: 74.87, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6410,7 +6410,7 @@ GameObject:
   - component: {fileID: 396215641}
   m_Layer: 0
   m_Name: AirWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7051,7 +7051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &483758860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15251,7 +15251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030684704, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684711, y: 74.87, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18200,6 +18200,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 609656492285098026, guid: 288e7a0ee0a9cd148bf235a3a9953d22, type: 3}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: DrawGizmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: SpawnPoint
       value: 
       objectReference: {fileID: 1706270379}
@@ -18215,6 +18219,10 @@ PrefabInstance:
       propertyPath: owb_WorkMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: windBallPoint
+      value: 
+      objectReference: {fileID: 1558560917}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: outerWindBladePoint.Array.data[0]
       value: 
@@ -18308,6 +18316,11 @@ PrefabInstance:
 --- !u!4 &1558560916 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3277564667117997224, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+  m_PrefabInstance: {fileID: 1558560915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1558560917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1566686734550591369, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
   m_PrefabInstance: {fileID: 1558560915}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1568724775

@@ -13,6 +13,7 @@ public class BossSkillDemo : MonoBehaviour
     private GameObject _Player2;
 
     public GameObject instantiatePoint;
+    public GameObject windBallPoint;
 
     [Header("Debug")]
     [SerializeField] bool DrawGizmo = false;
@@ -114,7 +115,8 @@ public class BossSkillDemo : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                MistAttack();
+                //MistAttack();
+                WindBalls(4);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
             {
@@ -537,8 +539,14 @@ public class BossSkillDemo : MonoBehaviour
             int rnd = Random.Range(0, 360);
             Quaternion rndRot = Quaternion.Euler(0, rnd, 0);
 
-            GameObject wB = Instantiate(windBall, transform.position, Quaternion.identity);
+            Vector2 cirRnd = Random.insideUnitCircle * _skillRange / 2;
+            float rndX = transform.position.x + cirRnd.x;
+            float rndY = Random.Range(windBallPoint.transform.position.y + 3, windBallPoint.transform.position.y + 4f);
+            float rndZ = transform.position.z + cirRnd.y;
+            Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
 
+            GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
+            wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
         }
     }
 
