@@ -17,6 +17,14 @@ public class Skill_WindBall : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        
+        if (col.transform.tag == "Ground")
+        {
+            Destroy(gameObject, 1f);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Hi.");
     }
 }

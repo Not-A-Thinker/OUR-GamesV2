@@ -534,7 +534,11 @@ public class BossSkillDemo : MonoBehaviour
 
         for (int i = 0; i < sNum; i++)
         {
-            Instantiate(windBall, transform.position, Quaternion.identity);
+            int rnd = Random.Range(0, 360);
+            Quaternion rndRot = Quaternion.Euler(0, rnd, 0);
+
+            GameObject wB = Instantiate(windBall, transform.position, Quaternion.identity);
+
         }
     }
 

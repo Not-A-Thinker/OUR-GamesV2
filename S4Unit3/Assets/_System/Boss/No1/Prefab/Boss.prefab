@@ -57762,6 +57762,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &1566686734550591369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7374611374117350582}
+  m_Layer: 6
+  m_Name: WindBall Instante Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7374611374117350582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566686734550591369}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.4, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3547116887273196986}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3547116886111481972
 GameObject:
   m_ObjectHideFlags: 0
@@ -57917,6 +57948,7 @@ Transform:
   - {fileID: 3087408816934859753}
   - {fileID: 3547116886111481973}
   - {fileID: 3547116887089412504}
+  - {fileID: 7374611374117350582}
   - {fileID: 8678587213662028268}
   - {fileID: 4275804552186041934}
   m_Father: {fileID: 0}
@@ -58016,6 +58048,7 @@ MonoBehaviour:
   windBladeBoomerang: {fileID: 7946992982300751064, guid: ee0e9caac38b7b8459abd4eb5cb75f25, type: 3}
   tornadoSpecialAttack: {fileID: 609656492285098026, guid: c2500912f65c7ac429c3a76bff944f21, type: 3}
   mistObj: {fileID: 1546076111722753262, guid: f4f8c31eba57edc4391e3c0ccb79cb71, type: 3}
+  windBall: {fileID: 609656492285098026, guid: 288e7a0ee0a9cd148bf235a3a9953d22, type: 3}
   bossStando: {fileID: 1957455747635378796, guid: fa90e23e5034dde409d5ed56edfba0bf, type: 3}
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
@@ -58029,6 +58062,8 @@ MonoBehaviour:
   waveToSpawnWindBlade: 3
   waveToSpawnTornado: 1
   _STACount: 1
+  owb_WorkMode: 2
+  owb_DebugLog: 0
   tornadoGattaiIsExisted: 0
   skillPoint: {fileID: 0}
   windHole: {fileID: 4988700607590763605, guid: 258bdec2c9e2a004184a4c729ebb1a7c, type: 3}
@@ -58210,7 +58245,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58313,7 +58348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_LocalScale.x
