@@ -348,6 +348,22 @@ public class BossSkillDemo : MonoBehaviour
         _STACount++;
     }
 
+    public void WindBalls(int sNum)
+    {
+
+        for (int i = 0; i < sNum; i++)
+        {
+            Vector2 cirRnd = Random.insideUnitCircle * _skillRange / 2;
+            float rndX = transform.position.x + cirRnd.x;
+            float rndY = Random.Range(windBallPoint.transform.position.y + 3, windBallPoint.transform.position.y + 4f);
+            float rndZ = transform.position.z + cirRnd.y;
+            Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
+
+            GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
+            wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
+        }
+    }
+
     IEnumerator EnemyRush(Vector3 targetPos)
     {
         float step = 1f;
@@ -531,24 +547,6 @@ public class BossSkillDemo : MonoBehaviour
         }
     }
 
-    public void WindBalls(int sNum)
-    {
-
-        for (int i = 0; i < sNum; i++)
-        {
-            int rnd = Random.Range(0, 360);
-            Quaternion rndRot = Quaternion.Euler(0, rnd, 0);
-
-            Vector2 cirRnd = Random.insideUnitCircle * _skillRange / 2;
-            float rndX = transform.position.x + cirRnd.x;
-            float rndY = Random.Range(windBallPoint.transform.position.y + 3, windBallPoint.transform.position.y + 4f);
-            float rndZ = transform.position.z + cirRnd.y;
-            Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
-
-            GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
-            wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
-        }
-    }
 
     //This is the end of all stage skill sets.
     #endregion
