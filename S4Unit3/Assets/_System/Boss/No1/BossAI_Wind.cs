@@ -65,6 +65,8 @@ public class BossAI_Wind : MonoBehaviour
     public bool isStando;
 
     [Header("Skill Range")]
+    [SerializeField] float skillRangeS = 25;
+    [SerializeField] float skillRangeL = 50;
     [SerializeField] float skillRange1 = 20;
     [SerializeField] float skillRange2 = 35;
     [SerializeField] float skillRange3 = 50;
