@@ -57,6 +57,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] float aiReactTimeStandoMode = 3.6f;
     public bool IsStage1 = true;
     public bool IsStage2 = false;
+    public bool IsAfter33 = false;
 
     [Header("Skills AI")]
     public bool isStandoMode = false;
@@ -156,7 +157,7 @@ public class BossAI_Wind : MonoBehaviour
             if (_TestingMode) { return; }
 
             //This is the version of total health instead of 2 stage health.
-            if (healthBar.health <= basicState._maxHealth / 2)
+            if (healthBar.health <= basicState._maxHealth / 2 && IsAfter33)
             {
                 IsStage1 = false;
                 IsStage2 = true;
@@ -303,16 +304,22 @@ public class BossAI_Wind : MonoBehaviour
             if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
             { AIDecision = 32;}
 
-            //第一階大技
+            //第一階大技/至二階過場動畫
             if (basicState.isHealthMerge && !isStando)
             {
-                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount && BossSkill._STACount < 4)
-                { AIDecision = 33; }
+                //if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount && BossSkill._STACount < 4)
+                //{ AIDecision = 33; }
                 //Debug.Log(healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount);
+
+                if (healthBar.health <= 0)
+                { AIDecision = 33; }
             }
-            else
+            else if(!isStando)
             {
-                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4 && !isStando)
+                //if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 4 * BossSkill._STACount && BossSkill._STACount < 4)
+                //{ AIDecision = 33; }
+
+                if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 2)
                 { AIDecision = 33; }
             }
         }
@@ -359,7 +366,7 @@ public class BossAI_Wind : MonoBehaviour
             else if (preMoveCount == 2 && distP2 < skillRange1)//If player2 is too near boss after 2 backward, then...
             { AIDecision = 63;}
 
-            if (!isStandoMode && BossSkill.canStandoAgain)
+            if (!isStandoMode && BossSkill.canStandoAgain)//Stando Spawn
             {AIDecision = 64;}
         }
 
@@ -526,7 +533,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
-                    //yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(.5f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
@@ -627,14 +634,14 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (preMoveCount <= 2)
         {
-            if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 / 1.5f))
+            if (lookAtP1 && Vector3.Distance(transform.position, _Player1.transform.position) <= (skillRange1 * 0.85f))
             {
                 ani.SetTrigger("IsBackwarding");
                 yield return new WaitForSeconds(timing);
                 rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
                 preMoveCount++;
             }
-            if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 / 1.5f))
+            if (lookAtP2 && Vector3.Distance(transform.position, _Player2.transform.position) <= (skillRange1 * 0.85f))
             {
                 ani.SetTrigger("IsBackwarding");
                 yield return new WaitForSeconds(timing);
@@ -773,6 +780,9 @@ public class BossAI_Wind : MonoBehaviour
         //They should play the same expect a AI movement decide will be added
         while (IsStage2 && _aiEnable)
         {
+            //This is for restate the animator back to Idle State. Test for will dc33 break the game.
+            yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+
             //This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);

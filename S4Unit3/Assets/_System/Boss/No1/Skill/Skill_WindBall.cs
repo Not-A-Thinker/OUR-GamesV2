@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Skill_WindBall : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] float _fallingSpeed = 3f;
+    //Rigidbody rb;
+    //[SerializeField] float _fallingSpeed = 3f;
 
     PlayerState playerState;
 
