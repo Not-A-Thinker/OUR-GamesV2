@@ -8,8 +8,9 @@ public class Boss1Animator : MonoBehaviour
 {
     private CinemachineImpulseSource impulseSource;
 
-    [Header("Boss Skill Holder")]
+    [Header("Boss Skill and AI Holder")]
     public BossSkillDemo BossSkill;
+    public BossAI_Wind BossAI;
 
     [Header("Virtual Camera Control")]
     public CinemachineVirtualCamera mainVC;
@@ -42,9 +43,10 @@ public class Boss1Animator : MonoBehaviour
 
     public void Animation_BossPinBallAttack()
     {
-        BossSkill.TornadoSpecialAttackAnimation();
+        //BossSkill.TornadoSpecialAttackAnimation();
         //bossVC.m_Priority = orgPriority;
         impulseSource.GenerateImpulse();
+        BossAI.IsAfter33 = true;
     }
 
     public void Camera_PinBallFadeIn()
