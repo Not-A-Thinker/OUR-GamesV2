@@ -199,18 +199,12 @@ public class BossSkillDemo : MonoBehaviour
                     if (iNum[j] == ran || iNum[j] - ran == 0)
                     {
                         i--;
-                        Debug.Log("Draw an Opposite or Same Number! And the Num is: " + ran + ", and the iNum is: "+ iNum[j]);
+                        if (owb_DebugLog) Debug.Log("Draw an Opposite or Same Number! And the Num is: " + ran + ", and the iNum is: "+ iNum[j]);
                     }
-                    else
-                    {
-                        iNum[i] = ran;
-                    }
+                    else{ iNum[i] = ran;}
                 }
             }
-            else
-            {
-                iNum[i] = ran; //This make sure the 0 can a ran number from i.
-            }
+            else{ iNum[i] = ran;} //This make sure the 0 can a ran number from i.
         }
         if (owb_WorkMode == 1)
         {
@@ -218,22 +212,22 @@ public class BossSkillDemo : MonoBehaviour
             {
                 if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
                 
-                bossAI.outerWindBladeAlert[i].SetTrigger("WindBlade Alert");
+                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
                 yield return new WaitForSeconds(0.5f);
-                Instantiate(outerWindBlade, outerWindBladePoint[i].transform.position, outerWindBladePoint[i].transform.rotation);
+                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
         else if (owb_WorkMode == 2)
         {
-            foreach (var num in iNum)
+            for (int i = 0; i < sNum; i++)
             {
-                if (owb_DebugLog) Debug.Log(num + ": " + iNum[num]);
-                bossAI.outerWindBladeAlert[num].SetTrigger("WindBlade Alert");
+                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
+                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
             }
             yield return new WaitForSeconds(0.5f);
-            foreach (var num in iNum)
+            for (int i = 0; i < sNum; i++)
             {
-                Instantiate(outerWindBlade, outerWindBladePoint[num].transform.position, outerWindBladePoint[num].transform.rotation);
+                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
         
