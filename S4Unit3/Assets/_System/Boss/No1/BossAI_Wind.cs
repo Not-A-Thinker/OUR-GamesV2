@@ -934,7 +934,7 @@ public class BossAI_Wind : MonoBehaviour
 
             isMeleeAttacking = false;
 
-            if (_ComboNum >= 5)
+            if (_ComboNum >= 5 && b_UseComboSet)
             {
                 _ComboNum = 0;
                 Debug.Log("Take a Break!");
@@ -979,7 +979,7 @@ public class BossAI_Wind : MonoBehaviour
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
             else { yield return new WaitForSeconds(aiReactTimeStage2); }
 
-            if (_ComboNum == 5)
+            if (_ComboNum == 5 && b_UseComboSet)
             {
                 _ComboNum = 0;
                 yield return new WaitForSeconds(3);
