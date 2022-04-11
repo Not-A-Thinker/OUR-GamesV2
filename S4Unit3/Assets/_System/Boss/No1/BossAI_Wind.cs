@@ -40,6 +40,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool lookAtP1;
     [SerializeField] bool lookAtP2;
     [SerializeField] bool isLockOn;
+    [SerializeField] bool _quickLock;
     [SerializeField] bool isMeleeAttacking;
 
     [Header("Boss Movement")]
@@ -51,10 +52,12 @@ public class BossAI_Wind : MonoBehaviour
 
     [Header("AI")]
     [SerializeField] bool _aiEnable = true;
+    [Space]
     [SerializeField] int aiStartTime = 99;
     [SerializeField] float aiReactTimeStage1 = 2.7f;
     [SerializeField] float aiReactTimeStage2 = 1.8f;
     [SerializeField] float aiReactTimeStandoMode = 3.6f;
+    [Space]
     public bool IsStage1 = true;
     public bool IsStage2 = false;
     public bool IsAfter33 = false;
@@ -64,10 +67,16 @@ public class BossAI_Wind : MonoBehaviour
     public bool isMain;
     public bool isStando;
 
+    [Header("Skill Sets")]
+    [SerializeField] bool b_UseComboSet = true;
+    [Range(1,5)] [SerializeField] int _ComboNum = 1;
+    [SerializeField] int _ComboMaxNum = 5;
+
     [Header("Skill Range")]
     [SerializeField] float skillRangeS = 25;
     [SerializeField] float skillRangeL = 50;
     [SerializeField] float skillRange1 = 20;
+    [Space]
     [SerializeField] float skillRange2 = 35;
     [SerializeField] float skillRange3 = 50;
 
@@ -98,7 +107,7 @@ public class BossAI_Wind : MonoBehaviour
         StartCoroutine(AIStartTimer());
     }
 
-    //This is only for testing function, should be del soon.
+    ///This is only for testing function, should be del(or disable) soon.
     IEnumerator Test()
     {
         //Boomerang 風刃迴力鏢
@@ -130,8 +139,8 @@ public class BossAI_Wind : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //This is for detecting if is condition to stage 2
-        //May need to apply a animation to tell if is Stage 2
+        ///This is for detecting if is condition to stage 2
+        ///May need to apply a animation to tell if is Stage 2
         if (IsStage1 && !basicState.isHealthMerge)
         {
             if (_TestingMode){return;}
@@ -176,7 +185,7 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
 
-        //Press Left shift and 1 to change boss AI.
+        ///Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
         {
             _aiEnable = !_aiEnable;
@@ -188,17 +197,30 @@ public class BossAI_Wind : MonoBehaviour
         if (!_aiEnable)
             return;
 
-        //This is for locking on player itself by shooting a raycast;
+        ///This is for locking on player itself by shooting a raycast;
         selfPos = new Vector3(transform.position.x, 1, transform.position.z);
 
-        RaycastHit isPlayerGetHit;
-        if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRange3))
+        if (lookAtP1)
         {
-            if (isPlayerGetHit.transform.tag == "Player")
-            {isLockOn = true;}
+            RaycastHit isPlayerGetHit;
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, 12))
+            {
+                if (isPlayerGetHit.transform.tag == "Player")
+                { isLockOn = true; }
+            }
+            else { isLockOn = false; }
         }
-        else { isLockOn = false; }
-
+        else if (lookAtP2)
+        {
+            RaycastHit isPlayerGetHit;
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, 13))
+            {
+                if (isPlayerGetHit.transform.tag == "Player")
+                { isLockOn = true; }
+            }
+            else { isLockOn = false; }
+        }
+        
         //Debug.DrawRay(selfPos, transform.forward * skillRange3, Color.red);
 
         PlayerLockOn();
@@ -216,7 +238,7 @@ public class BossAI_Wind : MonoBehaviour
             float distP1 = Vector3.Distance(transform.position, _Player1.transform.position);
             float distP2 = Vector3.Distance(transform.position, _Player2.transform.position);
 
-            //This is use for checking the closest player and if he's dead or not.
+            ///This is use for checking the closest player and if he's dead or not.
             if (distP1 < distP2 && !_Player1.GetComponent<PlayerState>().GetPlayerIsDead())
             {
                 lookAtP1 = true;
@@ -242,25 +264,36 @@ public class BossAI_Wind : MonoBehaviour
     }
     public void PlayerLockOn()
     {
+        ///This is use for rotating the boss to face to the player who is selected.
         if (lookAtP1 && !isMeleeAttacking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_Player1.transform.position - transform.position);
             targetRotation.x = 0;
             targetRotation.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime);
+            if (_quickLock)
+            { transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 60f * Time.deltaTime);}
+            else
+            { transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime);}
         }
         else if (lookAtP2 && !isMeleeAttacking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(_Player2.transform.position - transform.position);
             targetRotation.x = 0;
             targetRotation.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime);
+            if (_quickLock)
+            { transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 60f * Time.deltaTime); }
+            else
+            { transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime); }
         }
     }
+
+    /// <summary>
+    /// 處理AI對玩家檢測和決定接下來的攻擊
+    /// </summary>
     public void SkillSelection()
     {
-        float distP1 = Vector3.Distance(transform.position, _Player1.transform.position);
-        float distP2 = Vector3.Distance(transform.position, _Player2.transform.position);
+        float distP1 = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(_Player1.transform.position.x, 0, _Player1.transform.position.z));
+        float distP2 = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(_Player2.transform.position.x, 0, _Player1.transform.position.z));
 
         bool P1isBehind = Vector3.Angle(_Player1.transform.position - transform.position, transform.forward) > angleOfView;
         bool P2isBehind = Vector3.Angle(_Player2.transform.position - transform.position, transform.forward) > angleOfView;
@@ -269,44 +302,81 @@ public class BossAI_Wind : MonoBehaviour
 
         if (IsStage1 || isStando)
         {
-            //This is use for detect who is the closest player to boss or is behind it.
-            //But now lookatp1 and lookatp2 are work in the same way.
-            if (lookAtP1)//While the Boss is watching Player1...
+            ///當不使用攻擊組時, AI會自行根據玩家的位置作出回應
+            ///This is use for detect who is the closest player to boss or is behind it.
+            ///But now lookatp1 and lookatp2 are work in the same way.
+            if (lookAtP1 && !b_UseComboSet)//While the Boss is watching Player1...
             {
                 if (distP1 > 0 && distP1 < skillRange1)//if the distance between player1 and boss are less than skillRange1, then...
                 {
                     AIDecision = 11;
                 }
-                if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
+                else if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
                 {
                     AIDecision = 12;
                 }
-                if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
+                else if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
                 {
                     AIDecision = 13;
                 }
+                //if (distP1 > 0 && distP1 < skillRangeS)
+                //{
+                //    AIDecision = 14;
+                //}
+                //else if (distP1 > skillRangeS && distP1 < skillRangeL)
+                //{
+                //    AIDecision = 15;
+                //}
             }
-            if (lookAtP2)//While the Boss is watching Player2...
+            if (lookAtP2 && !b_UseComboSet)//While the Boss is watching Player2...
             {
                 if (distP2 > 0 && distP2 < skillRange1)//if the distance between player2 and boss are less than skillRange1, then...
                 {
                     AIDecision = 11;//should change back to 21 if we decide to have different attack move to player.
                 }
-                if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
+                else if(distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
                 {
                     AIDecision = 12;//should change back to 22 if we decide to have different attack move to player.
                 }
-                if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
+                else if(distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
                 {
                     AIDecision = 13;//should change back to 23 if we decide to have different attack move to player.
                 }
+                //if (distP2 > 0 && distP2 < skillRangeS)
+                //{
+                //    AIDecision = 14;
+                //}
+                //else if (distP2 > skillRangeS && distP2 < skillRangeL)
+                //{
+                //    AIDecision = 15;
+                //}
             }
-            if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
-            { AIDecision = 31;}
-            if (P2isBehind && distP1 < distP2)//If player2 is behind Boss and is the closest, then...
-            { AIDecision = 32;}
+            ///31 32為背後偵測攻擊,需要時再開啟
+            ///If player1 is behind Boss and is the closest, then...
+            //if (P1isBehind && distP1 > distP2)
+            //{ AIDecision = 31;}
+            ///If player2 is behind Boss and is the closest, then...
+            //if (P2isBehind && distP1 < distP2)
+            //{ AIDecision = 32;}
 
-            //第一階大技/至二階過場動畫
+            ///當使用攻擊組時,AI只會按數字作出決定
+            if (b_UseComboSet)
+            {
+                if (_ComboNum == 1 || _ComboNum == 3)
+                {
+                    AIDecision = 14;
+                }
+                else if (_ComboNum == 2 || _ComboNum == 5)
+                {
+                    AIDecision = 15;
+                }
+                else if (_ComboNum == 4)
+                {
+                    AIDecision = 16;
+                }
+            }
+
+            ///第一階大技/至二階過場動畫
             if (basicState.isHealthMerge && !isStando)
             {
                 //if (healthBar.health <= healthBar.maxHealth - healthBar.maxHealth / 8 * BossSkill._STACount && BossSkill._STACount < 4)
@@ -327,22 +397,30 @@ public class BossAI_Wind : MonoBehaviour
         }
         if (IsStage2 && !isStando)
         {
-            //This is use for detect who is the closest player to boss or is behind it.
-            //But now lookatp1 and lookatp2 are work in the same way.
+            ///This is use for detect who is the closest player to boss or is behind it.
+            ///But now lookatp1 and lookatp2 are work in the same way.
             if (lookAtP1)//While the Boss is watching Player1...
             {
                 if (distP1 > 0 && distP1 < skillRange1)//if the distance between player1 and boss are less than skillRange1, then...
                 {
                     AIDecision = 41;
                 }
-                if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
+                else if (distP1 > skillRange1 && distP1 < skillRange2)//if the distance between player1 and boss are less than skillRange2, then...
                 {
                     AIDecision = 42;
                 }
-                if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
+                else if (distP1 > skillRange2 && distP1 < skillRange3)//if the distance between player1 and boss are less than skillRange3, then...
                 {
                     AIDecision = 43;
                 }
+                //if (distP1 > 0 && distP1 < skillRangeS)
+                //{
+                //    AIDecision = 44;
+                //}
+                //else if (distP1 > skillRangeS && distP1 < skillRangeL)
+                //{
+                //    AIDecision = 45;
+                //}
             }
             if (lookAtP2)//While the Boss is watching Player2...
             {
@@ -350,14 +428,22 @@ public class BossAI_Wind : MonoBehaviour
                 {
                     AIDecision = 41;//should change back to 51 if we decide to have different attack move to player.
                 }
-                if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
+                else if (distP2 > skillRange1 && distP2 < skillRange2)//if the distance between player2 and boss are less than skillRange2, then...
                 {
                     AIDecision = 42;//should change back to 52 if we decide to have different attack move to player.
                 }
-                if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
+                else if (distP2 > skillRange1 && distP2 < skillRange3)//if the distance between player2 and boss are less than skillRange3, then...
                 {
                     AIDecision = 43;//should change back to 53 if we decide to have different attack move to player.
                 }
+                //if (distP2 > 0 && distP2 < skillRangeS)
+                //{
+                //    AIDecision = 44;
+                //}
+                //else if (distP2 > skillRangeS && distP2 < skillRangeL)
+                //{
+                //    AIDecision = 45;
+                //}
             }
             if (P1isBehind && distP1 > distP2)//If player1 is behind Boss and is the closest, then...
             { AIDecision = 61;}
@@ -368,24 +454,33 @@ public class BossAI_Wind : MonoBehaviour
             else if (preMoveCount == 2 && distP2 < skillRange1)//If player2 is too near boss after 2 backward, then...
             { AIDecision = 63;}
 
+            //if (_ComboNum == 4)//定點攻擊
+            //{
+            //    AIDecision = 64;
+            //}
+
             if (!isStandoMode && BossSkill.canStandoAgain)//Stando Spawn
-            {AIDecision = 64;}
+            {AIDecision = 65;}
         }
 
         //Debug.Log("Skill is select!");
         coroutineAtk = StartCoroutine(AIOnAttack(AIDecision));
 
-        //This is the End of Skill Selection.
+        ///This is the End of Skill Selection.
     }
 
-    //This is for AI how to do an attack after the decision make by SkillSelection function.
+    ///<summary>
+    ///處理來自SkillSelection的決定, 判斷並處理後續結果的程序
+    ///</summary>
     public IEnumerator AIOnAttack(int num)
     {
-        int rndNum = Random.Range(0, 100);
-        print("AI has select: " + num + "and rndNum is: " + rndNum);
+        _ComboNum++;
 
-        //This is the attack alert animation,
-        //and will have to wait at least 0.4 sec to response(may need to change).
+        int rndNum = Random.Range(0, 100);
+        print("AIDecision: " + num + " and rndNum: " + rndNum);
+
+        ///This is the attack alert animation,
+        ///and will have to wait at least 0.4 sec to response(may need to change).
         if (num != 33)
         {
             attackAlert.SetTrigger("isAttacking");
@@ -396,26 +491,27 @@ public class BossAI_Wind : MonoBehaviour
         {
             switch (num)
             {
+                #region Stage1_Case11-13
                 case 11:
                     if (rndNum < 50)
                     {
-                        //WindBlade 16發風刃 * 3 + S形龍捲風
+                        ///WindBlade 16發風刃 * 3 + S形龍捲風
                         //yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
                         //BossSkill.TornadoAttack();
 
-                        //WindBlade 16發風刃 * 3
+                        ///WindBlade 16發風刃 * 3
                         BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //8Tornado 八方龍捲 * 3
+                        ///8Tornado 八方龍捲 * 3
                         BossSkill.StartCoroutine(BossSkill.EightTornado(3));
                     }
                     break;
                 case 12:
                     if (rndNum < 40)
                     {
-                        //Boomerang 風刃迴力鏢
+                        ///Boomerang 風刃迴力鏢
                         boomerageAlert.SetTrigger("Boomer Alert");
                         yield return new WaitForSeconds(0.2f);
 
@@ -424,14 +520,14 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     else if (rndNum >= 40 && rndNum < 67)
                     {
-                        //WindBlade 16發風刃 * 4 + S形龍捲風
+                        ///WindBlade 16發風刃 * 4 + S形龍捲風
                         //yield return coroutineTemp = BossSkill.StartCoroutine(BossSkill.WindBlade16(4));
                         BossSkill.TornadoAttack();
 
                     }
                     else if (rndNum >= 67 && rndNum < 100)
                     {
-                        //8Tornado八方龍捲 * 4
+                        ///8Tornado八方龍捲 * 4
                         BossSkill.StartCoroutine(BossSkill.EightTornado(4));
                     }
                     break;
@@ -440,21 +536,66 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         if (BossSkill.tornadoGattaiIsExisted)
                         {
-                            //STornado S形龍捲風
+                            ///STornado S形龍捲風
                             BossSkill.TornadoAttack();
                         }
                         else
                         {
-                            //TornadoGattai 龍捲風合體
+                            ///TornadoGattai 龍捲風合體
                             BossSkill.TornadoGattai();
                             //cameraControl.ChangeTargetWeight(3, 3);
                         }
                     }
                     else if (rndNum >= 40 && rndNum < 100)
                     {
-                        //STornado S形龍捲風
+                        ///STornado S形龍捲風
                         BossSkill.TornadoAttack();
                     }
+                    break;
+                #endregion
+                ///Case14-16為Combo組合攻擊組
+                case 14:
+                    ///遠距離攻擊
+                    if (rndNum + 1 <= 25) 
+                    {
+                        ///8Tornado八方龍捲 * 4
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(4));
+                    }
+                    else if (rndNum + 1 >= 26 && rndNum + 1 <= 50)
+                    {
+                        ///Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+                        BossSkill.WindBladeBoomerang();
+                    }
+                    else if (rndNum + 1 >= 51 && rndNum + 1 <= 75)
+                    {
+                        ///Outer WindBlade 風刃分割版
+                        BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
+                    }
+                    else if (rndNum + 1 >= 76 && rndNum + 1 <= 100)
+                    {
+                        ///This should be the Wind Wall, but for now is Outer WindBlade
+                        BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
+                    }
+                    break;
+                case 15:
+                    ///近距離攻擊
+                    if (rndNum + 1 >= 1 && rndNum + 1 <= 50)
+                    {
+                        ///STornado S形龍捲風
+                        BossSkill.TornadoAttack();
+                    }
+                    else if (rndNum + 1 >= 51 && rndNum + 1 <= 100)
+                    {
+                        ///Wind Balls 風球
+                        BossSkill.StartCoroutine(BossSkill.WindBalls(4, 1));
+                    }
+                    break;
+                case 16:
+                    ///場外攻擊-TornadoGattai 龍捲風合體
+                    ///TornadoGattai 龍捲風合體
+                    BossSkill.TornadoGattai();
                     break;
 
                 #region Stage1_Case21-23
@@ -510,31 +651,31 @@ public class BossAI_Wind : MonoBehaviour
                 case 31:
                     if (rndNum < 50)
                     {
-                        //WindBlade 16發風刃 * 2
+                        ///WindBlade 16發風刃 * 2
                         //BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
                         BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //8Tornado 八方龍捲 * 3
+                        ///8Tornado 八方龍捲 * 3
                         BossSkill.StartCoroutine(BossSkill.EightTornado(3));
                     }
                     break;
                 case 32:
                     if (rndNum < 50)
                     {
-                        //WindBlade 16發風刃 * 2
+                        ///WindBlade 16發風刃 * 2
                         //BossSkill.StartCoroutine(BossSkill.WindBlade16(2));
                         BossSkill.WindBlade16AnimationTrigger();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //8Tornado 八方龍捲 * 3
+                        ///8Tornado 八方龍捲 * 3
                         BossSkill.StartCoroutine(BossSkill.EightTornado(3));
                     }
                     break;
                 case 33:
-                    //STA 龍龍彈珠台
+                    ///STA 龍龍彈珠台(現在為過埸動畫)
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
@@ -552,13 +693,13 @@ public class BossAI_Wind : MonoBehaviour
                 case 41:
                     if (rndNum < 50)
                     {
-                        //Wing Area Attack 近戰範圍攻擊
+                        ///Wing Area Attack 近戰範圍攻擊
                         BossSkill.BossWingAreaAttack();
                         isMoveFinished = true;
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //Tail Attack 尾巴攻擊
+                        ///Tail Attack 尾巴攻擊
                         BossSkill.BossTailAttack();
                         isMoveFinished = true;
                     }
@@ -566,7 +707,7 @@ public class BossAI_Wind : MonoBehaviour
                 case 42:
                     if (rndNum < 50)
                     {
-                        //Wing Attack 近戰攻擊(翼)
+                        ///Wing Attack 近戰攻擊(翼)
                         yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                         isMeleeAttacking = true;
@@ -574,7 +715,7 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //Mist Attack 霧氣攻擊
+                        ///Mist Attack 霧氣攻擊
                         if (BossSkill.canMistAgain)
                         {
                             BossSkill.MistAttack();
@@ -582,47 +723,57 @@ public class BossAI_Wind : MonoBehaviour
                         }
                         else
                         {
-                            //Wing Attack 近戰攻擊(翼)
+                            ///Wing Attack 近戰攻擊(翼)
                             yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                             isMeleeAttacking = true;
                             BossSkill.BossWingAttack();
                         }
                     }
-                    
                     break;
                 case 43:
                     if(rndNum < 50)
                     {
-                        //Wind Hole 風柱
+                        ///Wind Hole 風柱
                         StartCoroutine(BossSkill.WindHole(1,8));
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
-                        //Do something else
-                        //Wing Attack 近戰攻擊(翼)
+                        ///Do something else
+                        ///Wing Attack 近戰攻擊(翼)
                         yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                         isMeleeAttacking = true;
                         BossSkill.BossWingAttack();
                     }
                     break;
+                case 44:
+
+                    break;
+                case 45:
+
+                    break;
+                case 46:
+                    ///定點攻擊
+                    
+                    break;
+
                 case 61:
-                    //Wing Area Attack 近戰範圍攻擊
+                    ///Wing Area Attack 近戰範圍攻擊
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
                     break;
                 case 62:
-                    //Wind Hole 風柱
+                    ///Wind Hole 風柱
                     StartCoroutine(BossSkill.WindHole(1, 8));
                     break;
                 case 63:
-                    //Wing Area Attack 近戰範圍攻擊
+                    ///Wing Area Attack 近戰範圍攻擊
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
                     break;
-                case 64:
-                    //Stando! 分身
+                case 65:
+                    ///Stando! 分身
                     isStandoMode = true;
                     BossSkill.BossStando();
                     StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
@@ -632,7 +783,7 @@ public class BossAI_Wind : MonoBehaviour
         }
         //yield return null;
         yield return new WaitForSeconds(.5f);
-        //This is the End of AI Attack.
+        ///This is the End of AI Attack.
     }
 
     public IEnumerator Pre_BossMovement()
@@ -696,7 +847,7 @@ public class BossAI_Wind : MonoBehaviour
     IEnumerator BossRedestinationTimer()
     {
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         if (!isMoveFinished)
         {
             isMoveFinished = true;
@@ -740,40 +891,57 @@ public class BossAI_Wind : MonoBehaviour
     IEnumerator AIRestartTimer()
     {
         //yield return new WaitForSeconds(aiStartTime);
-        while (true)
+        //while (true)
+        //{
+        //    if (!_aiEnable)
+        //        yield return new WaitUntil(() => _aiEnable);
+        //    if (_aiEnable && coroutineThink == null)
+        //    {
+        //        Debug.Log("'AI' Restarted");
+        //        coroutineThink = StartCoroutine(TimeOfThink());
+        //        break;
+        //    }
+        //    yield return new WaitForSeconds(5);
+        //}
+        if (_aiEnable)
         {
-            if (!_aiEnable)
-                yield return new WaitUntil(() => _aiEnable);
-            if (_aiEnable && coroutineThink != null)
-            {
-                Debug.Log("'AI' Restarted");
-                coroutineThink = StartCoroutine(TimeOfThink());
-                break;
-            }
-            yield return new WaitForSeconds(5);
+            coroutineThink = StartCoroutine(TimeOfThink());
+            Debug.Log("'AI' Restarted");
         }
+        yield return null;
     }
 
-    //This is the whole routine for AI to do in one round loop.
+    /// <summary>
+    /// AI思考並做出決定的完整流程回圈
+    /// </summary>
     public IEnumerator TimeOfThink()
     {
         while (IsStage1 && _aiEnable)
         {
-            //This is for detect where is the players and will provide the position for boss to target.
+            ///This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);
 
-            //This is the skill selection, it is mainly for decide what skill to be use,
-            //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
+            ///This is the skill selection, it is mainly for decide what skill to be use,
+            ///After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for restate the animator back to Idle State.
+            ///This is for restate the animator back to Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
             isMeleeAttacking = false;
 
-            yield return new WaitForSeconds(aiReactTimeStage1);
+            if (_ComboNum >= 5)
+            {
+                _ComboNum = 0;
+                Debug.Log("Take a Break!");
+                yield return new WaitForSeconds(aiReactTimeStage1 + 3);
+            }
+            else
+            {
+                yield return new WaitForSeconds(aiReactTimeStage1);
+            }
             //Debug.Log("Will Start Again...");
         }
 
@@ -782,33 +950,38 @@ public class BossAI_Wind : MonoBehaviour
             Debug.Log("Switch to stage2 with sth animation cutscene");
         }
 
-        //They should play the same expect a AI movement decide will be added
+        ///They should play the same expect a AI movement decide will be added
         while (IsStage2 && _aiEnable)
         {
-            //This is for restate the animator back to Idle State. Test for will dc33 break the game.
+            ///This is for restate the animator back to Idle State. Test for will dc33 break the game.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
-            //This is for detect where is the players and will provide the position for boss to target.
+            ///This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
             yield return new WaitUntil(() => isLockOn);
 
-            //This is for detect if the boss need to do a move because of the player is too near by.
+            ///This is for detect if the boss need to do a move because of the player is too near by.
             yield return coroutineRun = StartCoroutine(Pre_BossMovement());
 
-            //This is the skill selection, it is mainly for decide what skill to be use
-            //After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
+            ///This is the skill selection, it is mainly for decide what skill to be use
+            ///After the select, the coroutine will be passed to AIOnAttack to perform the skill. 
             SkillSelection();
             yield return coroutineAtk;
 
-            //This is for restate the animator back to Idle State.
+            ///This is for restate the animator back to Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
 
-            //This is for reset the pre-move counter and melee attack so it can be perform again.
+            ///This is for reset the pre-move counter and melee attack so it can be perform again.
             preMoveCount = 0;
             isMeleeAttacking = false;
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
             else { yield return new WaitForSeconds(aiReactTimeStage2); }
-            
+
+            if (_ComboNum == 5)
+            {
+                _ComboNum = 0;
+                yield return new WaitForSeconds(3);
+            }
         }
     }
 
@@ -816,13 +989,17 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (_DrawGizmos)
         {
-            //This is for showing the skill range on the editor or in play mode.
+            ///This is for showing the skill range on the editor or in play mode.
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawWireSphere(transform.position, skillRange1);
+            //Gizmos.color = Color.yellow;
+            //Gizmos.DrawWireSphere(transform.position, skillRange2);
+            //Gizmos.color = Color.green;
+            //Gizmos.DrawWireSphere(transform.position, skillRange3);
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, skillRange1);
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, skillRange2);
+            Gizmos.DrawWireSphere(transform.position, skillRangeS);
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, skillRange3);
+            Gizmos.DrawWireSphere(transform.position, skillRangeL);
         }
     }
 

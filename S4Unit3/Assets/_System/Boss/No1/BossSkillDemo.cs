@@ -115,8 +115,8 @@ public class BossSkillDemo : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                //MistAttack();
-                WindBalls(4);
+                //WindBallsAttack();
+                StartCoroutine(WindBalls(4,2));
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
             {
@@ -184,6 +184,58 @@ public class BossSkillDemo : MonoBehaviour
     public void WindBlade16AnimationTrigger()
     {
         Boss1Animator.SetTrigger("Skill_WindBlade");
+    }
+
+    public IEnumerator OuterWindBlade(int sNum)
+    {
+        int[] iNum = new int[sNum];
+
+        for (int i = 0; i < sNum; i++)
+        {
+            //The Upper Area is detect which point to spawn the blade.
+            int ran = Random.Range(0, outerWindBladePoint.Length); //Draw a random number between the Length of outerWindBladePoint.
+
+            if (i > 1)
+            {
+                //This loop is use to detect does the number get a opposite side pos 
+                for (int j = 0; j < i; j++)
+                {
+                    if (iNum[j] == ran || iNum[j] - ran == 0)
+                    {
+                        i--;
+                        if (owb_DebugLog) Debug.Log("Draw an Opposite or Same Number! And the Num is: " + ran + ", and the iNum is: " + iNum[j]);
+                    }
+                    else { iNum[i] = ran; }
+                }
+            }
+            else { iNum[i] = ran; } //This make sure the data can be compare with the other i.
+        }
+
+        //This Area is decide which method to spawn the blade.
+        if (owb_WorkMode == 1)
+        {
+            for (int i = 0; i < sNum; i++)
+            {
+                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
+
+                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
+                yield return new WaitForSeconds(0.5f);
+                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
+            }
+        }
+        else if (owb_WorkMode == 2)
+        {
+            for (int i = 0; i < sNum; i++)
+            {
+                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
+                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
+            }
+            yield return new WaitForSeconds(0.5f);
+            for (int i = 0; i < sNum; i++)
+            {
+                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
+            }
+        }
     }
 
     public void VacuumPressure()
@@ -296,7 +348,6 @@ public class BossSkillDemo : MonoBehaviour
             }
             yield return new WaitForSeconds(0.8f);
         }
-        yield return null;
     }
 
     public void WindBladeBoomerang()
@@ -346,22 +397,6 @@ public class BossSkillDemo : MonoBehaviour
             go_STA.name = "STA_" + (i + 1);
         }
         _STACount++;
-    }
-
-    public void WindBalls(int sNum)
-    {
-
-        for (int i = 0; i < sNum; i++)
-        {
-            Vector2 cirRnd = Random.insideUnitCircle * _skillRange / 2;
-            float rndX = transform.position.x + cirRnd.x;
-            float rndY = Random.Range(windBallPoint.transform.position.y + 3, windBallPoint.transform.position.y + 4f);
-            float rndZ = transform.position.z + cirRnd.y;
-            Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
-
-            GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
-            wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
-        }
     }
 
     IEnumerator EnemyRush(Vector3 targetPos)
@@ -495,59 +530,24 @@ public class BossSkillDemo : MonoBehaviour
     #endregion
 
     #region AllStage_SkillSets
-    public IEnumerator OuterWindBlade(int sNum)
+    public IEnumerator WindBalls(int sNum, int wave)
     {
-        int[] iNum = new int[sNum];
-
-        for (int i = 0; i < sNum; i++)
+        for (int w = 0; w < wave; w++)
         {
-            //The Upper Area is detect which point to spawn the blade.
-            int ran = Random.Range(0, outerWindBladePoint.Length); //Draw a random number between the Length of outerWindBladePoint.
+            for (int i = 0; i < sNum + w * 2; i++)
+            {
+                Vector2 cirRnd = Random.insideUnitCircle * (_skillRange / 2 * 0.85f) * (w + 1) * 1.2f;
+                float rndX = transform.position.x + cirRnd.x;
+                float rndY = Random.Range(windBallPoint.transform.position.y + 4, windBallPoint.transform.position.y + 5f);
+                float rndZ = transform.position.z + cirRnd.y;
+                Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
 
-            if (i > 1)
-            {
-                //This loop is use to detect does the number get a opposite side pos 
-                for (int j = 0; j < i; j++)
-                {
-                    if (iNum[j] == ran || iNum[j] - ran == 0)
-                    {
-                        i--;
-                        if (owb_DebugLog) Debug.Log("Draw an Opposite or Same Number! And the Num is: " + ran + ", and the iNum is: " + iNum[j]);
-                    }
-                    else { iNum[i] = ran; }
-                }
+                GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
+                wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
             }
-            else { iNum[i] = ran; } //This make sure the data can be compare with the other i.
-        }
-
-        //This Area is decide which method to spawn the blade.
-        if (owb_WorkMode == 1)
-        {
-            for (int i = 0; i < sNum; i++)
-            {
-                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
-
-                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
-                yield return new WaitForSeconds(0.5f);
-                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
-            }
-        }
-        else if (owb_WorkMode == 2)
-        {
-            for (int i = 0; i < sNum; i++)
-            {
-                if (owb_DebugLog) Debug.Log(i + ": " + iNum[i]);
-                bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
-            }
-            yield return new WaitForSeconds(0.5f);
-            for (int i = 0; i < sNum; i++)
-            {
-                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
-            }
+            yield return new WaitForSeconds(.8f);
         }
     }
-
-
     //This is the end of all stage skill sets.
     #endregion
 
