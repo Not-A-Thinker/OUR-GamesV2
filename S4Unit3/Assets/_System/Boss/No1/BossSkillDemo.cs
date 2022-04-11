@@ -543,9 +543,9 @@ public class BossSkillDemo : MonoBehaviour
                 Vector3 forcePos = new Vector3(rndX, rndY, rndZ);
 
                 GameObject wB = Instantiate(windBall, windBallPoint.transform.position, Quaternion.identity);
-                wB.GetComponent<Rigidbody>().AddForce(forcePos * 10, ForceMode.Impulse);
+                wB.GetComponent<Rigidbody>().AddForce(forcePos * 12, ForceMode.Impulse);
             }
-            yield return new WaitForSeconds(.8f);
+            yield return new WaitForSeconds(.6f);
         }
     }
     //This is the end of all stage skill sets.
