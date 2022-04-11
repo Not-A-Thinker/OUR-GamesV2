@@ -70,7 +70,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("RespawnP2") || !Respawning)
                     {
                         Respawning = false;
-                        soundEffect.OnResetSound();                   
+                        soundEffect.OnResetSound();
                         //RespawnCount = 0;
                         //UIcontrol.PlayerRespawnStop();
                         //Debug.Log("RespawnCountReset");
@@ -109,7 +109,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("RespawnP1") || !Respawning)
                     {
                         Respawning = false;
-                        soundEffect.OnResetSound();                  
+                        soundEffect.OnResetSound();
                         //RespawnCountRange = 0;
                         //RespawnCount = 0;
                         //UIcontrol.PlayerRespawnStop();
