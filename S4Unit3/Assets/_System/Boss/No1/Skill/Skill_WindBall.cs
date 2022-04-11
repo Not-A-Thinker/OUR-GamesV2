@@ -44,6 +44,6 @@ public class Skill_WindBall : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Hi.");
+        
     }
 }
