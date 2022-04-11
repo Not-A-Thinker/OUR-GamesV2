@@ -111,8 +111,7 @@ public class PlayerState : MonoBehaviour
         if(!isInvincible)
         {
             StartCoroutine(Vibration(0.5f, 0.1f));
-            _currentHealth--;
-            _renderer.material.SetColor("_MainColor", DamageColor);
+            _currentHealth--;        
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
 
             if (isPlayer1)
@@ -142,6 +141,7 @@ public class PlayerState : MonoBehaviour
                 playerCount = 2;
             ///UI
             UIcontrol.hp_decrease(_currentHealth, playerCount);
+            _renderer.material.SetColor("_MainColor", DamageColor);
             StartCoroutine(_animation.PlayerDamaged());
         }          
     }

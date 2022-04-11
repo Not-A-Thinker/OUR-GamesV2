@@ -46,12 +46,12 @@ public class PlayerRespawn : MonoBehaviour
                 if (obj.tag == "Player" && obj.name != "Player1")
                 {
                     UIcontrol.PlayerIsClose = true;
-                    if (Input.GetButtonDown("RespawnP2"))
+                    if (Input.GetButtonDown("HelpFriendP2"))
                     {
                         RespawnCount++;
                         Respawning = true;                     
                     }
-                    if(Input.GetButtonDown("RespawnP2") || Respawning)
+                    if(Input.GetButtonDown("HelpFriendP2") || Respawning)
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
                         soundEffect.OnRespawnPlay();
@@ -66,7 +66,7 @@ public class PlayerRespawn : MonoBehaviour
                         }
                     }
 
-                    if (Input.GetButtonUp("RespawnP2") || !Respawning)
+                    if (Input.GetButtonUp("HelpFriendP2") || !Respawning)
                     {
                         Respawning = false;
                         soundEffect.OnResetSound();
@@ -85,12 +85,12 @@ public class PlayerRespawn : MonoBehaviour
                 {
                     UIcontrol.PlayerIsClose = true;
 
-                    if (Input.GetButtonDown("RespawnP1"))
+                    if (Input.GetButtonDown("HelpFriendP1"))
                     {
                         RespawnCount++;
                         Respawning = true;                                         
                     }
-                    if (Input.GetButton("RespawnP1"))
+                    if (Input.GetButton("HelpFriendP1"))
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
                         soundEffect.OnRespawnPlay();
@@ -105,7 +105,7 @@ public class PlayerRespawn : MonoBehaviour
                         }
                     }
 
-                    if (Input.GetButtonUp("RespawnP1") || !Respawning)
+                    if (Input.GetButtonUp("HelpFriendP1") || !Respawning)
                     {
                         Respawning = false;
                         soundEffect.OnResetSound();
