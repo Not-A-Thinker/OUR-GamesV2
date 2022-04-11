@@ -474,8 +474,7 @@ public class BossAI_Wind : MonoBehaviour
     ///</summary>
     public IEnumerator AIOnAttack(int num)
     {
-        _ComboNum++;
-
+        
         int rndNum = Random.Range(0, 100);
         print("AIDecision: " + num + " and rndNum: " + rndNum);
 
@@ -489,6 +488,7 @@ public class BossAI_Wind : MonoBehaviour
         
         if (IsStage1 || isStando)
         {
+            _ComboNum++;
             switch (num)
             {
                 #region Stage1_Case11-13
