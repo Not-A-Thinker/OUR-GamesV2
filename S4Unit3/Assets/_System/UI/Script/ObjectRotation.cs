@@ -13,7 +13,7 @@ public class ObjectRotation : MonoBehaviour
     public GameObject target;
 
     private float step = 180;
-    private float own = 80;
+    //private float own = 80;
 
     private float distance;
 

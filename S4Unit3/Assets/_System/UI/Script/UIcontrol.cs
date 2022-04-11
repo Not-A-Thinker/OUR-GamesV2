@@ -22,7 +22,10 @@ public class UIcontrol : MonoBehaviour
     [SerializeField] GameObject RespawnLoad;
     [SerializeField] TextMeshProUGUI LoadingText;
     [SerializeField] Slider slider;
+    [SerializeField] GameObject RespawnHeart;
+    Animator RespawnHeartAnim;
     SceneControl sceneControl;
+    public bool PlayerIsClose;
     //[SerializeField] Text DeadCount;
 
     [Header("Push Bar")]
@@ -54,6 +57,8 @@ public class UIcontrol : MonoBehaviour
         P2 = GameObject.Find("Player2").gameObject;
         Time.timeScale = 1;
         sceneControl = GetComponent<SceneControl>();
+        if (RespawnHeart)
+            RespawnHeartAnim = RespawnHeart.GetComponent<Animator>();
     }
     
     private void Update()
@@ -68,23 +73,44 @@ public class UIcontrol : MonoBehaviour
                 wantedPos.y = wantedPos.y - 20;
             pushing.transform.position = wantedPos;
         }
-        if(HelpText.activeInHierarchy)
+
+        if(P1.GetComponent<PlayerState>().isDead)
         {
-            if(P1.GetComponent<PlayerState>().isDead)
+            Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+            P1pos.y = P1pos.y + 80;         
+            if (PlayerIsClose)
             {
-                Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
-                P1pos.y = P1pos.y + 80;
+                HelpText.SetActive(false);
+                RespawnHeart.SetActive(true);
+                RespawnHeart.transform.position = P1pos;
+            }
+            else
+            {
+                HelpText.SetActive(true);
+                RespawnHeart.SetActive(false);
                 P1pos.x = P1pos.x + 40;
                 HelpText.transform.position = P1pos;
-            }         
-            else if (P2.GetComponent<PlayerState>().isDead)
+            }          
+        }         
+        else if (P2.GetComponent<PlayerState>().isDead)
+        {
+            Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
+            P2pos.y = P2pos.y + 80;    
+            if (PlayerIsClose)
             {
-                Vector3 P2pos = Camera.main.WorldToScreenPoint(P2.transform.position);
-                P2pos.y = P2pos.y + 80;
+                HelpText.SetActive(false);
+                RespawnHeart.SetActive(true);
+                RespawnHeart.transform.position = P2pos;
+            }
+            else
+            {
+                HelpText.SetActive(true);
+                RespawnHeart.SetActive(false);
                 P2pos.x = P2pos.x + 40;
                 HelpText.transform.position = P2pos;
             }
         }
+
         if(pushingCD.activeInHierarchy)
         {
             Vector3 P1pos = Camera.main.WorldToScreenPoint(P1.transform.position);
@@ -148,17 +174,21 @@ public class UIcontrol : MonoBehaviour
     }
 
     //respawn
-    public void PlayerRespawn(float load,string playerName)
+    public void PlayerRespawn(int load)
     {
-        int count = (int)(load + 0.2f);
-        RespawnLoad.SetActive(true);
-        slider.value = Mathf.Lerp(load/2, slider.value, smoothing * Time.deltaTime);
-        LoadingText.text = playerName + " Respawning";
+        //int count = (int)(load + 0.2f);
+        //RespawnLoad.SetActive(true);
+        //slider.value = Mathf.Lerp(load/2, slider.value, smoothing * Time.deltaTime);
+        //LoadingText.text = playerName + " Respawning";
+        //Debug.Log(load);
+
+        RespawnHeartAnim.SetInteger("ClickedCount", load);
     }
     public void PlayerRespawnStop()
     {
         RespawnLoad.SetActive(false);
-
+        RespawnHeart.SetActive(false);
+        HelpText.SetActive(false);
         slider.value = 0;
     }
     public void PlayerHpRefew(string playerName)

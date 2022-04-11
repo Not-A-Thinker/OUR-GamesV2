@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    float RespawnCountRange = 0;
-    //int RespawnCount = 0;
+    //float RespawnCountRange = 0;
+    int RespawnCount = 0;
 
     PlayerState PlayerState;
 
@@ -28,8 +28,8 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        if (RespawnCountRange > 0)
-            RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
+        //if (RespawnCountRange > 0)
+        //    RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
     }
 
     //public void RespawnRangeTrigger(bool IsOn)
@@ -41,32 +41,31 @@ public class PlayerRespawn : MonoBehaviour
     {
         if(isPlayer1)
         {
-            if (obj.tag == "Player" && obj.name!= "Player1")
-            {
-                if(PlayerState.isDead == true)
+            if (PlayerState.isDead == true)
+            {                     
+                if (obj.tag == "Player" && obj.name != "Player1")
                 {
-                    if(Input.GetButtonDown("RespawnP2"))
+                    UIcontrol.PlayerIsClose = true;
+                    if (Input.GetButtonDown("RespawnP2"))
                     {
-                        RespawnCountRange = RespawnCountRange + 0.1f;
+                        RespawnCount++;
+                        Respawning = true;                     
                     }
-
-                    if (Input.GetButton("RespawnP2") || Respawning)
+                    if(Input.GetButtonDown("RespawnP2") || Respawning)
                     {
-                        Respawning = true;
-                        soundEffect.OnRespawnPlay();                     
-                        //RespawnCount = (int)RespawnCountRange;
-                        UIcontrol.PlayerRespawn(RespawnCountRange,transform.parent.name);
-                        //Debug.Log(RespawnCount);
-                        if (RespawnCountRange >= 2)
+                        UIcontrol.PlayerRespawn(RespawnCount);
+                        soundEffect.OnRespawnPlay();
+
+                        if (RespawnCount >= 8)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
-                            RespawnCountRange = 0;
-                            //RespawnCount = 0;
+                            RespawnCount = 0;
                             return;
                         }
                     }
+
                     if (Input.GetButtonUp("RespawnP2") || !Respawning)
                     {
                         Respawning = false;
@@ -75,7 +74,7 @@ public class PlayerRespawn : MonoBehaviour
                         //UIcontrol.PlayerRespawnStop();
                         //Debug.Log("RespawnCountReset");
                     }
-                }                         
+                }              
             }
         }
         if (isPlayer2)
@@ -84,28 +83,28 @@ public class PlayerRespawn : MonoBehaviour
             {
                 if (obj.tag == "Player" && obj.name != "Player2")
                 {
+                    UIcontrol.PlayerIsClose = true;
+
                     if (Input.GetButtonDown("RespawnP1"))
                     {
-                        RespawnCountRange = RespawnCountRange + 0.1f;
+                        RespawnCount++;
+                        Respawning = true;                                         
                     }
-
-                    if (Input.GetButton("RespawnP1") || Respawning)
+                    if (Input.GetButton("RespawnP1"))
                     {
-                        Respawning = true;
-                        soundEffect.OnRespawnPlay();                   
-                        //RespawnCount = (int)RespawnCountRange;
-                        UIcontrol.PlayerRespawn(RespawnCountRange, transform.parent.name);
-                        //Debug.Log(RespawnCount);
-                        if (RespawnCountRange >= 2)
+                        UIcontrol.PlayerRespawn(RespawnCount);
+                        soundEffect.OnRespawnPlay();
+
+                        if (RespawnCount >= 8)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
-                            RespawnCountRange = 0;
-                            //RespawnCount = 0;
-                            //Debug.Log("RespawnCountReset");
+                            RespawnCount = 0;
+                            return;
                         }
                     }
+
                     if (Input.GetButtonUp("RespawnP1") || !Respawning)
                     {
                         Respawning = false;
@@ -117,6 +116,29 @@ public class PlayerRespawn : MonoBehaviour
                     }
                 }
             }              
+        }
+    }
+    private void OnTriggerExit(Collider obj)
+    {
+        if (isPlayer1)
+        {
+            if (PlayerState.isDead == true)
+            {
+                if (obj.tag == "Player" && obj.name != "Player1")
+                {
+                    UIcontrol.PlayerIsClose = false;
+                }
+            }
+        }
+        if (isPlayer2)
+        {
+            if (PlayerState.isDead == true)
+            {
+                if (obj.tag == "Player" && obj.name != "Player2")
+                {
+                    UIcontrol.PlayerIsClose = false;
+                }
+            }
         }
     }
 }
