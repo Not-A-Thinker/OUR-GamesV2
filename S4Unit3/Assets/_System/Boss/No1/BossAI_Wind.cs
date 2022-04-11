@@ -75,8 +75,8 @@ public class BossAI_Wind : MonoBehaviour
     [Header("Skill Range")]
     [SerializeField] float skillRangeS = 25;
     [SerializeField] float skillRangeL = 50;
-    [SerializeField] float skillRange1 = 20;
     [Space]
+    [SerializeField] float skillRange1 = 20;
     [SerializeField] float skillRange2 = 35;
     [SerializeField] float skillRange3 = 50;
 
@@ -374,6 +374,7 @@ public class BossAI_Wind : MonoBehaviour
                 {
                     AIDecision = 16;
                 }
+                print("Combo Time!");
             }
 
             ///第一階大技/至二階過場動畫
@@ -489,6 +490,7 @@ public class BossAI_Wind : MonoBehaviour
         if (IsStage1 || isStando)
         {
             _ComboNum++;
+            Debug.Log("Combo Num is: " + _ComboNum);
             switch (num)
             {
                 #region Stage1_Case11-13

@@ -39,6 +39,7 @@ Transform:
   - {fileID: 57155175523058747}
   - {fileID: 1957455748797155239}
   - {fileID: 1957455747817131594}
+  - {fileID: 3109292087110075865}
   - {fileID: 5936635689230513726}
   - {fileID: 666437681515073797}
   m_Father: {fileID: 0}
@@ -76,11 +77,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAlert: {fileID: 5936635689230513696}
   boomerageAlert: {fileID: 666437681515073794}
+  outerWindBladeAlert: []
   _TestingMode: 0
-  _DrawGizmos: 1
+  _DrawGizmos: 0
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0
+  _quickLock: 0
   isMeleeAttacking: 0
   timing: 0.2
   backwardForce: 13000
@@ -93,9 +96,15 @@ MonoBehaviour:
   aiReactTimeStandoMode: 4.5
   IsStage1: 0
   IsStage2: 1
+  IsAfter33: 0
   isStandoMode: 0
   isMain: 0
   isStando: 1
+  b_UseComboSet: 1
+  _ComboNum: 1
+  _ComboMaxNum: 5
+  skillRangeS: 25
+  skillRangeL: 50
   skillRange1: 20
   skillRange2: 35
   skillRange3: 50
@@ -113,7 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instantiatePoint: {fileID: 1957455747817131593}
+  windBallPoint: {fileID: 0}
+  DrawGizmo: 0
+  _wingBladeRange: 75
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
+  outerWindBlade: {fileID: 5798214951064251751, guid: 97f780d460f82d840a87c41861064850, type: 3}
+  outerWindBladePoint: []
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
   bubbleAttack: {fileID: 6120946044558487352, guid: 7c0af0b34af894e46bb3f0c59ce9b072, type: 3}
   tornadoLinear: {fileID: 8680327630756559126, guid: 2e81ae0bb37f7b544a5b916006838a4e, type: 3}
@@ -123,6 +137,7 @@ MonoBehaviour:
   windBladeBoomerang: {fileID: 7946992982300751064, guid: ee0e9caac38b7b8459abd4eb5cb75f25, type: 3}
   tornadoSpecialAttack: {fileID: 609656492285098026, guid: c2500912f65c7ac429c3a76bff944f21, type: 3}
   mistObj: {fileID: 0}
+  windBall: {fileID: 609656492285098026, guid: 288e7a0ee0a9cd148bf235a3a9953d22, type: 3}
   bossStando: {fileID: 0}
   SpawnPoint: {fileID: 0}
   isMeleeAttacking: 0
@@ -136,6 +151,8 @@ MonoBehaviour:
   waveToSpawnWindBlade: 3
   waveToSpawnTornado: 1
   _STACount: 1
+  owb_WorkMode: 1
+  owb_DebugLog: 0
   tornadoGattaiIsExisted: 0
   skillPoint: {fileID: 0}
   windHole: {fileID: 4988700607590763605, guid: 258bdec2c9e2a004184a4c729ebb1a7c, type: 3}
@@ -154,7 +171,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   tailForwardForce: 18000
-  _skillRange: 40
+  _skillRange: 45
   Boss1Animator: {fileID: 5915673759277053506}
 --- !u!114 &1957455747635378788
 MonoBehaviour:
@@ -564,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1957455748797155239
 Transform:
   m_ObjectHideFlags: 0
@@ -632,6 +649,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4811098569533151246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3109292087110075865}
+  m_Layer: 6
+  m_Name: WindBall Instante Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3109292087110075865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4811098569533151246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.989, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1957455747635378792}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &522900419288884176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -978,6 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossSkill: {fileID: 1957455747635378795}
+  BossAI: {fileID: 0}
   mainVC: {fileID: 0}
   bossVC: {fileID: 0}
   orgPriority: 5
@@ -1045,7 +1094,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1780179792639780212, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1120,7 +1169,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8039957459679854756, guid: a150ba1d5f6acb94abc202beb8dc68a9, type: 3}
       propertyPath: m_LocalPosition.x
