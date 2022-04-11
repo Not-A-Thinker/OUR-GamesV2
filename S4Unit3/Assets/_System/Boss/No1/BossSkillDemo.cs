@@ -536,7 +536,7 @@ public class BossSkillDemo : MonoBehaviour
         {
             for (int i = 0; i < sNum + w * 2; i++)
             {
-                Vector2 cirRnd = Random.insideUnitCircle * (_skillRange / 2 * 0.85f) * (w + 1) * 1.2f;
+                Vector2 cirRnd = Random.insideUnitCircle * (_skillRange / 2 * 0.85f) * (w / 2 + .85f) * 1.15f;
                 float rndX = transform.position.x + cirRnd.x;
                 float rndY = Random.Range(windBallPoint.transform.position.y + 4, windBallPoint.transform.position.y + 5f);
                 float rndZ = transform.position.z + cirRnd.y;
