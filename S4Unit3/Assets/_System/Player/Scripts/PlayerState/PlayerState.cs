@@ -32,7 +32,7 @@ public class PlayerState : MonoBehaviour
      Move move;
      //PlayerTotalDead playerTotalDead;
      PlayerState OthePlayerState;
-    [SerializeField] Renderer _renderer;
+    [SerializeField] public Renderer _renderer;
     [SerializeField] PlayerAnimator _animation;
     [SerializeField] SpriteRenderer Hula;
     [SerializeField] SpriteRenderer Arrow;
