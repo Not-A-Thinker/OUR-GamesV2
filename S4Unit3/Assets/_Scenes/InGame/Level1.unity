@@ -1004,7 +1004,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685268, y: 74.87, z: -73.30848}
+  m_LocalPosition: {x: 0.03068543, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15247,7 +15247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685268, y: 74.87, z: -73.30848}
+  m_LocalPosition: {x: 0.03068543, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15952,6 +15952,7 @@ GameObject:
   - component: {fileID: 1118701558}
   - component: {fileID: 1118701560}
   - component: {fileID: 1118701559}
+  - component: {fileID: 1118701561}
   m_Layer: 5
   m_Name: Player2 HP
   m_TagString: Untagged
@@ -16020,6 +16021,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118701557}
   m_CullTransparentMesh: 1
+--- !u!95 &1118701561
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118701557}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54d605e7836fe2848a7104e05862b91c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1131053384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1860544261278244872, guid: 030b10490455f174989370da5fdd0ac3, type: 3}
@@ -18243,6 +18264,7 @@ GameObject:
   - component: {fileID: 1554368567}
   - component: {fileID: 1554368569}
   - component: {fileID: 1554368568}
+  - component: {fileID: 1554368570}
   m_Layer: 5
   m_Name: Player1 HP
   m_TagString: Untagged
@@ -18312,6 +18334,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554368566}
   m_CullTransparentMesh: 1
+--- !u!95 &1554368570
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554368566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54d605e7836fe2848a7104e05862b91c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1558560915
 PrefabInstance:
   m_ObjectHideFlags: 0

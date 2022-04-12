@@ -155,7 +155,10 @@ public class UIcontrol : MonoBehaviour
     public void hp_decrease(int new_hp,int playerCount)
     {
         if(playerCount==1)
-            StartCoroutine(PlayerHealthAnimation(Player1Hp[new_hp], true));
+        {
+            StartCoroutine(PlayerHealthAnimation(Player1Hp[new_hp], true));  
+        }
+            
         else if(playerCount==2)
             StartCoroutine(PlayerHealthAnimation(Player2Hp[new_hp], true));
     }
@@ -214,8 +217,11 @@ public class UIcontrol : MonoBehaviour
     IEnumerator PlayerHealthAnimation(GameObject Hp, bool state)
     {
         Hp.GetComponent<Animator>().SetBool("IsDamaged", state);
+        GameObject HPparent = Hp.transform.parent.gameObject;
+        HPparent.GetComponent<Animator>().SetBool("isDamaged", state);
         yield return new WaitForSeconds(1);
         Hp.SetActive(!state);
+        Hp.GetComponentInParent<Animator>().SetBool("isDamaged", !state);
     }
 
     public void TotalDead(int DeadCount)

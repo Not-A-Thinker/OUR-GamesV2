@@ -26,11 +26,11 @@ public class PlayerRespawn : MonoBehaviour
         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
     }
 
-    private void Update()
-    {
-        //if (RespawnCountRange > 0)
-        //    RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
-    }
+    //private void Update()
+    //{
+    //    //if (RespawnCountRange > 0)
+    //    //    RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
+    //}
 
     //public void RespawnRangeTrigger(bool IsOn)
     //{
