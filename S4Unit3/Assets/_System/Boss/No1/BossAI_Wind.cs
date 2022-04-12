@@ -31,6 +31,8 @@ public class BossAI_Wind : MonoBehaviour
     public Animator attackAlert;
     public Animator boomerageAlert;
     public Animator[] outerWindBladeAlert;
+    public Animator wingAttackAlert;
+    public Animator tailAttackAlert;
 
     [Header("Test Tweak")]
     public bool _TestingMode = false;
