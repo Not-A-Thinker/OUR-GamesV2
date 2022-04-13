@@ -41,6 +41,11 @@ public class Boss1Animator : MonoBehaviour
         BossSkill.BossTailAttackAnimation();
     }
 
+    public void Animation_BossHeadAttack()
+    {
+        BossSkill.BossHeadAttackAnimation();
+    }
+
     public void Animation_BossPinBallAttack()
     {
         //BossSkill.TornadoSpecialAttackAnimation();

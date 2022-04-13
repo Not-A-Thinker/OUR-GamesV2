@@ -141,7 +141,7 @@ public class BossAI_Wind : MonoBehaviour
         //tailAttackAlert.SetTrigger("TailAttack Alert");
         //BossSkill.BossTailAttack();
 
-        
+        BossSkill.BossHeadAttack();
     }
 
     void Update()
@@ -149,7 +149,7 @@ public class BossAI_Wind : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
             //StartCoroutine(Test());
-            //Test2();
+            Test2();
         }
 
         if (isStando){ Destroy(gameObject, 30); }
@@ -612,8 +612,16 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     else if (rndNum + 1 >= 51 && rndNum + 1 <= 100)
                     {
-                        ///Wind Balls 風球
-                        BossSkill.StartCoroutine(BossSkill.WindBalls(4, 1));
+                        if (isStando)
+                        {
+                            ///STornado S形龍捲風
+                            BossSkill.TornadoAttack();
+                        }
+                        else
+                        {
+                            ///Wind Balls 風球
+                            BossSkill.StartCoroutine(BossSkill.WindBalls(4, 1));
+                        }
                     }
                     break;
                 case 16:

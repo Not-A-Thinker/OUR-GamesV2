@@ -521,6 +521,17 @@ public class BossSkillDemo : MonoBehaviour
         Boss1Animator.SetTrigger("Skill_WingAttack");
     }
 
+    public void BossHeadAttackAnimation()
+    {
+        rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
+        //transform.position += Vector3.forward * 3;
+    }
+
+    public void BossHeadAttack()
+    {
+        Boss1Animator.SetTrigger("Skill_HeadAttack");
+    }
+
     public void MistAttack()
     {
         Instantiate(mistObj, transform.position, Quaternion.identity);
