@@ -6,7 +6,7 @@ public class PlayerSoundEffect : MonoBehaviour
 {
     public static AudioClip Dog_Move, Dog_Attack;
     public static AudioClip Cat_Dead;
-    public static AudioClip Player_Damage, Player_Dash;
+    public static AudioClip Player_Damage, Player_Dash, Player_GetDamage;
     public static AudioClip UI_ButtonClick;
     static AudioSource audioSrc;
 
@@ -19,7 +19,7 @@ public class PlayerSoundEffect : MonoBehaviour
 
         Cat_Dead = Resources.Load<AudioClip>("SoundEffect/Cat/Cat_Dead");
 
-        Player_Damage = Resources.Load<AudioClip>("SoundEffect/Player/Player_Damage");
+        Player_GetDamage = Resources.Load<AudioClip>("SoundEffect/Player/Player_GetDamage");
         Player_Dash = Resources.Load<AudioClip>("SoundEffect/Player/Player_Desh");
 
         UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");    
@@ -47,6 +47,9 @@ public class PlayerSoundEffect : MonoBehaviour
                 break;
             case "Player_Dash":
                 audioSrc.PlayOneShot(Player_Dash);
+                break;
+            case "Player_GetDamage":
+                audioSrc.PlayOneShot(Player_GetDamage);
                 break;
 
             case "UI_ButtonClick":

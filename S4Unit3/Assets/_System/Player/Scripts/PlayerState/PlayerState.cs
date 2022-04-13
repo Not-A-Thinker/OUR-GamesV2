@@ -111,7 +111,8 @@ public class PlayerState : MonoBehaviour
         if(!isInvincible)
         {
             StartCoroutine(Vibration(0.5f, 0.1f));
-            _currentHealth--;        
+            _currentHealth--;
+            PlayerSoundEffect.PlaySound("Player_GetDamage");
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
 
             if (isPlayer1)
@@ -220,6 +221,7 @@ public class PlayerState : MonoBehaviour
             ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
             forceRepel_TopDown.resetObject();
             forceRepel_TopDown.enabled = false;
+            PlayerSoundEffect.PlaySound("Cat_Dead");
         }
         move.isKnockUp = false;
         move.SpeedSlow(0.25f);
