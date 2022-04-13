@@ -12,6 +12,8 @@ public class PlayerSoundEffect : MonoBehaviour
 
     void Awake()
     {
+        audioSrc = GetComponent<AudioSource>();
+
         Dog_Move = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Move");
         Dog_Attack = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Attack");
 
@@ -23,10 +25,10 @@ public class PlayerSoundEffect : MonoBehaviour
         UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");    
     }
 
-    public static void PlaySound(string clip,AudioSource audioSource)
+    public static void PlaySound(string clip)
     {
         //Debug.Log(Dog_Move.name);
-        audioSrc = audioSource;
+        
         switch (clip)
         {
             case "Dog_Move":
