@@ -78,8 +78,16 @@ MonoBehaviour:
   attackAlert: {fileID: 5936635689230513696}
   boomerageAlert: {fileID: 666437681515073794}
   outerWindBladeAlert: []
+  wingAttackAlert: {fileID: 0}
+  tailAttackAlert: {fileID: 0}
   _TestingMode: 0
   _DrawGizmos: 0
+  lP1:
+    serializedVersion: 2
+    m_Bits: 4096
+  lP2:
+    serializedVersion: 2
+    m_Bits: 8192
   lookAtP1: 0
   lookAtP2: 0
   isLockOn: 0

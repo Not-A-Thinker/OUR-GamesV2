@@ -39,6 +39,8 @@ public class BossAI_Wind : MonoBehaviour
     public bool _DrawGizmos = true;
 
     [Header("Player LockOn")]
+    [SerializeField] LayerMask lP1;
+    [SerializeField] LayerMask lP2;
     [SerializeField] bool lookAtP1;
     [SerializeField] bool lookAtP2;
     [SerializeField] bool isLockOn;
@@ -216,7 +218,7 @@ public class BossAI_Wind : MonoBehaviour
         if (lookAtP1)
         {
             RaycastHit isPlayerGetHit;
-            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL))
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, lP1))
             {
                 if (isPlayerGetHit.transform.tag == "Player")
                 { isLockOn = true; }
@@ -226,7 +228,7 @@ public class BossAI_Wind : MonoBehaviour
         else if (lookAtP2)
         {
             RaycastHit isPlayerGetHit;
-            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL))
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, lP2))
             {
                 if (isPlayerGetHit.transform.tag == "Player")
                 { isLockOn = true; }
@@ -953,7 +955,7 @@ public class BossAI_Wind : MonoBehaviour
 
             if (_ComboNum >= 5 && b_UseComboSet)
             {
-                _ComboNum = 0;
+                _ComboNum = 1;
                 Debug.Log("Take a Break!");
                 yield return new WaitForSeconds(aiReactTimeStage1 + 3);
             }
@@ -998,7 +1000,7 @@ public class BossAI_Wind : MonoBehaviour
 
             if (_ComboNum == 5 && b_UseComboSet)
             {
-                _ComboNum = 0;
+                _ComboNum = 1;
                 yield return new WaitForSeconds(3);
             }
         }
