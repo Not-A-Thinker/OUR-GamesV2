@@ -112,7 +112,7 @@ MonoBehaviour:
   clipParent: {fileID: 749153411712952852}
   move: {fileID: 1860544261278244878}
   Mother: {fileID: 1860544261278244872}
-  soundEffect: {fileID: 774615582}
+  soundEffect: {fileID: 0}
   _Suck_Effect: {fileID: 6056355251443301337}
   FriendCD: 0
   SuckInCD: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
-  soundEffect: {fileID: 774615582}
+  soundEffect: {fileID: 0}
   isPlayer1: 0
   isPlayer2: 1
   Respawning: 0
@@ -2069,24 +2069,6 @@ MonoBehaviour:
   Smoke: {fileID: 8175927972799678628}
   SpeedLine: {fileID: 5639985815505963836}
   Afterimage: {fileID: 8758789345725692739}
---- !u!114 &774615582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6214820614071332330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf91695a428a4c4283ba41867a15b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMoveSound: {fileID: 0}
-  OnDashSound: {fileID: 8300000, guid: 3955b1c97f369ea43bbb5da800a370b0, type: 3}
-  OnDamagedSound: {fileID: 8300000, guid: 947e1bde47946194a8bf1cfd8580435d, type: 3}
-  OnAttackSound: {fileID: 8300000, guid: ebb0f59f457d3944a97d7110c612ec5c, type: 3}
-  OnRespawnSound: {fileID: 0}
-  OnDeadSound: {fileID: 8300000, guid: bd7b05dccbc3a6142976ae42e53589d6, type: 3}
 --- !u!4 &6734195116091602768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
