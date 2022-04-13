@@ -33,6 +33,7 @@ public class BossAI_Wind : MonoBehaviour
     public Animator[] outerWindBladeAlert;
     public Animator wingAttackAlert;
     public Animator tailAttackAlert;
+    public Animator AreaAttackAlert;
 
     [Header("Test Tweak")]
     public bool _TestingMode = false;
@@ -114,11 +115,15 @@ public class BossAI_Wind : MonoBehaviour
     ///This is only for testing function, should be del(or disable) soon.
     IEnumerator Test()
     {
-        //Boomerang ­·¤b°j¤OÃð
-        boomerageAlert.SetTrigger("Boomer Alert");
-        yield return new WaitForSeconds(0.2f);
+        AreaAttackAlert.SetTrigger("AreaAttack Alert");
+        yield return new WaitForSeconds(0.29f);
+        BossSkill.BossWingAreaAttack();
 
-        BossSkill.WindBladeBoomerang();
+        //Boomerang ­·¤b°j¤OÃð
+        //boomerageAlert.SetTrigger("Boomer Alert");
+        //yield return new WaitForSeconds(0.2f);
+
+        //BossSkill.WindBladeBoomerang();
 
         //lookAtP1 = true;
         //yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
@@ -133,8 +138,10 @@ public class BossAI_Wind : MonoBehaviour
         ////yield return new WaitForSeconds(0.35f);
         //BossSkill.BossWingAttack();
 
-        tailAttackAlert.SetTrigger("TailAttack Alert");
-        BossSkill.BossTailAttack();
+        //tailAttackAlert.SetTrigger("TailAttack Alert");
+        //BossSkill.BossTailAttack();
+
+        
     }
 
     void Update()
@@ -711,6 +718,8 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         ///Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
+                        AreaAttackAlert.SetTrigger("AreaAttack Alert");
+                        yield return new WaitForSeconds(0.26f);
                         BossSkill.BossWingAreaAttack();
                         isMoveFinished = true;
                     }
@@ -781,6 +790,8 @@ public class BossAI_Wind : MonoBehaviour
 
                 case 61:
                     ///Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
+                    AreaAttackAlert.SetTrigger("AreaAttack Alert");
+                    yield return new WaitForSeconds(0.29f);
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
                     break;
@@ -790,6 +801,8 @@ public class BossAI_Wind : MonoBehaviour
                     break;
                 case 63:
                     ///Wing Area Attack ªñ¾Ô½d³ò§ðÀ»
+                    AreaAttackAlert.SetTrigger("AreaAttack Alert");
+                    yield return new WaitForSeconds(0.29f);
                     BossSkill.BossWingAreaAttack();
                     isMoveFinished = true;
                     break;
