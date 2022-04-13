@@ -216,7 +216,7 @@ public class BossAI_Wind : MonoBehaviour
         if (lookAtP1)
         {
             RaycastHit isPlayerGetHit;
-            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, 12))
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL))
             {
                 if (isPlayerGetHit.transform.tag == "Player")
                 { isLockOn = true; }
@@ -226,7 +226,7 @@ public class BossAI_Wind : MonoBehaviour
         else if (lookAtP2)
         {
             RaycastHit isPlayerGetHit;
-            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL, 13))
+            if (Physics.Raycast(selfPos, transform.forward, out isPlayerGetHit, skillRangeL))
             {
                 if (isPlayerGetHit.transform.tag == "Player")
                 { isLockOn = true; }
