@@ -7,15 +7,15 @@ using Cinemachine;
 public class PlayerAnimator : MonoBehaviour
 {
     Animator PlayerAn;
-    PlayerSoundEffect playerSound;
+    [SerializeField] AudioSource audioSource;
     private CinemachineCollisionImpulseSource CCIS;
     [SerializeField] Collider _Collider;
 
     private void Awake()
     {
         PlayerAn = GetComponent<Animator>();
-        playerSound = GetComponent<PlayerSoundEffect>();
         CCIS = GetComponentInParent<CinemachineCollisionImpulseSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayerWalk(bool State)
@@ -23,8 +23,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerAn.SetBool("IsWalk", State);
         if(gameObject.name == "DogWithBon")
         {
-            //if (State == true)
-            //    playerSound.PlaySound("Dog_Move");
+            PlayerSoundEffect.PlaySound("Dog_Move", audioSource);
         }     
     }
 
@@ -36,7 +35,7 @@ public class PlayerAnimator : MonoBehaviour
     public IEnumerator PlayerDash(float time)
     {
         PlayerAn.SetBool("isDash", true);
-        //playerSound.PlaySound("Dog_Move");
+        PlayerSoundEffect.PlaySound("Dog_Move", audioSource);
         _Collider.enabled = false;
 
         yield return new WaitForSeconds(time);

@@ -22,7 +22,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
     //[SerializeField] private Renderer Renderer;
-    [SerializeField] PlayerSoundEffect soundEffect;
     [SerializeField] ParticleSystem _Suck_Effect;
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
