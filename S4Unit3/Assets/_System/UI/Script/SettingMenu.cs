@@ -11,15 +11,16 @@ public class SettingMenu : MonoBehaviour
 
     //Resolution[] resolutions;
 
-    public Dropdown resolutionDropdown;
+    //public Dropdown resolutionDropdown;
     // Start is called before the first frame update
     private void Start()
     {
+        //All For Windows Size Fixed Used
         //resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
+        //resolutionDropdown.ClearOptions();
+        //List<string> options = new List<string>();
 
-        int currentResolutionIndex = 0;
+        //int currentResolutionIndex = 0;
         //for(int i = 0;i < resolutions.Length ; i++)
         //{
         //    string option = resolutions[i].width + " x " + resolutions[i].height;
@@ -32,9 +33,9 @@ public class SettingMenu : MonoBehaviour
         //    }
         //}
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        //resolutionDropdown.AddOptions(options);
+        //resolutionDropdown.value = currentResolutionIndex;
+        //resolutionDropdown.RefreshShownValue();
     }
 
     //public void SetResolution(int resolutionIndex)
