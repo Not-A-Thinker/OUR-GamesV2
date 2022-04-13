@@ -4,69 +4,52 @@ using UnityEngine;
 
 public class PlayerSoundEffect : MonoBehaviour
 {
+    public static AudioClip Dog_Move, Dog_Attack;
+    public static AudioClip Cat_Dead;
+    public static AudioClip Player_Damage, Player_Desh;
+    public static AudioClip UI_ButtonClick;
+    static AudioSource audioSrc;
 
-    [SerializeField] AudioClip OnMoveSound;
-    [SerializeField] AudioClip OnDashSound;
-    [SerializeField] AudioClip OnDamagedSound;
-    [SerializeField] AudioClip OnAttackSound;
-    [SerializeField] AudioClip OnRespawnSound;
-    [SerializeField] AudioClip OnDeadSound;
-    AudioSource _audioSource;
+    void Awake()
+    {
+        audioSrc = GetComponent<AudioSource>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        _audioSource = GetComponent<AudioSource>();
+        Dog_Move = Resources.Load<AudioClip>("Dog_Move");
+        Dog_Attack = Resources.Load<AudioClip>("Dog_Attack");
+
+        Cat_Dead = Resources.Load<AudioClip>("Cat_Dead");
+
+        Player_Damage = Resources.Load<AudioClip>("Player_Damage");
+        Player_Desh = Resources.Load<AudioClip>("Player_Desh");
+
+        UI_ButtonClick = Resources.Load<AudioClip>("UI_ButtonClick");
     }
 
-    public void OnMovePlay()
+    public static void PlaySound(string clip)
     {
-        if(_audioSource.isActiveAndEnabled)
+        switch (clip)
         {
-            _audioSource.clip = OnMoveSound;
-            _audioSource.loop = true;
-            _audioSource.Play();
-        }      
-    }
-    public void OnDashPlay()
-    {
-        if (_audioSource.isActiveAndEnabled)
-        {
-            _audioSource.clip = OnDashSound;
-            _audioSource.Play();
-        }         
-    }
-    public void OnRespawnPlay()
-    {
-        if (_audioSource.isActiveAndEnabled)
-        {
-            _audioSource.clip = OnRespawnSound;
-            _audioSource.Play();
-        }
-    }
-    public void OnAttackPlay()
-    {
-        if (_audioSource.isActiveAndEnabled)
-        {
-            _audioSource.clip = OnAttackSound;
-            _audioSource.Play();
-        }        
-    }
-    public void OnResetSound()
-    {
-        if (_audioSource.isActiveAndEnabled)
-        {
-            _audioSource.clip = null;
-            _audioSource.loop = false;
-            _audioSource.Stop();
-        }          
-    }
-    public void OnDamagePlay()
-    {
-        if (_audioSource.isActiveAndEnabled)
-        {
-            _audioSource.clip = OnDamagedSound;
-            _audioSource.Play();
+            case "Dog_Move":
+                audioSrc.PlayOneShot(Dog_Move);
+                break;
+            case "Dog_Attack":
+                audioSrc.PlayOneShot(Dog_Attack);
+                break;
+
+            case "Cat_Dead":
+                audioSrc.PlayOneShot(Cat_Dead);
+                break;
+
+            case "Player_Damage":
+                audioSrc.PlayOneShot(Player_Damage);
+                break;
+            case "Player_Desh":
+                audioSrc.PlayOneShot(Player_Desh);
+                break;
+
+            case "UI_ButtonClick":
+                audioSrc.PlayOneShot(UI_ButtonClick);
+                break;
         }
     }
 }
