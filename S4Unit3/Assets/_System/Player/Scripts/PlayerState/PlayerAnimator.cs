@@ -23,10 +23,8 @@ public class PlayerAnimator : MonoBehaviour
         PlayerAn.SetBool("IsWalk", State);
         if(gameObject.name == "DogWithBon")
         {
-            if (State == true)
-                playerSound.OnMovePlay();
-            else
-                playerSound.OnResetSound();
+            //if (State == true)
+            //    playerSound.PlaySound("Dog_Move");
         }     
     }
 
@@ -38,13 +36,13 @@ public class PlayerAnimator : MonoBehaviour
     public IEnumerator PlayerDash(float time)
     {
         PlayerAn.SetBool("isDash", true);
-        playerSound.OnDashPlay();
+        //playerSound.PlaySound("Dog_Move");
         _Collider.enabled = false;
 
         yield return new WaitForSeconds(time);
 
         PlayerAn.SetBool("isDash", false);
-        playerSound.OnResetSound();
+        //playerSound.PlaySound("Dog_Move");
         _Collider.enabled = true;
     }
     public void PlayerDead()

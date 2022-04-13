@@ -2069,6 +2069,24 @@ MonoBehaviour:
   Smoke: {fileID: 8175927972799678628}
   SpeedLine: {fileID: 5639985815505963836}
   Afterimage: {fileID: 8758789345725692739}
+--- !u!114 &5348948778275213059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6214820614071332330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf91695a428a4c4283ba41867a15b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnMoveSound: {fileID: 0}
+  OnDashSound: {fileID: 0}
+  OnDamagedSound: {fileID: 0}
+  OnAttackSound: {fileID: 0}
+  OnRespawnSound: {fileID: 0}
+  OnDeadSound: {fileID: 0}
 --- !u!4 &6734195116091602768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}
