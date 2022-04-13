@@ -6,27 +6,27 @@ public class PlayerSoundEffect : MonoBehaviour
 {
     public static AudioClip Dog_Move, Dog_Attack;
     public static AudioClip Cat_Dead;
-    public static AudioClip Player_Damage, Player_Desh;
+    public static AudioClip Player_Damage, Player_Dash;
     public static AudioClip UI_ButtonClick;
     static AudioSource audioSrc;
 
     void Awake()
     {
-        audioSrc = GetComponent<AudioSource>();
+        Dog_Move = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Move");
+        Dog_Attack = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Attack");
 
-        Dog_Move = Resources.Load<AudioClip>("Dog_Move");
-        Dog_Attack = Resources.Load<AudioClip>("Dog_Attack");
+        Cat_Dead = Resources.Load<AudioClip>("SoundEffect/Cat/Cat_Dead");
 
-        Cat_Dead = Resources.Load<AudioClip>("Cat_Dead");
+        Player_Damage = Resources.Load<AudioClip>("SoundEffect/Player/Player_Damage");
+        Player_Dash = Resources.Load<AudioClip>("SoundEffect/Player/Player_Desh");
 
-        Player_Damage = Resources.Load<AudioClip>("Player_Damage");
-        Player_Desh = Resources.Load<AudioClip>("Player_Desh");
-
-        UI_ButtonClick = Resources.Load<AudioClip>("UI_ButtonClick");
+        UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");    
     }
 
-    public static void PlaySound(string clip)
+    public static void PlaySound(string clip,AudioSource audioSource)
     {
+        //Debug.Log(Dog_Move.name);
+        audioSrc = audioSource;
         switch (clip)
         {
             case "Dog_Move":
@@ -43,8 +43,8 @@ public class PlayerSoundEffect : MonoBehaviour
             case "Player_Damage":
                 audioSrc.PlayOneShot(Player_Damage);
                 break;
-            case "Player_Desh":
-                audioSrc.PlayOneShot(Player_Desh);
+            case "Player_Dash":
+                audioSrc.PlayOneShot(Player_Dash);
                 break;
 
             case "UI_ButtonClick":

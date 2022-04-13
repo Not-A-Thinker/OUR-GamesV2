@@ -1993,28 +1993,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de34969679d25489f13482414405eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   _Collider: {fileID: 500052818044258927}
   Smoke: {fileID: 5771018411271997187}
   SpeedLine: {fileID: 6155000393351185439}
   Afterimage: {fileID: 2910557521388052541}
---- !u!114 &6706120204080634411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5381467380246077115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf91695a428a4c4283ba41867a15b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnMoveSound: {fileID: 0}
-  OnDashSound: {fileID: 0}
-  OnDamagedSound: {fileID: 0}
-  OnAttackSound: {fileID: 0}
-  OnRespawnSound: {fileID: 0}
-  OnDeadSound: {fileID: 0}
 --- !u!137 &5983910854311786690 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1541540555798731560, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
