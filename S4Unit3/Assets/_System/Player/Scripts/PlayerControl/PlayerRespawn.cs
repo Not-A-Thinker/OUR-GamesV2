@@ -54,7 +54,7 @@ public class PlayerRespawn : MonoBehaviour
                     if(Input.GetButtonDown("HelpFriendP2") || Respawning)
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
-                        soundEffect.OnRespawnPlay();
+                        //soundEffect.OnRespawnPlay();
 
                         if (RespawnCount >= 8)
                         {
@@ -69,7 +69,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("HelpFriendP2") || !Respawning)
                     {
                         Respawning = false;
-                        soundEffect.OnResetSound();
+                        //soundEffect.OnResetSound();
                         //RespawnCount = 0;
                         //UIcontrol.PlayerRespawnStop();
                         //Debug.Log("RespawnCountReset");
@@ -93,7 +93,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButton("HelpFriendP1"))
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
-                        soundEffect.OnRespawnPlay();
+                        //soundEffect.OnRespawnPlay();
 
                         if (RespawnCount >= 8)
                         {
@@ -108,7 +108,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("HelpFriendP1") || !Respawning)
                     {
                         Respawning = false;
-                        soundEffect.OnResetSound();
+                        //soundEffect.OnResetSound();
                         //RespawnCountRange = 0;
                         //RespawnCount = 0;
                         //UIcontrol.PlayerRespawnStop();

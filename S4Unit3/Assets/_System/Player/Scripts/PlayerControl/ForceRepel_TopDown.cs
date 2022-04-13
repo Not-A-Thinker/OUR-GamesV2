@@ -210,7 +210,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     //{
                         if (_Suck_Effect != null)
                             _Suck_Effect.Play();
-                        soundEffect.OnAttackPlay();
+                        //soundEffect.OnAttackPlay();
                         //Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
                     //}
@@ -230,7 +230,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);
                         if (BossSpwO.lastSpawned != null)
                         {
-                            soundEffect.OnAttackPlay();
+                            //soundEffect.OnAttackPlay();
                             savedObject = BossSpwO.lastSpawned;
                             savedObject.GetComponent<ObjectDestroy>().isSucked = true;
                             savedObject.GetComponent<Bullet>().bossToSuck = true;
@@ -264,7 +264,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 onSucking = false;
                 //Renderer.material.color = Color.white;
-                soundEffect.OnResetSound();
+                //soundEffect.OnResetSound();
                 SuckInCD = true;
                 GetComponent<BoxCollider>().isTrigger = false;
                 //Range.SetActive(false);
