@@ -125,11 +125,22 @@ public class BossAI_Wind : MonoBehaviour
         //BossSkill.BossWingAttack();
     }
 
+    void Test2()
+    {
+        //wingAttackAlert.SetTrigger("WingAttack Alert");
+        ////yield return new WaitForSeconds(0.35f);
+        //BossSkill.BossWingAttack();
+
+        tailAttackAlert.SetTrigger("TailAttack Alert");
+        BossSkill.BossTailAttack();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
             //StartCoroutine(Test());
+            //Test2();
         }
 
         if (isStando){ Destroy(gameObject, 30); }
@@ -704,6 +715,7 @@ public class BossAI_Wind : MonoBehaviour
                     else if (rndNum >= 50 && rndNum < 100)
                     {
                         ///Tail Attack §À¤Ú§ğÀ»
+                        tailAttackAlert.SetTrigger("TailAttack Alert");
                         BossSkill.BossTailAttack();
                         isMoveFinished = true;
                     }
@@ -715,6 +727,7 @@ public class BossAI_Wind : MonoBehaviour
                         yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                         isMeleeAttacking = true;
+                        wingAttackAlert.SetTrigger("WingAttack Alert");
                         BossSkill.BossWingAttack();
                     }
                     else if (rndNum >= 50 && rndNum < 100)
@@ -731,6 +744,7 @@ public class BossAI_Wind : MonoBehaviour
                             yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                             isMeleeAttacking = true;
+                            wingAttackAlert.SetTrigger("WingAttack Alert");
                             BossSkill.BossWingAttack();
                         }
                     }
@@ -748,6 +762,7 @@ public class BossAI_Wind : MonoBehaviour
                         yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                         isMeleeAttacking = true;
+                        wingAttackAlert.SetTrigger("WingAttack Alert");
                         BossSkill.BossWingAttack();
                     }
                     break;
