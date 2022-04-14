@@ -30,7 +30,7 @@ public class PlayerRespawn : MonoBehaviour
 
     private void Update()
     {
-        if (RespawnCount > 4)
+        if (RespawnCount > 3)
         {
             if(Respawning)
             {
@@ -59,7 +59,7 @@ public class PlayerRespawn : MonoBehaviour
                         RespawnCount++;
                         RespawnCountRange = RespawnCount;
                         Respawning = true;
-                        Debug.Log(RespawnCount);
+                        //Debug.Log(RespawnCount);
                     }
                     if(Input.GetButtonDown("HelpFriendP2") || Respawning)
                     {
@@ -103,7 +103,8 @@ public class PlayerRespawn : MonoBehaviour
                     {
                         RespawnCount++;
                         RespawnCountRange = RespawnCount;
-                        Respawning = true;                      
+                        Respawning = true;
+                        Debug.Log(RespawnCount);
                     }
                     if (Input.GetButton("HelpFriendP1"))
                     {
