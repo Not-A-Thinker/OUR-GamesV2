@@ -7,12 +7,13 @@ using UnityEngine.Audio;
 public class SettingMenu : MonoBehaviour
 {
 
-    public AudioMixer audioMixer,SFX;
+    public AudioMixer audioMixer;
+    public Slider sliderBGM, sliderSFX;
 
     //Resolution[] resolutions;
 
     //public Dropdown resolutionDropdown;
-    // Start is called before the first frame update
+
     private void Start()
     {
         //All For Windows Size Fixed Used
@@ -43,6 +44,23 @@ public class SettingMenu : MonoBehaviour
     //    Resolution resolution = resolutions[resolutionIndex];
     //    Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     //}
+
+    private void Awake()
+    {
+        
+    }
+
+    private void OnEnable()
+    {
+        float valueBGM;
+        audioMixer.GetFloat("MusicVolume", out valueBGM);
+        Debug.Log(valueBGM);
+        sliderBGM.value = valueBGM;
+
+        float valueSFX;
+        audioMixer.GetFloat("SFXVolume", out valueSFX);
+        sliderSFX.value = valueSFX;
+    }
 
     public void SetMainVolume(float volume)
     {
