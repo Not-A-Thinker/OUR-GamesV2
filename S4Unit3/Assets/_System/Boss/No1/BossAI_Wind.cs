@@ -578,6 +578,7 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
                 #endregion
+
                 ///Case14-16為Combo組合攻擊組
                 case 14:
                     ///遠距離攻擊
@@ -621,13 +622,13 @@ public class BossAI_Wind : MonoBehaviour
                         else
                         {
                             ///Wind Balls 風球
-                            BossSkill.StartCoroutine(BossSkill.WindBalls(4, 1));
+                            int wBSpawnNum = Random.Range(4, 7);
+                            BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
                         }
                     }
                     break;
                 case 16:
                     ///場外攻擊-TornadoGattai 龍捲風合體
-                    ///TornadoGattai 龍捲風合體
                     BossSkill.TornadoGattai();
                     break;
 
@@ -721,10 +722,12 @@ public class BossAI_Wind : MonoBehaviour
 
         if (IsStage2 && !isStando)
         {
+            _ComboNum++;
+            Debug.Log("Combo Num is: " + _ComboNum);
             switch (num)
             {
                 case 41:
-                    if (rndNum < 50)
+                    if (rndNum < 33)
                     {
                         ///Wing Area Attack 近戰範圍攻擊
                         AreaAttackAlert.SetTrigger("AreaAttack Alert");
@@ -732,12 +735,18 @@ public class BossAI_Wind : MonoBehaviour
                         BossSkill.BossWingAreaAttack();
                         isMoveFinished = true;
                     }
-                    else if (rndNum >= 50 && rndNum < 100)
+                    else if (rndNum >= 33 && rndNum < 67)
                     {
                         ///Tail Attack 尾巴攻擊
                         tailAttackAlert.SetTrigger("TailAttack Alert");
                         BossSkill.BossTailAttack();
                         isMoveFinished = true;
+                    }
+                    else if (rndNum >= 67 && rndNum < 100)
+                    {
+                        ///Wind Balls 風球
+                        int wBSpawnNum = Random.Range(4, 7);
+                        BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
                     }
                     break;
                 case 42:
@@ -775,17 +784,22 @@ public class BossAI_Wind : MonoBehaviour
                     if(rndNum < 50)
                     {
                         ///Wind Hole 風柱
-                        StartCoroutine(BossSkill.WindHole(1,8));
+                        int _wHSpawnNum = Random.Range(8, 11);
+                        StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
                     else if (rndNum >= 50 && rndNum < 100)
                     {
                         ///Do something else
                         ///Wing Attack 近戰攻擊(翼)
-                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
+                        //yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
-                        isMeleeAttacking = true;
-                        wingAttackAlert.SetTrigger("WingAttack Alert");
-                        BossSkill.BossWingAttack();
+                        //isMeleeAttacking = true;
+                        //wingAttackAlert.SetTrigger("WingAttack Alert");
+                        //BossSkill.BossWingAttack();
+
+                        ///Wind Hole 風柱
+                        int _wHSpawnNum = Random.Range(8, 11);
+                        StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
                     break;
                 case 44:
@@ -1025,6 +1039,7 @@ public class BossAI_Wind : MonoBehaviour
             if (_ComboNum == _ComboMaxNum && b_UseComboSet)
             {
                 _ComboNum = 1;
+                Debug.Log("Take a Break!");
                 yield return new WaitForSeconds(3);
             }
         }
