@@ -918,6 +918,15 @@ public class BossAI_Wind : MonoBehaviour
 
             coroutineThink = StartCoroutine(TimeOfThink());
 
+            if (_ComboNum == 1)
+            {
+                _ComboNum = 1;
+            }
+            else
+            {
+                _ComboNum--;
+            }
+
             Debug.Log("Shit Reseted.");
         }
 

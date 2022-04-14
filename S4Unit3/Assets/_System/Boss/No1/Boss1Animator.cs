@@ -21,6 +21,11 @@ public class Boss1Animator : MonoBehaviour
     void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
+
+        if (BossAI == null)
+        {BossAI = GetComponentInParent<BossAI_Wind>();}
+        if (BossSkill == null)
+        {BossSkill = GetComponentInParent<BossSkillDemo>();}
     }
 
     void Update()
