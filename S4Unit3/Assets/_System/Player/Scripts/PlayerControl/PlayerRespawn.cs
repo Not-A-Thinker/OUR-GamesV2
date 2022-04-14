@@ -32,9 +32,11 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (RespawnCount > 4)
         {
-            RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
-            RespawnCount = (int)RespawnCountRange;
-            Debug.Log(RespawnCount);
+            if(Respawning)
+            {
+                RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
+                RespawnCount = (int)RespawnCountRange;               
+            }         
         }           
     }
 
@@ -57,6 +59,7 @@ public class PlayerRespawn : MonoBehaviour
                         RespawnCount++;
                         RespawnCountRange = RespawnCount;
                         Respawning = true;
+                        Debug.Log(RespawnCount);
                     }
                     if(Input.GetButtonDown("HelpFriendP2") || Respawning)
                     {
