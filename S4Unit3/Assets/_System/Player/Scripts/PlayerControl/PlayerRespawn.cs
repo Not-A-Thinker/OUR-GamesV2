@@ -20,6 +20,8 @@ public class PlayerRespawn : MonoBehaviour
 
     public bool Respawning;
 
+    public ParticleSystem RespawnEvent;
+
     private void Start()
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
@@ -49,12 +51,14 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonDown("HelpFriendP2"))
                     {
                         RespawnCount++;
-                        Respawning = true;                     
+                        Respawning = true;
                     }
                     if(Input.GetButtonDown("HelpFriendP2") || Respawning)
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
                         //soundEffect.OnRespawnPlay();
+                        if (RespawnEvent != null)
+                            RespawnEvent.Play();
 
                         if (RespawnCount >= 8)
                         {
@@ -62,6 +66,8 @@ public class PlayerRespawn : MonoBehaviour
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCount = 0;
+                            if (RespawnEvent != null)
+                                RespawnEvent.Stop();
                             return;
                         }
                     }
@@ -88,19 +94,22 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonDown("HelpFriendP1"))
                     {
                         RespawnCount++;
-                        Respawning = true;                                         
+                        Respawning = true;                      
                     }
                     if (Input.GetButton("HelpFriendP1"))
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
                         //soundEffect.OnRespawnPlay();
-
+                        if (RespawnEvent != null)
+                            RespawnEvent.Play();
                         if (RespawnCount >= 8)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCount = 0;
+                            if (RespawnEvent != null)
+                                RespawnEvent.Stop();
                             return;
                         }
                     }

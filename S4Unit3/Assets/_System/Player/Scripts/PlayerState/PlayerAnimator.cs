@@ -21,6 +21,8 @@ public class PlayerAnimator : MonoBehaviour
         PlayerAn.SetBool("IsWalk", State);
         if(State==true)
             PlayerSoundEffect.PlaySound("Dog_Move");
+        else
+            PlayerSoundEffect.PlaySound("Dog_StopMove"); 
     }
 
     public void PlayerShoot()

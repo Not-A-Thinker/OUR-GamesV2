@@ -36,6 +36,10 @@ public class PlayerSoundEffect : MonoBehaviour
                 audioSrc.loop = true;
                 audioSrc.Play();         
                 break;
+            case "Dog_StopMove":
+                audioSrc.loop = false;
+                audioSrc.Pause();
+                break;
             case "Dog_Attack":
                 audioSrc.PlayOneShot(Dog_Attack);
                 break;

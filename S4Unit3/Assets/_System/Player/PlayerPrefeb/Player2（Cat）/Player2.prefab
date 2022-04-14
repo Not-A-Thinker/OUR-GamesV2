@@ -251,6 +251,7 @@ MonoBehaviour:
   isPlayer1: 0
   isPlayer2: 1
   Respawning: 0
+  RespawnEvent: {fileID: 7002034356996947832}
 --- !u!1 &1860544261278244872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,6 +1741,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63d162cde6c56a14291f8db4d282f88f, type: 3}
+--- !u!198 &7002034356996947832 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5538216031409070925, guid: 63d162cde6c56a14291f8db4d282f88f, type: 3}
+  m_PrefabInstance: {fileID: 3312268906430782517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7002034356996947839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5538216031409070922, guid: 63d162cde6c56a14291f8db4d282f88f, type: 3}
