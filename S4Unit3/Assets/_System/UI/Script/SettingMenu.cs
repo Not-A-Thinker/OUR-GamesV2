@@ -54,7 +54,6 @@ public class SettingMenu : MonoBehaviour
     {
         float valueBGM;
         audioMixer.GetFloat("MusicVolume", out valueBGM);
-        Debug.Log(valueBGM);
         sliderBGM.value = valueBGM;
 
         float valueSFX;
