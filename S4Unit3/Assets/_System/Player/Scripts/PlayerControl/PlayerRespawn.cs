@@ -61,7 +61,7 @@ public class PlayerRespawn : MonoBehaviour
                         Respawning = true;
                         //Debug.Log(RespawnCount);
                     }
-                    if(Input.GetButtonDown("HelpFriendP2") || Respawning)
+                    if(Input.GetButton("HelpFriendP2") || Respawning)
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
                         //soundEffect.OnRespawnPlay();
