@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    //float RespawnCountRange = 0;
+    float RespawnCountRange = 0;
     int RespawnCount = 0;
 
     PlayerState PlayerState;
@@ -28,11 +28,15 @@ public class PlayerRespawn : MonoBehaviour
         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
     }
 
-    //private void Update()
-    //{
-    //    //if (RespawnCountRange > 0)
-    //    //    RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
-    //}
+    private void Update()
+    {
+        if (RespawnCount > 4)
+        {
+            RespawnCountRange = RespawnCountRange - (0.2f * Time.deltaTime);
+            RespawnCount = (int)RespawnCountRange;
+            Debug.Log(RespawnCount);
+        }           
+    }
 
     //public void RespawnRangeTrigger(bool IsOn)
     //{
@@ -51,6 +55,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonDown("HelpFriendP2"))
                     {
                         RespawnCount++;
+                        RespawnCountRange = RespawnCount;
                         Respawning = true;
                     }
                     if(Input.GetButtonDown("HelpFriendP2") || Respawning)
@@ -60,7 +65,7 @@ public class PlayerRespawn : MonoBehaviour
                         if (RespawnEvent != null)
                             RespawnEvent.Play();
 
-                        if (RespawnCount >= 8)
+                        if (RespawnCount >= 9)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
@@ -94,6 +99,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonDown("HelpFriendP1"))
                     {
                         RespawnCount++;
+                        RespawnCountRange = RespawnCount;
                         Respawning = true;                      
                     }
                     if (Input.GetButton("HelpFriendP1"))
@@ -102,7 +108,7 @@ public class PlayerRespawn : MonoBehaviour
                         //soundEffect.OnRespawnPlay();
                         if (RespawnEvent != null)
                             RespawnEvent.Play();
-                        if (RespawnCount >= 8)
+                        if (RespawnCount >= 9)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();

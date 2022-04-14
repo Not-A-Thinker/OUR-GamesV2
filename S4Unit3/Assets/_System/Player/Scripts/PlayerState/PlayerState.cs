@@ -172,6 +172,7 @@ public class PlayerState : MonoBehaviour
         _currentHealth = _maxHealth;   
         GetComponent<CapsuleCollider>().enabled = true;
         UIcontrol.RespawnText(false);
+        UIcontrol.PlayerIsClose=false;
         StopCoroutine(Invincible(0));
         StartInvincible(1);
         if (isPlayer1)
