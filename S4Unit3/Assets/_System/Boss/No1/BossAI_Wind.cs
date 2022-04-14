@@ -141,6 +141,7 @@ public class BossAI_Wind : MonoBehaviour
         //tailAttackAlert.SetTrigger("TailAttack Alert");
         //BossSkill.BossTailAttack();
 
+        tailAttackAlert.SetTrigger("TailAttack Alert");
         BossSkill.BossHeadAttack();
     }
 
@@ -759,12 +760,14 @@ public class BossAI_Wind : MonoBehaviour
                         }
                         else
                         {
-                            ///Wing Attack 近戰攻擊(翼)
+                            ///Wing Attack 近戰攻擊(翼), 現先改成頭衝
                             yield return coroutineRunAtk = StartCoroutine(BossAttackMovement());
 
                             isMeleeAttacking = true;
-                            wingAttackAlert.SetTrigger("WingAttack Alert");
-                            BossSkill.BossWingAttack();
+                            //wingAttackAlert.SetTrigger("WingAttack Alert");
+                            //BossSkill.BossWingAttack();
+                            tailAttackAlert.SetTrigger("TailAttack Alert");
+                            BossSkill.BossHeadAttack();
                         }
                     }
                     break;
