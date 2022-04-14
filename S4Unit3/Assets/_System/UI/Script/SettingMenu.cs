@@ -56,7 +56,7 @@ public class SettingMenu : MonoBehaviour
 
     public void SetSFXVolume(float volume)
     {
-        SFX.SetFloat("SFXVolume", volume);
+        audioMixer.SetFloat("SFXVolume", volume);
     }
 
     public void SetFullscreen(bool isFullScreen)
