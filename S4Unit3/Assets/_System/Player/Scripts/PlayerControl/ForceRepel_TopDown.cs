@@ -43,6 +43,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     public float _SpeedSlow;
     bool onSucking;
 
+    public bool isAttackWithAim;
     //clip
 
     private void Start()
@@ -70,7 +71,6 @@ public class ForceRepel_TopDown : MonoBehaviour
         }
         uIcontrol.SuckingCDBar(SuckCount);
 
-
         //if (SuckInCD)
         //{
         //    if (Timer < SuckCount)
@@ -87,77 +87,10 @@ public class ForceRepel_TopDown : MonoBehaviour
         //    Timer = SuckCount;  
         //uIcontrol.SuckCount(SuckCount);
         
-
-
-        if (Input.GetButtonDown("AimP2"))
-        {
-            ButtonDonwEvent();           
-        }       
-
-        if (Input.GetButton("AimP2"))
-        {
-            Range.SetActive(true);
-            IsAiming = true;
-        }
-        
-        if(IsAiming)
-        {
-            if (Input.GetButton("HelpFriendP2"))
-                SuckFriend();
-
-            if (Input.GetButtonDown("Fire2"))
-            {
-                if (!SuckInCD)
-                {                 
-                    onSucking = true;
-                }
-                else
-                    uIcontrol.flyText(2, Color.red, "CD!!!!");
-            }
-            if (Input.GetButton("Fire2"))
-            {
-                if (!SuckInCD)
-                {
-                    GetComponent<BoxCollider>().isTrigger = true;
-                    Repel();
-                } 
-            }
-            if(Input.GetButtonUp("Fire2"))
-            {
-                if (savedObject != null)
-                {
-                    resetObject();
-                    GetComponent<BoxCollider>().isTrigger = false;
-                }
-                onSucking = false;
-            }
-        }
-       
-        if (Input.GetButtonUp("AimP2"))
-        {
-            onSucking = false;
-            //Renderer.material.color = Color.white;
-            TextSpawning = false;
-            ChaRot.transform.rotation = OldQuate;
-            OldQuate = new Quaternion(0,0,0,0);         
-            Range.SetActive(false);
-            move.SpeedReset();
-            move.isDashClose = false;
-            IsAiming = false;
-
-            //uIcontrol.SuckingCDBar(canSucc);
-            //if (!SuckInCD)
-            //{
-            //    SuckInCD = true;
-            //    Timer = 0;              
-            //}              
-            
-            //if(S_Tonado!=null)
-            //{
-            //    S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
-            //    S_Tonado = null;
-            //}          
-        }
+        if (isAttackWithAim)
+            AttackWithAim();
+        else
+            AttackWithOutAim();
 
         if (savedObject)
         {       
@@ -169,7 +102,121 @@ public class ForceRepel_TopDown : MonoBehaviour
             // curve.Evaluate(0.6f)
         }
     }
+    private void AttackWithAim()
+    {
+        if (Input.GetButtonDown("AimP2"))
+        {
+            ButtonDonwEvent();
+        }
 
+        if (Input.GetButton("AimP2"))
+        {
+            Range.SetActive(true);
+            IsAiming = true;
+        }
+
+        if (IsAiming)
+        {
+            if (Input.GetButton("HelpFriendP2"))
+                SuckFriend();
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                if (!SuckInCD)
+                {
+                    onSucking = true;
+                }
+                else
+                    uIcontrol.flyText(2, Color.red, "CD!!!!");
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                if (!SuckInCD)
+                {
+                    GetComponent<BoxCollider>().isTrigger = true;
+                    Repel();
+                }
+            }
+            if (Input.GetButtonUp("Fire2"))
+            {
+                if (savedObject != null)
+                {
+                    resetObject();
+                    GetComponent<BoxCollider>().isTrigger = false;
+                }
+                onSucking = false;
+            }
+        }
+
+        if (Input.GetButtonUp("AimP2"))
+        {
+            onSucking = false;
+            //Renderer.material.color = Color.white;
+            TextSpawning = false;
+            ChaRot.transform.rotation = OldQuate;
+            OldQuate = new Quaternion(0, 0, 0, 0);
+            Range.SetActive(false);
+            move.SpeedReset();
+            move.isDashClose = false;
+            IsAiming = false;
+
+            //uIcontrol.SuckingCDBar(canSucc);
+            //if (!SuckInCD)
+            //{
+            //    SuckInCD = true;
+            //    Timer = 0;              
+            //}              
+
+            //if(S_Tonado!=null)
+            //{
+            //    S_Tonado.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = true;
+            //    S_Tonado = null;
+            //}          
+        }
+    }
+
+    private void AttackWithOutAim()
+    {
+        if(Input.GetButton("HelpFriendP2"))
+             SuckFriend();
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (!SuckInCD)
+            {
+                ButtonDonwEvent();
+                onSucking = true;
+            }
+            else
+                uIcontrol.flyText(2, Color.red, "CD!!!!");
+        }
+        if (Input.GetButton("Fire2"))
+        {
+            if (!SuckInCD)
+            {
+                Range.SetActive(true);
+                GetComponent<BoxCollider>().isTrigger = true;
+                Repel();
+            }
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            if (savedObject != null)
+            {
+                resetObject();
+                GetComponent<BoxCollider>().isTrigger = false;
+            }
+            onSucking = false;
+            //Renderer.material.color = Color.white;
+            TextSpawning = false;
+            ChaRot.transform.rotation = OldQuate;
+            OldQuate = new Quaternion(0, 0, 0, 0);
+            Range.SetActive(false);
+            move.SpeedReset();
+            move.isDashClose = false;
+            IsAiming = false;
+        }
+    }
     public void ButtonDonwEvent()
     {
         OldQuate = ChaRot.transform.rotation;

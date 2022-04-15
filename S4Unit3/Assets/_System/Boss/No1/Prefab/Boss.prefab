@@ -58099,7 +58099,7 @@ MonoBehaviour:
   tailAttackAlert: {fileID: 4975293313296302778}
   AreaAttackAlert: {fileID: 1028887627562288274}
   _TestingMode: 0
-  _DrawGizmos: 0
+  _DrawGizmos: 1
   lP1:
     serializedVersion: 2
     m_Bits: 4096
@@ -58117,7 +58117,7 @@ MonoBehaviour:
   isMoveFinished: 0
   _aiEnable: 0
   aiStartTime: 2
-  aiReactTimeStage1: 2.7
+  aiReactTimeStage1: 2.2
   aiReactTimeStage2: 2
   aiReactTimeStandoMode: 4.5
   IsStage1: 1
@@ -58130,7 +58130,7 @@ MonoBehaviour:
   _ComboNum: 1
   _ComboMaxNum: 5
   skillRangeS: 25
-  skillRangeL: 50
+  skillRangeL: 95
   skillRange1: 20
   skillRange2: 35
   skillRange3: 50
@@ -58149,7 +58149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instantiatePoint: {fileID: 3547116887089412507}
   windBallPoint: {fileID: 1566686734550591369}
-  DrawGizmo: 1
+  DrawGizmo: 0
   _wingBladeRange: 70
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
   outerWindBlade: {fileID: 5798214951064251751, guid: 97f780d460f82d840a87c41861064850, type: 3}
@@ -58336,8 +58336,8 @@ NavMeshAgent:
   m_Speed: 20
   m_Acceleration: 15
   avoidancePriority: 50
-  m_AngularSpeed: 180
-  m_StoppingDistance: 1
+  m_AngularSpeed: 360
+  m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -59136,7 +59136,7 @@ BoxCollider:
   m_GameObject: {fileID: 588671217246879892}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.0100631695, y: 0.006059255, z: 0.013358944}
   m_Center: {x: 0.0016388984, y: -0.0024260702, z: -0.004705044}

@@ -63,16 +63,16 @@ public class UIcontrol : MonoBehaviour
     
     private void Update()
     {
-        if (pushing) 
-        {
-            Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
+        //if (pushing) 
+        //{
+        //    Vector3 wantedPos = Camera.main.WorldToScreenPoint(P1.transform.position);
 
-            if(pushingCD.activeInHierarchy)
-                wantedPos.y = wantedPos.y - 40;
-            else
-                wantedPos.y = wantedPos.y - 20;
-            pushing.transform.position = wantedPos;
-        }
+        //    if(pushingCD.activeInHierarchy)
+        //        wantedPos.y = wantedPos.y - 40;
+        //    else
+        //        wantedPos.y = wantedPos.y - 20;
+        //    pushing.transform.position = wantedPos;
+        //}
 
         if(P1.GetComponent<PlayerState>().isDead)
         {

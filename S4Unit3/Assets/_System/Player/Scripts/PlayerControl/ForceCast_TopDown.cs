@@ -32,6 +32,10 @@ public class ForceCast_TopDown : MonoBehaviour
     public int PushMaxCD = 1;
     public float speedSlow;
 
+    public bool isAttackWithAim;
+
+    [SerializeField] ParticleSystem DogCarge;
+
     void Start()
     {
         move = GetComponent<Move>();
@@ -42,17 +46,7 @@ public class ForceCast_TopDown : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //Vector3 startPos = transform.position;
-        //Vector3 endPos = transform.forward;
-        //RaycastHit hit;
-        //if (Physics.Raycast(startPos, endPos, out hit, _range))
-        //{
-        //    if (hit.transform.tag == "Boss")
-        //        Renderer.material.color = Color.green;
-        //    else
-        //        Renderer.material.color = Color.white;
-        //}
-        ///射擊前充能
+        //射擊前充能
         if (Charge)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
@@ -71,16 +65,16 @@ public class ForceCast_TopDown : MonoBehaviour
             {
                 countFloat -= 0.5f * Time.deltaTime;
                 float BarValue = countFloat / CountMax;
-                UIcontrol.PushingBar(BarValue);
+                //UIcontrol.PushingBar(BarValue);
             }
             else
             {
                 countFloat = 0;
-                UIcontrol.PushingStop();
+                //UIcontrol.PushingStop();
             }
         }
 
-        ///射擊
+        //射擊
         if (isShooted)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
@@ -92,13 +86,13 @@ public class ForceCast_TopDown : MonoBehaviour
                 isShooted = false;
         }
 
-        ///推隊友
+        //推隊友
         if (isfriendPushed)
         {
             FriendlyPushed();
         }
 
-        ///攻擊的CD
+        //攻擊的CD
         if (ShootInCD)
         {
             if (Timer < PushMaxCD)
@@ -111,10 +105,20 @@ public class ForceCast_TopDown : MonoBehaviour
         else
             Timer = PushMaxCD;
 
-        ///攻擊蓄力的UI
+        //攻擊的CD UI
         UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
-        ///OldInput備案 如果New Input手把不能用的時候打開
+        //OldInput備案 如果New Input手把不能用的時候打開
+        if (isAttackWithAim)
+            AttackWithAim();
+        else
+            AttackWithOutAim();
+
+        //Attack Without Aim
+    }
+  
+    private void AttackWithAim()
+    {
         if (Input.GetButtonDown("AimP1"))
         {
             SetOldQue();
@@ -122,9 +126,9 @@ public class ForceCast_TopDown : MonoBehaviour
         }
 
         if (Input.GetButton("AimP1"))
-        {       
+        {
             isAim = true;
-            rangeObj.SetActive(true);           
+            rangeObj.SetActive(true);
 
             if (Input.GetButton("HelpFriendP1"))
             {
@@ -139,27 +143,65 @@ public class ForceCast_TopDown : MonoBehaviour
             if (Input.GetButtonUp("Fire1"))
             {
                 if (!ShootInCD && objectParent.transform.childCount > 0)
-                    isShooted = true;    
+                    isShooted = true;
             }
 
-            if(Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (ShootInCD || objectParent.transform.childCount == 0)
                     UIcontrol.flyText(1, Color.red, "CD!!!");
             }
 
-            if(Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
                 if (!ShootInCD && objectParent.transform.childCount > 0)
-                    Charge = true;       
+                    Charge = true;
             }
         }
-
         if (Input.GetButtonUp("AimP1"))
         {
             isAim = false;
             ResetOldQue();
         }
+    }
+
+    private void AttackWithOutAim()
+    {
+        if (Input.GetButton("HelpFriendP1"))
+        {
+            isfriendPushed = true;
+        }
+        if (Input.GetButtonUp("HelpFriendP1"))
+        {
+            isfriendPushed = false;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (ShootInCD || objectParent.transform.childCount == 0)
+                UIcontrol.flyText(1, Color.red, "CD!!!");
+            else
+            {
+                SetOldQue();
+                P1_Aim_Slow();
+            }
+        }
+        if (Input.GetButton("Fire1"))
+        {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                Charge = true;
+                rangeObj.SetActive(true);
+            }
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                isShooted = true;
+                ResetOldQue();
+            }             
+        }       
     }
 
     public void P1_Aim_Slow()
@@ -182,25 +224,35 @@ public class ForceCast_TopDown : MonoBehaviour
         ///重置狀態
         isShooted = false;
         Charge = false;
+        DogCarge.gameObject.SetActive(false);
     }
 
     ///蓄力
     private void Accumulate()
     {
+        //DogCarge.gameObject.SetActive(true);
+        //DogCarge.Play();
+        gameObject.GetComponent<P1GetCube>().StartCarge();
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
-        
         ///地毯開啟
         //rangeObj.SetActive(true);
-
         ///蓄力條蓄力計算
         countFloat += Time.deltaTime;
         if (countFloat > CountMax +1f)
             countFloat = 0;
         ///蓄力條UI
-        float BarValue = countFloat/CountMax;
-        UIcontrol.PushingBar(BarValue);    
+        //float BarValue = countFloat/CountMax;
+        //UIcontrol.PushingBar(BarValue);
+        
+        if(countFloat<=1.5f)
+        {
+            int countInt = (int)(countFloat * 2);
+            //Debug.Log(countInt);
+            int newScale = countInt + 1;
+            //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+        }        
     }
 
     private void FriendlyPushed()
