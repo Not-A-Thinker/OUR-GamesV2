@@ -45,12 +45,15 @@ public class BossAI_Wind : MonoBehaviour
     [Header("Player LockOn")]
     [SerializeField] LayerMask lP1;
     [SerializeField] LayerMask lP2;
+    [Space]
     [SerializeField] bool lookAtP1;
     [SerializeField] bool lookAtP2;
     [SerializeField] bool isLockOn;
     [SerializeField] bool _quickLock;
+    [SerializeField] bool _isForceLockOn;
+    [Space]
     [SerializeField] bool isMeleeAttacking;
-    bool _isForceLookOn;
+    
 
     [Header("Boss Movement")]
     public float timing = 0.2f;
@@ -264,7 +267,7 @@ public class BossAI_Wind : MonoBehaviour
     {
         if (_Player1 != null && _Player2 != null)
         {
-            if (_isForceLookOn)
+            if (_isForceLockOn)
                 return;
 
             float distP1 = Vector3.Distance(transform.position, _Player1.transform.position);
@@ -992,6 +995,24 @@ public class BossAI_Wind : MonoBehaviour
         { agent.SetDestination(transform.position); }
     }
 
+    /// <summary>
+    /// 用於隨機選擇一個玩家作鎖定的功能
+    /// </summary>
+    void ChangePlayerTargetRandom()
+    {
+        int playerRnd = Random.Range(1, 3);
+        if (playerRnd == 1)
+        {
+            lookAtP1 = true;
+            lookAtP2 = false;
+        }
+        else if (playerRnd == 2)
+        {
+            lookAtP1 = false;
+            lookAtP2 = true;
+        }
+    }
+
     IEnumerator AIStartTimer()
     {
         yield return new WaitForSeconds(aiStartTime);
@@ -1090,6 +1111,7 @@ public class BossAI_Wind : MonoBehaviour
             SkillSelection();
             yield return coroutineAtk;
             yield return new WaitUntil(() => isMoveFinished);
+            Debug.Log("Just Pass The 'isMoveFinished' Gate");
 
             ///This is for restate the animator back to Idle State.
             yield return new WaitUntil(() => ani.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
@@ -1107,6 +1129,8 @@ public class BossAI_Wind : MonoBehaviour
                 Debug.Log("Take a Break!");
                 yield return new WaitForSeconds(3);
             }
+            if (_isForceLockOn)
+            {ChangePlayerTargetRandom();}
         }
     }
 
