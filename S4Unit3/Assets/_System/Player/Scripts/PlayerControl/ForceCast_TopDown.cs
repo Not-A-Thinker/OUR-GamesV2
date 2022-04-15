@@ -32,6 +32,8 @@ public class ForceCast_TopDown : MonoBehaviour
     public int PushMaxCD = 1;
     public float speedSlow;
 
+    [SerializeField] ParticleSystem DogCarge;
+
     void Start()
     {
         move = GetComponent<Move>();
@@ -71,12 +73,12 @@ public class ForceCast_TopDown : MonoBehaviour
             {
                 countFloat -= 0.5f * Time.deltaTime;
                 float BarValue = countFloat / CountMax;
-                UIcontrol.PushingBar(BarValue);
+                //UIcontrol.PushingBar(BarValue);
             }
             else
             {
                 countFloat = 0;
-                UIcontrol.PushingStop();
+                //UIcontrol.PushingStop();
             }
         }
 
@@ -182,25 +184,34 @@ public class ForceCast_TopDown : MonoBehaviour
         ///重置狀態
         isShooted = false;
         Charge = false;
+        DogCarge.gameObject.SetActive(false);
     }
 
     ///蓄力
     private void Accumulate()
     {
+        DogCarge.gameObject.SetActive(true);
+        DogCarge.Play();
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
-        
         ///地毯開啟
         //rangeObj.SetActive(true);
-
         ///蓄力條蓄力計算
         countFloat += Time.deltaTime;
         if (countFloat > CountMax +1f)
             countFloat = 0;
         ///蓄力條UI
-        float BarValue = countFloat/CountMax;
-        UIcontrol.PushingBar(BarValue);    
+        //float BarValue = countFloat/CountMax;
+        //UIcontrol.PushingBar(BarValue);
+        
+        if(countFloat<=1.5f)
+        {
+            int countInt = (int)(countFloat * 2);
+            Debug.Log(countInt);
+            int newScale = countInt + 1;
+            DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+        }        
     }
 
     private void FriendlyPushed()
