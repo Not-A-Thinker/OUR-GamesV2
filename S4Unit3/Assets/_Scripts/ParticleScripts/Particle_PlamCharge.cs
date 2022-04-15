@@ -4,28 +4,41 @@ using UnityEngine;
 
 public class Particle_PlamCharge : MonoBehaviour
 {
+    [Header("集氣時開啟")]
+    public bool IsCollecting = false;
+
     public ParticleSystem vfx;
     public ParticleSystem BiggerEffect;
-    [Range(0, 1)]
+    [Range(0, 1)][Header("集氣程度0~1")]
     public float value;
     float[] segment = { 0, 0.33f, 0.67f, 1 }; //1切3
     [Range(0, 1)]
     public float LerpSpeed = 0.1f;
 
-    private void Awake()
-    {
-        vfx = (vfx == null ? gameObject.GetComponent<ParticleSystem>() : vfx);
-        OSize = transform.localScale;
-    }
+
+
+    [Header("紀錄數值用")]
     [SerializeField]
     Vector3 OSize;
     [SerializeField]
     Vector3 ExSize;
     [SerializeField]
     int ExState;
+
+
+    private void Awake()
+    {
+        vfx = (vfx == null ? gameObject.GetComponent<ParticleSystem>() : vfx);
+        OSize = transform.localScale;
+    }
+
+
+
+
+
     private void Update()
     {
-        if (vfx != null)
+        if (vfx != null&& IsCollecting)
         {
             print(Charge(value));
             switch (Charge(value))
