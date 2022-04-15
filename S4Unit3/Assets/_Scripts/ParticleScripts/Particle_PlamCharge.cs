@@ -5,85 +5,136 @@ using UnityEngine;
 public class Particle_PlamCharge : MonoBehaviour
 {
     public ParticleSystem vfx;
-    public ParticleSystem BiggerEffect; 
-    [Range(0, 1)][SerializeField]
-    private float value;
-    float[] segment = { 0, 0.33f, 0.67f, 1 }; //1¤Á3
-    public float LerpSpeed = 0.01f;
-
+    public ParticleSystem BiggerEffect;
+    [Range(0, 1)]
+    public float value;
+    float[] segment = { 0, 0.33f, 0.67f, 1 }; //1åˆ‡3
+    [Range(0, 1)]
+    public float LerpSpeed = 0.1f;
 
     private void Awake()
     {
         vfx = (vfx == null ? gameObject.GetComponent<ParticleSystem>() : vfx);
-        OSize = transform.localScale; 
+        OSize = transform.localScale;
     }
-    Vector3 OSize; 
+    [SerializeField]
+    Vector3 OSize;
+    [SerializeField]
+    Vector3 ExSize;
+    [SerializeField]
+    int ExState;
     private void Update()
     {
-        if(vfx!=null)
+        if (vfx != null)
         {
+            print(Charge(value));
             switch (Charge(value))
             {
                 case 1:
                     {
-                        transform.localScale = Vector3.Lerp(transform.localScale, OSize, LerpSpeed);
+                        ExSize = transform.localScale;
+                        if (ExState < Charge(value))//is bigger
+                        {
+                            for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
+                            {
+                                transform.localScale = Vector3.Lerp(transform.localScale, OSize, LerpSpeed);
+                            }
+                            ExSize = transform.localScale;
+                            StartCoroutine(biggerEffect(3.75f));
+                        }
+                        else if (ExState >= Charge(value))//is smaller
+                        {
+                            transform.localScale = Vector3.Lerp(transform.localScale, OSize, LerpSpeed);
+                            ExSize = transform.localScale;
+                        }
+                        else //not change
+                        {
+
+                        }
+                        ExState = Charge(value);
                     }
                     break;
                 case 2:
                     {
-                        if (transform.localScale.x < Vector3amplifier(OSize, 1.5f).x) // is bigger
+                        if (ExState < Charge(value))//is bigger
                         {
-                            if(BiggerEffect!=null)
+                            for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
                             {
-                               ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position, Quaternion.identity);
-                                newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, 1.5f);
-                                Destroy(newvfx, 1);
-
+                                transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 1.5f), LerpSpeed);
                             }
+                            ExSize = transform.localScale;
+                            StartCoroutine(biggerEffect(3.75f));
                         }
+                        else if (ExState >= Charge(value))//is smaller
+                        {
+                            transform.localScale = Vector3.Lerp(transform.localScale, ExSize, LerpSpeed);
+                            ExSize = transform.localScale;
+                        }
+                        else //not change
+                        {
 
-                            transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize,1.5f), LerpSpeed);
+                        }
+                        ExState = Charge(value);
                     }
                     break;
-                    
+
                 case 3:
                     {
-                        if (transform.localScale.x < Vector3amplifier(OSize, 2.5f).x) // is bigger
+                        if (ExState < Charge(value))//is bigger
                         {
-                            if (BiggerEffect != null)
+                            for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
                             {
-                                ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position, Quaternion.identity);
-                                newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, 2.5f);
-                                Destroy(newvfx, 1);
-
+                                transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 2.5f), LerpSpeed);
                             }
+                            ExSize = transform.localScale;
+                            StartCoroutine(biggerEffect(3.75f));
                         }
-                        transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 2.5f), LerpSpeed);
+                        else if (ExState >= Charge(value))//is smaller
+                        {
+                            transform.localScale = Vector3.Lerp(transform.localScale, ExSize, LerpSpeed);
+                            ExSize = transform.localScale;
+                        }
+                        else //not change
+                        {
+
+                        }
+                        ExState = Charge(value);
                     }
                     break;
-                    
+
                 case 4:
                     {
-                        if (transform.localScale.x < Vector3amplifier(OSize, 3.75f).x) // is bigger
+
+                        if (ExState < Charge(value))//is bigger
                         {
-                            if (BiggerEffect != null)
+                            for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
                             {
-                                ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position, Quaternion.identity);
-                                newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, 3.75f);
-                                Destroy(newvfx, 1);
+                                transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 3.75f), LerpSpeed);
 
                             }
+                            ExSize = transform.localScale;
+                            StartCoroutine(biggerEffect(3.75f));
                         }
-                        transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 3.75f), LerpSpeed);
+                        else if (ExState > Charge(value))//is smaller
+                        {
+                            transform.localScale = Vector3.Lerp(transform.localScale, ExSize, LerpSpeed);
+                        }
+                        else //not change
+                        {
+
+                        }
+                        ExState = Charge(value);
                     }
                     break;
-                    
+
                 case 0:
                     {
                         print("value Error");
-                    }break;
-                    
+                    }
+                    break;
+
             }
+
 
         }
     }
@@ -91,20 +142,20 @@ public class Particle_PlamCharge : MonoBehaviour
 
     public int Charge(float value)
     {
-        if (value >= segment[0] && value < segment[1])
+        if (value >= segment[0] && value < segment[1])  //0~0.32999...
         {
             return 1;
         }
-        else if (value >= segment[1] && value < segment[2])
+        else if (value >= segment[1] && value < segment[2])//0.33~0.66999...
         {
             return 2;
 
         }
-        else if (value >= segment[2] && value < segment[3])
+        else if (value >= segment[2] && value < segment[3])//0.67~0.999
         {
             return 3;
         }
-        else if (value >= segment[3] && value <= 1)
+        else if (value >= segment[3])//1
         {
             return 4;
         }
@@ -114,9 +165,21 @@ public class Particle_PlamCharge : MonoBehaviour
         }
 
     }
-    Vector3 Vector3amplifier( Vector3 O , float magnification)
+    Vector3 Vector3amplifier(Vector3 O, float magnification)
     {
         return new Vector3(O.x * magnification, O.y * magnification, O.z * magnification);
+    }
+
+    IEnumerator biggerEffect(float size)
+    {
+        if (BiggerEffect != null)
+        {
+            yield return new WaitForSeconds(.3f);
+            ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position, Quaternion.identity, transform);
+            newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, size);
+            yield return new WaitForSeconds(3f);
+            Destroy(newvfx.gameObject);
+        }
     }
 
 }
