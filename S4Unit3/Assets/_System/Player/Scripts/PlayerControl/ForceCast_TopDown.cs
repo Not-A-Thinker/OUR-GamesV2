@@ -32,6 +32,8 @@ public class ForceCast_TopDown : MonoBehaviour
     public int PushMaxCD = 1;
     public float speedSlow;
 
+    public bool isAttackWithAim;
+
     [SerializeField] ParticleSystem DogCarge;
 
     void Start()
@@ -44,17 +46,7 @@ public class ForceCast_TopDown : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //Vector3 startPos = transform.position;
-        //Vector3 endPos = transform.forward;
-        //RaycastHit hit;
-        //if (Physics.Raycast(startPos, endPos, out hit, _range))
-        //{
-        //    if (hit.transform.tag == "Boss")
-        //        Renderer.material.color = Color.green;
-        //    else
-        //        Renderer.material.color = Color.white;
-        //}
-        ///射擊前充能
+        //射擊前充能
         if (Charge)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
@@ -82,7 +74,7 @@ public class ForceCast_TopDown : MonoBehaviour
             }
         }
 
-        ///射擊
+        //射擊
         if (isShooted)
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
@@ -94,13 +86,13 @@ public class ForceCast_TopDown : MonoBehaviour
                 isShooted = false;
         }
 
-        ///推隊友
+        //推隊友
         if (isfriendPushed)
         {
             FriendlyPushed();
         }
 
-        ///攻擊的CD
+        //攻擊的CD
         if (ShootInCD)
         {
             if (Timer < PushMaxCD)
@@ -113,10 +105,20 @@ public class ForceCast_TopDown : MonoBehaviour
         else
             Timer = PushMaxCD;
 
-        ///攻擊蓄力的UI
+        //攻擊的CD UI
         UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
-        ///OldInput備案 如果New Input手把不能用的時候打開
+        //OldInput備案 如果New Input手把不能用的時候打開
+        if (isAttackWithAim)
+            AttackWithAim();
+        else
+            AttackWithOutAim();
+
+        //Attack Without Aim
+    }
+  
+    private void AttackWithAim()
+    {
         if (Input.GetButtonDown("AimP1"))
         {
             SetOldQue();
@@ -124,9 +126,9 @@ public class ForceCast_TopDown : MonoBehaviour
         }
 
         if (Input.GetButton("AimP1"))
-        {       
+        {
             isAim = true;
-            rangeObj.SetActive(true);           
+            rangeObj.SetActive(true);
 
             if (Input.GetButton("HelpFriendP1"))
             {
@@ -141,26 +143,66 @@ public class ForceCast_TopDown : MonoBehaviour
             if (Input.GetButtonUp("Fire1"))
             {
                 if (!ShootInCD && objectParent.transform.childCount > 0)
-                    isShooted = true;    
+                    isShooted = true;
             }
 
-            if(Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 if (ShootInCD || objectParent.transform.childCount == 0)
                     UIcontrol.flyText(1, Color.red, "CD!!!");
             }
 
-            if(Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
                 if (!ShootInCD && objectParent.transform.childCount > 0)
-                    Charge = true;       
+                    Charge = true;
             }
         }
-
         if (Input.GetButtonUp("AimP1"))
         {
             isAim = false;
             ResetOldQue();
+        }
+    }
+
+    private void AttackWithOutAim()
+    {
+        if (Input.GetButton("HelpFriendP1"))
+        {
+            isfriendPushed = true;
+        }
+        if (Input.GetButtonUp("HelpFriendP1"))
+        {
+            isfriendPushed = false;
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (ShootInCD || objectParent.transform.childCount == 0)
+                UIcontrol.flyText(1, Color.red, "CD!!!");
+            else
+            {
+                SetOldQue();
+                P1_Aim_Slow();
+            }
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                isShooted = true;
+                isAim = true;
+                rangeObj.SetActive(true);
+            }             
+        }   
+        if (Input.GetButton("Fire1"))
+        {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                Charge = true;
+                isAim = false;
+                ResetOldQue();
+            }               
         }
     }
 
