@@ -146,6 +146,7 @@ public class BossAI_Wind : MonoBehaviour
         //tailAttackAlert.SetTrigger("TailAttack Alert");
         //BossSkill.BossTailAttack();
 
+        isMeleeAttacking = true;
         tailAttackAlert.SetTrigger("TailAttack Alert");
         BossSkill.BossHeadAttack();
     }

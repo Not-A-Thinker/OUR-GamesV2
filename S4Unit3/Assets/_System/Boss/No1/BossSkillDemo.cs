@@ -52,14 +52,16 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Skill Tweak")]
     public int NumTornadoToSpawn = 2;
+    [Space]
     [Range(1, 5)] public int NumBoomerangSpawn = 3;
     [Range(1, 2)] public int BoomerangCase = 1;
+    [Space]
     public int waveToSpawnWindBlade = 3;
     public int waveToSpawnTornado = 1;
     public int _STACount = 1;
 
     [Header("Skill Outer WindBlade")]
-    [Tooltip("Mode1 �O���i,Mode2 �O�P�B�o�g")]
+    [Tooltip("Mode1 是漸進,Mode2 是同步發射")]
     [Range(1, 2)] [SerializeField] int owb_WorkMode = 1;
     [SerializeField] bool owb_DebugLog = false;
 
@@ -74,6 +76,18 @@ public class BossSkillDemo : MonoBehaviour
 
     [Header("Skill Tail Attack")]
     [SerializeField] float tailForwardForce = 10000;
+    [Space]
+    [SerializeField] float tailDashDuration;// 控制尾部衝刺時間
+    [SerializeField] float tailDashSpeed;// 尾部衝刺速度
+    bool isTailDash;// 是否在衝刺
+    float tailDashTime;// 剩餘衝刺時間
+
+    [Header("Skill Head Attack")]
+    [SerializeField] float headDashDuration;// 控制頭部衝刺時間
+    [SerializeField] float headDashSpeed;// 頭部衝刺速度
+    bool isHeadDash;// 是否在衝刺
+    float headDashTime;// 剩餘衝刺時間
+    private Vector3 directionXOZ;
 
     [Header("State")]
     [SerializeField] float _skillRange = 20f;
@@ -149,9 +163,42 @@ public class BossSkillDemo : MonoBehaviour
         }
         #endregion
 
-
+        
         //The Update ends here.
     }
+
+    private void FixedUpdate()
+    {
+        if (isTailDash)
+        {
+            if (tailDashTime <= 0)// reset
+            {
+                isTailDash = false;
+
+                tailDashTime = tailDashDuration;
+            }
+            else
+            {
+                tailDashTime -= Time.deltaTime;
+                rb.velocity = directionXOZ * tailDashTime * tailDashSpeed;
+            }
+        }
+        if (isHeadDash)
+        {
+            if (headDashTime <= 0)// reset
+            {
+                isHeadDash = false;
+
+                headDashTime = headDashDuration;
+            }
+            else
+            {
+                headDashTime -= Time.deltaTime;
+                rb.velocity = directionXOZ * headDashTime * headDashSpeed;
+            }
+        }
+    }
+
 
     #region Stage1_SkillSets
     public void WindBlade()
@@ -504,7 +551,11 @@ public class BossSkillDemo : MonoBehaviour
 
     public void BossTailAttackAnimation()
     {
-        rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
+        //rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
+        rb.velocity = Vector3.zero;
+        isTailDash = true;
+        directionXOZ = transform.forward;// forward 指向物體當前的前方
+        directionXOZ.y = 0f;// 只做平面的上下移動和水平移動，不做高度上的上下移動
     }
 
     public void BossTailAttack()
@@ -524,8 +575,11 @@ public class BossSkillDemo : MonoBehaviour
 
     public void BossHeadAttackAnimation()
     {
-        rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
-        //transform.position += Vector3.forward * 3;
+        //rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
+        rb.velocity = Vector3.zero;
+        isHeadDash = true;
+        directionXOZ = transform.forward;// forward 指向物體當前的前方
+        directionXOZ.y = 0f;// 只做平面的上下移動和水平移動，不做高度上的上下移動
     }
 
     public void BossHeadAttack()
