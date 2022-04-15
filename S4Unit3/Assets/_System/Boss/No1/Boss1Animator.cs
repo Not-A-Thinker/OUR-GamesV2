@@ -57,6 +57,7 @@ public class Boss1Animator : MonoBehaviour
         //bossVC.m_Priority = orgPriority;
         impulseSource.GenerateImpulse();
         BossAI.IsAfter33 = true;
+        Level1GameData.b_isCutScene = false;
     }
 
     public void Camera_PinBallFadeIn()

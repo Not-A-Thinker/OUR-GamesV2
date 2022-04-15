@@ -108,7 +108,7 @@ public class PlayerState : MonoBehaviour
 
     public void hp_decrease()
     {      
-        if(!isInvincible)
+        if(!isInvincible && !Level1GameData.b_isCutScene)
         {
             StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
