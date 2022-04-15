@@ -186,24 +186,22 @@ public class ForceCast_TopDown : MonoBehaviour
                 P1_Aim_Slow();
             }
         }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            if (!ShootInCD && objectParent.transform.childCount > 0)
-            {
-                isShooted = true;
-                isAim = true;
-                rangeObj.SetActive(true);
-            }             
-        }   
         if (Input.GetButton("Fire1"))
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 Charge = true;
-                isAim = false;
-                ResetOldQue();
-            }               
+                rangeObj.SetActive(true);
+            }
         }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            if (!ShootInCD && objectParent.transform.childCount > 0)
+            {
+                isShooted = true;
+                ResetOldQue();
+            }             
+        }       
     }
 
     public void P1_Aim_Slow()
