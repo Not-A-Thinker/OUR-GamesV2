@@ -250,7 +250,7 @@ public class ForceCast_TopDown : MonoBehaviour
         if(countFloat<=1.5f)
         {
             int countInt = (int)(countFloat * 2);
-            Debug.Log(countInt);
+            //Debug.Log(countInt);
             int newScale = countInt + 1;
             DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }        
