@@ -936,7 +936,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.03068523, y: 74.87, z: -73.30848}
+  m_LocalPosition: {x: 0.030685013, y: 74.87, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15115,7 +15115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.03068523, y: 74.87, z: -73.30848}
+  m_LocalPosition: {x: 0.030685013, y: 74.87, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18113,6 +18113,10 @@ PrefabInstance:
       propertyPath: _DrawGizmos
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: aiReactTimeStage1
+      value: 2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 214025737227819983, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 11.271246
@@ -18196,6 +18200,18 @@ PrefabInstance:
     - target: {fileID: 3277564667117997224, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00032
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547116887273196983, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547116887273196983, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547116887273196983, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: DrawGizmo
