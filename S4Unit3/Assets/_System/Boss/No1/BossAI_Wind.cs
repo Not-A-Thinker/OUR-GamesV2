@@ -911,7 +911,7 @@ public class BossAI_Wind : MonoBehaviour
         _noPreMove = true;
     }
 
-    IEnumerator BossWandering()
+    IEnumerator BossMovement()
     {
 
 
