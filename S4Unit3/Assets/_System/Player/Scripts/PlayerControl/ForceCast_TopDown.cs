@@ -230,8 +230,9 @@ public class ForceCast_TopDown : MonoBehaviour
     ///»W¤O
     private void Accumulate()
     {
-        DogCarge.gameObject.SetActive(true);
-        DogCarge.Play();
+        //DogCarge.gameObject.SetActive(true);
+        //DogCarge.Play();
+        gameObject.GetComponent<P1GetCube>().StartCarge();
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
@@ -250,7 +251,7 @@ public class ForceCast_TopDown : MonoBehaviour
             int countInt = (int)(countFloat * 2);
             //Debug.Log(countInt);
             int newScale = countInt + 1;
-            DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+            //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }        
     }
 
