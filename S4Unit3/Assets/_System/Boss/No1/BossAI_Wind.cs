@@ -704,7 +704,6 @@ public class BossAI_Wind : MonoBehaviour
                     ///STA 龍龍彈珠台(現在為過埸動畫)
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
-                    Level1GameData.b_isCutScene = true;
 
                     yield return new WaitForSeconds(.5f);
                     //cameraControl.ChangeTargetWeight(3, 3);

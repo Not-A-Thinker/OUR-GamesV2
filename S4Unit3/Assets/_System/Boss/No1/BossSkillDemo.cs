@@ -384,6 +384,7 @@ public class BossSkillDemo : MonoBehaviour
     {
         //StartCoroutine(animationPlaytime("isTonado"));
         Boss1Animator.SetTrigger("Skill_PinBall");
+        Level1GameData.b_isCutScene = true;
         //Boss1Animator.SetTrigger("Skill_Tornado");
         
     }

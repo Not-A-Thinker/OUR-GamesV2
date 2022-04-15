@@ -6,12 +6,12 @@ using UnityEngine;
 public class Level1GameData : MonoBehaviour
 {
     //用於控制Boss過場時玩家不會吃到傷害,以及清除場上其他應該消失的物件
-    public static bool b_isCutScene = false;
-
+    static public bool b_isCutScene = false;
+    [SerializeField] bool isCutScene;
 
     void Start()
     {
-        b_isCutScene = true;
+        b_isCutScene = false;
     }
 
 
