@@ -33,6 +33,7 @@ public class ForceCast_TopDown : MonoBehaviour
     public float speedSlow;
 
     public bool isAttackWithAim;
+    public GameObject CargeObj;
 
     [SerializeField] ParticleSystem DogCarge;
 
@@ -225,6 +226,7 @@ public class ForceCast_TopDown : MonoBehaviour
         isShooted = false;
         Charge = false;
         DogCarge.gameObject.SetActive(false);
+        CargeObj = null;
     }
 
     ///»W¤O
@@ -251,6 +253,7 @@ public class ForceCast_TopDown : MonoBehaviour
             int countInt = (int)(countFloat * 2);
             //Debug.Log(countInt);
             int newScale = countInt + 1;
+            CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
             //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         }        
     }
