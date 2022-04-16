@@ -75,11 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6b8d6484e7e8d4586f6f1d753277ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AI: 1
   attackAlert: {fileID: 5936635689230513696}
   boomerageAlert: {fileID: 666437681515073794}
   outerWindBladeAlert: []
   wingAttackAlert: {fileID: 0}
   tailAttackAlert: {fileID: 0}
+  headAttackAlert: {fileID: 0}
+  AreaAttackAlert: {fileID: 0}
   _TestingMode: 0
   _DrawGizmos: 0
   lP1:
@@ -92,6 +95,7 @@ MonoBehaviour:
   lookAtP2: 0
   isLockOn: 0
   _quickLock: 0
+  _isForceLockOn: 0
   isMeleeAttacking: 0
   timing: 0.2
   backwardForce: 13000
@@ -105,6 +109,7 @@ MonoBehaviour:
   IsStage1: 0
   IsStage2: 1
   IsAfter33: 0
+  aIStage2Turn: 0
   isStandoMode: 0
   isMain: 0
   isStando: 1
@@ -112,7 +117,7 @@ MonoBehaviour:
   _ComboNum: 1
   _ComboMaxNum: 5
   skillRangeS: 25
-  skillRangeL: 50
+  skillRangeL: 95
   skillRange1: 20
   skillRange2: 35
   skillRange3: 50
@@ -130,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instantiatePoint: {fileID: 1957455747817131593}
-  windBallPoint: {fileID: 0}
+  windBallPoint: {fileID: 4811098569533151246}
   DrawGizmo: 0
   _wingBladeRange: 75
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
@@ -179,6 +184,10 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   tailForwardForce: 18000
+  tailDashDuration: 0
+  tailDashSpeed: 0
+  headDashDuration: 0
+  headDashSpeed: 0
   _skillRange: 45
   Boss1Animator: {fileID: 5915673759277053506}
 --- !u!114 &1957455747635378788
