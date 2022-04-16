@@ -90,7 +90,7 @@ public class BossSkillDemo : MonoBehaviour
     private Vector3 directionXOZ;
 
     [Header("State")]
-    [SerializeField] float _skillRange = 20f;
+    [SerializeField] float _skillRange = 20f;// 主要為控制召喚技能的範圍
     Vector3 orgPos;
 
     private bool isRushing = false;
