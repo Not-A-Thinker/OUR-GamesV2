@@ -176,6 +176,7 @@ public class BossAI_Wind : MonoBehaviour
             Destroy(gameObject);
         }
 
+        #region StageDetect
         ///This is for detecting if is condition to stage 2
         ///May need to apply a animation to tell if is Stage 2
         if (IsStage1 && !basicState.isHealthMerge)
@@ -227,6 +228,7 @@ public class BossAI_Wind : MonoBehaviour
                 Debug.Log("Switch to Stage2!");
             }
         }
+        #endregion
 
         ///Press Left shift and 1 to change boss AI.
         if (Input.GetKeyDown(KeyCode.Alpha1) && Input.GetKey(KeyCode.LeftShift))
@@ -955,7 +957,7 @@ public class BossAI_Wind : MonoBehaviour
                 agent.SetDestination(_Player2.transform.position);
             }
         }
-        else if (_canAttack)
+        else if (_canAttack && isMoveFinished)
         {
             agent.ResetPath();
         }
@@ -1027,8 +1029,6 @@ public class BossAI_Wind : MonoBehaviour
 
             Debug.Log("Shit Reseted.");
         }
-
-        yield return null;
     }
 
     /// <summary>
@@ -1082,7 +1082,6 @@ public class BossAI_Wind : MonoBehaviour
             if (_aiEnable) { Debug.Log("'AI' Started"); }
             yield return new WaitForSeconds(3);
             coroutineThink = StartCoroutine(TimeOfThink());
-            AI = AIMode.Normal;
         }
     }
 
@@ -1187,6 +1186,7 @@ public class BossAI_Wind : MonoBehaviour
             isMeleeAttacking = false;
             _canAttack = false;
             AI = AIMode.Normal;
+
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
             else { yield return new WaitForSeconds(aiReactTimeStage2); }
 
