@@ -36,7 +36,7 @@ public class BossSpawnObject : MonoBehaviour
     public void SpawnedCountDecrease()
     {
         SpawnedCount--;
-        Debug.Log("SpawnGone");
+        //Debug.Log("SpawnGone");
     }
 
     // Start is called before the first frame update
