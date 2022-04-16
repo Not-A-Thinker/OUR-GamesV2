@@ -260,12 +260,13 @@ public class PlayerState : MonoBehaviour
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
-        Physics.IgnoreLayerCollision(6, 9);
+        Physics.IgnoreLayerCollision(6, 9,false);
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(0.6f);
         _renderer.material.SetColor("_MainColor", color);
         yield return new WaitForSeconds(time);
         CancelInvoke();
+        Physics.IgnoreLayerCollision(6, 9, true);
         _renderer.enabled = true;
         _Collider.enabled = true;
        
@@ -279,10 +280,12 @@ public class PlayerState : MonoBehaviour
         if (isDsah) 
         {
             _renderer.material.SetColor("_MainColor", DashColor);
+            Physics.IgnoreLayerCollision(6, 9, false);
         }
         else
         {
             _renderer.material.SetColor("_MainColor", color);
+            Physics.IgnoreLayerCollision(6, 9, true);
         }
     }
 

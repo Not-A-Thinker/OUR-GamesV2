@@ -22,7 +22,7 @@ public class PlayerSoundEffect : MonoBehaviour
         Cat_Attack = Resources.Load<AudioClip>("SoundEffect/Cat/Cat_Attack");
 
         Player_GetDamage = Resources.Load<AudioClip>("SoundEffect/Player/Player_GetDamage");
-        Player_Dash = Resources.Load<AudioClip>("SoundEffect/Player/Player_Desh");
+        Player_Dash = Resources.Load<AudioClip>("SoundEffect/Player/Player_Dash");
         Player_Respawn = Resources.Load<AudioClip>("SoundEffect/Player/Player_Respawn");
 
         UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");
