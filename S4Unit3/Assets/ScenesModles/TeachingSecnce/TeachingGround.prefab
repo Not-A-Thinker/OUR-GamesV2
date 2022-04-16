@@ -487,6 +487,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d8bcdb6de27902341985d79e7d47583c, type: 3}
   m_PrefabInstance: {fileID: 2828109638249953609}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3170005730018329624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d8bcdb6de27902341985d79e7d47583c, type: 3}
+  m_PrefabInstance: {fileID: 2828109638249953609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &958392335
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170005730018329624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.12200001, y: 0.002, z: 0.11600001}
+  m_Center: {x: 0.00018759261, y: -0.00038239383, z: 0.0005512108}
 --- !u!1001 &2828109638288995177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -772,6 +790,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f474ed4a0ed59d74da20ae81762f8fdf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b89d384f18ac4404882ef3af98948260, type: 2}
     - target: {fileID: 919132149155446097, guid: f474ed4a0ed59d74da20ae81762f8fdf, type: 3}
       propertyPath: m_Name
       value: Stone pillar-04-13
@@ -846,6 +868,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f474ed4a0ed59d74da20ae81762f8fdf, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b89d384f18ac4404882ef3af98948260, type: 2}
     - target: {fileID: 919132149155446097, guid: f474ed4a0ed59d74da20ae81762f8fdf, type: 3}
       propertyPath: m_Name
       value: Stone pillar-04-13 (1)
