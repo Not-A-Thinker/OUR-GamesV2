@@ -25,8 +25,7 @@ public class P1GetCube : MonoBehaviour
         GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
         cube.transform.position = SpawnPoint.position;
         cube.GetComponent<ObjectRotation>()._isInCount = false;
-        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;      
-        cube.GetComponentInChildren<ParticleSystem>().Play();
+        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
         GetComponent<ForceCast_TopDown>().CargeObj = cube;
     }
 
