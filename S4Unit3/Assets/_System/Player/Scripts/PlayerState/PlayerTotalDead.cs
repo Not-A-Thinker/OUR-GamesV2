@@ -14,7 +14,7 @@ public class PlayerTotalDead : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Tab))
         {          
             isTotalLifeOn = !isTotalLifeOn;
-            UIcontrol.TotalDeadCounterControl(isTotalLifeOn);
+            //UIcontrol.TotalDeadCounterControl(isTotalLifeOn);
         }        
     }
 
@@ -23,7 +23,7 @@ public class PlayerTotalDead : MonoBehaviour
         if(isTotalLifeOn)
         {
             TotalLife--;
-            UIcontrol.TotalDead(TotalLife);
+            //UIcontrol.TotalDead(TotalLife);
             //Debug.Log("TotalLife:"+TotalLife);
             //UIcontrol.TotalDead(TotalLife);
             if (TotalLife < 0)
@@ -33,6 +33,6 @@ public class PlayerTotalDead : MonoBehaviour
     public void TotalLifeIncrease()
     {
         TotalLife++;
-        UIcontrol.TotalDead(TotalLife);
+        //UIcontrol.TotalDead(TotalLife);
     }
 }

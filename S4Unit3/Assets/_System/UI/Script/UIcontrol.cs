@@ -29,8 +29,8 @@ public class UIcontrol : MonoBehaviour
     //[SerializeField] Text DeadCount;
 
     [Header("Push Bar")]
-    [SerializeField] GameObject pushing;
-    [SerializeField] Slider push_slider;
+    //[SerializeField] GameObject pushing;
+    //[SerializeField] Slider push_slider;
     
     [SerializeField] GameObject pushingCD;
     [SerializeField] Slider pushCD_slider;
@@ -43,8 +43,8 @@ public class UIcontrol : MonoBehaviour
     //bool IsGameOver, IsWinGame;
     [Header("Other")]
     [SerializeField] float smoothing = 5;
-    [SerializeField] TextMeshProUGUI DeadCounter;
-    [SerializeField] GameObject DeadCounterGobj;
+    //[SerializeField] TextMeshProUGUI DeadCounter;
+    //[SerializeField] GameObject DeadCounterGobj;
     GameObject P1,P2;
     bool _isPause = false;
     [SerializeField] GameObject Pause_UI;
@@ -145,9 +145,15 @@ public class UIcontrol : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (BossHP.value <= 0 && BossAI.IsStage2)
+        if (BossHP.value <= 0)
         {
-            YouWin();
+            if (BossAI != null)
+            {
+                if (BossAI.IsStage2)
+                    YouWin();
+            }          
+            else
+                sceneControl.ToGameScene();
         }
     }
     #region GameSystemUI
@@ -224,15 +230,15 @@ public class UIcontrol : MonoBehaviour
         Hp.GetComponentInParent<Animator>().SetBool("isDamaged", !state);
     }
 
-    public void TotalDead(int DeadCount)
-    {
-        DeadCounter.text = DeadCount.ToString();
-    }
+    //public void TotalDead(int DeadCount)
+    //{
+    //    DeadCounter.text = DeadCount.ToString();
+    //}
 
-    public void TotalDeadCounterControl(bool State)
-    {
-        DeadCounterGobj.SetActive(State);
-    }
+    //public void TotalDeadCounterControl(bool State)
+    //{
+    //    DeadCounterGobj.SetActive(State);
+    //}
 
     //end game
     public void GameOver()
@@ -279,17 +285,17 @@ public class UIcontrol : MonoBehaviour
     //}
 
     //pushing
-    public void PushingBar(float load)
-    {
-        pushing.SetActive(true);
-        push_slider.value = Mathf.Lerp(load, push_slider.value, smoothing * Time.deltaTime);
-    }
-    public void PushingStop()
-    {
-        pushing.SetActive(false);
+    //public void PushingBar(float load)
+    //{
+    //    pushing.SetActive(true);
+    //    push_slider.value = Mathf.Lerp(load, push_slider.value, smoothing * Time.deltaTime);
+    //}
+    //public void PushingStop()
+    //{
+    //    pushing.SetActive(false);
 
-        push_slider.value = 0;
-    }
+    //    push_slider.value = 0;
+    //}
     //Warnning Text(¼È®É©Ê)
     public void flyText(int PlayerNum, Color color, string content)
     {

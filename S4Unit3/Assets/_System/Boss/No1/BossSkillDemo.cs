@@ -113,6 +113,9 @@ public class BossSkillDemo : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         orgPos = transform.position;
+
+        tailDashTime = tailDashDuration;
+        headDashTime = headDashDuration;
     }
 
     void Update()
@@ -163,7 +166,9 @@ public class BossSkillDemo : MonoBehaviour
         }
         #endregion
 
-        
+        directionXOZ = transform.forward;// forward 指向物體當前的前方
+        directionXOZ.y = 0f;// 只做平面的上下移動和水平移動，不做高度上的上下移動
+
         //The Update ends here.
     }
 
@@ -552,10 +557,8 @@ public class BossSkillDemo : MonoBehaviour
     public void BossTailAttackAnimation()
     {
         //rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
         isTailDash = true;
-        directionXOZ = transform.forward;// forward 指向物體當前的前方
-        directionXOZ.y = 0f;// 只做平面的上下移動和水平移動，不做高度上的上下移動
     }
 
     public void BossTailAttack()
@@ -576,10 +579,8 @@ public class BossSkillDemo : MonoBehaviour
     public void BossHeadAttackAnimation()
     {
         //rb.AddForce(tailForwardForce * transform.forward, ForceMode.Impulse);
-        rb.velocity = Vector3.zero;
+        //rb.velocity = Vector3.zero;
         isHeadDash = true;
-        directionXOZ = transform.forward;// forward 指向物體當前的前方
-        directionXOZ.y = 0f;// 只做平面的上下移動和水平移動，不做高度上的上下移動
     }
 
     public void BossHeadAttack()
