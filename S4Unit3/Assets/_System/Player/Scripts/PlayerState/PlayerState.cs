@@ -10,7 +10,7 @@ public class PlayerState : MonoBehaviour
     private CinemachineImpulseSource CIS;
     private Animator animator;
 
-    [Header("Debug")]
+    [Header("Debug & Cheats")]
     [SerializeField] bool CamShakeOff = false;
     [SerializeField] bool alwaysInvincible = false;
 
