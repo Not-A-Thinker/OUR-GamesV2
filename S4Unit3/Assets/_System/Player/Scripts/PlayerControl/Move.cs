@@ -154,11 +154,13 @@ public class Move : MonoBehaviour
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                     _animation.PlayerWalk(true);
+                    PlayerSoundEffect.PlaySound("Dog_Move");
                 }
 
                 if (movementDirection == Vector3.zero)
                 {
                     _animation.PlayerWalk(false);
+                    PlayerSoundEffect.PlaySound("Dog_StopMove");
                 }
 
                 if(!isDashClose)

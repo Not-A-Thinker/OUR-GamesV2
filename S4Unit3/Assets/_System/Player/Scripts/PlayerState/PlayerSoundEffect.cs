@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerSoundEffect : MonoBehaviour
 {
-    public static AudioClip Dog_Move, Dog_Attack;
-    public static AudioClip Cat_Dead;
-    public static AudioClip Player_Damage, Player_Dash, Player_GetDamage;
-    public static AudioClip UI_ButtonClick;
+    public static AudioClip Dog_Move, Dog_Attack,Dog_Dead;
+    public static AudioClip Cat_Dead,Cat_Attack;
+    public static AudioClip Player_Damage, Player_Dash, Player_GetDamage,Player_Respawn;
+    public static AudioClip UI_ButtonClick,UI_Select;
     static AudioSource audioSrc;
 
     void Awake()
@@ -16,13 +16,17 @@ public class PlayerSoundEffect : MonoBehaviour
 
         Dog_Move = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Move");
         Dog_Attack = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Attack");
+        Dog_Dead = Resources.Load<AudioClip>("SoundEffect/Dog/Dog_Dead");
 
         Cat_Dead = Resources.Load<AudioClip>("SoundEffect/Cat/Cat_Dead");
+        Cat_Attack = Resources.Load<AudioClip>("SoundEffect/Cat/Cat_Attack");
 
         Player_GetDamage = Resources.Load<AudioClip>("SoundEffect/Player/Player_GetDamage");
         Player_Dash = Resources.Load<AudioClip>("SoundEffect/Player/Player_Desh");
+        Player_Respawn = Resources.Load<AudioClip>("SoundEffect/Player/Player_Respawn");
 
-        UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");    
+        UI_ButtonClick = Resources.Load<AudioClip>("SoundEffect/UI/UI_ButtonClick");
+        UI_Select = Resources.Load<AudioClip>("SoundEffect/UI/UI_Select");
     }
 
     public static void PlaySound(string clip)
@@ -43,14 +47,17 @@ public class PlayerSoundEffect : MonoBehaviour
             case "Dog_Attack":
                 audioSrc.PlayOneShot(Dog_Attack);
                 break;
+            case "Dog_Dead":
+                audioSrc.PlayOneShot(Dog_Dead);
+                break;
 
+            case "Cat_Attack":
+                audioSrc.PlayOneShot(Cat_Attack);
+                break;
             case "Cat_Dead":
                 audioSrc.PlayOneShot(Cat_Dead);
                 break;
 
-            case "Player_Damage":
-                audioSrc.PlayOneShot(Player_Damage);
-                break;
             case "Player_Dash":
                 audioSrc.PlayOneShot(Player_Dash);
                 audioSrc.loop = false;
@@ -59,9 +66,15 @@ public class PlayerSoundEffect : MonoBehaviour
             case "Player_GetDamage":
                 audioSrc.PlayOneShot(Player_GetDamage);
                 break;
+            case "Player_Respawn":
+                audioSrc.PlayOneShot(Player_Respawn);
+                break;
 
             case "UI_ButtonClick":
                 audioSrc.PlayOneShot(UI_ButtonClick);
+                break;
+            case "UI_Select":
+                audioSrc.PlayOneShot(UI_Select);
                 break;
         }
     }

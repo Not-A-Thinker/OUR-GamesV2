@@ -215,7 +215,8 @@ public class PlayerState : MonoBehaviour
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.ResetOldQue();
-            forceCast_TopDown.enabled = false;        
+            forceCast_TopDown.enabled = false;
+            PlayerSoundEffect.PlaySound("Dog_Dead");
         }
         else
         {
@@ -250,14 +251,16 @@ public class PlayerState : MonoBehaviour
             Debug.Log("Tail Hit!");
         }
     }
+   
 
     //Hyper Muteki Gamer
-     IEnumerator Invincible(float time)
+    IEnumerator Invincible(float time)
     {
         _Collider.enabled = false;
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
+        Physics.IgnoreLayerCollision(6, 9);
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(0.6f);
         _renderer.material.SetColor("_MainColor", color);
@@ -265,7 +268,8 @@ public class PlayerState : MonoBehaviour
         CancelInvoke();
         _renderer.enabled = true;
         _Collider.enabled = true;
-      
+       
+
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }

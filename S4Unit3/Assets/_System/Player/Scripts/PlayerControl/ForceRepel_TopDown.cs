@@ -259,6 +259,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                         //soundEffect.OnAttackPlay();
                         //Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
+                    PlayerSoundEffect.PlaySound("Cat_Attack");
                     //}
                 }
                 //rb.useGravity = !rb.useGravity;       
@@ -266,6 +267,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                 {
                     if (_Suck_Effect != null)
                         _Suck_Effect.Play();
+
+                    PlayerSoundEffect.PlaySound("Cat_Attack");
 
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)

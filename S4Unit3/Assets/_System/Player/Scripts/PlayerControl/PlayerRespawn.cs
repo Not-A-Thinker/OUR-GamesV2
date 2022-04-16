@@ -59,6 +59,7 @@ public class PlayerRespawn : MonoBehaviour
                         RespawnCount++;
                         RespawnCountRange = RespawnCount;
                         Respawning = true;
+                        PlayerSoundEffect.PlaySound("Player_Respawn");
                         //Debug.Log(RespawnCount);
                     }
                     if(Input.GetButton("HelpFriendP2") || Respawning)
@@ -104,7 +105,8 @@ public class PlayerRespawn : MonoBehaviour
                         RespawnCount++;
                         RespawnCountRange = RespawnCount;
                         Respawning = true;
-                        Debug.Log(RespawnCount);
+                        PlayerSoundEffect.PlaySound("Player_Respawn");
+                        //Debug.Log(RespawnCount);
                     }
                     if (Input.GetButton("HelpFriendP1"))
                     {

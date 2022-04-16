@@ -62,6 +62,7 @@ public class P1GetCube : MonoBehaviour
         int parentMax = objectParent.transform.childCount;
         //Debug.Log(force);
         int newForce = (int)force;
+        PlayerSoundEffect.PlaySound("Dog_Attack");
         ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
         if (force>=1)
             StartCoroutine(TheBigOne(parentMax, newForce));        
