@@ -36,6 +36,7 @@ public class BossAI_Wind : MonoBehaviour
     public Animator[] outerWindBladeAlert;
     public Animator wingAttackAlert;
     public Animator tailAttackAlert;
+    public Animator headAttackAlert;
     public Animator AreaAttackAlert;
 
     [Header("Test Tweak")]
@@ -54,7 +55,6 @@ public class BossAI_Wind : MonoBehaviour
     [Space]
     [SerializeField] bool isMeleeAttacking;// 影響boss會不會轉向玩家,一般用在需要定向的攻擊上
     
-
     [Header("Boss Movement")]
     public float timing = 0.2f;
     [SerializeField] float backwardForce = 100;
@@ -74,6 +74,8 @@ public class BossAI_Wind : MonoBehaviour
     public bool IsStage1 = true;
     public bool IsStage2 = false;
     public bool IsAfter33 = false;
+    [Space]
+    [SerializeField] int aIStage2Turn = 1;
 
     [Header("Skills AI")]
     public bool isStandoMode = false;
@@ -156,7 +158,7 @@ public class BossAI_Wind : MonoBehaviour
 
         isMeleeAttacking = true;
         tailAttackAlert.SetTrigger("TailAttack Alert");
-        BossSkill.BossHeadAttack();
+        BossSkill.BossTailAttack();
     }
 
     void Update()
@@ -500,7 +502,16 @@ public class BossAI_Wind : MonoBehaviour
             if (!isStandoMode && BossSkill.canStandoAgain)//Stando Spawn
             { AIDecision = 65;}
 
-            if (_ComboNum == 4)//定點攻擊
+
+            if (_ComboNum == 1 ||_ComboNum == 2 || _ComboNum == 3)//Short Range Attack
+            {
+                AIDecision = 44;
+            }
+            else if (_ComboNum == 4)//Long Range Attack
+            {
+                AIDecision = 45;
+            }
+            else if (_ComboNum == 5)//定點攻擊 + Stando
             { AIDecision = 46;}
         }
 
@@ -794,8 +805,9 @@ public class BossAI_Wind : MonoBehaviour
                             isMeleeAttacking = true;
                             //wingAttackAlert.SetTrigger("WingAttack Alert");
                             //BossSkill.BossWingAttack();
-                            tailAttackAlert.SetTrigger("TailAttack Alert");
+                            headAttackAlert.SetTrigger("HeadAttack Alert");
                             BossSkill.BossHeadAttack();
+                            isMoveFinished = true;
                         }
                     }
                     break;
@@ -824,7 +836,7 @@ public class BossAI_Wind : MonoBehaviour
 
                 case 44:
                     ///近距離攻擊
-                    if (rndNum < 33)
+                    if (rndNum < 25)
                     {
                         ///Wing Area Attack 近戰範圍攻擊
                         isMeleeAttacking = true;
@@ -833,15 +845,37 @@ public class BossAI_Wind : MonoBehaviour
                         BossSkill.BossWingAreaAttack();
                         isMoveFinished = true;
                     }
-                    else if (rndNum >= 33 && rndNum < 67)
+                    else if (rndNum >= 25 && rndNum < 50)
                     {
-                        ///Tail Attack 尾巴攻擊
+                        ///Wing Attack 近戰攻擊(翼)
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+
                         isMeleeAttacking = true;
-                        tailAttackAlert.SetTrigger("TailAttack Alert");
-                        BossSkill.BossTailAttack();
-                        isMoveFinished = true;
+                        wingAttackAlert.SetTrigger("WingAttack Alert");
+                        BossSkill.BossWingAttack();
                     }
-                    else if (rndNum >= 67 && rndNum < 100)
+                    else if (rndNum >= 50 && rndNum < 80)
+                    {
+                        if (aIStage2Turn % 2 == 0)
+                        {
+                            ///Tail Attack 尾巴攻擊
+                            isMeleeAttacking = true;
+                            tailAttackAlert.SetTrigger("TailAttack Alert");
+                            BossSkill.BossTailAttack();
+                            isMoveFinished = true;
+                        }
+                        else if (aIStage2Turn % 2 == 1)
+                        {
+                            ///Head Attack 頭衝攻擊
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+
+                            isMeleeAttacking = true;
+                            headAttackAlert.SetTrigger("HeadAttack Alert");
+                            BossSkill.BossHeadAttack();
+                            isMoveFinished = true;
+                        }
+                    }
+                    else if (rndNum >= 80 && rndNum < 100)
                     {
                         ///Mist Attack 霧氣攻擊
                         if (BossSkill.canMistAgain)
@@ -875,11 +909,21 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
                 case 46:
-                    ///定點攻擊
-                    ///Wind Balls 風球
-                    isMeleeAttacking = true;
-                    int wBSpawnNum2 = Random.Range(4, 7);
-                    BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum2, 1));
+                    ///定點攻擊 + 替身攻擊
+                    if (!isStandoMode && BossSkill.canStandoAgain)
+                    {
+                        ///Stando! 分身
+                        isStandoMode = true;
+                        BossSkill.BossStando();
+                        StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime));
+                    }
+                    else
+                    {
+                        ///Wind Balls 風球
+                        isMeleeAttacking = true;
+                        int wBSpawnNum2 = Random.Range(4, 7);
+                        BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum2, 1));
+                    }
                     break;
 
                 case 61:
@@ -1019,13 +1063,9 @@ public class BossAI_Wind : MonoBehaviour
             coroutineThink = StartCoroutine(TimeOfThink());
 
             if (_ComboNum == 1)
-            {
-                _ComboNum = 1;
-            }
+            { _ComboNum = 1;}
             else
-            {
-                _ComboNum--;
-            }
+            { _ComboNum--;}
 
             Debug.Log("Shit Reseted.");
         }
@@ -1185,6 +1225,7 @@ public class BossAI_Wind : MonoBehaviour
             preMoveCount = 0;
             isMeleeAttacking = false;
             _canAttack = false;
+            aIStage2Turn++;
             AI = AIMode.Normal;
 
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
