@@ -31,6 +31,12 @@ public class SceneControl : MonoBehaviour
         Time.timeScale = 1;
         StartCoroutine(Delay(0));
     }
+    public void ToLearningScence()
+    {
+        Time.timeScale = 1;
+        StartCoroutine(Delay(4));
+    }
+
     public void ExitGame()
     {
         Application.Quit();
