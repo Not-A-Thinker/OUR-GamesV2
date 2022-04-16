@@ -15,10 +15,9 @@ public class PlayerState : MonoBehaviour
     [SerializeField] bool alwaysInvincible = false;
 
     [Header("Player Health")]
-    int _maxHealth = 3;
     [SerializeField] int _currentHealth;
-
-
+    int _maxHealth = 3;
+    
     [Header("Player State")]
     public bool isDead = false;
     public bool isMove = false;
