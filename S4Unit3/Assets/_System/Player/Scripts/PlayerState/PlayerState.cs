@@ -260,13 +260,35 @@ public class PlayerState : MonoBehaviour
         isInvincible = true;
         //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
-        Physics.IgnoreLayerCollision(6, 9,false);
+        if (isPlayer1)
+        {
+            Physics.IgnoreLayerCollision(12, 6, false);
+            Physics.IgnoreLayerCollision(12, 7, false);
+            Physics.IgnoreLayerCollision(12, 9, false);
+        }
+        else if (isPlayer2)
+        {
+            Physics.IgnoreLayerCollision(13, 6, false);
+            Physics.IgnoreLayerCollision(13, 7, false);
+            Physics.IgnoreLayerCollision(13, 9, false);
+        }
         InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
         yield return new WaitForSeconds(0.6f);
         _renderer.material.SetColor("_MainColor", color);
         yield return new WaitForSeconds(time);
         CancelInvoke();
-        Physics.IgnoreLayerCollision(6, 9, true);
+        if (isPlayer1)
+        {
+            Physics.IgnoreLayerCollision(12, 6, true);
+            Physics.IgnoreLayerCollision(12, 7, true);
+            Physics.IgnoreLayerCollision(12, 9, true);
+        }
+        else if (isPlayer2)
+        {
+            Physics.IgnoreLayerCollision(13, 6, true);
+            Physics.IgnoreLayerCollision(13, 7, true);
+            Physics.IgnoreLayerCollision(13, 9, true);
+        }
         _renderer.enabled = true;
         _Collider.enabled = true;
        
