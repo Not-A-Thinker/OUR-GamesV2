@@ -12,6 +12,7 @@ public class PlayerState : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] bool CamShakeOff = false;
+    [SerializeField] bool alwaysInvincible = false;
 
     [Header("Player Health")]
     int _maxHealth = 3;
@@ -94,6 +95,11 @@ public class PlayerState : MonoBehaviour
 
             Debug.Log("Player Invincible is" + isInvincible);
         }
+
+        if (alwaysInvincible)
+        {_Collider.enabled = false;}
+        else
+        {_Collider.enabled = true;}
            
         //if (isMove&& playerCount==1)
         //    _animation.PlayerWalk(true);
