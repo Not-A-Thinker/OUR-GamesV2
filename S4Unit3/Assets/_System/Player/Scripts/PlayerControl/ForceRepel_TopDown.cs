@@ -241,6 +241,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (hit.transform.gameObject.layer == 6 &&  SuckCount <= 3 && (int)SuckCount > 0 && !SuckInCD)
             {
                 //Debug.Log(hit.transform.tag);
+                PlayerSoundEffect.PlaySound("Cat_Attack");
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
                     //if (hit.transform.name.Contains("Tornado SForm"))
@@ -259,16 +260,13 @@ public class ForceRepel_TopDown : MonoBehaviour
                         //soundEffect.OnAttackPlay();
                         //Renderer.material.color = Color.green;
                         savedObject = hit.transform.gameObject;
-                    PlayerSoundEffect.PlaySound("Cat_Attack");
                     //}
                 }
                 //rb.useGravity = !rb.useGravity;       
                else if (hit.transform.tag == "Boss")
                 {
                     if (_Suck_Effect != null)
-                        _Suck_Effect.Play();
-
-                    PlayerSoundEffect.PlaySound("Cat_Attack");
+                        _Suck_Effect.Play();               
 
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
