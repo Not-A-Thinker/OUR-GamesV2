@@ -50,9 +50,9 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool lookAtP2;
     [SerializeField] bool isLockOn;
     [SerializeField] bool _quickLock;
-    [SerializeField] bool _isForceLockOn;
+    [SerializeField] bool _isForceLockOn;// 這個只是控制playerLockOn的部分,不影響playerDetect
     [Space]
-    [SerializeField] bool isMeleeAttacking;
+    [SerializeField] bool isMeleeAttacking;//影響boss會不會轉向玩家,一般用在需要定向的攻擊上
     
 
     [Header("Boss Movement")]
@@ -61,7 +61,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] int preMoveCount = 0;
     bool _noPreMove;
     [SerializeField] bool isMoveFinished;
-    bool _canMove;
+    bool _canAttack;
 
     [Header("AI")]
     [SerializeField] bool _aiEnable = true;
@@ -913,10 +913,36 @@ public class BossAI_Wind : MonoBehaviour
 
     IEnumerator BossMovement()
     {
+        isMoveFinished = false;
+        AI = AIMode.Move;
 
+        if (lookAtP1)
+        {
+            agent.SetDestination(_Player1.transform.position);
+            //transform.LookAt(_Player1.transform);
 
+            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= skillRangeS);
 
-        yield return null;
+            isMoveFinished = true;
+            _canAttack = true;
+
+            agent.SetDestination(transform.position);
+            Debug.Log("Is Moved!");
+        }
+        else if (lookAtP2)
+        {
+            agent.SetDestination(_Player2.transform.position);
+            //transform.LookAt(_Player2.transform);
+
+            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= skillRangeS);
+
+            isMoveFinished = true;
+
+            agent.SetDestination(transform.position);
+            Debug.Log("Is Moved!");
+        }
+        yield return new WaitUntil(() => isMoveFinished);
+        agent.ResetPath();
     }
 
     IEnumerator BossAttackMovement()
@@ -1119,6 +1145,7 @@ public class BossAI_Wind : MonoBehaviour
             ///This is for reset the pre-move counter and melee attack so it can be perform again.
             preMoveCount = 0;
             isMeleeAttacking = false;
+            _canAttack = false;
             AI = AIMode.Normal;
             if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
             else { yield return new WaitForSeconds(aiReactTimeStage2); }
