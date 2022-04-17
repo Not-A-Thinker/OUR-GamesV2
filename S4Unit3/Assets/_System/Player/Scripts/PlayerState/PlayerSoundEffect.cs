@@ -31,18 +31,16 @@ public class PlayerSoundEffect : MonoBehaviour
 
     public static void PlaySound(string clip)
     {
-        //Debug.Log(Dog_Move.name);
-        
         switch (clip)
         {
             case "Dog_Move":
                 audioSrc.clip = Dog_Move;
                 audioSrc.loop = true;
-                audioSrc.Play();         
+                audioSrc.Play();
                 break;
             case "Dog_StopMove":
                 audioSrc.loop = false;
-                audioSrc.Pause();
+                audioSrc.clip = null;
                 break;
             case "Dog_Attack":
                 audioSrc.PlayOneShot(Dog_Attack);
@@ -53,6 +51,7 @@ public class PlayerSoundEffect : MonoBehaviour
 
             case "Cat_Attack":
                 audioSrc.PlayOneShot(Cat_Attack);
+                Debug.Log("Attack Play");
                 break;
             case "Cat_Dead":
                 audioSrc.PlayOneShot(Cat_Dead);
