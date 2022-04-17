@@ -45449,6 +45449,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 569768108}
     m_Modifications:
+    - target: {fileID: 2120788253450672922, guid: 2b12d276f33cd55469ddf71ec1183d5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.45
+      objectReference: {fileID: 0}
     - target: {fileID: 2120788254441176300, guid: 2b12d276f33cd55469ddf71ec1183d5a, type: 3}
       propertyPath: m_Name
       value: Object portal
