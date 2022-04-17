@@ -40,7 +40,9 @@ public class Particle_PlamCharge : MonoBehaviour
     {
         if (vfx != null&& IsCollecting)
         {
-            print(Charge(value));
+            if (!vfx.isPlaying)
+                vfx.Play();
+
             switch (Charge(value))
             {
                 case 1:
@@ -188,8 +190,11 @@ public class Particle_PlamCharge : MonoBehaviour
         if (BiggerEffect != null)
         {
             yield return new WaitForSeconds(.3f);
-            ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position, Quaternion.identity, transform);
+            ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position,transform.rotation, transform);
             newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, size);
+            var vfxLookAt =  newvfx.gameObject.AddComponent<Particle_LookAt>();
+            vfxLookAt.GetComponent<Particle_LookAt>().targetStr = "Boss";
+
             yield return new WaitForSeconds(3f);
             Destroy(newvfx.gameObject);
         }
