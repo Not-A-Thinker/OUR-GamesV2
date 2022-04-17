@@ -265,6 +265,7 @@ MonoBehaviour:
   Charge: 0
   isShooted: 0
   isAim: 0
+  IsCargeEffectPlay: 0
   _attackTrigger: 0
   countFloat: 0
   CountMax: 2
@@ -272,6 +273,7 @@ MonoBehaviour:
   PushMaxCD: 2
   speedSlow: 0.5
   isAttackWithAim: 0
+  CargeObj: {fileID: 0}
   DogCarge: {fileID: 116728407577497515}
 --- !u!114 &500052818044258932
 MonoBehaviour:
@@ -289,6 +291,7 @@ MonoBehaviour:
   direction: {fileID: 9195968397510403553}
   SpawnPoint: {fileID: 447587145698844513}
   SpeedToSlowDown: 0.9
+  OneOnCarge: 0
 --- !u!114 &500052818044258935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CamShakeOff: 0
+  alwaysInvincible: 0
   _currentHealth: 0
   isDead: 0
   isMove: 0
@@ -1777,6 +1781,18 @@ PrefabInstance:
     - target: {fileID: -4309092712537289103, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4309092712537289103, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -4309092712537289103, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4309092712537289103, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -3527113986795615802, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
       propertyPath: m_Layer
