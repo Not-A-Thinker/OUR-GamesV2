@@ -8682,7 +8682,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2051577621}
         m_TargetAssemblyTypeName: SceneControl, Assembly-CSharp
         m_MethodName: ToLearningScence
         m_Mode: 1
@@ -9064,3 +9064,14 @@ MonoBehaviour:
             m_StringArgument: UI_Select
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &2051577621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3705804191760560747, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
+  m_PrefabInstance: {fileID: 218003518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d24b491b3a819b4d91ee70121fa0304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
