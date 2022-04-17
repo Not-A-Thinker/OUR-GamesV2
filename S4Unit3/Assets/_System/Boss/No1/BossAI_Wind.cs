@@ -653,8 +653,8 @@ public class BossAI_Wind : MonoBehaviour
                         else
                         {
                             ///Wind Balls 風球
-                            int wBSpawnNum = Random.Range(4, 7);
-                            BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
+                            isMeleeAttacking = true;
+                            BossSkill.BossWindBalls();
                         }
                     }
                     break;
@@ -744,7 +744,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
-                    yield return new WaitForSeconds(7.5f);
+                    yield return new WaitForSeconds(5.5f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
@@ -778,8 +778,8 @@ public class BossAI_Wind : MonoBehaviour
                     else if (rndNum >= 67 && rndNum < 100)
                     {
                         ///Wind Balls 風球
-                        int wBSpawnNum = Random.Range(4, 7);
-                        BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
+                        isMeleeAttacking = true;
+                        BossSkill.BossWindBalls();
                     }
                     break;
                 case 42:
@@ -924,8 +924,7 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         ///Wind Balls 風球
                         isMeleeAttacking = true;
-                        int wBSpawnNum2 = Random.Range(4, 7);
-                        BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum2, 1));
+                        BossSkill.BossWindBalls();
                     }
                     break;
 

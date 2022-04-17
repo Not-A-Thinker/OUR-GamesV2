@@ -51,6 +51,12 @@ public class Boss1Animator : MonoBehaviour
         BossSkill.BossHeadAttackAnimation();
     }
 
+    public void Animation_BossWindBall()
+    {
+        int wBSpawnNum = Random.Range(4, 7);
+        BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
+    }
+
     public void Animation_BossPinBallAttack()
     {
         //BossSkill.TornadoSpecialAttackAnimation();

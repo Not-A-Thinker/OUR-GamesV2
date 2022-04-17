@@ -133,7 +133,7 @@ public class BossSkillDemo : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 //WindBallsAttack();
-                StartCoroutine(WindBalls(4,2));
+                BossWindBalls();
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))//To Active Bubble Attack
             {
@@ -238,8 +238,15 @@ public class BossSkillDemo : MonoBehaviour
         Boss1Animator.SetTrigger("Skill_WindBlade");
     }
 
+    public void BossOuterWindBlade()
+    {
+        Boss1Animator.SetTrigger("Skill_OWB");
+    }
+
     public IEnumerator OuterWindBlade(int sNum)
     {
+        Boss1Animator.SetTrigger("Skill_OWB");
+
         int[] iNum = new int[sNum];
 
         for (int i = 0; i < sNum; i++)
@@ -597,6 +604,11 @@ public class BossSkillDemo : MonoBehaviour
     #endregion
 
     #region AllStage_SkillSets
+    public void BossWindBalls()
+    {
+        Boss1Animator.SetTrigger("Skill_WindBall");
+    }
+
     public IEnumerator WindBalls(int sNum, int wave)
     {
         for (int w = 0; w < wave; w++)

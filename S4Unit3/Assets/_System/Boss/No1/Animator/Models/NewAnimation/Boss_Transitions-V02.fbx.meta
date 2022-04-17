@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fa891c21f91ad1469831574f0a44beb
+guid: 06c66afa0bed74e4d9812d3167af7e72
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
@@ -40,7 +40,7 @@ ModelImporter:
       takeName: "\u9AA8\u67B6|\u9AA8\u67B6Action"
       internalID: 0
       firstFrame: 0
-      lastFrame: 419
+      lastFrame: 119
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -60,21 +60,21 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.021563333
+      - time: 0
         functionName: Camera_PinBallFadeIn
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.88319504
+      - time: 0.6098689
         functionName: Animation_BossPinBallAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.91402584
+      - time: 0.89128757
         functionName: Camera_PinBallFadeOut
         data: 
         objectReferenceParameter: {instanceID: 0}
