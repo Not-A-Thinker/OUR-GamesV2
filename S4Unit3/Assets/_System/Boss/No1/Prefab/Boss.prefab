@@ -58119,7 +58119,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 0
+  _aiEnable: 1
   aiStartTime: 2
   aiReactTimeStage1: 2.2
   aiReactTimeStage2: 2
@@ -58127,6 +58127,7 @@ MonoBehaviour:
   IsStage1: 1
   IsStage2: 0
   IsAfter33: 0
+  aIStage2Turn: 0
   isStandoMode: 0
   isMain: 1
   isStando: 0
@@ -58212,7 +58213,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   tailForwardForce: 20000
   tailDashDuration: 0.1
-  tailDashSpeed: 2000
+  tailDashSpeed: 5000
   headDashDuration: 0.1
   headDashSpeed: 1800
   _skillRange: 45
@@ -58342,10 +58343,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5000001
   m_Speed: 20
-  m_Acceleration: 15
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 4
+  m_StoppingDistance: 22
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
