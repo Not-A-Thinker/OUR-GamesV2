@@ -18,6 +18,7 @@ public class ForceCast_TopDown : MonoBehaviour
     public float _range = 20f;
     public bool isfriendPushed, Charge, isShooted,isAim ;//控制器觸發用的
     bool friendPushed, ShootInCD;//檢查用
+    [SerializeField] bool IsCargeEffectPlay;
 
     public bool _attackTrigger = false;
     Quaternion OldQuate;
@@ -180,11 +181,12 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             if (ShootInCD || objectParent.transform.childCount == 0)
-                UIcontrol.flyText(1, Color.red, "CD!!!");
+                UIcontrol.flyText(1, Color.red, "CD!!!");           
             else
             {
                 SetOldQue();
                 P1_Aim_Slow();
+                StartCoroutine(CargeEffectPlay(0.6f));
             }
         }
         if (Input.GetButton("Fire1"))
@@ -201,6 +203,7 @@ public class ForceCast_TopDown : MonoBehaviour
             {
                 isShooted = true;
                 ResetOldQue();
+                StopCoroutine(CargeEffectPlay(0.6f));
             }             
         }       
     }
@@ -227,35 +230,37 @@ public class ForceCast_TopDown : MonoBehaviour
         Charge = false;
         DogCarge.gameObject.SetActive(false);
         CargeObj = null;
+        StopCoroutine(CargeEffectPlay(0.6f));
     }
 
     ///蓄力
     private void Accumulate()
     {
-        //DogCarge.gameObject.SetActive(true);
-        //DogCarge.Play();
-        gameObject.GetComponent<P1GetCube>().StartCarge();
+        countFloat += Time.deltaTime;
+        if (countFloat > CountMax)
+            countFloat = 0;
+        int CountInt = (int)(countFloat * 2);
+
+        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt+1);
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
         ///地毯開啟
         //rangeObj.SetActive(true);
         ///蓄力條蓄力計算
-        countFloat += Time.deltaTime;
-        if (countFloat > CountMax +1f)
-            countFloat = 0;
+      
         ///蓄力條UI
         //float BarValue = countFloat/CountMax;
-        //UIcontrol.PushingBar(BarValue);
-        
-        if(countFloat<=1.5f)
+        //UIcontrol.PushingBar(BarValue);       
+        if(!IsCargeEffectPlay)
         {
-            int countInt = (int)(countFloat * 2);
-            //Debug.Log(countInt);
-            int newScale = countInt + 1;
-            CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
-            //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
-        }        
+            if(CargeObj!=null)
+            {
+                CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
+                IsCargeEffectPlay = true;
+            }         
+        }             
+        //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);      
     }
 
     private void FriendlyPushed()
@@ -312,6 +317,18 @@ public class ForceCast_TopDown : MonoBehaviour
         rangeObj.SetActive(false);
         yield return new WaitForSeconds(time);
         friendPushed = false;
+    }
+
+    IEnumerator CargeEffectPlay(float Time)
+    {
+        IsCargeEffectPlay = false;
+        yield return new WaitForSeconds(Time);
+        IsCargeEffectPlay = false;
+        yield return new WaitForSeconds(Time);
+        IsCargeEffectPlay = false;
+        yield return new WaitForSeconds(Time);
+        IsCargeEffectPlay = false;
+        yield return new WaitForSeconds(Time);
     }
 
     ///記錄射擊前方位

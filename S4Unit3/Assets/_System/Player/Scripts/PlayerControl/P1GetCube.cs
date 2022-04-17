@@ -12,6 +12,8 @@ public class P1GetCube : MonoBehaviour
 
     public float SpeedToSlowDown;
 
+    public bool OneOnCarge;
+
     Move move;
 
     private void Start()
@@ -19,14 +21,31 @@ public class P1GetCube : MonoBehaviour
         move = GetComponent<Move>();
     }
 
-    public void StartCarge()
+    public void StartCarge(int Carge)
     {
         int parentMax = objectParent.transform.childCount;
-        GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
-        cube.transform.position = SpawnPoint.position;
-        cube.GetComponent<ObjectRotation>()._isInCount = false;
-        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
-        GetComponent<ForceCast_TopDown>().CargeObj = cube;
+        for (int i = parentMax; i>0 ; i--)
+        {
+            GameObject cube = objectParent.transform.GetChild(i - 1).gameObject;
+            if (i <= Carge)
+            {
+                cube.transform.position = SpawnPoint.position;
+                cube.GetComponent<ObjectRotation>()._isInCount = false;                
+                if (!OneOnCarge)
+                {
+                    cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
+                    cube.GetComponentInChildren<ParticleSystem>().Play();
+                    GetComponent<ForceCast_TopDown>().CargeObj = cube;
+                    OneOnCarge = true;
+                }            
+            }
+            else
+            {
+                cube.GetComponent<ObjectRotation>()._isInCount = true;
+                cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
+                cube.GetComponentInChildren<ParticleSystem>().Pause();
+            }
+        }       
     }
 
     public void PlayerGetCube(GameObject cube)
@@ -97,6 +116,7 @@ public class P1GetCube : MonoBehaviour
                     cube.transform.position = SpawnPoint.position;
                     cube.transform.parent = null;
                 }
+                OneOnCarge = false;
             }
             //Debug.Log(parentMax);
             // 狗狗身上的方塊掉落                   
@@ -148,6 +168,7 @@ public class P1GetCube : MonoBehaviour
         objectDamage.Direction = direction.transform.forward;
 
         cube.GetComponent<ObjectRotation>()._isInCount = false;
+        OneOnCarge = false;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
