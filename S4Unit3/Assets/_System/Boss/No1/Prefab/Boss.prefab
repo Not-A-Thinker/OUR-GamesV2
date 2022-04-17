@@ -57891,7 +57891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1566686734550591369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: 0.2}
+  m_LocalPosition: {x: 0, y: 2.93, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58120,7 +58120,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 1
+  _aiEnable: 0
   aiStartTime: 1
   aiReactTimeStage1: 1.8
   aiReactTimeStage2: 2
@@ -58170,6 +58170,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  outerWindBladeGenerateVfx: {fileID: 2120788254441176300, guid: 2b12d276f33cd55469ddf71ec1183d5a, type: 3}
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
   bubbleAttack: {fileID: 6120946044558487352, guid: 7c0af0b34af894e46bb3f0c59ce9b072, type: 3}
   tornadoLinear: {fileID: 8680327630756559126, guid: 2e81ae0bb37f7b544a5b916006838a4e, type: 3}
@@ -59621,6 +59622,18 @@ MonoBehaviour:
   - {fileID: 1181165640}
   - {fileID: 513206100}
   - {fileID: 2011752900}
+--- !u!114 &7216128603801637548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2419415252669032787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d9d8bf9037bb642a7ead32bc94d4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2727732312122665656 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8608403507082428742, guid: f3a400392811d8641abec7fab7d3310b, type: 3}

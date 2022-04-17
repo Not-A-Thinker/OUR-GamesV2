@@ -60,9 +60,51 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0.13487281
+        functionName: PlaySound
+        data: Boss_DeadNoise01
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.26586345
+        functionName: PlaySound
+        data: Boss_DeadNoise02
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.46449128
+        functionName: PlaySound
+        data: Boss_DeadNoise04
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.675502
+        functionName: PlaySound
+        data: Boss_DeadNoise05
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.9967872
         functionName: Animation_Death
         data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.35057208
+        functionName: PlaySound
+        data: Boss_DeadNoise03
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.025726143
+        functionName: PlaySound
+        data: Boss_Dead
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
