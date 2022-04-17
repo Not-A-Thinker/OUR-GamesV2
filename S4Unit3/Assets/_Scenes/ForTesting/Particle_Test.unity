@@ -25029,6 +25029,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b56f7f5dd43231844bfc7e2ffa473f88, type: 3}
+--- !u!1001 &914445329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4804760121313301816, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_Name
+      value: Particle_Plam_Wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4804760121313301821, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41b6286a423ad2849be9707f06d6f938, type: 3}
 --- !u!4 &1061914702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1480885084637947388, guid: b56f7f5dd43231844bfc7e2ffa473f88, type: 3}
@@ -29952,6 +30009,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 501540046221537585, guid: 97f780d460f82d840a87c41861064850, type: 3}
   m_PrefabInstance: {fileID: 1539470113}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1242962249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2774420081290986442, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_Name
+      value: Feather Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2774420081290986445, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3264538ae91dfb4ebd0a185ac312c99, type: 3}
 --- !u!1 &1362400549
 GameObject:
   m_ObjectHideFlags: 0
@@ -29999,7 +30113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362400549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5249996, y: 9.7, z: 0.20000005}
+  m_LocalPosition: {x: 6.72, y: 9.7, z: 0.20000005}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30095,7 +30209,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
