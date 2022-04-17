@@ -78,9 +78,11 @@ public class ObjectDamage : MonoBehaviour
             //bossSpawn.SpawnedCountDecrease();
             Destroy(this.gameObject);
         }
-
+       
         if (col.gameObject.layer == 6)
         {
+
+            //Debug.Log("HitBoss");
             ///如果擊中Boss
             if (col.transform.tag == "Boss")
             {
@@ -88,14 +90,20 @@ public class ObjectDamage : MonoBehaviour
                 bossHealth.TakeDamage(Damage);
 
                 ///擊中時改顏色 + 鏡頭震動
-                col.gameObject.GetComponentInParent<BossDamageIndicator>().ColorValueChange();
-                col.gameObject.GetComponentInParent<BossDamageIndicator>().CameraShake();
+                if (col.gameObject.GetComponentInParent<BossDamageIndicator>()!=null)
+                {
+                    col.gameObject.GetComponentInParent<BossDamageIndicator>().ColorValueChange();
+                    col.gameObject.GetComponentInParent<BossDamageIndicator>().CameraShake();
 
+                }
                 ///Boss Count -1
-                ///
-                bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
+                if(col.transform.GetComponent<BossSpawnObject>() != null)
+                    bossSpawn = col.transform.GetComponent<BossSpawnObject>();
+                else
+                    bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
+
                 bossSpawn.SpawnedCountDecrease();
-                //Debug.Log("HitBoss");
+               
                 //BossSpawnObject bossSpawn = col.gameObject.GetComponent<BossSpawnObject>();
                 //bossSpawn.SpawnedCountDecrease();
                 Destroy(this.gameObject);

@@ -142,6 +142,9 @@ public class UIcontrol : MonoBehaviour
                 YouWin();
             }
         }
+
+        if (Level1GameData.b_isBoss1Defeated)
+            YouWin();
     }
     private void FixedUpdate()
     {

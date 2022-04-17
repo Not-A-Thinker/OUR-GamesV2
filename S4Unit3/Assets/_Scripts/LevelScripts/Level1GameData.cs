@@ -10,6 +10,11 @@ public class Level1GameData : MonoBehaviour
     //檢查Boss是否死掉了
     static public bool b_isBoss1Defeated = false;
 
+    public bool Boss1Defeated()
+    {
+        return b_isBoss1Defeated;
+    }
+
     void Start()
     {
         b_isCutScene = false;

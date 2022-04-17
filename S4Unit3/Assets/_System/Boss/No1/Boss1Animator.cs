@@ -36,6 +36,12 @@ public class Boss1Animator : MonoBehaviour
         }
     }
 
+    public void Animation_Death()
+    {
+        Level1GameData.b_isBoss1Defeated = true;
+        Debug.Log("The Boss is dead, long live the big Boss!" + Level1GameData.b_isBoss1Defeated);
+    }
+
     public void Animation_BossWindBladeAttack()
     {
         BossSkill.StartCoroutine(BossSkill.WindBlade16(3));

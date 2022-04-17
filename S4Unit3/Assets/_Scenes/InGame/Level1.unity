@@ -970,6 +970,7 @@ Transform:
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
   m_LocalPosition: {x: 0.030684805, y: 74.87, z: -73.30848}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15577,6 +15578,7 @@ Transform:
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
   m_LocalPosition: {x: 0.030684805, y: 74.87, z: -73.30848}
+
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19898,10 +19900,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 382175207}
     m_Modifications:
-    - target: {fileID: 3194132772530609842, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3194132773124986532, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_Name
       value: LevelLoader
