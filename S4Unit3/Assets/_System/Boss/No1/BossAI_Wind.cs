@@ -54,8 +54,9 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] bool _isForceLockOn;// 這個只是控制playerLockOn的部分,不影響playerDetect
     [Space]
     [SerializeField] bool isMeleeAttacking;// 影響boss會不會轉向玩家,一般用在需要定向的攻擊上
-    
+
     [Header("Boss Movement")]
+    public float stopDistance = 23;
     public float timing = 0.2f;
     [SerializeField] float backwardForce = 100;
     [SerializeField] int preMoveCount = 0;
@@ -192,6 +193,7 @@ public class BossAI_Wind : MonoBehaviour
                 IsStage1 = false;
                 IsStage2 = true;
 
+                _ComboNum = 1;
                 _isForceLockOn = true;
                 ChangePlayerTargetRandom();
 
@@ -216,6 +218,7 @@ public class BossAI_Wind : MonoBehaviour
                 IsStage1 = false;
                 IsStage2 = true;
 
+                _ComboNum = 1;
                 _isForceLockOn = true;
                 ChangePlayerTargetRandom();
 
@@ -275,7 +278,7 @@ public class BossAI_Wind : MonoBehaviour
         if (lookAtP1) { BossSetDestination(_Player1.transform.position); }
         else if (lookAtP2) { BossSetDestination(_Player2.transform.position); }
 
-        if (IsStage2)
+        if (IsStage2 && !isStando)
         {
             BossStage2Movement();
         }
@@ -741,7 +744,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
-                    yield return new WaitForSeconds(.5f);
+                    yield return new WaitForSeconds(7.5f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }
@@ -751,7 +754,7 @@ public class BossAI_Wind : MonoBehaviour
         if (IsStage2 && !isStando)
         {
             _ComboNum++;
-            Debug.Log("Combo Num is: " + _ComboNum);
+            Debug.Log("The Next Combo Num is: " + _ComboNum);
             switch (num)
             {
                 case 41:
@@ -1022,6 +1025,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
+            agent.stoppingDistance = attackRange;
 
             yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= attackRange);
 
@@ -1034,6 +1038,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player2.transform.position);
             //transform.LookAt(_Player2.transform);
+            agent.stoppingDistance = attackRange;
 
             yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= attackRange);
 
@@ -1216,6 +1221,7 @@ public class BossAI_Wind : MonoBehaviour
             SkillSelection();
             yield return coroutineAtk;
             yield return new WaitUntil(() => isMoveFinished);
+            agent.stoppingDistance = stopDistance;
             Debug.Log("Just Pass The 'isMoveFinished' Gate");
 
             ///This is for restate the animator back to Idle State.
