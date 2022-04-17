@@ -837,6 +837,7 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     break;
 
+                ///Case44-46為Combo組合攻擊組
                 case 44:
                     ///近距離攻擊
                     if (rndNum < 25)
@@ -958,7 +959,7 @@ public class BossAI_Wind : MonoBehaviour
             }
         }
         //yield return null;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.8f);
         ///This is the End of AI Attack.
     }
 
