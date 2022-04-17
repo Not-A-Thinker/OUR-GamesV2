@@ -969,7 +969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685514, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684866, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15576,7 +15576,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685514, y: 74.87002, z: -73.30846}
+  m_LocalPosition: {x: 0.030684866, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18604,14 +18604,6 @@ PrefabInstance:
       propertyPath: mainVC
       value: 
       objectReference: {fileID: 116990510}
-    - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: aiReactTimeStage1
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
-      propertyPath: aiReactTimeStandoMode
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: SpawnPoint
       value: 
@@ -19894,6 +19886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 382175207}
     m_Modifications:
+    - target: {fileID: 3194132772530609842, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3194132773124986532, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_Name
       value: LevelLoader

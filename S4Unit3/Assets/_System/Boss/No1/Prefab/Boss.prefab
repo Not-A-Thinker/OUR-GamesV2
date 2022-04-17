@@ -58115,15 +58115,16 @@ MonoBehaviour:
   _quickLock: 0
   _isForceLockOn: 0
   isMeleeAttacking: 0
+  stopDistance: 23
   timing: 0.2
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
   _aiEnable: 1
-  aiStartTime: 2
-  aiReactTimeStage1: 2.2
+  aiStartTime: 1
+  aiReactTimeStage1: 1.8
   aiReactTimeStage2: 2
-  aiReactTimeStandoMode: 4.5
+  aiReactTimeStandoMode: 3
   IsStage1: 1
   IsStage2: 0
   IsAfter33: 0
