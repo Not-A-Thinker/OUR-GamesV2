@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneControl : MonoBehaviour
 {
+
+    public Animator transition;
+    public float transitionTime = 1f;
     private void Update()
     {
         //if (SceneManager.GetActiveScene().buildIndex != 0)
@@ -41,9 +44,10 @@ public class SceneControl : MonoBehaviour
     {
         Application.Quit();
     }
-   IEnumerator Delay (int Scence)
+    IEnumerator Delay(int Scence)
     {
-        yield return new WaitForSeconds(0.1f);
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(Scence);
     }
 }
