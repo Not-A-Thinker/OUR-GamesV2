@@ -171,12 +171,20 @@ public class BossAI_Wind : MonoBehaviour
         }
 
         if (isStando){ Destroy(gameObject, 30); }
+        if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f); }
 
         if (isStando && basicState._currentHealth <= 0)
         {
             Debug.Log("Stando is Vanish!");
             GameObject.Find("Boss").GetComponent<BossAI_Wind>().isStandoMode = false;
             Destroy(gameObject);
+        }
+
+        if (healthBar.health <= 0 && basicState.isHealthMerge)
+        {
+            Level1GameData.b_isCutScene = true;
+            ani.SetBool("IsDead", true);
+            ani.SetTrigger("DeadTrigger");
         }
 
         #region StageDetect
