@@ -23,6 +23,7 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject windBlade;
     public GameObject outerWindBlade;
     public GameObject[] outerWindBladePoint;
+    public GameObject outerWindBladeGenerateVfx;
     public GameObject vacuumArea;
     public GameObject bubbleAttack;
     public GameObject tornadoLinear;
@@ -279,7 +280,8 @@ public class BossSkillDemo : MonoBehaviour
 
                 bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
                 yield return new WaitForSeconds(0.5f);
-                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
+                StartCoroutine(InstantiateOuterWindBlade(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation,2));
+                //Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
         else if (owb_WorkMode == 2)
@@ -292,9 +294,28 @@ public class BossSkillDemo : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             for (int i = 0; i < sNum; i++)
             {
-                Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
+                StartCoroutine(InstantiateOuterWindBlade(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation, 2));
+                //Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
+    }
+    IEnumerator InstantiateOuterWindBlade( GameObject outerWindBlade, Vector3 pos, Quaternion rot ,  float waitTime)
+    {
+        GameObject m_outerWindBladeGenerateVfx =  Instantiate(outerWindBladeGenerateVfx, pos, rot);
+
+        yield return new WaitForSeconds(waitTime);
+
+        GameObject m_outerWindBlade =  Instantiate(outerWindBlade, pos, rot);
+
+        if (m_outerWindBladeGenerateVfx.GetComponent<objectPortal>()!=null)
+        {
+            Debug.Log("m_outerWindBladeGenerateVfx != null");
+            m_outerWindBladeGenerateVfx.GetComponent<objectPortal>().setTraget(m_outerWindBlade.transform);
+            print(m_outerWindBladeGenerateVfx.GetComponent<objectPortal>().m_traget.name);
+        }
+
+        Destroy(m_outerWindBladeGenerateVfx, 1);
+
     }
 
     public void VacuumPressure()
