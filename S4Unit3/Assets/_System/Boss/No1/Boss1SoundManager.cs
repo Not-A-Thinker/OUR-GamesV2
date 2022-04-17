@@ -51,7 +51,7 @@ public class Boss1SoundManager : MonoBehaviour
         switch (clip)
         {
             case "Boss_Idle01":
-                audioSrc.PlayOneShot(Boss_Idle01);
+                audioSrc.PlayOneShot(Boss_Idle01, 0.2f);
                 break;
             case "Boss_Idle02":
                 audioSrc.PlayOneShot(Boss_Idle02);
