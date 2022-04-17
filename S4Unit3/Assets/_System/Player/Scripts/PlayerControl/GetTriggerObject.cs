@@ -59,6 +59,7 @@ public class GetTriggerObject : MonoBehaviour
                 getedObject.GetComponent<ObjectRotation>().target = ChipParent;
                 getedObject.GetComponent<ObjectRotation>()._isInCount = true;
                 getedObject.GetComponent<ObjectRotation>()._isClip = true;
+                PlayerSoundEffect.PlaySound("Cat_Attack");
                 //getedObject.tag = "Object";
 
             }
@@ -88,7 +89,7 @@ public class GetTriggerObject : MonoBehaviour
                     ///如果Count的滿了
                     Obj_rb.useGravity = true;
                 }
-
+                PlayerSoundEffect.PlaySound("Cat_Attack");
                 //gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
             }
             ///不應該吸到boss
@@ -119,11 +120,11 @@ public class GetTriggerObject : MonoBehaviour
                     getedObject.AddComponent<ObjectRotation>();
                     getedObject.GetComponent<ObjectRotation>().target = ChipParent;
                     getedObject.GetComponent<ObjectRotation>()._isInCount = true;
-                    getedObject.GetComponent<ObjectRotation>()._isClip = true;
+                    getedObject.GetComponent<ObjectRotation>()._isClip = true;                  
                     //getedObject.tag = "Object";
                     //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
-
+                PlayerSoundEffect.PlaySound("Cat_Attack");
                 Destroy(Obj.transform.gameObject);
             }
         }     

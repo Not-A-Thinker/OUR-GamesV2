@@ -181,7 +181,7 @@ public class ForceRepel_TopDown : MonoBehaviour
              SuckFriend();
 
         if (Input.GetButtonDown("Fire2"))
-        {
+        {         
             if (!SuckInCD)
             {
                 ButtonDonwEvent();
@@ -241,7 +241,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (hit.transform.gameObject.layer == 6 &&  SuckCount <= 3 && (int)SuckCount > 0 && !SuckInCD)
             {
                 //Debug.Log(hit.transform.tag);
-                PlayerSoundEffect.PlaySound("Cat_Attack");
+               
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
                 {
                     //if (hit.transform.name.Contains("Tornado SForm"))
