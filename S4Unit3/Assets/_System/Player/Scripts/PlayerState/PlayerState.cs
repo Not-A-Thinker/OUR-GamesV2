@@ -115,7 +115,7 @@ public class PlayerState : MonoBehaviour
     {      
         if(!isInvincible && !Level1GameData.b_isCutScene)
         {
-            StartCoroutine(Vibration(0.5f, 0.1f));
+            //StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
             PlayerSoundEffect.PlaySound("Player_GetDamage");
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK

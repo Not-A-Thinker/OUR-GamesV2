@@ -56,9 +56,9 @@ public class UIcontrol : MonoBehaviour
         P1 = GameObject.Find("Player1").gameObject;
         P2 = GameObject.Find("Player2").gameObject;
         Time.timeScale = 1;
-        sceneControl = GetComponent<SceneControl>();
         if (RespawnHeart)
             RespawnHeartAnim = RespawnHeart.GetComponent<Animator>();
+        sceneControl = GameObject.Find("LevelLoader").GetComponent<SceneControl>();
     }
     
     private void Update()
