@@ -58120,7 +58120,7 @@ MonoBehaviour:
   backwardForce: 14000
   preMoveCount: 0
   isMoveFinished: 0
-  _aiEnable: 1
+  _aiEnable: 0
   aiStartTime: 1
   aiReactTimeStage1: 1.8
   aiReactTimeStage2: 2
@@ -59318,7 +59318,7 @@ AudioSource:
   m_GameObject: {fileID: 2419415252669032787}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -888559397956266315, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

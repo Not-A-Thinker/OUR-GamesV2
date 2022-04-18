@@ -167,7 +167,7 @@ public class BossAI_Wind : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))//This is only for testing function, should be del soon.
         {
             //StartCoroutine(Test());
-            Test2();
+            //Test2();
         }
 
         if (isStando){ Destroy(gameObject, 30); }
@@ -623,8 +623,8 @@ public class BossAI_Wind : MonoBehaviour
                     ///遠距離攻擊
                     if (rndNum + 1 <= 25) 
                     {
-                        ///8Tornado八方龍捲 * 4
-                        BossSkill.StartCoroutine(BossSkill.EightTornado(4));
+                        ///8Tornado八方龍捲 * 8
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(8));
                     }
                     else if (rndNum + 1 >= 26 && rndNum + 1 <= 50)
                     {
@@ -639,6 +639,24 @@ public class BossAI_Wind : MonoBehaviour
                         BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
                     }
                     else if (rndNum + 1 >= 76 && rndNum + 1 <= 100)
+                    {
+                        ///This should be the Wind Wall, but for now is Outer WindBlade
+                        BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
+                    }
+
+                    if (rndNum < 33)
+                    {
+                        ///8Tornado八方龍捲 * 8
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(8));
+                    }
+                    else if (rndNum >=33 && rndNum < 67)
+                    {
+                        ///Boomerang 風刃迴力鏢
+                        boomerageAlert.SetTrigger("Boomer Alert");
+                        yield return new WaitForSeconds(0.2f);
+                        BossSkill.WindBladeBoomerang();
+                    }
+                    else if (rndNum >=67 && rndNum < 100)
                     {
                         ///This should be the Wind Wall, but for now is Outer WindBlade
                         BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
