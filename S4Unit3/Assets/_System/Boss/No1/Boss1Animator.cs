@@ -64,6 +64,7 @@ public class Boss1Animator : MonoBehaviour
     {
         int wBSpawnNum = Random.Range(4, 7);
         BossSkill.StartCoroutine(BossSkill.WindBalls(wBSpawnNum, 1));
+        Boss1SoundManager.PlaySound("Boss_Noise01");
     }
 
     public void Animation_BossPinBallAttack()
