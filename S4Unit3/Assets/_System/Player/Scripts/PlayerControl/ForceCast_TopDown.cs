@@ -219,7 +219,6 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         StartCoroutine(ShootCD());
         ///檢查手上有沒有方塊
-        Debug.Log("Shoot");
         //CD跟蓄力
         Timer = 0; 
         //設置方塊
@@ -241,7 +240,7 @@ public class ForceCast_TopDown : MonoBehaviour
             countFloat = 0;
         int CountInt = (int)(countFloat * 2);
 
-        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt+1);
+        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt);
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);

@@ -41,9 +41,12 @@ public class P1GetCube : MonoBehaviour
             }
             else
             {
-                cube.GetComponent<ObjectRotation>()._isInCount = true;
-                cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
-                cube.GetComponentInChildren<ParticleSystem>().Pause();
+                if(cube != GetComponent<ForceCast_TopDown>().CargeObj)
+                {
+                    cube.GetComponent<ObjectRotation>()._isInCount = true;
+                    cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
+                    cube.GetComponentInChildren<ParticleSystem>().Pause();
+                }              
             }
         }       
     }
