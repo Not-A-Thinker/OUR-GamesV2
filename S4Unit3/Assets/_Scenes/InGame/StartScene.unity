@@ -745,6 +745,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 180425387}
   m_CullTransparentMesh: 1
 
+
 --- !u!1 &187209211
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3194132772541579992, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3194132772541579992, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_PixelPerfect
@@ -2539,6 +2540,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
+
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
