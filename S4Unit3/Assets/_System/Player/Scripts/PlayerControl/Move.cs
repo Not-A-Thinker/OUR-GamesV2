@@ -184,35 +184,7 @@ public class Move : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
 
-            //Rotate Trash
-            float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
-            float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-
-            if (Input.GetButtonDown("LockOnP1"))
-            {
-                autoLockBoss = !autoLockBoss;
-                if (autoLockBoss)
-                    UIcontrol.flyText(1, Color.red, "Boss Locked!!");
-                else
-                    UIcontrol.flyText(1, Color.red, "Boss UnLocked!!");
-            }         
-
-            if (autoLockBoss)
-            {
-                BossLockOn();
-            }
-            else
-            {
-                if (RothorizontalInput != 0 && RotverticalInput != 0)
-                {
-                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
-                    Quaternion target = Quaternion.Euler(0, angle, 0);
-                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1000f * Time.deltaTime);
-                    //Debug.Log(angle);
-                }
-            }
+            
         }
 
         if (isPlayer2)//arrows
@@ -284,42 +256,7 @@ public class Move : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
 
-            if (IsJoystick)
-            {
-                float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
-                float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
-                if (Input.GetButtonDown("LockOnP2"))
-                {
-                    autoLockBoss = !autoLockBoss;
-                    if (autoLockBoss)
-                        UIcontrol.flyText(2, Color.red, "Boss Locked!!");
-                    else
-                        UIcontrol.flyText(2, Color.red, "Boss UnLocked!!");
-                }                   
-
-                if(autoLockBoss)
-                {
-                    BossLockOn();               
-                }
-                else
-                {
-                    if (RothorizontalInput != 0 && RotverticalInput != 0)
-                    {
-                        //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
-                        angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
-                        //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
-                        Quaternion target = Quaternion.Euler(0, angle, 0);
-                        ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 1000f * Time.deltaTime);
-                        //Debug.Log(angle);
-                    }
-                }           
-                //if (Input.GetButtonDown("LockOnP2"))
-                //else
-                //{
-                //    //Debug.Log("locked Boss!");
-                  
-                //}
-            }
+            
             //else
             //{
             //    //Aim
@@ -347,11 +284,75 @@ public class Move : MonoBehaviour
         if (isPlayer1)
         {
 
+            //Rotate Trash
+            float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
+            float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
+
+            if (Input.GetButton("LockOnP1"))
+            {
+                autoLockBoss = !autoLockBoss;
+                if (autoLockBoss)
+                    UIcontrol.flyText(1, Color.red, "Boss Locked!!");
+                else
+                    UIcontrol.flyText(1, Color.red, "Boss UnLocked!!");
+            }
+
+            if (autoLockBoss)
+            { BossLockOn();}
+            else
+            {
+                if (RothorizontalInput != 0 && RotverticalInput != 0)
+                {
+                    //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                    angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                    //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                    Quaternion target = Quaternion.Euler(0, angle, 0);
+                    ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 800f * Time.fixedDeltaTime);
+                    //Debug.Log(angle);
+                }
+            }
         }
 
         if (isPlayer2)
         {
 
+
+            if (IsJoystick)
+            {
+                float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
+                float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
+                if (Input.GetButton("LockOnP2"))
+                {
+                    autoLockBoss = !autoLockBoss;
+                    if (autoLockBoss)
+                        UIcontrol.flyText(2, Color.red, "Boss Locked!!");
+                    else
+                        UIcontrol.flyText(2, Color.red, "Boss UnLocked!!");
+                }
+
+                if (autoLockBoss)
+                {
+                    BossLockOn();
+                }
+                else
+                {
+                    if (RothorizontalInput != 0 && RotverticalInput != 0)
+                    {
+                        //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                        angle = Mathf.Atan2(RothorizontalInput, -RotverticalInput) * Mathf.Rad2Deg;
+                        //angle = Mathf.Lerp(transform.rotation.y, angle, 0.5f);
+                        Quaternion target = Quaternion.Euler(0, angle, 0);
+                        ShootRot.transform.rotation = Quaternion.RotateTowards(ShootRot.transform.rotation, target, 800f * Time.fixedDeltaTime);
+                        //Debug.Log(angle);
+                    }
+                }
+                //if (Input.GetButtonDown("LockOnP2"))
+                //else
+                //{
+                //    //Debug.Log("locked Boss!");
+
+                //}
+            }
         }
     }
 
@@ -524,7 +525,7 @@ public class Move : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Boss.transform.position - ShootRot.transform.position);
         targetRotation.x = 0;
         targetRotation.z = 0;
-        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.deltaTime);
+        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.fixedDeltaTime);
     }  
 }
 
