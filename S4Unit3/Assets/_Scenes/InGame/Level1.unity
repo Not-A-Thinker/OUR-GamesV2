@@ -969,8 +969,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685285, y: 74.87002, z: -73.30846}
-
+  m_LocalPosition: {x: 0.030684939, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6230,8 +6229,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8307771789951595663, guid: f6f2ea4b99d181e49b9f35e4dc599c69, type: 2}
   m_audioClip: {fileID: 8300000, guid: 83c73870c57422240a9b7a285d81a45a, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_PlayOnAwake: 0
+  m_Volume: 0.69
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8823,6 +8822,7 @@ MonoBehaviour:
   _crystalOuterIsland:
   - {fileID: 77403990}
   _crystalOuterIslandHeight: 7
+  audioSrc: {fileID: 375013833}
 --- !u!4 &678540657
 Transform:
   m_ObjectHideFlags: 0
@@ -15577,8 +15577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685285, y: 74.87002, z: -73.30846}
-
+  m_LocalPosition: {x: 0.030684939, y: 74.87002, z: -73.30846}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

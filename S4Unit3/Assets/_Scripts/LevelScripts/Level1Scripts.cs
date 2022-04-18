@@ -6,6 +6,7 @@ using DG.Tweening;
 //This Script should be use as the whole level control.
 public class Level1Scripts : MonoBehaviour
 {
+    [Header("Crystals")]
     [SerializeField] Transform[] _crystalAlter;
     [SerializeField] float _crystalHeight = 6f;
     [Space]
@@ -24,6 +25,8 @@ public class Level1Scripts : MonoBehaviour
     [SerializeField] Transform[] _crystalOuterIsland;
     [SerializeField] float _crystalOuterIslandHeight = 8f;
 
+    [Header("Sound")]
+    public AudioSource audioSrc;
     private void Awake()
     {
         //Application.targetFrameRate = 120;
@@ -32,6 +35,8 @@ public class Level1Scripts : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(SoundDelay(2f));
+
         //This is for handling the crystal movement animation.
         foreach (var crystal in _crystalAlter)
         {
@@ -112,5 +117,12 @@ public class Level1Scripts : MonoBehaviour
     void Update()
     {
         
+    }
+
+    IEnumerator SoundDelay(float sec)
+    {
+
+        yield return new WaitForSeconds(sec);
+        audioSrc.Play();
     }
 }
