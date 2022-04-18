@@ -761,7 +761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &187052629
 Camera:
   m_ObjectHideFlags: 0
@@ -962,7 +962,7 @@ PrefabInstance:
       objectReference: {fileID: 187052629}
     - target: {fileID: 3194132772541579992, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3194132772541579992, guid: 01e7adefea63c4743849ac1421a748d9, type: 3}
       propertyPath: m_PixelPerfect
@@ -7258,8 +7258,7 @@ MonoBehaviour:
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
-  m_Cameras:
-  - {fileID: 187052629}
+  m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -7499,7 +7498,7 @@ Canvas:
   m_GameObject: {fileID: 1083011262}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 187052629}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
