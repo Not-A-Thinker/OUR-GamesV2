@@ -90,7 +90,6 @@ public class Boss1Animator : MonoBehaviour
     public void PlaySound(string clip)
     {
         Boss1SoundManager.PlaySound(clip);
-        Debug.Log(clip);
     }
 
     public void Hi()
