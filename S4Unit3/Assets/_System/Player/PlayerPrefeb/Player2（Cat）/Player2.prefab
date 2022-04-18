@@ -395,6 +395,9 @@ MonoBehaviour:
   _DashTotal: 1
   DashCD: 2
   _DashRestore: 50
+  dashDuration: 0
+  dashSpeedV2: 0
+  dashButtonName: 
 --- !u!54 &1860544261278244864
 Rigidbody:
   m_ObjectHideFlags: 0
