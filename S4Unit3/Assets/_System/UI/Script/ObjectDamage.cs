@@ -81,22 +81,19 @@ public class ObjectDamage : MonoBehaviour
        
         if (col.gameObject.layer == 6)
         {
-
             if(col.transform.tag == "DummyBoss")
             {
                 if (col.transform.GetComponent<BossSpawnObject>() != null)
                 {
                     bossSpawn = col.transform.GetComponent<BossSpawnObject>();
                     bossSpawn.SpawnedCountDecrease();
-                    bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
-                    bossSpawn.SpawnedCountDecrease();
-                    Destroy(this.gameObject);
-                }                 
+                }
+                bossHealth.TakeDamage(Damage);
+                Destroy(this.gameObject);
             }
-
             //Debug.Log("HitBoss");
             ///如果擊中Boss,而且不在過埸時
-            if (col.transform.tag == "Boss" && !Level1GameData.b_isCutScene)
+            else if (col.transform.tag == "Boss" && !Level1GameData.b_isCutScene)
             {
                 ///扣血
                 bossHealth.TakeDamage(Damage);
