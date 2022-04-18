@@ -179,8 +179,8 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         StartCoroutine(DashDelay()) ;
                         //Debug.Log("P1 Dashed");
-                        //Dash(movementDirection, horizontalInput, -verticalInput);
-                        DashV2(movementDirection, horizontalInput, -verticalInput);
+                        StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                        //DashV2(movementDirection, horizontalInput, -verticalInput);
                         //StartCoroutine(DashRestore());
                         _DashNow = _DashNow - 1;
                     }
@@ -245,8 +245,8 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         //Debug.Log("P2 Dashed");
                         StartCoroutine(DashDelay());
-                        //Dash(movementDirection, horizontalInput, verticalInput);
-                        DashV2(movementDirection, horizontalInput, -verticalInput);
+                        StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
+                        //DashV2(movementDirection, horizontalInput, -verticalInput);
                         //StartCoroutine(DashRestore());
                         _animation.PlayerDodge();
                         _DashNow = _DashNow - 1;
@@ -401,7 +401,7 @@ public class Move : MonoBehaviour
     //    maximumSpeed = tempSpeed;
     //}
 
-    void Dash(Vector3 velocity, float horizontalInput, float verticalInput)
+    IEnumerator Dash(Vector3 velocity, float horizontalInput, float verticalInput)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
@@ -424,6 +424,7 @@ public class Move : MonoBehaviour
             //_Collider.enabled = true;
             //playerState.DashColorChange(false);
         }
+        yield return null;
     }
     
     void DashV2(Vector3 velocity, float horizontalInput, float verticalInput)
