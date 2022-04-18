@@ -179,6 +179,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         if(Input.GetButton("HelpFriendP2"))
              SuckFriend();
+        if (Input.GetButtonUp("HelpFriendP2"))
+            Range.SetActive(false);
 
         if (Input.GetButtonDown("Fire2"))
         {         

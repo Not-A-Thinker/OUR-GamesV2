@@ -137,6 +137,7 @@ public class P1GetCube : MonoBehaviour
             cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
 
         //Debug.Log(parentMax);
+        cube.GetComponent<ObjectRotation>()._isInCount = false;
 
         if (parentMax == 1)
             move.SpeedReset();
@@ -172,7 +173,7 @@ public class P1GetCube : MonoBehaviour
         objectDamage.SetDamage(caseNum);
         objectDamage.Direction = direction.transform.forward;
 
-        cube.GetComponent<ObjectRotation>()._isInCount = false;
+   
         OneOnCarge = false;
         PlayerSoundEffect.PlaySound("Dog_Attack");
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
