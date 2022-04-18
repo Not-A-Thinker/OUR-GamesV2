@@ -181,7 +181,12 @@ public class ForceCast_TopDown : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             if (ShootInCD || objectParent.transform.childCount == 0)
-                UIcontrol.flyText(1, Color.red, "CD!!!");           
+            {
+                if(ShootInCD)
+                    UIcontrol.flyText(1, Color.red, "CD!!!");
+                else if (objectParent.transform.childCount == 0)
+                    UIcontrol.flyText(1, Color.red, "No Cube");
+            }                          
             else
             {
                 SetOldQue();
