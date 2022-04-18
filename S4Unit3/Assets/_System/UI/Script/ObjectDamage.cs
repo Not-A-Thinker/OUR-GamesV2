@@ -85,7 +85,13 @@ public class ObjectDamage : MonoBehaviour
             if(col.transform.tag == "DummyBoss")
             {
                 if (col.transform.GetComponent<BossSpawnObject>() != null)
+                {
                     bossSpawn = col.transform.GetComponent<BossSpawnObject>();
+                    bossSpawn.SpawnedCountDecrease();
+                    bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
+                    bossSpawn.SpawnedCountDecrease();
+                    Destroy(this.gameObject);
+                }                 
             }
 
             //Debug.Log("HitBoss");
