@@ -59,13 +59,13 @@ public class Boss1SoundManager : MonoBehaviour
                 break;
 
             case "Boss_Wing01":
-                audioSrc.PlayOneShot(Boss_Wing01);
+                audioSrc.PlayOneShot(Boss_Wing01,0.8f);
                 break;
             case "Boss_Wing02":
-                audioSrc.PlayOneShot(Boss_Wing02);
+                audioSrc.PlayOneShot(Boss_Wing02, 0.8f);
                 break;
             case "Boss_Wing03":
-                audioSrc.PlayOneShot(Boss_Wing03);
+                audioSrc.PlayOneShot(Boss_Wing03, 0.8f);
                 break;
 
             case "Boss_Noise01":
