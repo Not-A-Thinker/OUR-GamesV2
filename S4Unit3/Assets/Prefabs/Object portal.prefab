@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2120788253167655257}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 14.34, z: 14.34}
+  m_LocalScale: {x: 0, y: 30, z: 30}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2120788254441176307}
@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 2120788253559243651}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 30, z: 30}
+  m_LocalScale: {x: 0, y: 32.5, z: 32.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2120788254441176307}
@@ -353,4 +353,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceTraget: {fileID: 2120788253167655260}
-  m_traget: {fileID: 2120788253450672922}
+  distanceTragetObj: {fileID: 2120788253167655257}

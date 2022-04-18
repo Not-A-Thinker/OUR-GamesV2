@@ -280,7 +280,7 @@ public class BossSkillDemo : MonoBehaviour
 
                 bossAI.outerWindBladeAlert[iNum[i]].SetTrigger("WindBlade Alert");
                 yield return new WaitForSeconds(0.5f);
-                StartCoroutine(InstantiateOuterWindBlade(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation,2));
+                StartCoroutine(InstantiateOuterWindBlade( outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation,1));
                 //Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
@@ -294,12 +294,12 @@ public class BossSkillDemo : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             for (int i = 0; i < sNum; i++)
             {
-                StartCoroutine(InstantiateOuterWindBlade(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation, 2));
+                StartCoroutine(InstantiateOuterWindBlade(outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation,1));
                 //Instantiate(outerWindBlade, outerWindBladePoint[iNum[i]].transform.position, outerWindBladePoint[iNum[i]].transform.rotation);
             }
         }
     }
-    IEnumerator InstantiateOuterWindBlade( GameObject outerWindBlade, Vector3 pos, Quaternion rot ,  float waitTime)
+    IEnumerator InstantiateOuterWindBlade(  Vector3 pos, Quaternion rot , float waitTime)
     {
         GameObject m_outerWindBladeGenerateVfx =  Instantiate(outerWindBladeGenerateVfx, pos, rot);
 
@@ -307,12 +307,16 @@ public class BossSkillDemo : MonoBehaviour
 
         GameObject m_outerWindBlade =  Instantiate(outerWindBlade, pos, rot);
 
-        if (m_outerWindBladeGenerateVfx.GetComponent<objectPortal>()!=null)
+        if (m_outerWindBladeGenerateVfx.GetComponent<objectPortal>() != null)
         {
-            Debug.Log("m_outerWindBladeGenerateVfx != null");
-            m_outerWindBladeGenerateVfx.GetComponent<objectPortal>().setTraget(m_outerWindBlade.transform);
-            print(m_outerWindBladeGenerateVfx.GetComponent<objectPortal>().m_traget.name);
+            var op = m_outerWindBladeGenerateVfx.GetComponent<objectPortal>(); 
+            if(op.distanceTraget != null)
+            {
+                var dt = op.distanceTraget.GetComponent<DistanceTraget>();
+                dt.m_objectTraget = m_outerWindBlade.transform;
+            }
         }
+
 
         Destroy(m_outerWindBladeGenerateVfx, 1);
 

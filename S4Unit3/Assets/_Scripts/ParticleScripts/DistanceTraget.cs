@@ -44,6 +44,7 @@ public class DistanceTraget : MonoBehaviour
         if(m_objectTraget!= null)
         {
             m_materialRef.SetVector("_Position",m_objectTraget.position);
+          //  print(m_objectTraget.position);
         }
     }
 
@@ -54,5 +55,10 @@ public class DistanceTraget : MonoBehaviour
             Destroy(m_materialRef);
 
         m_materialRef = null;
+    }
+
+    public void printTraget ()
+    {
+      //  print(m_objectTraget);
     }
 }

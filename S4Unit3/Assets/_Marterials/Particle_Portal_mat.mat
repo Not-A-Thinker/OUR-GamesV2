@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 5a4810068c0539d4681f2e19f3505e5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -99,14 +103,14 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Refraction_Power: 10
+    - _Refraction_Power: 15
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _Texture_Speed: 1
-    - _Twirl_Strengh: 10
+    - _Twirl_Strengh: 20
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
@@ -114,7 +118,7 @@ Material:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 0.52156866, g: 0.52156866, b: 0.52156866, a: 0}
+    - _MainColor: {r: 0.44705883, g: 0.4627451, b: 1.3647059, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &6633954915709009457
