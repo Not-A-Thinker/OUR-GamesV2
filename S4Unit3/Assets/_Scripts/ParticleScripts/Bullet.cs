@@ -47,17 +47,19 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //print("collision with " + collision.gameObject.name);
-        if (collision.transform.gameObject == Traget || collision.transform.gameObject.tag == "Boss")
+        if (collision.transform.gameObject == Traget || collision.transform.gameObject.tag == "Boss" || collision.transform.gameObject.tag == "DummyBoss")
          {
-
+            print("Collision");
             ContactPoint contact = collision.contacts[0]; //get hit point 
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal); // rotation
             Vector3 pos = contact.point;//position
-            if (!bossToSuck)
-            {
-                GameObject particleobj = Instantiate(CollisionParticle, pos, Quaternion.identity);
-                Destroy(particleobj, 5);
-            }
+            //if (!bossToSuck) 2022/4/18
+            //{
+            //    print("Collision // !toBoss");
+
+            //    GameObject particleobj = Instantiate(CollisionParticle, pos, Quaternion.identity);
+            //    Destroy(particleobj, 5);
+            //}
             //Instantiate(explosionPrefab, pos, rot);
 
         }
@@ -73,13 +75,16 @@ public class Bullet : MonoBehaviour
         //print(other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position));
         //Instantiate(explosionPrefab, pos, Quaternion.identity);
 
-        if (other.gameObject.tag== "Boss" || other.gameObject==Traget)
+        if (other.gameObject.tag== "Boss" || other.gameObject== Traget || other.transform.gameObject.tag == "DummyBoss")
         {
-            if(!bossToSuck)
-            {
-                GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
-                Destroy(particleobj, 5);
-            }
+            print("trigger");
+            //if(!bossToSuck) 2022/04/18
+            //{
+            //    print("trigger // !toBoss");
+
+            //    GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+            //    Destroy(particleobj, 5);
+            //}
             //Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         }
