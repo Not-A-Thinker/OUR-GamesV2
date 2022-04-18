@@ -83,18 +83,18 @@ public class ObjectDamage : MonoBehaviour
         {
 
             //Debug.Log("HitBoss");
-            ///如果擊中Boss
-            if (col.transform.tag == "Boss")
+            ///如果擊中Boss,而且不在過埸時
+            if (col.transform.tag == "Boss" && !Level1GameData.b_isCutScene)
             {
                 ///扣血
                 bossHealth.TakeDamage(Damage);
 
-                ///擊中時改顏色 + 鏡頭震動
+                ///擊中時改顏色 + 鏡頭震動 + 受傷音效(meme)
                 if (col.gameObject.GetComponentInParent<BossDamageIndicator>()!=null)
                 {
                     col.gameObject.GetComponentInParent<BossDamageIndicator>().ColorValueChange();
                     col.gameObject.GetComponentInParent<BossDamageIndicator>().CameraShake();
-
+                    Boss1SoundManager.PlaySound("Boss_Noise02");
                 }
                 ///Boss Count -1
                 if(col.transform.GetComponent<BossSpawnObject>() != null)
