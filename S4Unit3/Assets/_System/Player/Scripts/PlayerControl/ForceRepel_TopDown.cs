@@ -179,6 +179,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         if(Input.GetButton("HelpFriendP2"))
              SuckFriend();
+        if (Input.GetButtonUp("HelpFriendP2"))
+            Range.SetActive(false);
 
         if (Input.GetButtonDown("Fire2"))
         {         
@@ -271,7 +273,6 @@ public class ForceRepel_TopDown : MonoBehaviour
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
-
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);

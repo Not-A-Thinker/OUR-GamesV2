@@ -41,9 +41,12 @@ public class P1GetCube : MonoBehaviour
             }
             else
             {
-                cube.GetComponent<ObjectRotation>()._isInCount = true;
-                cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
-                cube.GetComponentInChildren<ParticleSystem>().Pause();
+                if(cube != GetComponent<ForceCast_TopDown>().CargeObj)
+                {
+                    cube.GetComponent<ObjectRotation>()._isInCount = true;
+                    cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
+                    cube.GetComponentInChildren<ParticleSystem>().Pause();
+                }              
             }
         }       
     }
@@ -128,9 +131,16 @@ public class P1GetCube : MonoBehaviour
             
         int caseNum = 0;
 
-        GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
+        GameObject cube;
+        if (GetComponent<ForceCast_TopDown>().CargeObj!=null)
+        {
+            cube = GetComponent<ForceCast_TopDown>().CargeObj;
+        } 
+        else
+            cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
 
         //Debug.Log(parentMax);
+        cube.GetComponent<ObjectRotation>()._isInCount = false;
 
         if (parentMax == 1)
             move.SpeedReset();
@@ -166,7 +176,7 @@ public class P1GetCube : MonoBehaviour
         objectDamage.SetDamage(caseNum);
         objectDamage.Direction = direction.transform.forward;
 
-        cube.GetComponent<ObjectRotation>()._isInCount = false;
+   
         OneOnCarge = false;
         PlayerSoundEffect.PlaySound("Dog_Attack");
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);

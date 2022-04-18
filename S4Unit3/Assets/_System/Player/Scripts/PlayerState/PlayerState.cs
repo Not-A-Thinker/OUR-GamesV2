@@ -118,6 +118,8 @@ public class PlayerState : MonoBehaviour
             //StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
             PlayerSoundEffect.PlaySound("Player_GetDamage");
+
+
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
 
             if (isPlayer1)
@@ -127,8 +129,9 @@ public class PlayerState : MonoBehaviour
                 p1GetCube.PlayerGoneCube();
                 ForceCast_TopDown _TopDown = GetComponent<ForceCast_TopDown>();
                 _TopDown.ResetOldQue();
+                _TopDown.StartCoroutine("ShootCD");
             }
-            //Debug.Log(_currentHealth);     
+                //Debug.Log(_currentHealth);     
             if (_currentHealth > 0)
             {
                 ///受攻擊無敵
@@ -267,6 +270,25 @@ public class PlayerState : MonoBehaviour
         _renderer.enabled = false;
         if (isPlayer1)
         {
+            Physics.IgnoreLayerCollision(12, 6, true);
+            Physics.IgnoreLayerCollision(12, 7, true);
+            Physics.IgnoreLayerCollision(12, 9, true);
+        }
+        else if (isPlayer2)
+        {
+            Physics.IgnoreLayerCollision(13, 6, true);
+            Physics.IgnoreLayerCollision(13, 7, true);
+            Physics.IgnoreLayerCollision(13, 9, true);
+        }       
+        InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
+        yield return new WaitForSeconds(0.6f);
+        _renderer.material.SetColor("_MainColor", color);
+        yield return new WaitForSeconds(time);
+        CancelInvoke();
+        _renderer.enabled = true;
+        _Collider.enabled = true;
+        if (isPlayer1)
+        {
             Physics.IgnoreLayerCollision(12, 6, false);
             Physics.IgnoreLayerCollision(12, 7, false);
             Physics.IgnoreLayerCollision(12, 9, false);
@@ -277,27 +299,6 @@ public class PlayerState : MonoBehaviour
             Physics.IgnoreLayerCollision(13, 7, false);
             Physics.IgnoreLayerCollision(13, 9, false);
         }
-        InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
-        yield return new WaitForSeconds(0.6f);
-        _renderer.material.SetColor("_MainColor", color);
-        yield return new WaitForSeconds(time);
-        CancelInvoke();
-        if (isPlayer1)
-        {
-            Physics.IgnoreLayerCollision(12, 6, true);
-            Physics.IgnoreLayerCollision(12, 7, true);
-            Physics.IgnoreLayerCollision(12, 9, true);
-        }
-        else if (isPlayer2)
-        {
-            Physics.IgnoreLayerCollision(13, 6, true);
-            Physics.IgnoreLayerCollision(13, 7, true);
-            Physics.IgnoreLayerCollision(13, 9, true);
-        }
-        _renderer.enabled = true;
-        _Collider.enabled = true;
-       
-
         isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }

@@ -82,6 +82,12 @@ public class Boss1Animator : MonoBehaviour
         bossVC.m_Priority = orgPriority;
     }
 
+    public void PlaySound(string clip)
+    {
+        Boss1SoundManager.PlaySound(clip);
+        Debug.Log(clip);
+    }
+
     public void Hi()
     {
         Debug.Log("Say Hi.");

@@ -17,7 +17,7 @@ public class ForceCast_TopDown : MonoBehaviour
     public float _force = 500f;
     public float _range = 20f;
     public bool isfriendPushed, Charge, isShooted,isAim ;//控制器觸發用的
-    bool friendPushed, ShootInCD;//檢查用
+    public bool friendPushed, ShootInCD;//檢查用
     [SerializeField] bool IsCargeEffectPlay;
 
     public bool _attackTrigger = false;
@@ -201,6 +201,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
+                Charge = false;
                 isShooted = true;
                 ResetOldQue();
                 StopCoroutine(CargeEffectPlay(0.6f));
@@ -216,12 +217,10 @@ public class ForceCast_TopDown : MonoBehaviour
 
     private void Shoot()
     {
+        StartCoroutine(ShootCD());
         ///檢查手上有沒有方塊
-        //Debug.Log(force);
         //CD跟蓄力
-        Timer = 0;
-
-        StartCoroutine(ShootCD(PushMaxCD));
+        Timer = 0; 
         //設置方塊
          gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
 
@@ -241,7 +240,7 @@ public class ForceCast_TopDown : MonoBehaviour
             countFloat = 0;
         int CountInt = (int)(countFloat * 2);
 
-        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt+1);
+        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt);
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
@@ -294,10 +293,10 @@ public class ForceCast_TopDown : MonoBehaviour
     }
 
     ///另外一個射擊CD 一樣的
-    IEnumerator ShootCD(int time)
+    public IEnumerator ShootCD()
     {
         ShootInCD = true;
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(PushMaxCD);
         ShootInCD = false;
         //while (time > 0)
         //{
@@ -329,6 +328,7 @@ public class ForceCast_TopDown : MonoBehaviour
         yield return new WaitForSeconds(Time);
         IsCargeEffectPlay = false;
         yield return new WaitForSeconds(Time);
+        StartCoroutine(CargeEffectPlay(Time));
     }
 
     ///記錄射擊前方位
