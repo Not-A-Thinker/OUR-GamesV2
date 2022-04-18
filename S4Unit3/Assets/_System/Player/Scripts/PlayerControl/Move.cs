@@ -87,8 +87,6 @@ public class Move : MonoBehaviour
         playerState = GetComponent<PlayerState>();
     }
 
-
-
     void Update()
     {
         if(isKnockUp)
@@ -171,7 +169,7 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         StartCoroutine(DashDelay()) ;
                         //Debug.Log("P1 Dashed");
-                        StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                        Dash(movementDirection, horizontalInput, -verticalInput);
                         //StartCoroutine(DashRestore());
                         _DashNow = _DashNow - 1;
                     }
@@ -264,7 +262,7 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         //Debug.Log("P2 Dashed");
                         StartCoroutine(DashDelay());
-                        StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
+                        Dash(movementDirection, horizontalInput, verticalInput);
                         //StartCoroutine(DashRestore());
                         _animation.PlayerDodge();
                         _DashNow = _DashNow - 1;
@@ -343,6 +341,20 @@ public class Move : MonoBehaviour
 
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (isPlayer1)
+        {
+
+        }
+
+        if (isPlayer2)
+        {
+
+        }
+    }
+
     IEnumerator DashDelay()
     {
         playerState.DashColorChange(true);
@@ -375,7 +387,7 @@ public class Move : MonoBehaviour
     //    isImMobilized = false;
     //    maximumSpeed = tempSpeed;
     //}
-    IEnumerator Dash(Vector3 velocity, float horizontalInput, float verticalInput)
+    void Dash(Vector3 velocity, float horizontalInput, float verticalInput)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
@@ -390,15 +402,13 @@ public class Move : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             //_Collider.enabled = false;
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);    
-             yield return null;
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);   
         }
 
         while(Time.time>=startTime+dashTime)
         {
             //_Collider.enabled = true;
             //playerState.DashColorChange(false);
-            yield return null;
         }
     }
     //IEnumerator DashRestore()
