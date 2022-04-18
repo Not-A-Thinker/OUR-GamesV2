@@ -96,4 +96,58 @@ public class Boss1Animator : MonoBehaviour
     {
         Debug.Log("Say Hi.");
     }
+
+    public ParticleSystem bossRoar;
+    public ParticleSystem bossAngry;
+    public ParticleSystem bossAngry_2;
+
+
+    public void bossRoarStart_ani()
+    {
+        if (bossRoar != null)
+        {
+            //bossRoar.gameObject.SetActive(true);
+            bossRoar.Play();
+            print("isplaying ? " + bossRoar.isPlaying);
+            print("bossRoarStart_ani");
+        }
+    }
+    public void bossRoarEnd_ani()
+    {
+        if (bossRoar != null && bossRoar.isPlaying)
+        {
+            //bossRoar.gameObject.SetActive(false);
+            bossRoar.Stop(false);
+            print("bossRoarEnd_ani");
+
+        }
+    }
+    public void bossAngryStart_ani()
+    {
+        if (bossAngry != null)
+        {
+            bossAngry.Play();
+            print("bossAngryStart_ani");
+        }
+        if (bossAngry_2 != null)
+        {
+            bossAngry_2.Play();
+            print("bossAngryStart_ani");
+        }
+    }
+    public void bossAngryEnd_ani()
+    {
+        if (bossAngry != null && bossAngry.isPlaying)
+        {
+            bossAngry.Stop();
+            print("bossAngryEnd_ani");
+
+        }
+        if (bossAngry_2 != null)
+        {
+            bossAngry_2.Stop();
+            print("bossAngryStart_ani");
+        }
+    }
+
 }

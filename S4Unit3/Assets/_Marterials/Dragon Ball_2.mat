@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dragon Ball
+  m_Name: Dragon Ball_2
   m_Shader: {fileID: -6465566751694194690, guid: f0bae66a6a6fa3746b0ad834bed1dd02, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d7954b6cb0d04474f8c4df9f291488b9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 35260394d6ad381489dab38b18fd2b08, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: -4.06}
     - _MetallicGlossMap:
@@ -107,7 +107,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1.0592737, g: 1.0592737, b: 1.0592737, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainTexSpeed: {r: 0, g: 1, b: 0, a: 0}
     - _MainTexTiltng: {r: 4, g: 1, b: 0, a: 0}

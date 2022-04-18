@@ -67,15 +67,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6098689
-        functionName: Animation_BossPinBallAttack
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.89128757
-        functionName: Camera_PinBallFadeOut
+      - time: 0.0008613298
+        functionName: bossAngryStart_ani
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -98,6 +91,48 @@ ModelImporter:
       - time: 0.37012446
         functionName: PlaySound
         data: Boss_Wing01
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6098689
+        functionName: Animation_BossPinBallAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.698935
+        functionName: bossRoarStart_ani
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.8449612
+        functionName: bossRoarEnd_ani
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.89128757
+        functionName: Camera_PinBallFadeOut
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9956934
+        functionName: bossAngryEnd_ani
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: bossRoarEnd_ani
+        data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
