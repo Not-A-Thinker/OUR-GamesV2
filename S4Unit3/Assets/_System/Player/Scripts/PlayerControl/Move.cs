@@ -416,15 +416,16 @@ public class Move : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             //_Collider.enabled = false;
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);   
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            yield return null;
         }
 
         while(Time.time>=startTime+dashTime)
         {
             //_Collider.enabled = true;
             //playerState.DashColorChange(false);
+            yield return null;
         }
-        yield return null;
     }
     
     void DashV2(Vector3 velocity, float horizontalInput, float verticalInput)
