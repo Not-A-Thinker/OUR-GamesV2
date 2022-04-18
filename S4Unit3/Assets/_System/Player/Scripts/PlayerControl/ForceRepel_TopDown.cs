@@ -271,7 +271,6 @@ public class ForceRepel_TopDown : MonoBehaviour
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
-
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);

@@ -128,7 +128,13 @@ public class P1GetCube : MonoBehaviour
             
         int caseNum = 0;
 
-        GameObject cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
+        GameObject cube;
+        if (GetComponent<ForceCast_TopDown>().CargeObj!=null)
+        {
+            cube = GetComponent<ForceCast_TopDown>().CargeObj;
+        } 
+        else
+            cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
 
         //Debug.Log(parentMax);
 
