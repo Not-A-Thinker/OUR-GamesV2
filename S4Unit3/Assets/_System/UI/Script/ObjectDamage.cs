@@ -82,6 +82,12 @@ public class ObjectDamage : MonoBehaviour
         if (col.gameObject.layer == 6)
         {
 
+            if(col.transform.tag == "DummyBoss")
+            {
+                if (col.transform.GetComponent<BossSpawnObject>() != null)
+                    bossSpawn = col.transform.GetComponent<BossSpawnObject>();
+            }
+
             //Debug.Log("HitBoss");
             ///如果擊中Boss,而且不在過埸時
             if (col.transform.tag == "Boss" && !Level1GameData.b_isCutScene)
@@ -96,11 +102,8 @@ public class ObjectDamage : MonoBehaviour
                     col.gameObject.GetComponentInParent<BossDamageIndicator>().CameraShake();
                     Boss1SoundManager.PlaySound("Boss_Noise02");
                 }
-                ///Boss Count -1
-                if(col.transform.GetComponent<BossSpawnObject>() != null)
-                    bossSpawn = col.transform.GetComponent<BossSpawnObject>();
-                else
-                    bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
+                ///Boss Count -1             
+                bossSpawn = col.transform.parent.GetComponent<BossSpawnObject>();
 
                 bossSpawn.SpawnedCountDecrease();
                

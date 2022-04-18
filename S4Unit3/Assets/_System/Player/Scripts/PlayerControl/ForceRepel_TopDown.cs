@@ -244,7 +244,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             {
                 //Debug.Log(hit.transform.tag);
                
-                if (hit.transform.tag != "Boss" && hit.transform.tag != "Player")
+                if (hit.transform.tag != "Boss" && hit.transform.tag != "Player"&& hit.transform.tag != "DummyBoss")
                 {
                     //if (hit.transform.name.Contains("Tornado SForm"))
                     //{
@@ -265,7 +265,7 @@ public class ForceRepel_TopDown : MonoBehaviour
                     //}
                 }
                 //rb.useGravity = !rb.useGravity;       
-               else if (hit.transform.tag == "Boss")
+               else if (hit.transform.tag == "Boss"|| hit.transform.tag == "DummyBoss")
                 {
                     if (_Suck_Effect != null)
                         _Suck_Effect.Play();               

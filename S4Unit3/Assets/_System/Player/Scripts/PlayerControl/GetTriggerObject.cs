@@ -93,7 +93,7 @@ public class GetTriggerObject : MonoBehaviour
                 //gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
             }
             ///不應該吸到boss
-            else if (Obj.transform.tag == "Boss")
+            else if (Obj.transform.tag == "Boss" || Obj.transform.tag == "DummyBoss")
             {
 
             }
