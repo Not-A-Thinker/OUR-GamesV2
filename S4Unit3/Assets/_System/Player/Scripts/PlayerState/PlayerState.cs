@@ -308,12 +308,34 @@ public class PlayerState : MonoBehaviour
         if (isDsah) 
         {
             _renderer.material.SetColor("_MainColor", DashColor);
-            Physics.IgnoreLayerCollision(6, 9, false);
+            if (isPlayer1)
+            {
+                Physics.IgnoreLayerCollision(12, 6, true);
+                Physics.IgnoreLayerCollision(12, 7, true);
+                Physics.IgnoreLayerCollision(12, 9, true);
+            }
+            else if (isPlayer2)
+            {
+                Physics.IgnoreLayerCollision(13, 6, true);
+                Physics.IgnoreLayerCollision(13, 7, true);
+                Physics.IgnoreLayerCollision(13, 9, true);
+            }
         }
         else
         {
             _renderer.material.SetColor("_MainColor", color);
-            Physics.IgnoreLayerCollision(6, 9, true);
+            if (isPlayer1)
+            {
+                Physics.IgnoreLayerCollision(12, 6, false);
+                Physics.IgnoreLayerCollision(12, 7, false);
+                Physics.IgnoreLayerCollision(12, 9, false);
+            }
+            else if (isPlayer2)
+            {
+                Physics.IgnoreLayerCollision(13, 6, false);
+                Physics.IgnoreLayerCollision(13, 7, false);
+                Physics.IgnoreLayerCollision(13, 9, false);
+            }
         }
     }
 
