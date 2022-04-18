@@ -4,7 +4,7 @@ public class BossSpawnObject : MonoBehaviour
 {
     GameObject Object;
 
-    BossHealthBar bossHealth;
+    public BossHealthBar bossHealth;
 
     public GameObject lastSpawned;
 
@@ -14,7 +14,8 @@ public class BossSpawnObject : MonoBehaviour
 
     private void Start()
     {
-        bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
+        if(bossHealth==null)
+            bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
         Object = Resources.Load("Prefabs/Feather Prefab") as GameObject;
     }
 

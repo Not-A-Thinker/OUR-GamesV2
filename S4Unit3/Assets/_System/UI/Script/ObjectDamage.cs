@@ -23,7 +23,8 @@ public class ObjectDamage : MonoBehaviour
     private void Start()
     {
         chip = Resources.Load("Prefabs/Clip") as GameObject;
-        bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
+        if (GameObject.Find("Boss Health Bar") != null)
+            bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
 
         Speed = 50;
 
@@ -88,7 +89,9 @@ public class ObjectDamage : MonoBehaviour
                     bossSpawn = col.transform.GetComponent<BossSpawnObject>();
                     bossSpawn.SpawnedCountDecrease();
                 }
-                bossHealth.TakeDamage(Damage);
+                if(bossHealth!=null)
+                    bossHealth.TakeDamage(Damage);
+
                 Destroy(this.gameObject);
             }
             //Debug.Log("HitBoss");
@@ -96,7 +99,8 @@ public class ObjectDamage : MonoBehaviour
             else if (col.transform.tag == "Boss" && !Level1GameData.b_isCutScene)
             {
                 ///扣血
-                bossHealth.TakeDamage(Damage);
+                if (bossHealth != null)
+                    bossHealth.TakeDamage(Damage);
 
                 ///擊中時改顏色 + 鏡頭震動 + 受傷音效(meme)
                 if (col.gameObject.GetComponentInParent<BossDamageIndicator>()!=null)

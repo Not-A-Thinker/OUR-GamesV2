@@ -265,6 +265,8 @@ MonoBehaviour:
   Charge: 0
   isShooted: 0
   isAim: 0
+  friendPushed: 0
+  ShootInCD: 0
   IsCargeEffectPlay: 0
   _attackTrigger: 0
   countFloat: 0
@@ -354,6 +356,9 @@ MonoBehaviour:
   _DashTotal: 2
   DashCD: 4
   _DashRestore: 25
+  dashDuration: 0
+  dashSpeedV2: 0
+  dashButtonName: 
 --- !u!54 &500052818044258936
 Rigidbody:
   m_ObjectHideFlags: 0

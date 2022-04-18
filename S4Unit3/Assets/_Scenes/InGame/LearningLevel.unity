@@ -705,7 +705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &98140734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,8 +795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backSlider: {fileID: 1213802443}
-  health: 0
-  maxHealth: 0
+  health: 600
+  maxHealth: 600
   smoothing: 0.15
   backerSmoothing: 0.3
   _backerTTC: 0.5
@@ -2206,7 +2206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334020982}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.036760148, y: 59.47948, z: -96.01859}
+  m_LocalPosition: {x: 0.036759984, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2554,6 +2554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7541f99ba9567348b8c287df5304f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossHealth: {fileID: 98140736}
   lastSpawned: {fileID: 0}
   SpawnedCount: 0
   SpawnendMax: 5
@@ -3135,7 +3136,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3647,7 +3648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608999907}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.036760148, y: 59.47948, z: -96.01859}
+  m_LocalPosition: {x: 0.036759984, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6502,7 +6503,7 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7823,7 +7824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1213802442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13884,7 +13885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1314252802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17756,6 +17757,7 @@ MonoBehaviour:
   _crystalOuterIsland:
   - {fileID: 0}
   _crystalOuterIslandHeight: 7
+  audioSrc: {fileID: 0}
 --- !u!1 &1886322376
 GameObject:
   m_ObjectHideFlags: 0
