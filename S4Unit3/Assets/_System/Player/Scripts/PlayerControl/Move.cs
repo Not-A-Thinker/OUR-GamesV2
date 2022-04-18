@@ -51,7 +51,6 @@ public class Move : MonoBehaviour
     float vSpeed = 0f;
     //dash
     [Header("Player Dash")]
-
     CapsuleCollider _Collider;
     public float dashSpeed;
     public float dashTime;
@@ -67,6 +66,15 @@ public class Move : MonoBehaviour
     //public int DashUsed;
     public int _DashRestore;
 
+    [Header("Player Dash V2")]
+    public float dashDuration;// 控制?刺??
+    public float dashSpeedV2;// ?刺速度
+
+    private bool isDash;// 是否在?刺
+    private float dashTimeV2;// 剩余?刺??
+    private Vector3 directionXOZ;// ?取 xOz 平面的坦克方向
+    [SerializeField] string dashButtonName;// 存??于每?玩家的???名?
+
     float angle;
 
     PlayerState playerState;
@@ -75,6 +83,8 @@ public class Move : MonoBehaviour
     {
         _DashNow = _DashTotal;
         DashBar = DashBar / _DashTotal;
+
+        dashTimeV2 = dashDuration;
 
         _Collider = GetComponent<CapsuleCollider>();
         characterController = GetComponent<CharacterController>();
@@ -169,7 +179,8 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         StartCoroutine(DashDelay()) ;
                         //Debug.Log("P1 Dashed");
-                        Dash(movementDirection, horizontalInput, -verticalInput);
+                        StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                        //DashV2(movementDirection, horizontalInput, -verticalInput);
                         //StartCoroutine(DashRestore());
                         _DashNow = _DashNow - 1;
                     }
@@ -234,7 +245,8 @@ public class Move : MonoBehaviour
                         isDashed = true;
                         //Debug.Log("P2 Dashed");
                         StartCoroutine(DashDelay());
-                        Dash(movementDirection, horizontalInput, verticalInput);
+                        StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
+                        //DashV2(movementDirection, horizontalInput, -verticalInput);
                         //StartCoroutine(DashRestore());
                         _animation.PlayerDodge();
                         _DashNow = _DashNow - 1;
@@ -388,7 +400,8 @@ public class Move : MonoBehaviour
     //    isImMobilized = false;
     //    maximumSpeed = tempSpeed;
     //}
-    void Dash(Vector3 velocity, float horizontalInput, float verticalInput)
+
+    IEnumerator Dash(Vector3 velocity, float horizontalInput, float verticalInput)
     {
         //Debug.Log("Dashed");
         float startTime = Time.time;
@@ -403,15 +416,57 @@ public class Move : MonoBehaviour
         while (Time.time < startTime + dashTime)
         {
             //_Collider.enabled = false;
-            characterController.Move(velocity * dashSpeed * Time.deltaTime);   
+            characterController.Move(velocity * dashSpeed * Time.deltaTime);
+            yield return null;
         }
 
         while(Time.time>=startTime+dashTime)
         {
             //_Collider.enabled = true;
             //playerState.DashColorChange(false);
+            yield return null;
         }
     }
+    
+    void DashV2(Vector3 velocity, float horizontalInput, float verticalInput)
+    {
+        
+
+        if (!isDash)
+        {
+            if (Input.GetButton(dashButtonName))
+            {
+                isDash = true;
+
+                velocity = velocity.normalized;
+
+                if (horizontalInput == 0 && verticalInput == 0)
+                {
+                    velocity = -transform.forward * 0.1f * maximumSpeed;
+                }
+
+                //directionXOZ = transform.forward;// forward 指向物体?前的前方
+                //directionXOZ.y = 0f;// 只做平面的上下移?和水平移?，不做高度上的上下移?
+                directionXOZ = velocity;
+                Debug.Log(dashButtonName + "Pressed.");
+            }
+        }
+        else
+        {
+            if (dashTimeV2 <= 0)// reset
+            {
+                isDash = false;
+
+                dashTimeV2 = dashDuration;
+            }
+            else
+            {
+                dashTimeV2 -= Time.deltaTime;
+                rb.velocity = directionXOZ * dashTimeV2 * dashSpeedV2;// rigidbody = GetComponent<Rigidbody>(); 加在 Start() 函?中
+            }
+        }
+    }
+
     //IEnumerator DashRestore()
     //{
     //    float time = Time.time;
