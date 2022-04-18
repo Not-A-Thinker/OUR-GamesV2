@@ -6,7 +6,7 @@ public class Boss1SoundManager : MonoBehaviour
     static AudioSource audioSrc;
 
     public static AudioClip Boss_Idle01, Boss_Idle02;
-    public static AudioClip Boss_Wing01, Boss_Wing02;
+    public static AudioClip Boss_Wing01, Boss_Wing02, Boss_Wing03;
     public static AudioClip Boss_Noise01, Boss_Noise02;
 
     public static AudioClip Boss_TailAttack, Boss_TailAttack_Alt;
@@ -25,6 +25,7 @@ public class Boss1SoundManager : MonoBehaviour
 
         Boss_Wing01 = Resources.Load<AudioClip>("SoundEffect/BOSS/01/Sfx_Boss_Wing_Swing_01");
         Boss_Wing02 = Resources.Load<AudioClip>("SoundEffect/BOSS/01/Sfx_Boss_Wing_Swing_02");
+        Boss_Wing03 = Resources.Load<AudioClip>("SoundEffect/BOSS/01/Sfx_Boss_Wing_Swing_03");
 
         Boss_Noise01 = Resources.Load<AudioClip>("SoundEffect/BOSS/01/Sfx_Boss_Noise_01");
         Boss_Noise02 = Resources.Load<AudioClip>("SoundEffect/BOSS/01/Sfx_Boss_Noise_02");
@@ -62,6 +63,9 @@ public class Boss1SoundManager : MonoBehaviour
                 break;
             case "Boss_Wing02":
                 audioSrc.PlayOneShot(Boss_Wing02);
+                break;
+            case "Boss_Wing03":
+                audioSrc.PlayOneShot(Boss_Wing03);
                 break;
 
             case "Boss_Noise01":

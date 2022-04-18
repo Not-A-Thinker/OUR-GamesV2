@@ -44,12 +44,15 @@ public class Boss1Animator : MonoBehaviour
 
     public void Animation_BossWindBladeAttack()
     {
-        BossSkill.StartCoroutine(BossSkill.WindBlade16(3));
+        int wBNum = Random.Range(3, 6); 
+        BossSkill.StartCoroutine(BossSkill.WindBlade16(wBNum));
+        Boss1SoundManager.PlaySound("Boss_Wing03");
     }
 
     public void Animation_BossTailAttack()
     {
         BossSkill.BossTailAttackAnimation();
+        Boss1SoundManager.PlaySound("Boss_TailAttack");
     }
 
     public void Animation_BossHeadAttack()
@@ -68,6 +71,7 @@ public class Boss1Animator : MonoBehaviour
         //BossSkill.TornadoSpecialAttackAnimation();
         //bossVC.m_Priority = orgPriority;
         impulseSource.GenerateImpulse();
+        Boss1SoundManager.PlaySound("Boss_TransDown");
         BossAI.IsAfter33 = true;
         Level1GameData.b_isCutScene = false;
     }
