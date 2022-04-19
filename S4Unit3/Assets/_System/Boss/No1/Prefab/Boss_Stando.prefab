@@ -142,6 +142,7 @@ MonoBehaviour:
   windBlade: {fileID: 5798214951064251751, guid: 8f058b191de944f47914fecc2b309447, type: 3}
   outerWindBlade: {fileID: 5798214951064251751, guid: 97f780d460f82d840a87c41861064850, type: 3}
   outerWindBladePoint: []
+  outerWindBladeGenerateVfx: {fileID: 2120788254441176300, guid: 2b12d276f33cd55469ddf71ec1183d5a, type: 3}
   vacuumArea: {fileID: 8613371451394068709, guid: f3d92da61d5776a47b2ae2a783baf465, type: 3}
   bubbleAttack: {fileID: 6120946044558487352, guid: 7c0af0b34af894e46bb3f0c59ce9b072, type: 3}
   tornadoLinear: {fileID: 8680327630756559126, guid: 2e81ae0bb37f7b544a5b916006838a4e, type: 3}
@@ -203,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7541f99ba9567348b8c287df5304f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossHealth: {fileID: 0}
   lastSpawned: {fileID: 0}
   SpawnedCount: 0
   SpawnendMax: 0
@@ -1049,6 +1051,9 @@ MonoBehaviour:
   bossVC: {fileID: 0}
   orgPriority: 5
   fadeInPriority: 15
+  bossRoar: {fileID: 0}
+  bossAngry: {fileID: 0}
+  bossAngry_2: {fileID: 0}
 --- !u!1 &1154215344902465006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1676798751578687038, guid: f3a400392811d8641abec7fab7d3310b, type: 3}

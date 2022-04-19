@@ -113,13 +113,17 @@ public class BossAI_Wind : MonoBehaviour
         _Player2 = GameObject.Find("Player2");
 
         preMoveCount = 0;
+        isMoveFinished = true;
 
-        outerWindBladeAlert = new Animator[BossSkill.outerWindBladePoint.Length];
-        for (int i = 0; i < BossSkill.outerWindBladePoint.Length; i++)
+        if(!isStando)
         {
-            outerWindBladeAlert[i] = BossSkill.outerWindBladePoint[i].GetComponent<Animator>();
+            outerWindBladeAlert = new Animator[BossSkill.outerWindBladePoint.Length];
+            for (int i = 0; i < BossSkill.outerWindBladePoint.Length; i++)
+            {
+                outerWindBladeAlert[i] = BossSkill.outerWindBladePoint[i].GetComponent<Animator>();
+            }
         }
-
+            
         if (!_aiEnable)
             AI = AIMode.AIDisable;
         else
@@ -663,8 +667,17 @@ public class BossAI_Wind : MonoBehaviour
                     }
                     else if (rndNum >=67 && rndNum < 100)
                     {
-                        ///This should be the Wind Wall, but for now is Outer WindBlade
-                        BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
+                        if (isStando)
+                        {
+                            ///8Tornado¤K¤èÀs±² * 8
+                            BossSkill.StartCoroutine(BossSkill.EightTornado(6));
+                        }
+                        else
+                        {
+                            ///This should be the Wind Wall, but for now is Outer WindBlade
+                            BossSkill.StartCoroutine(BossSkill.OuterWindBlade(4));
+                        }
+                        
                     }
                     break;
                 case 15:
