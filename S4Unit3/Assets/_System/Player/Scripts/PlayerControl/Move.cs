@@ -327,8 +327,6 @@ public class Move : MonoBehaviour
 
         if (isPlayer2)
         {
-
-
             if (IsJoystick)
             {
                 float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");

@@ -8,7 +8,6 @@ public class PlayerState : MonoBehaviour
 {
     //private CinemachineCollisionImpulseSource CCIS; //Disable due to the unstable solution.
     private CinemachineImpulseSource CIS;
-    private Animator animator;
 
     [Header("Debug & Cheats")]
     [SerializeField] bool CamShakeOff = false;
@@ -42,7 +41,6 @@ public class PlayerState : MonoBehaviour
     //[SerializeField] GameObject SuckRange;
     //bool isColliding;
 
-    bool isInvincible = false;
     
     private void Start()
     {    
@@ -91,6 +89,7 @@ public class PlayerState : MonoBehaviour
                 forceRepel_TopDown.enabled = false;
             }
         }
+
         if (Level1GameData.b_isCutScene==false)
         {
             if (isPlayer1)
@@ -115,10 +114,9 @@ public class PlayerState : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl)&& Input.GetKeyDown(KeyCode.CapsLock))
         {
             ///請在沒受傷的時候開這個無敵 不然會重置然後失去無敵
-            isInvincible = !isInvincible;
-            _Collider.enabled = !isInvincible;
+            alwaysInvincible = !alwaysInvincible;
 
-            Debug.Log("Player Invincible is" + isInvincible);
+            Debug.Log("Player Invincible is" + alwaysInvincible);
         }
 
         if (alwaysInvincible)
@@ -139,7 +137,7 @@ public class PlayerState : MonoBehaviour
 
     public void hp_decrease()
     {      
-        if(!isInvincible && !Level1GameData.b_isCutScene)
+        if(!Level1GameData.b_isCutScene)
         {
             //StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
@@ -292,7 +290,6 @@ public class PlayerState : MonoBehaviour
     {
         Debug.Log("Is Fucking Invincible");
         _Collider.enabled = false;
-        isInvincible = true;
         _renderer.enabled = false;
         if (isPlayer1)
         {
@@ -325,7 +322,6 @@ public class PlayerState : MonoBehaviour
             Physics.IgnoreLayerCollision(13, 7, false);
             Physics.IgnoreLayerCollision(13, 9, false);
         }
-        isInvincible = false;
         //Debug.Log("Invincible" + isInvincible);
     }
 
