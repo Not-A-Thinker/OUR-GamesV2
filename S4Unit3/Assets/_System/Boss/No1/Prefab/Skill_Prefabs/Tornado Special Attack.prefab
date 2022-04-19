@@ -206,25 +206,29 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.minScalar
       value: 10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1032457864176769753, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1032457864176769755, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_Name
       value: Particle_WindBall
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864259819686, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.11764706
+      value: 0.38431373
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864259819686, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.754717
+      value: 0.5566038
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864259819686, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.29317284
+      value: 0.26308292
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864259819686, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.11676748
+      value: 0.14912778
       objectReference: {fileID: 0}
     - target: {fileID: 1032457864259819687, guid: 006b93faee28d644e94935c38c6c8ba2, type: 3}
       propertyPath: m_Materials.Array.data[0]
