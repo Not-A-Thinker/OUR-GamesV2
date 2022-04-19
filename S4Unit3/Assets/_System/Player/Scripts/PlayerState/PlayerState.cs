@@ -290,9 +290,9 @@ public class PlayerState : MonoBehaviour
     //Hyper Muteki Gamer
     IEnumerator Invincible(float time)
     {
+        Debug.Log("Is Fucking Invincible");
         _Collider.enabled = false;
         isInvincible = true;
-        //Debug.Log("Is Fucking Invincible" + isInvincible);
         _renderer.enabled = false;
         if (isPlayer1)
         {

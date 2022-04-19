@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GetTriggerObject : MonoBehaviour
 {
-    public float _Hight = 1;
     //public float _RotationSpeed = 20;
 
     //getChip
