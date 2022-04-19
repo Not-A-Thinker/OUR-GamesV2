@@ -152,7 +152,7 @@ public class UIcontrol : MonoBehaviour
         {
             if (BossAI != null)
             {
-                if (BossAI.IsStage2)
+                if (BossAI.IsStage2 && Level1GameData.b_isBoss1Defeated)
                     YouWin();
             }          
             else

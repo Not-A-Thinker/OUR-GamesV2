@@ -70,10 +70,10 @@ public class PlayerSoundEffect : MonoBehaviour
                 break;
 
             case "UI_ButtonClick":
-                audioSrc.PlayOneShot(UI_ButtonClick);
+                audioSrc.PlayOneShot(UI_ButtonClick,0.8f);
                 break;
             case "UI_Select":
-                audioSrc.PlayOneShot(UI_Select);
+                audioSrc.PlayOneShot(UI_Select, 0.8f);
                 break;
         }
     }
