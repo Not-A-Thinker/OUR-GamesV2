@@ -50,7 +50,7 @@ public class PlayerSoundEffect : MonoBehaviour
                 break;
 
             case "Cat_Attack":
-                audioSrc.PlayOneShot(Cat_Attack);
+                audioSrc.PlayOneShot(Cat_Attack,0.8f);
                 Debug.Log("Attack Play");
                 break;
             case "Cat_Dead":
