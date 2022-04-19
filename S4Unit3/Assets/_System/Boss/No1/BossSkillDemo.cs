@@ -107,6 +107,15 @@ public class BossSkillDemo : MonoBehaviour
 
         bossAI = GetComponent<BossAI_Wind>();
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+
+        if (bossAI.isStando)
+        {
+            GameObject gb = GameObject.Find("WindBladeSP");
+            for (int i = 0; i < outerWindBladePoint.Length; i++)
+            {
+                outerWindBladePoint[i] = gb.transform.GetChild(i).gameObject;
+            }
+        }
     }
 
     void Start()
