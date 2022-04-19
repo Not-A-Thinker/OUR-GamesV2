@@ -80,6 +80,7 @@ public class Boss1Animator : MonoBehaviour
     public void Camera_PinBallFadeIn()
     {
         bossVC.m_Priority = fadeInPriority;
+        Debug.Log(Level1GameData.b_isBoss1Defeated);
     }
 
     public void Camera_PinBallFadeOut()

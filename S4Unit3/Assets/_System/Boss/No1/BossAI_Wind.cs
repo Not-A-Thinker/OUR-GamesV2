@@ -170,6 +170,11 @@ public class BossAI_Wind : MonoBehaviour
             //Test2();
         }
 
+        if (Level1GameData.b_isCutScene)
+        {
+            
+        }
+
         if (isStando){ Destroy(gameObject, 30); }
         if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f); }
 
@@ -647,7 +652,7 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 33)
                     {
                         ///8Tornado¤K¤èÀs±² * 8
-                        BossSkill.StartCoroutine(BossSkill.EightTornado(8));
+                        BossSkill.StartCoroutine(BossSkill.EightTornado(6));
                     }
                     else if (rndNum >=33 && rndNum < 67)
                     {
@@ -770,7 +775,7 @@ public class BossAI_Wind : MonoBehaviour
                     isMoveFinished = true;
                     BossSkill.TornadoSpecialAttack();
 
-                    yield return new WaitForSeconds(5.5f);
+                    yield return new WaitForSeconds(7.5f);
                     //cameraControl.ChangeTargetWeight(3, 3);
                     break;
             }

@@ -98,7 +98,7 @@ public class Move : MonoBehaviour
     }
 
     void Update()
-    {
+    {          
         if(isKnockUp)
         {
             if (!inCC)

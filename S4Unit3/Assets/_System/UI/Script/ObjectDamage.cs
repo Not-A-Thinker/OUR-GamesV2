@@ -119,7 +119,7 @@ public class ObjectDamage : MonoBehaviour
                 Destroy(this.gameObject);
             }
             //If Skill
-            else
+            else if(!Level1GameData.b_isCutScene)
             {
                 int i = Random.Range(1, 3);
                 //Debug.Log(i);

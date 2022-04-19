@@ -78,6 +78,32 @@ public class PlayerState : MonoBehaviour
 
     void Update()
     {
+        if(Level1GameData.b_isCutScene)
+        {
+            if (isPlayer1)
+            {
+                ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+                forceCast_TopDown.enabled = false;
+            }
+            else
+            {
+                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                forceRepel_TopDown.enabled = false;
+            }
+        }
+        if (Level1GameData.b_isCutScene==false)
+        {
+            if (isPlayer1)
+            {
+                ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+                forceCast_TopDown.enabled = true;
+            }
+            else
+            {
+                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                forceRepel_TopDown.enabled = true;
+            }
+        }
         //isColliding = false;
 
         //if(isPlayer2)
