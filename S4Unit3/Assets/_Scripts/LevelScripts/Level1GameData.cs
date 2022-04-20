@@ -55,8 +55,8 @@ public class Level1GameData : MonoBehaviour
         writer.WriteLine("[" + System.DateTime.UtcNow+ "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
         writer.Close();
 
-        string sysPath = Application.dataPath + "/TimesLog.txt";
-        StreamWriter writer2 = new StreamWriter(sysPath, true);
+        string buildPath = Directory.GetCurrentDirectory() + "/TimesLog.txt";
+        StreamWriter writer2 = new StreamWriter(buildPath, true);
         writer2.WriteLine("[" + System.DateTime.UtcNow + "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
         writer2.Close();
 
