@@ -56,8 +56,10 @@ public class PlayerState : MonoBehaviour
         //CCIS = GetComponent<CinemachineCollisionImpulseSource>();
         CIS = GetComponent<CinemachineImpulseSource>();
 
+        alwaysInvincible = false;
+
         //if(GetComponent<JoyStickMovement>())
-       //檢查玩家編號
+        //檢查玩家編號
         if (isPlayer1)
         {
             _maxHealth = 4;
