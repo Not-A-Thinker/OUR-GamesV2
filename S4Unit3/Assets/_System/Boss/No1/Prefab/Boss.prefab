@@ -64422,6 +64422,16 @@ MonoBehaviour:
   bossRoar: {fileID: 9118424598824708507}
   bossAngry: {fileID: 8027491852520109986}
   bossAngry_2: {fileID: 8100252632974352814}
+  Particel_Boss_WingSpeedLine:
+  - {fileID: 2051270645}
+  - {fileID: 2106884552}
+  - {fileID: 1695610191}
+  - {fileID: 1276461043}
+  - {fileID: 1181165640}
+  - {fileID: 2011752900}
+  Particle_BossEyesLight:
+  - {fileID: 2112946015}
+  - {fileID: 351604299}
 --- !u!114 &1420706977
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -158,7 +158,11 @@ public class Boss1Animator : MonoBehaviour
         foreach (ParticleSystem ps in Particel_Boss_WingSpeedLine)
         {
             if(ps!= null)
+            {
                 ps.Play();
+
+                print("WingSpeedLineStart");
+            }
         }
     }
     public void Boss_WingSpeedLineEnd_ani()
@@ -166,7 +170,11 @@ public class Boss1Animator : MonoBehaviour
         foreach (ParticleSystem ps in Particel_Boss_WingSpeedLine)
         {
             if (ps != null && ps.isPlaying)
+            {
                 ps.Stop();
+                print("WingSpeedLineEnd");
+
+            }
         }
     }
 
@@ -175,7 +183,10 @@ public class Boss1Animator : MonoBehaviour
         foreach (ParticleSystem ps in Particle_BossEyesLight)
         {
             if (ps != null)
+            {
                 ps.Play();
+                print("EyesLightStart");
+            }
         }
     }
     public void Boss_EyesLightEnd_ani()
@@ -183,7 +194,11 @@ public class Boss1Animator : MonoBehaviour
         foreach (ParticleSystem ps in Particle_BossEyesLight)
         {
             if (ps != null && ps.isPlaying)
+            {
                 ps.Stop();
+                print("EyesLightEnd");
+
+            }
         }
     }
 
