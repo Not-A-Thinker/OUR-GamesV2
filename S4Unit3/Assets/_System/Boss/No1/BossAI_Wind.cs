@@ -177,11 +177,6 @@ public class BossAI_Wind : MonoBehaviour
             //Test2();
         }
 
-        if (Level1GameData.b_isCutScene)
-        {
-            
-        }
-
         if (isStando){ Destroy(gameObject, 30); }
         if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f); }
 
@@ -247,6 +242,7 @@ public class BossAI_Wind : MonoBehaviour
                 _ComboNum = 1;
                 _isForceLockOn = true;
                 ChangePlayerTargetRandom();
+                StartCoroutine(MoveDelayor());
 
                 //This is for rearrange the skill range in stage 2.
                 skillRange1 = 20;
