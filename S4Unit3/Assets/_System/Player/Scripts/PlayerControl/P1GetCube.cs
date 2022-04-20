@@ -53,30 +53,25 @@ public class P1GetCube : MonoBehaviour
 
     public void PlayerGetCube(GameObject cube)
     {
-        // Saveing Cube on the Top of dog head
-        if (objectParent.transform.childCount < 3)
-        {                 
-            ///用於初始化方塊的位置
-            cube.transform.parent = objectParent.transform;
-            cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
-            cube.transform.rotation = new Quaternion(0, 0, 0, 0);
-            cube.GetComponent<Rigidbody>().useGravity = false;
+        // Saveing Cube on the Top of dog head              
+       ///用於初始化方塊的位置
+        cube.transform.parent = objectParent.transform;
+        cube.transform.position = new Vector3(transform.position.x + 3, transform.position.y + 4, transform.position.z);
+        cube.transform.rotation = new Quaternion(0, 0, 0, 0);
+        cube.GetComponent<Rigidbody>().useGravity = false;
 
-            ///用於初始化方塊的"公轉"
-            ObjectRotation objectRotation = cube.AddComponent<ObjectRotation>();
-            objectRotation.target = objectParent;
-            objectRotation._isInCount = true;
+        ///用於初始化方塊的"公轉"
+        ObjectRotation objectRotation = cube.AddComponent<ObjectRotation>();
+        objectRotation.target = objectParent;
+        objectRotation._isInCount = true;
 
-            if (cube.GetComponent<Bullet>())
-                cube.GetComponent<Bullet>().bossToSuck = false;
+        if (cube.GetComponent<Bullet>())
+            cube.GetComponent<Bullet>().bossToSuck = false;
 
-            move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
-            //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            //if (!cube.gameObject.GetComponent<ObjectDestroy>())
-            //    Destroy(cube.GetComponent<ObjectDestroy>());
-        }
-       else
-            cube.transform.position = transform.forward * Time.deltaTime ;
+        move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
+        //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //if (!cube.gameObject.GetComponent<ObjectDestroy>())
+        //    Destroy(cube.GetComponent<ObjectDestroy>());
     }
 
     ///射擊方塊前置設置

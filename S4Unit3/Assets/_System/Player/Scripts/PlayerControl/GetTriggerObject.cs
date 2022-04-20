@@ -144,7 +144,6 @@ public class GetTriggerObject : MonoBehaviour
         }
         ///¥Í¦¨¯S®í§ðÀ»
         GameObject NewSpcAtk = Instantiate(SpcAttack);
-        Debug.Log(NewSpcAtk.name);
         getCube.PlayerGetCube(NewSpcAtk);
     }
 }

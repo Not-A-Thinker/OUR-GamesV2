@@ -64,10 +64,16 @@ public class PlayerState : MonoBehaviour
         {
             _maxHealth = 4;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
+            Physics.IgnoreLayerCollision(12, 6, false);
+            Physics.IgnoreLayerCollision(12, 7, false);
+            Physics.IgnoreLayerCollision(12, 9, false);
         }
         if(isPlayer2)
         {
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
+            Physics.IgnoreLayerCollision(13, 6, false);
+            Physics.IgnoreLayerCollision(13, 7, false);
+            Physics.IgnoreLayerCollision(13, 9, false);
         }
 
         ///_currentHealth當前血量 _maxHealth最大血量
