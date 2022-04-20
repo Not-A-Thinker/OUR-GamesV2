@@ -10,6 +10,9 @@ public class Level1GameData : MonoBehaviour
     //檢查Boss是否死掉了
     static public bool b_isBoss1Defeated = false;
 
+    static public float f_timerS = 0f;
+    static public float f_timerM = 0f;
+
     public bool Boss1Defeated()
     {
         return b_isBoss1Defeated;
@@ -19,11 +22,29 @@ public class Level1GameData : MonoBehaviour
     {
         b_isCutScene = false;
         b_isBoss1Defeated = false;
-    }
 
+        f_timerS = 0f;
+        f_timerM = 0f;
+    }
 
     void Update()
     {
-        
+        MainGameTimer();
+    }
+
+    void MainGameTimer()
+    {
+        f_timerS += Time.deltaTime;
+        if (f_timerS >= 60)
+        {
+            f_timerM++;
+            f_timerS = 0;
+        }
+        Debug.Log(f_timerM + "m: " + (int)f_timerS + "s");
+    }
+
+    static void PrintTime()
+    {
+
     }
 }

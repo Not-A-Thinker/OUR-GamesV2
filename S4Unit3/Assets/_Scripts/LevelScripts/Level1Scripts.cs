@@ -102,15 +102,16 @@ public class Level1Scripts : MonoBehaviour
 
         foreach (var crystal in _crystalOuterIsland)
         {
-            crystal.DOMoveY(_crystalOuterIslandHeight, Random.Range(1.8f, 2f))
-                   .SetLoops(-1, LoopType.Yoyo)
-                   .SetEase(Ease.InOutCubic)
-                   .SetUpdate(true);
+            //crystal.DOMoveY(_crystalOuterIslandHeight, Random.Range(1.8f, 2f))
+            //       .SetLoops(-1, LoopType.Yoyo)
+            //       .SetEase(Ease.InOutCubic)
+            //       .SetUpdate(true);
             crystal.DORotate(new Vector3(360, 360, 360), 3, RotateMode.FastBeyond360)
                    .SetLoops(-1, LoopType.Incremental)
                    .SetEase(Ease.Linear)
                    .SetUpdate(true);
         }
+
     }
 
     
