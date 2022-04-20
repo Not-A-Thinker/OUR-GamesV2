@@ -31,10 +31,6 @@ public class Level1GameData : MonoBehaviour
     void Update()
     {
         MainGameTimer();
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            PrintTime();
-        }
     }
 
     void MainGameTimer()
