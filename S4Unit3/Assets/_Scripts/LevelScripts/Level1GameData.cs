@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.IO;
 
 /// <summary>
 /// 這個應該只存放影響本關卡的全域變數數值
@@ -30,6 +31,10 @@ public class Level1GameData : MonoBehaviour
     void Update()
     {
         MainGameTimer();
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            PrintTime();
+        }
     }
 
     void MainGameTimer()
@@ -40,11 +45,27 @@ public class Level1GameData : MonoBehaviour
             f_timerM++;
             f_timerS = 0;
         }
-        Debug.Log(f_timerM + "m: " + (int)f_timerS + "s");
+        //Debug.Log(f_timerM + "m: " + (int)f_timerS + "s");
     }
 
-    static void PrintTime()
+    static public void PrintTime()
     {
+        string path = "Assets/_System/Debug/timetest.txt";
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine("[" + System.DateTime.UtcNow+ "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
+        writer.Close();
 
+        string sysPath = Application.dataPath + "/TimesLog.txt";
+        StreamWriter writer2 = new StreamWriter(sysPath, true);
+        writer2.WriteLine("[" + System.DateTime.UtcNow + "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
+        writer2.Close();
+
+        Debug.Log("Game finish in:" + f_timerM + "m: " + (int)f_timerS + "s");
+    }
+
+    static public void ClearTime()
+    {
+        f_timerS = 0f;
+        f_timerM = 0f;
     }
 }

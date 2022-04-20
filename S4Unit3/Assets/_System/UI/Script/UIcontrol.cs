@@ -251,8 +251,12 @@ public class UIcontrol : MonoBehaviour
     public void YouWin()
     {
         sceneControl.WinScene();
+
         Level1GameData.b_isBoss1Defeated = false;
         Level1GameData.b_isCutScene = false;
+
+        Level1GameData.PrintTime();
+        Level1GameData.ClearTime();
     }
     public void RespawnText(bool state)
     {
