@@ -1084,7 +1084,7 @@ public class BossAI_Wind : MonoBehaviour
             //transform.LookAt(_Player1.transform);
             agent.stoppingDistance = attackRange;
 
-            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= attackRange);
+            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= attackRange + 1);
 
             isMoveFinished = true;
 
@@ -1097,7 +1097,7 @@ public class BossAI_Wind : MonoBehaviour
             //transform.LookAt(_Player2.transform);
             agent.stoppingDistance = attackRange;
 
-            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= attackRange);
+            yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= attackRange + 1);
 
             isMoveFinished = true;
 
@@ -1211,7 +1211,7 @@ public class BossAI_Wind : MonoBehaviour
     }
 
     /// <summary>
-    /// AI思考並做出決定的完整流程回圈
+    /// 簡稱TOT, AI思考並做出決定的完整流程回圈
     /// </summary>
     public IEnumerator TimeOfThink()
     {
@@ -1270,8 +1270,8 @@ public class BossAI_Wind : MonoBehaviour
             Debug.Log("PreMove End!");
 
             ///This is for the boss to stick on one player in order to be better perform the Skill Sets.
-            if(lookAtP1) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= skillRangeS);
-            if(lookAtP2) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= skillRangeS);
+            if(lookAtP1) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= skillRangeS + 1);
+            if(lookAtP2) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= skillRangeS + 1);
             //yield return new WaitUntil(() => _canAttack);
             _canAttack = true;
 
