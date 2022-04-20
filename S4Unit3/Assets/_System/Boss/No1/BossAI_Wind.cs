@@ -63,6 +63,7 @@ public class BossAI_Wind : MonoBehaviour
     bool _noPreMove;
     [SerializeField] bool isMoveFinished;
     bool _canAttack;
+    bool afterDelay = false;
 
     [Header("AI")]
     [SerializeField] bool _aiEnable = true;
@@ -97,6 +98,7 @@ public class BossAI_Wind : MonoBehaviour
     [SerializeField] float skillRange3 = 50;
 
     public float angleOfView = 90f;
+    bool isDead;
 
     void Start()
     {
@@ -114,6 +116,7 @@ public class BossAI_Wind : MonoBehaviour
 
         preMoveCount = 0;
         isMoveFinished = true;
+        afterDelay = false;
 
         if(!isStando)
         {
@@ -189,11 +192,17 @@ public class BossAI_Wind : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (healthBar.health <= 0 && basicState.isHealthMerge)
+        if (healthBar.health <= 0 && basicState.isHealthMerge && !isDead)
         {
             Level1GameData.b_isCutScene = true;
+
+            isDead = true;
             ani.SetBool("IsDead", true);
             ani.SetTrigger("DeadTrigger");
+        }
+        else if (healthBar.health > 0 && basicState.isHealthMerge)
+        {
+            isDead = false;
         }
 
         #region StageDetect
@@ -295,7 +304,7 @@ public class BossAI_Wind : MonoBehaviour
         if (lookAtP1) { BossSetDestination(_Player1.transform.position); }
         else if (lookAtP2) { BossSetDestination(_Player2.transform.position); }
 
-        if (IsStage2 && !isStando)
+        if (IsStage2 && !isStando && afterDelay)
         {
             BossStage2Movement();
         }
@@ -830,7 +839,7 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         ///Wing Attack 近戰攻擊(翼)
-                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(15));
 
                         isMeleeAttacking = true;
                         wingAttackAlert.SetTrigger("WingAttack Alert");
@@ -847,7 +856,7 @@ public class BossAI_Wind : MonoBehaviour
                         else
                         {
                             ///Wing Attack 近戰攻擊(翼), 現先改成頭衝
-                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(15));
 
                             isMeleeAttacking = true;
                             //wingAttackAlert.SetTrigger("WingAttack Alert");
@@ -896,7 +905,7 @@ public class BossAI_Wind : MonoBehaviour
                     else if (rndNum >= 25 && rndNum < 50)
                     {
                         ///Wing Attack 近戰攻擊(翼)
-                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+                        yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(15));
 
                         isMeleeAttacking = true;
                         wingAttackAlert.SetTrigger("WingAttack Alert");
@@ -915,7 +924,7 @@ public class BossAI_Wind : MonoBehaviour
                         else if (aIStage2Turn % 2 == 1)
                         {
                             ///Head Attack 頭衝攻擊
-                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(10));
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(15));
 
                             isMeleeAttacking = true;
                             headAttackAlert.SetTrigger("HeadAttack Alert");
@@ -1054,6 +1063,13 @@ public class BossAI_Wind : MonoBehaviour
         }
     }
 
+    IEnumerator MoveDelayor()
+    {
+
+        yield return new WaitForSeconds(1.5f);
+        afterDelay = true;
+    }
+
     /// <summary>
     /// 用於處理Boss部分攻擊需要跟玩家更近距離時用
     /// </summary>
@@ -1104,7 +1120,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             isMoveFinished = true;
             agent.SetDestination(transform.position);
-            StopCoroutine(BossAttackMovement(10));
+            StopCoroutine(BossAttackMovement(15));
 
             StopCoroutine(coroutineAtk);
             StopCoroutine(coroutineThink);
