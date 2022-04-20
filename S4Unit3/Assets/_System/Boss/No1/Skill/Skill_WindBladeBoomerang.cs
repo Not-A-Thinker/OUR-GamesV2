@@ -75,7 +75,7 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     IEnumerator WaitingTimer()
     {
         b_Enabled = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         yield return b_ShouldReturn = true;
     }
 
