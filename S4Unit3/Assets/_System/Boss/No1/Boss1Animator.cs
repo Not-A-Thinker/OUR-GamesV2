@@ -101,6 +101,8 @@ public class Boss1Animator : MonoBehaviour
     public ParticleSystem bossRoar;
     public ParticleSystem bossAngry;
     public ParticleSystem bossAngry_2;
+    public ParticleSystem[] Particel_Boss_WingSpeedLine;
+    public ParticleSystem[] Particle_BossEyesLight;
 
 
     public void bossRoarStart_ani()
@@ -118,7 +120,7 @@ public class Boss1Animator : MonoBehaviour
         if (bossRoar != null && bossRoar.isPlaying)
         {
             //bossRoar.gameObject.SetActive(false);
-            bossRoar.Stop(false);
+            bossRoar.Stop();
             print("bossRoarEnd_ani");
 
         }
@@ -150,5 +152,40 @@ public class Boss1Animator : MonoBehaviour
             print("bossAngryStart_ani");
         }
     }
+
+    public void Boss_WingSpeedLineStart_ani ()
+    {
+        foreach (ParticleSystem ps in Particel_Boss_WingSpeedLine)
+        {
+            if(ps!= null)
+                ps.Play();
+        }
+    }
+    public void Boss_WingSpeedLineEnd_ani()
+    {
+        foreach (ParticleSystem ps in Particel_Boss_WingSpeedLine)
+        {
+            if (ps != null && ps.isPlaying)
+                ps.Stop();
+        }
+    }
+
+    public void Boss_EyesLightStart_ani ()
+    {
+        foreach (ParticleSystem ps in Particle_BossEyesLight)
+        {
+            if (ps != null)
+                ps.Play();
+        }
+    }
+    public void Boss_EyesLightEnd_ani()
+    {
+        foreach (ParticleSystem ps in Particle_BossEyesLight)
+        {
+            if (ps != null && ps.isPlaying)
+                ps.Stop();
+        }
+    }
+
 
 }

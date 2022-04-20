@@ -78,14 +78,14 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag== "Boss" || other.gameObject== Traget || other.transform.gameObject.tag == "DummyBoss")
         {
             print("trigger");
-            //if(!bossToSuck) 2022/04/18
-            //{
-            //    print("trigger // !toBoss");
+            if (!bossToSuck)// 2022 / 04 / 18
+            {
+                print("trigger // !toBoss");
 
-            //    GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
-            //    Destroy(particleobj, 5);
-            //}
-            //Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+                GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                Destroy(particleobj, 5);
+            }
+            Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         }
 
