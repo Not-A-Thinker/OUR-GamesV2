@@ -300,7 +300,7 @@ public class Move : MonoBehaviour
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
 
-            if (Input.GetButton("LockOnP1"))
+            if (Input.GetButtonDown("LockOnP1"))
             {
                 autoLockBoss = !autoLockBoss;
                 if (autoLockBoss)
@@ -331,7 +331,7 @@ public class Move : MonoBehaviour
             {
                 float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
                 float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
-                if (Input.GetButton("LockOnP2"))
+                if (Input.GetButtonDown ("LockOnP2"))
                 {
                     autoLockBoss = !autoLockBoss;
                     if (autoLockBoss)
