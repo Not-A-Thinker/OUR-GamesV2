@@ -1215,7 +1215,7 @@ public class BossAI_Wind : MonoBehaviour
     public IEnumerator TimeOfThink()
     {
         AI = AIMode.Normal;
-        while (IsStage1 && _aiEnable)
+        while (IsStage1 && _aiEnable || isStando)
         {
             ///This is for detect where is the players and will provide the position for boss to target.
             PlayerDetect();
@@ -1231,6 +1231,7 @@ public class BossAI_Wind : MonoBehaviour
             AI = AIMode.Normal;
             isMeleeAttacking = false;
 
+            
             if (_ComboNum >= _ComboMaxNum + 1 && b_UseComboSet)
             {
                 _ComboNum = 1;
@@ -1239,7 +1240,8 @@ public class BossAI_Wind : MonoBehaviour
             }
             else
             {
-                yield return new WaitForSeconds(aiReactTimeStage1);
+                if (isStando) { yield return new WaitForSeconds(aiReactTimeStage1 + 1);}
+                else { yield return new WaitForSeconds(aiReactTimeStage1);}
             }
             AI = AIMode.Normal;
             //Debug.Log("Will Start Again...");
