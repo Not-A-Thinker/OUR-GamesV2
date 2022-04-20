@@ -791,6 +791,7 @@ public class BossAI_Wind : MonoBehaviour
                 case 33:
                     ///STA 龍龍彈珠台(現在為過埸動畫)
                     isMoveFinished = true;
+                    isMeleeAttacking = true;
                     BossSkill.TornadoSpecialAttack();
 
                     yield return new WaitForSeconds(7.5f);
