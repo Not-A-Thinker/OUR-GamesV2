@@ -217,6 +217,7 @@ public class BossAI_Wind : MonoBehaviour
                 _ComboNum = 1;
                 _isForceLockOn = true;
                 ChangePlayerTargetRandom();
+                StartCoroutine(MoveDelayor());
 
                 //This is for rearrange the skill range in stage 2.
                 skillRange1 = 20;
