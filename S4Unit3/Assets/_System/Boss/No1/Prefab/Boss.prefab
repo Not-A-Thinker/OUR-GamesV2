@@ -62914,7 +62914,7 @@ MonoBehaviour:
   tailAttackAlert: {fileID: 4975293313296302778}
   headAttackAlert: {fileID: 5462414733897220181}
   AreaAttackAlert: {fileID: 1028887627562288274}
-  _TestingMode: 1
+  _TestingMode: 0
   _DrawGizmos: 1
   lP1:
     serializedVersion: 2
@@ -62935,9 +62935,9 @@ MonoBehaviour:
   isMoveFinished: 0
   _aiEnable: 1
   aiStartTime: 1
-  aiReactTimeStage1: 1.8
-  aiReactTimeStage2: 2
-  aiReactTimeStandoMode: 2.5
+  aiReactTimeStage1: 1.3
+  aiReactTimeStage2: 1.8
+  aiReactTimeStandoMode: 2
   IsStage1: 1
   IsStage2: 0
   IsAfter33: 0
@@ -63000,7 +63000,7 @@ MonoBehaviour:
   canMistAgain: 1
   canStandoAgain: 0
   mistCDTime: 30
-  standoCDTime: 60
+  standoCDTime: 40
   NumTornadoToSpawn: 2
   NumBoomerangSpawn: 5
   BoomerangCase: 1
@@ -63158,11 +63158,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 20
-  m_Acceleration: 30
+  m_Speed: 22
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 360
-  m_StoppingDistance: 22
+  m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

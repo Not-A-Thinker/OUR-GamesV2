@@ -21,8 +21,9 @@ public class PlayerState : MonoBehaviour
     public bool isDead = false;
     public bool isMove = false;
     public bool isDash = false;
-    public bool  isPlayer1;
-    public bool  isPlayer2;
+    public bool isPlayer1;
+    public bool isPlayer2;
+    private bool isMeleeHited = false;
 
     [Header("Player GetComponent")]
     CapsuleCollider _Collider;
@@ -147,6 +148,11 @@ public class PlayerState : MonoBehaviour
     {      
         if(!Level1GameData.b_isCutScene)
         {
+            if (_currentHealth > 0)
+            {
+                ///受攻擊無敵
+                StartInvincible(3);
+            }
             //StartCoroutine(Vibration(0.5f, 0.1f));
             _currentHealth--;
             PlayerSoundEffect.PlaySound("Player_GetDamage");
@@ -164,11 +170,7 @@ public class PlayerState : MonoBehaviour
                 _TopDown.StartCoroutine("ShootCD");
             }
                 //Debug.Log(_currentHealth);     
-            if (_currentHealth > 0)
-            {
-                ///受攻擊無敵
-                StartInvincible(3);     
-            }
+            
             if (_currentHealth == 0)
             {
                 PlayerIsDead();
@@ -282,14 +284,29 @@ public class PlayerState : MonoBehaviour
         //This is for Player to detect if the boss melee attack is hit or not.
         if (other.gameObject.tag == "WingAttack")
         {
-            hp_decrease();
-            Debug.Log("Wing Hit!");
+            if (!isMeleeHited)
+            {
+                hp_decrease();
+                Debug.Log("Wing Hit!");
+                StartCoroutine(MeleeAttackDetector());
+            }
         }
         if (other.gameObject.tag == "TailAttack")
         {
-            hp_decrease();
-            Debug.Log("Tail Hit!");
+            if (!isMeleeHited)
+            {
+                hp_decrease();
+                Debug.Log("Tail Hit!");
+                StartCoroutine(MeleeAttackDetector());
+            }
         }
+    }
+
+    IEnumerator MeleeAttackDetector()
+    {
+        isMeleeHited = true;
+        yield return new WaitForSeconds(0.3f);
+        isMeleeHited = false;
     }
    
 

@@ -145,7 +145,6 @@ public class BossAI_Wind : MonoBehaviour
         //Boomerang 風刃迴力鏢
         //boomerageAlert.SetTrigger("Boomer Alert");
         //yield return new WaitForSeconds(0.2f);
-
         //BossSkill.WindBladeBoomerang();
 
         //lookAtP1 = true;
@@ -177,7 +176,7 @@ public class BossAI_Wind : MonoBehaviour
             //Test2();
         }
 
-        if (isStando){ Destroy(gameObject, 30); }
+        if (isStando){ Destroy(gameObject, 20); }
         if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f); }
 
         if (isStando && basicState._currentHealth <= 0)
@@ -303,6 +302,8 @@ public class BossAI_Wind : MonoBehaviour
 
         if (IsStage2 && !isStando && afterDelay)
         {
+            if (Level1GameData.b_isBoss1Defeated)
+                return;
             BossStage2Movement();
         }
 
@@ -945,7 +946,7 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         ///Wind Hole 風柱
-                        isMoveFinished = false;
+                        isMoveFinished = true;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
@@ -960,7 +961,7 @@ public class BossAI_Wind : MonoBehaviour
                         //BossSkill.BossWingAttack();
 
                         ///Wind Hole 風柱
-                        isMoveFinished = false;
+                        isMoveFinished = true;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
@@ -1034,13 +1035,13 @@ public class BossAI_Wind : MonoBehaviour
                 rb.AddForce(backwardForce * -transform.forward, ForceMode.Impulse);
                 preMoveCount++;
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
         _noPreMove = true;
     }
 
     /// <summary>
-    /// 用於協助Boss在二階時,控制跟玩家之間的距離
+    /// 用於協助Boss在二階時,跟玩家之間的距離
     /// </summary>
     void BossStage2Movement()
     {
@@ -1065,9 +1066,9 @@ public class BossAI_Wind : MonoBehaviour
 
     IEnumerator MoveDelayor()
     {
-
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         afterDelay = true;
+        Debug.Log("After Delay is finish!");
     }
 
     /// <summary>
@@ -1085,7 +1086,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player1.transform.position);
             //transform.LookAt(_Player1.transform);
-            agent.stoppingDistance = attackRange;
+            agent.stoppingDistance = attackRange - 1;
 
             yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= attackRange + 1);
 
@@ -1098,7 +1099,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             agent.SetDestination(_Player2.transform.position);
             //transform.LookAt(_Player2.transform);
-            agent.stoppingDistance = attackRange;
+            agent.stoppingDistance = attackRange - 1;
 
             yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= attackRange + 1);
 
@@ -1303,7 +1304,7 @@ public class BossAI_Wind : MonoBehaviour
             {
                 _ComboNum = 1;
                 Debug.Log("Take a Break!");
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(2f);
             }
             if (_isForceLockOn)
             {ChangePlayerTargetRandom();}

@@ -71,7 +71,8 @@ public class Boss1Animator : MonoBehaviour
     {
         //BossSkill.TornadoSpecialAttackAnimation();
         //bossVC.m_Priority = orgPriority;
-        impulseSource.GenerateImpulse();
+        
+        impulseSource.GenerateImpulse(1.5f);
         Boss1SoundManager.PlaySound("Boss_TransDown");
         BossAI.IsAfter33 = true;
         Level1GameData.b_isCutScene = false;
@@ -80,7 +81,7 @@ public class Boss1Animator : MonoBehaviour
     public void Camera_PinBallFadeIn()
     {
         bossVC.m_Priority = fadeInPriority;
-        Debug.Log(Level1GameData.b_isBoss1Defeated);
+        //Debug.Log(Level1GameData.b_isBoss1Defeated);
     }
 
     public void Camera_PinBallFadeOut()
@@ -98,6 +99,7 @@ public class Boss1Animator : MonoBehaviour
         Debug.Log("Say Hi.");
     }
 
+    [Header("Particl Stuff")]
     public ParticleSystem bossRoar;
     public ParticleSystem bossAngry;
     public ParticleSystem bossAngry_2;
@@ -111,8 +113,8 @@ public class Boss1Animator : MonoBehaviour
         {
             //bossRoar.gameObject.SetActive(true);
             bossRoar.Play();
-            print("isplaying ? " + bossRoar.isPlaying);
-            print("bossRoarStart_ani");
+            //print("isplaying ? " + bossRoar.isPlaying);
+            //print("bossRoarStart_ani");
         }
     }
     public void bossRoarEnd_ani()
@@ -121,7 +123,7 @@ public class Boss1Animator : MonoBehaviour
         {
             //bossRoar.gameObject.SetActive(false);
             bossRoar.Stop();
-            print("bossRoarEnd_ani");
+            //print("bossRoarEnd_ani");
 
         }
     }
@@ -130,12 +132,12 @@ public class Boss1Animator : MonoBehaviour
         if (bossAngry != null)
         {
             bossAngry.Play();
-            print("bossAngryStart_ani");
+            //print("bossAngryStart_ani");
         }
         if (bossAngry_2 != null)
         {
             bossAngry_2.Play();
-            print("bossAngryStart_ani");
+            //print("bossAngryStart_ani");
         }
     }
     public void bossAngryEnd_ani()
@@ -143,13 +145,13 @@ public class Boss1Animator : MonoBehaviour
         if (bossAngry != null && bossAngry.isPlaying)
         {
             bossAngry.Stop();
-            print("bossAngryEnd_ani");
+            //print("bossAngryEnd_ani");
 
         }
         if (bossAngry_2 != null)
         {
             bossAngry_2.Stop();
-            print("bossAngryStart_ani");
+            //print("bossAngryStart_ani");
         }
     }
 
@@ -161,7 +163,7 @@ public class Boss1Animator : MonoBehaviour
             {
                 ps.Play();
 
-                print("WingSpeedLineStart");
+                //print("WingSpeedLineStart");
             }
         }
     }
@@ -172,7 +174,7 @@ public class Boss1Animator : MonoBehaviour
             if (ps != null && ps.isPlaying)
             {
                 ps.Stop();
-                print("WingSpeedLineEnd");
+                //print("WingSpeedLineEnd");
 
             }
         }
@@ -185,7 +187,7 @@ public class Boss1Animator : MonoBehaviour
             if (ps != null)
             {
                 ps.Play();
-                print("EyesLightStart");
+                //print("EyesLightStart");
             }
         }
     }
@@ -196,7 +198,7 @@ public class Boss1Animator : MonoBehaviour
             if (ps != null && ps.isPlaying)
             {
                 ps.Stop();
-                print("EyesLightEnd");
+                //print("EyesLightEnd");
 
             }
         }
