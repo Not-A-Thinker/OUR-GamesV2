@@ -490,8 +490,7 @@ public class Move : MonoBehaviour
 
                 yield return null;
 
-                if(playerState.isDead == false)
-                    inCC = false;
+                inCC = false;
             }
             //yield return new WaitForSeconds(10);
         }
@@ -513,8 +512,7 @@ public class Move : MonoBehaviour
                 characterController.Move(velocity * 30 * Time.deltaTime);
 
                 yield return null;
-                if (playerState.isDead == false)
-                    inCC = false;
+                inCC = false;
             }
             //yield return new WaitForSeconds(10);
         }
