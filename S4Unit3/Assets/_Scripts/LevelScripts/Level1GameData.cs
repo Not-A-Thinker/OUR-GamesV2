@@ -11,6 +11,7 @@ public class Level1GameData : MonoBehaviour
     //檢查Boss是否死掉了
     static public bool b_isBoss1Defeated = false;
 
+    //計算玩家的通關時長
     static public float f_timerS = 0f;
     static public float f_timerM = 0f;
 
@@ -31,6 +32,12 @@ public class Level1GameData : MonoBehaviour
     void Update()
     {
         MainGameTimer();
+    }
+
+    static public void ResetData()
+    {
+        b_isCutScene = false;
+        b_isBoss1Defeated = false;
     }
 
     void MainGameTimer()
@@ -55,6 +62,11 @@ public class Level1GameData : MonoBehaviour
         StreamWriter writer2 = new StreamWriter(buildPath, true);
         writer2.WriteLine("[" + System.DateTime.UtcNow + "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
         writer2.Close();
+
+        string SAPath = Application.streamingAssetsPath + "/TimesLog.txt";
+        StreamWriter writer3 = new StreamWriter(SAPath, true);
+        writer3.WriteLine("[" + System.DateTime.UtcNow + "] " + "Game finish in: " + f_timerM + "m:" + (int)f_timerS + "s");
+        writer3.Close();
 
         Debug.Log("Game finish in:" + f_timerM + "m: " + (int)f_timerS + "s");
     }

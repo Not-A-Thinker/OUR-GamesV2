@@ -24,7 +24,6 @@ public class Skill_WindBlade : MonoBehaviour
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
 
-                Debug.Log(other.gameObject.name);
                 Destroy(gameObject);
             }
         }

@@ -17,6 +17,7 @@ public class Skill_WindBall : MonoBehaviour
     void FixedUpdate()
     {
         //rb.velocity = new Vector3(transform.position.x, -1, transform.position.z) * _fallingSpeed;
+        Destroy(gameObject, 5f);
     }
 
     private void OnCollisionEnter(Collision col)
