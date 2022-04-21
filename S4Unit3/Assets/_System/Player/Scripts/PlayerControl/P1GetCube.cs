@@ -24,9 +24,11 @@ public class P1GetCube : MonoBehaviour
     public void StartCarge(int Carge)
     {
         int parentMax = objectParent.transform.childCount;
-        for (int i = parentMax; i>0 ; i--)
+        if (Carge == 3)
+            Carge = Carge - 1;
+        for (int i = 0; i< parentMax; i++)
         {
-            GameObject cube = objectParent.transform.GetChild(i - 1).gameObject;
+            GameObject cube = objectParent.transform.GetChild(i).gameObject;
             if (i <= Carge)
             {
                 cube.transform.position = SpawnPoint.position;
@@ -80,11 +82,12 @@ public class P1GetCube : MonoBehaviour
         int parentMax = objectParent.transform.childCount;
         //Debug.Log(force);
         int newForce = (int)force;
+        newForce++;
         ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
         if (force>=1)
             StartCoroutine(TheBigOne(parentMax, newForce));        
         else
-            PlayerSetCube(parentMax, newForce);   
+            PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);   
     }
 
     // 狗狗被擊中時會觸發
@@ -120,20 +123,10 @@ public class P1GetCube : MonoBehaviour
         }     
     }
 
-    void PlayerSetCube(int parentMax,int force)
+    void PlayerSetCube(int parentMax,int force,GameObject cube)
     {
-        //每個方塊射擊前都要設置一次
-            
+        //每個方塊射擊前都要設置一次         
         int caseNum = 0;
-
-        GameObject cube;
-        if (GetComponent<ForceCast_TopDown>().CargeObj!=null)
-        {
-            cube = GetComponent<ForceCast_TopDown>().CargeObj;
-        } 
-        else
-            cube = objectParent.transform.GetChild(parentMax - 1).gameObject;
-
         //Debug.Log(parentMax);
         cube.GetComponent<ObjectRotation>()._isInCount = false;
 
@@ -178,15 +171,19 @@ public class P1GetCube : MonoBehaviour
     }
 
     IEnumerator TheBigOne(int parentMax, int force)
-    {      
+    {
         //蓄力成功三連發
-        int Max = parentMax;
-        for (int i = 0; i < Max; i++)
+        for (int i = 0; i < force; i++)
         {
-            PlayerSetCube(parentMax, force);
-            parentMax = objectParent.transform.childCount;
+            GameObject cube;
+            if (GetComponent<ForceCast_TopDown>().CargeObj != null)
+                cube = GetComponent<ForceCast_TopDown>().CargeObj;
+            else
+                cube = objectParent.transform.GetChild(0).gameObject;
+            PlayerSetCube(parentMax, force, cube);
             yield return new WaitForSeconds(0.3f);
-            //Debug.Log(parentMax);
-        }
+        }     
+        if (force==2)
+            objectParent.transform.GetChild(0).gameObject.GetComponent<ObjectRotation>()._isInCount=true;
     }
 }

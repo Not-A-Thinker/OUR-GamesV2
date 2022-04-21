@@ -252,8 +252,7 @@ public class Move : MonoBehaviour
                     else if (Input.GetButtonUp("JumpP2"))
                     {
                         isDashed = false;
-                    }
-                        
+                    }                      
                 }           
                 //float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
                 //float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
