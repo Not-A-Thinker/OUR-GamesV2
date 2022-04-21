@@ -1865,7 +1865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334020982}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.036760222, y: 59.47948, z: -96.0186}
+  m_LocalPosition: {x: 0.036759894, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2216,7 +2216,7 @@ MonoBehaviour:
   bossHealth: {fileID: 98140736}
   lastSpawned: {fileID: 0}
   SpawnedCount: 0
-  SpawnendMax: 5
+  SpawnendMax: 999
 --- !u!114 &434807547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3307,7 +3307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608999907}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.036760222, y: 59.47948, z: -96.0186}
+  m_LocalPosition: {x: 0.036759894, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
