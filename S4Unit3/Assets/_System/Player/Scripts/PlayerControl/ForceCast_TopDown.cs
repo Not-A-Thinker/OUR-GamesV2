@@ -241,7 +241,7 @@ public class ForceCast_TopDown : MonoBehaviour
     private void Accumulate()
     {
         countFloat += Time.deltaTime;
-        if (countFloat > CountMax)
+        if (countFloat > CountMax+0.5f)
             countFloat = 0;
         int CountInt = (int)(countFloat * 2);
 
