@@ -109,7 +109,6 @@ public class Move : MonoBehaviour
             characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
         }
         
-
         if (characterController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...
@@ -193,9 +192,7 @@ public class Move : MonoBehaviour
             else
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
-            }
-
-            
+            }          
         }
 
         if (isPlayer2)//arrows
@@ -267,8 +264,7 @@ public class Move : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
             }
-
-            
+           
             //else
             //{
             //    //Aim
@@ -286,8 +282,6 @@ public class Move : MonoBehaviour
             //    }
             //}
             //BossLockOn();
-
-
         }
     }
 
@@ -295,7 +289,6 @@ public class Move : MonoBehaviour
     {
         if (isPlayer1)
         {
-
             //Rotate Trash
             float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
             float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
@@ -427,9 +420,7 @@ public class Move : MonoBehaviour
     }
     
     void DashV2(Vector3 velocity, float horizontalInput, float verticalInput)
-    {
-        
-
+    {      
         if (!isDash)
         {
             if (Input.GetButton(dashButtonName))
@@ -499,7 +490,8 @@ public class Move : MonoBehaviour
 
                 yield return null;
 
-                inCC = false;                
+                if(playerState.isDead == false)
+                    inCC = false;
             }
             //yield return new WaitForSeconds(10);
         }
@@ -521,8 +513,8 @@ public class Move : MonoBehaviour
                 characterController.Move(velocity * 30 * Time.deltaTime);
 
                 yield return null;
-
-                inCC = false;
+                if (playerState.isDead == false)
+                    inCC = false;
             }
             //yield return new WaitForSeconds(10);
         }
