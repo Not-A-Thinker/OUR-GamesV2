@@ -48,6 +48,11 @@ public class SceneControl : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Level1GameData.ResetData();
+            Level1GameData.ClearTime();
+        }
         SceneManager.LoadScene(Scence);
     }
 }
