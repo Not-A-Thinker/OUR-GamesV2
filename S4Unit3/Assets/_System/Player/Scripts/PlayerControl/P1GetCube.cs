@@ -35,8 +35,11 @@ public class P1GetCube : MonoBehaviour
                 cube.GetComponent<ObjectRotation>()._isInCount = false;                
                 if (!OneOnCarge)
                 {
-                    cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
-                    cube.GetComponentInChildren<ParticleSystem>().Play();
+                    if(cube.transform.childCount != 0)
+                    {
+                        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
+                        cube.GetComponentInChildren<ParticleSystem>().Play();
+                    }                
                     GetComponent<ForceCast_TopDown>().CargeObj = cube;
                     OneOnCarge = true;
                 }            
@@ -46,8 +49,12 @@ public class P1GetCube : MonoBehaviour
                 if(cube != GetComponent<ForceCast_TopDown>().CargeObj)
                 {
                     cube.GetComponent<ObjectRotation>()._isInCount = true;
-                    cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
-                    cube.GetComponentInChildren<ParticleSystem>().Pause();
+                    if (cube.transform.childCount != 0)
+                    {
+                        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
+                        cube.GetComponentInChildren<ParticleSystem>().Pause();
+                    }
+               
                 }              
             }
         }       
@@ -84,7 +91,7 @@ public class P1GetCube : MonoBehaviour
         int newForce = (int)force;
         newForce++;
         ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
-        if (force>=1)
+        if (force>=1 && parentMax>1)
             StartCoroutine(TheBigOne(parentMax, newForce));        
         else
             PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);   

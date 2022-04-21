@@ -260,8 +260,11 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if(CargeObj!=null)
             {
-                CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
-                IsCargeEffectPlay = true;
+                if (CargeObj.transform.childCount != 0)
+                {
+                    CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
+                    IsCargeEffectPlay = true;
+                }
             }         
         }             
         //DogCarge.gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);      
