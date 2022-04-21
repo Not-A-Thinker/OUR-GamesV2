@@ -945,6 +945,7 @@ public class BossAI_Wind : MonoBehaviour
                     if (rndNum < 50)
                     {
                         ///Wind Hole ­·¬W
+                        isMoveFinished = false;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
@@ -959,6 +960,7 @@ public class BossAI_Wind : MonoBehaviour
                         //BossSkill.BossWingAttack();
 
                         ///Wind Hole ­·¬W
+                        isMoveFinished = false;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }

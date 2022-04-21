@@ -93,7 +93,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4988700607012716645}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 1
   m_Height: 6.0555506
   m_Direction: 1
@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 4988700607590763604}
   - component: {fileID: 4988700607590763603}
   - component: {fileID: 7750506292321955880}
+  - component: {fileID: 3293964169399502608}
   m_Layer: 9
   m_Name: WindHole
   m_TagString: Untagged
@@ -229,8 +230,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4988700607590763605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 4, y: 3, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4988700607177117547}
@@ -349,6 +350,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &3293964169399502608
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4988700607590763605}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 1
+  m_Height: 6.0555506
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.59, z: 0}
 --- !u!1001 &1613957728166409413
 PrefabInstance:
   m_ObjectHideFlags: 0

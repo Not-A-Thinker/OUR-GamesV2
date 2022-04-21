@@ -22,10 +22,11 @@ public class Skill_WindHole : MonoBehaviour
 
     IEnumerator StartTimer()
     {
-        
+        //Debug.Log("Wind Hole!");
         yield return new WaitForSeconds(ActiveTime);
-        gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        //gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        //gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,7 +37,7 @@ public class Skill_WindHole : MonoBehaviour
             {
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
-
+                Debug.Log(other.gameObject.name);
             }
         }
     }
