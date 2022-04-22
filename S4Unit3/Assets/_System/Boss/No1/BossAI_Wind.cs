@@ -186,11 +186,14 @@ public class BossAI_Wind : MonoBehaviour
             Destroy(gameObject);
         }
 
+        ///Handle when Boss is DEAD.
         if (healthBar.health <= 0 && basicState.isHealthMerge && !isDead)
         {
             Level1GameData.b_isCutScene = true;
 
             isDead = true;
+            isMoveFinished = true;
+            isMeleeAttacking = true;
             ani.SetBool("IsDead", true);
             ani.SetTrigger("DeadTrigger");
         }
@@ -206,7 +209,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             if (_TestingMode){return;}
 
-            //This is the version of 2 stage health.
+            ///This is the version of 2 stage health.
             if (healthBar.health <= 0)
             {
                 healthBar.Stage1ToStage2();
@@ -218,12 +221,12 @@ public class BossAI_Wind : MonoBehaviour
                 ChangePlayerTargetRandom();
                 StartCoroutine(MoveDelayor());
 
-                //This is for rearrange the skill range in stage 2.
+                ///This is for rearrange the skill range in stage 2.
                 skillRange1 = 20;
                 skillRange2 = 35;
                 skillRange3 = 50;
 
-                //This is for preventing the stando show up too early, can be change.
+                ///This is for preventing the stando show up too early, can be change.
                 StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
@@ -233,7 +236,7 @@ public class BossAI_Wind : MonoBehaviour
         {
             if (_TestingMode) { return; }
 
-            //This is the version of total health instead of 2 stage health.
+            ///This is the version of total health instead of 2 stage health.
             if (healthBar.health <= basicState._maxHealth / 2 && IsAfter33)
             {
                 IsStage1 = false;
@@ -242,14 +245,16 @@ public class BossAI_Wind : MonoBehaviour
                 _ComboNum = 1;
                 _isForceLockOn = true;
                 ChangePlayerTargetRandom();
+                StopCoroutine(coroutineThink);
+                coroutineThink = StartCoroutine(TimeOfThink());
                 StartCoroutine(MoveDelayor());
 
-                //This is for rearrange the skill range in stage 2.
+                ///This is for rearrange the skill range in stage 2.
                 skillRange1 = 20;
                 skillRange2 = 35;
                 skillRange3 = 50;
 
-                //This is for preventing the stando show up too early, can be change.
+                ///This is for preventing the stando show up too early, can be change.
                 StartCoroutine(BossSkill.StandoCDTimer(BossSkill.standoCDTime / 2));
 
                 Debug.Log("Switch to Stage2!");
@@ -529,17 +534,19 @@ public class BossAI_Wind : MonoBehaviour
             if (!isStandoMode && BossSkill.canStandoAgain)//Stando Spawn
             { AIDecision = 65;}
 
-
-            if (_ComboNum == 1 ||_ComboNum == 2 || _ComboNum == 3)//Short Range Attack
+            if (b_UseComboSet)
             {
-                AIDecision = 44;
+                if (_ComboNum == 1 || _ComboNum == 2 || _ComboNum == 3)//Short Range Attack
+                {
+                    AIDecision = 44;
+                }
+                else if (_ComboNum == 4)//Long Range Attack
+                {
+                    AIDecision = 45;
+                }
+                else if (_ComboNum == 5)//定點攻擊 + Stando
+                { AIDecision = 46; }
             }
-            else if (_ComboNum == 4)//Long Range Attack
-            {
-                AIDecision = 45;
-            }
-            else if (_ComboNum == 5)//定點攻擊 + Stando
-            { AIDecision = 46;}
         }
 
         //Debug.Log("Skill is select!");
@@ -939,6 +946,15 @@ public class BossAI_Wind : MonoBehaviour
                             BossSkill.MistAttack();
                             StartCoroutine(BossSkill.MistCDTimer(BossSkill.mistCDTime));
                         }
+                        else
+                        {
+                            ///Wing Attack 近戰攻擊(翼)
+                            yield return coroutineRunAtk = StartCoroutine(BossAttackMovement(15));
+
+                            isMeleeAttacking = true;
+                            wingAttackAlert.SetTrigger("WingAttack Alert");
+                            BossSkill.BossWingAttack();
+                        }
                     }
                     break;
                 case 45:
@@ -947,6 +963,7 @@ public class BossAI_Wind : MonoBehaviour
                     {
                         ///Wind Hole 風柱
                         isMoveFinished = true;
+                        isMeleeAttacking = true;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
@@ -962,6 +979,7 @@ public class BossAI_Wind : MonoBehaviour
 
                         ///Wind Hole 風柱
                         isMoveFinished = true;
+                        isMeleeAttacking = true;
                         int _wHSpawnNum = Random.Range(8, 11);
                         StartCoroutine(BossSkill.WindHole(1, _wHSpawnNum));
                     }
@@ -1045,6 +1063,9 @@ public class BossAI_Wind : MonoBehaviour
     /// </summary>
     void BossStage2Movement()
     {
+        if (isDead)
+            return;
+
         if (!_canAttack)
         {
             AI = AIMode.Move;
@@ -1236,7 +1257,10 @@ public class BossAI_Wind : MonoBehaviour
             AI = AIMode.Normal;
             isMeleeAttacking = false;
 
-            
+            if (IsStage2)
+                break;
+
+            ///This is for the combo Set extra time rest after five attacks, for now.
             if (_ComboNum >= _ComboMaxNum + 1 && b_UseComboSet)
             {
                 _ComboNum = 1;
@@ -1249,7 +1273,7 @@ public class BossAI_Wind : MonoBehaviour
                 else { yield return new WaitForSeconds(aiReactTimeStage1);}
             }
             AI = AIMode.Normal;
-            //Debug.Log("Will Start Again...");
+            Debug.Log("Stage1 Loop Ends Here.");
         }
 
         if (IsStage2)
@@ -1276,7 +1300,7 @@ public class BossAI_Wind : MonoBehaviour
             ///This is for the boss to stick on one player in order to be better perform the Skill Sets.
             if(lookAtP1) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player1.transform.position) <= skillRangeS + 1);
             if(lookAtP2) yield return new WaitUntil(() => Vector3.Distance(selfPos, _Player2.transform.position) <= skillRangeS + 1);
-            //yield return new WaitUntil(() => _canAttack);
+
             _canAttack = true;
 
             ///This is the skill selection, it is mainly for decide what skill to be use
@@ -1297,17 +1321,26 @@ public class BossAI_Wind : MonoBehaviour
             aIStage2Turn++;
             AI = AIMode.Normal;
 
-            if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
-            else { yield return new WaitForSeconds(aiReactTimeStage2); }
+            //if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
+            //else { yield return new WaitForSeconds(aiReactTimeStage2); }
 
+            ///This is for the combo Set extra time rest after five attacks, for now.
             if (_ComboNum >= _ComboMaxNum + 1 && b_UseComboSet)
             {
                 _ComboNum = 1;
                 Debug.Log("Take a Break!");
-                yield return new WaitForSeconds(2f);
+                if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode + 2); }
+                else { yield return new WaitForSeconds(aiReactTimeStage2 + 2); }
+            }
+            else
+            {
+                if (isStandoMode) { yield return new WaitForSeconds(aiReactTimeStandoMode); }
+                else { yield return new WaitForSeconds(aiReactTimeStage2); }
             }
             if (_isForceLockOn)
             {ChangePlayerTargetRandom();}
+
+            Debug.Log("Stage2 Loop Ends Here!");
         }
     }
 

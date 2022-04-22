@@ -62889,7 +62889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHealthMerge: 1
-  _maxHealth: 400
+  _maxHealth: 500
   _currentHealth: 0
   _speed: 10
   _rotateSpeed: 10
@@ -63158,7 +63158,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 22
+  m_Speed: 24
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 360
