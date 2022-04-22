@@ -91,4 +91,6 @@ public class Skill_TornadoSpecialAttack : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("STA").Length <= 1)
             cameraControl.ChangeTargetWeight(3, 2);
     }
+
+
 }

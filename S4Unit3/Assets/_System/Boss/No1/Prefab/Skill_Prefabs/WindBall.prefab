@@ -99,6 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dda54e713c93644496b906ec4cdf73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetPos: {x: 0, y: 0.5, z: 0}
+  m_layer:
+    serializedVersion: 2
+    m_Bits: 2048
+  hitPointObj: {fileID: 320358132229115706, guid: 79060b77c21d6ab40bde2e1b3463eea0, type: 3}
+  hitGameObj: {fileID: 0}
 --- !u!54 &609656492285098025
 Rigidbody:
   m_ObjectHideFlags: 0
