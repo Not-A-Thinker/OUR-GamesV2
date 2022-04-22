@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChaRot: {fileID: 6214820614071332330}
   _force: 20
-  _range: 25
+  _range: 20
   savedObject: {fileID: 0}
   Range: {fileID: 2623803787403837290}
   clipParent: {fileID: 749153411712952852}
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 13
+  maximumSpeed: 18
   rotationSpeed: 50
   characterController: {fileID: 1860544261278244877}
   _animation: {fileID: 317406783}
@@ -384,16 +384,17 @@ MonoBehaviour:
   IsJoystick: 1
   isSlowed: 0
   isImMobilized: 0
+  isShoot: 0
   isDashed: 0
   isKnockUp: 0
   isDashClose: 0
   inCC: 0
   autoLockBoss: 1
-  dashSpeed: 12
-  dashTime: 0.5
+  dashSpeed: 24
+  dashTime: 0.25
   _DashTotal: 1
   DashCD: 2
-  _DashRestore: 50
+  _DashRestore: 75
   dashDuration: 0
   dashSpeedV2: 0
   dashButtonName: 
@@ -886,8 +887,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2623803787403837290}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: 12.5}
-  m_LocalScale: {x: 1, y: 2.35, z: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 11}
+  m_LocalScale: {x: 1, y: 1.95, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2415578044204435932}

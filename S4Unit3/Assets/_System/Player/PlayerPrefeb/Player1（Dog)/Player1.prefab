@@ -346,13 +346,14 @@ MonoBehaviour:
   IsJoystick: 1
   isSlowed: 0
   isImMobilized: 0
+  isShoot: 0
   isDashed: 0
   isKnockUp: 0
   isDashClose: 0
   inCC: 0
   autoLockBoss: 1
-  dashSpeed: 12
-  dashTime: 0.5
+  dashSpeed: 24
+  dashTime: 0.25
   _DashTotal: 2
   DashCD: 4
   _DashRestore: 25

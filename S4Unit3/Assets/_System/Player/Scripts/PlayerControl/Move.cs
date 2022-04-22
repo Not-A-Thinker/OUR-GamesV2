@@ -368,7 +368,7 @@ public class Move : MonoBehaviour
         StartCoroutine(_animation.PlayerDash(dashTime));
         yield return new WaitForSeconds(0.1f);
         playerState._renderer.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(dashTime);
         playerState.DashColorChange(false);
         playerState._renderer.enabled = true;
     }
