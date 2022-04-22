@@ -224,8 +224,8 @@ public class PlayerState : MonoBehaviour
         }
         else
         {
-            ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();          
-            forceRepel_TopDown.enabled = true;
+            ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+            forceRepel_TopDown.IsDead = false;
         }
         //rb.useGravity = true;
         move.SpeedFast();
@@ -257,14 +257,13 @@ public class PlayerState : MonoBehaviour
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.ResetOldQue();
-            forceCast_TopDown.enabled = false;
             PlayerSoundEffect.PlaySound("Dog_Dead");
         }
         else
         {
             ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
             forceRepel_TopDown.resetObject();
-            forceRepel_TopDown.enabled = false;
+            forceRepel_TopDown.IsDead = true;
             PlayerSoundEffect.PlaySound("Cat_Dead");
         }
         move.isKnockUp = false;

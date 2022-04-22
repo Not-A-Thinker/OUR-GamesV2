@@ -26,6 +26,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
     bool IsAiming;
+    public bool IsDead;
 
     [Header("State")]
     [SerializeField] bool FriendCD = false;
@@ -42,6 +43,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     int SuckTotal;
     public float _SpeedSlow;
     bool onSucking;
+   
 
     public bool isAttackWithAim;
     //clip
@@ -87,10 +89,13 @@ public class ForceRepel_TopDown : MonoBehaviour
         //    Timer = SuckCount;  
         //uIcontrol.SuckCount(SuckCount);
         
-        if (isAttackWithAim)
-            AttackWithAim();
-        else
-            AttackWithOutAim();
+        if(!IsDead)
+        {
+            if (isAttackWithAim)
+                AttackWithAim();
+            else
+                AttackWithOutAim();
+        }    
 
         if (savedObject)
         {       
