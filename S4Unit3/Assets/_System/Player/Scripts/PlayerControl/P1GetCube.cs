@@ -24,7 +24,7 @@ public class P1GetCube : MonoBehaviour
     public void StartCarge(int Carge)
     {
         int parentMax = objectParent.transform.childCount;
-        if (Carge == 3)
+        if (Carge > 3)
             Carge = Carge - 1;
         for (int i = 0; i< parentMax; i++)
         {
@@ -120,8 +120,13 @@ public class P1GetCube : MonoBehaviour
                     //­«¸m¤è¶ô±¼¸¨ª¬ºA
                     Rb.constraints = RigidbodyConstraints.None;
                     Rb.useGravity = true;
+                    if (cube.transform.childCount != 0)
+                    {
+                        cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
+                        cube.GetComponentInChildren<ParticleSystem>().Stop();
+                    }
                     cube.transform.position = SpawnPoint.position;
-                    cube.transform.parent = null;
+                    cube.transform.parent = null;              
                 }
                 OneOnCarge = false;
             }

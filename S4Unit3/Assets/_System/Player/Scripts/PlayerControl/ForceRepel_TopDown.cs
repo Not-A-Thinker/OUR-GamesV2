@@ -197,7 +197,8 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (!SuckInCD)
             {
                 Range.SetActive(true);
-                
+                ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
+
                 Repel();
             }
         }
@@ -228,9 +229,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()
-    {
-        ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation , 15f * Time.deltaTime);
-
+    {     
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.forward;
         //Debug.DrawRay(startPos, endPos);
