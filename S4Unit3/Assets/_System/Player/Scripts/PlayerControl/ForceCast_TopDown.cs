@@ -82,7 +82,7 @@ public class ForceCast_TopDown : MonoBehaviour
             if (!ShootInCD && objectParent.transform.childCount > 0)
             {
                 //Renderer.material.color = Color.white;
-                Shoot();               
+                Shoot();
             }
             else
                 isShooted = false;

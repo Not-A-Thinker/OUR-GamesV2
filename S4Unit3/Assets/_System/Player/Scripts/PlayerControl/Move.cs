@@ -37,6 +37,7 @@ public class Move : MonoBehaviour
     public bool IsJoystick;
     public bool isSlowed;
     public bool isImMobilized;
+    public bool isShoot;
     public bool isDashed;
     public bool isKnockUp;
     public bool isDashClose;
@@ -159,7 +160,8 @@ public class Move : MonoBehaviour
                 if (movementDirection != Vector3.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                    Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
+                    if (!isShoot)
+                        Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                     _animation.PlayerWalk(true);
                     PlayerSoundEffect.PlaySound("Dog_Move");
                 }
@@ -217,7 +219,8 @@ public class Move : MonoBehaviour
                 if (movementDirection != Vector3.zero)
                 {
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                    Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
+                    if(!isShoot)
+                        Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                 }
                 if (movementDirection != Vector3.zero)
                 {
