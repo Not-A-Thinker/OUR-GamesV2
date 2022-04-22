@@ -131,14 +131,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   particle_palm: {fileID: 497029752151237615}
+  specialParticle: {fileID: 5302601890253848336}
   bossToSuck: 0
-  tailParticle: {fileID: 0}
   Traget: {fileID: 0}
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
   hitParticle: {fileID: 386241461176020601, guid: 2bf6f427ce3e63f439523c95361c64f4, type: 3}
   CollisionParticle: {fileID: 7069681098808393521, guid: 355c06310d99f394893e21850e701f4f, type: 3}
-  special: 1
-  specialParticle: {fileID: 5302601890253848336}
 --- !u!1001 &268519968493718932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,12 +197,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: ShapeModule.m_Scale.z
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: VelocityModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g

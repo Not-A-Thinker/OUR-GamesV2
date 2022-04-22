@@ -7,7 +7,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     [Header("幫我在攻擊的時候打開")]
     public bool isAttacking = false;
-    public ParticleSystem particle_palm; 
+    public ParticleSystem particle_palm;
+    public ParticleSystem specialParticle;
+
 
     [Header("從boss身上吸取的時候打開")]
     public bool bossToSuck = false;
@@ -101,7 +103,6 @@ public class Bullet : MonoBehaviour
         //Destroy(gameObject);
 
     }
-    public ParticleSystem specialParticle;
 
 
 }
