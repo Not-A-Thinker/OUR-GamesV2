@@ -1897,6 +1897,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 412ebb176fff6fb4c820ac7fd1b51a19, type: 2}
+    - target: {fileID: 3406859945120107057, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3406859945120107057, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3406859945320564514, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2376,6 +2384,10 @@ PrefabInstance:
     - target: {fileID: 3859278059930842156, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3859278059967904781, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 3859278059978331325, guid: b89723209fb142c4189cf8b7ebd9bcc3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -17607,6 +17619,10 @@ PrefabInstance:
       propertyPath: mainVC
       value: 
       objectReference: {fileID: 116990510}
+    - target: {fileID: 188733293806428879, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: _TestingMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3547116887273196985, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
       propertyPath: SpawnPoint
       value: 
