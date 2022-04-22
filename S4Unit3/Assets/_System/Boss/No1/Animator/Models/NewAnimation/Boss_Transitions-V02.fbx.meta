@@ -67,6 +67,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.009625669
+        functionName: Boss_EyesLightStart_ani
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.028709423
         functionName: bossAngryStart_ani
         data: 
@@ -88,13 +95,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.37012446
-        functionName: PlaySound
-        data: Boss_Wing01
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.6098689
         functionName: Animation_BossPinBallAttack
         data: 
@@ -104,6 +104,20 @@ ModelImporter:
         messageOptions: 0
       - time: 0.698935
         functionName: bossRoarStart_ani
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.71130097
+        functionName: PlaySound
+        data: Boss_Wing01
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7173016
+        functionName: Boss_EyesLightEnd_ani
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

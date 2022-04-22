@@ -31,12 +31,21 @@ public class Bullet : MonoBehaviour
         if (isAttacking)
         {
             tailParticle.SetActive(true);
-            particle_palm.Play();
+            if(!particle_palm.isPlaying)
+              particle_palm.Play();
             //  Destroy(particle_palm, 1);
             if (GetComponent<MeshRenderer>() != null)
             {
                 GetComponent<MeshRenderer>().enabled = false;
             }
+            if( particle_palm.GetComponent<Particle_LookAt>()!=null)
+            {
+                particle_palm.GetComponent<Particle_LookAt>().ParticleLookAt();
+            }
+        }
+        if(specialParticle!=null&& !specialParticle.isPlaying)
+        {
+            specialParticle.Play();
         }
     }
 
@@ -92,6 +101,7 @@ public class Bullet : MonoBehaviour
         //Destroy(gameObject);
 
     }
+    public ParticleSystem specialParticle;
 
 
 }

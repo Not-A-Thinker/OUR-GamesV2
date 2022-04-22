@@ -6,7 +6,7 @@ public class Particle_LookAt : MonoBehaviour
 {
     ParticleSystem par;
     [Header("面向目標物")]
-    public  Transform target;
+    public Transform target;
     [Header("面向目標物")]
     public string targetStr;
     // Start is called before the first frame update
@@ -15,13 +15,35 @@ public class Particle_LookAt : MonoBehaviour
         par = gameObject.GetComponent<ParticleSystem>();
         if (target == null)
         {
-            target= GameObject.Find(targetStr).gameObject.transform;
+            target = GameObject.Find(targetStr).gameObject.transform;
         }
+        // gameObject.transform.LookAt(target);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+    }
+    private void Awake()
+    {
+        if (target == null)
+        {
+            target = GameObject.Find(targetStr).gameObject.transform;
+
+        }
         gameObject.transform.LookAt(target);
+
+    }
+
+    public void ParticleLookAt()
+    {
+        if (target == null)
+        {
+            target = GameObject.Find(targetStr).gameObject.transform;
+
+        }
+        gameObject.transform.LookAt(target);
+
     }
 }
