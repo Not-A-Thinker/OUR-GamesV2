@@ -35,7 +35,7 @@ public class P1GetCube : MonoBehaviour
                 cube.GetComponent<ObjectRotation>()._isInCount = false;                
                 if (!OneOnCarge)
                 {
-                    if(cube.transform.childCount != 0)
+                    if(cube.GetComponentInChildren<Particle_PlamCharge>()!=null)
                     {
                         cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = true;
                         cube.GetComponentInChildren<ParticleSystem>().Play();
@@ -46,7 +46,7 @@ public class P1GetCube : MonoBehaviour
             }
             else
             {
-                if(cube != GetComponent<ForceCast_TopDown>().CargeObj)
+                if(cube.GetComponentInChildren<Particle_PlamCharge>() != null)
                 {
                     cube.GetComponent<ObjectRotation>()._isInCount = true;
                     if (cube.transform.childCount != 0)
@@ -120,7 +120,7 @@ public class P1GetCube : MonoBehaviour
                     //­«¸m¤è¶ô±¼¸¨ª¬ºA
                     Rb.constraints = RigidbodyConstraints.None;
                     Rb.useGravity = true;
-                    if (cube.transform.childCount != 0)
+                    if (cube.GetComponentInChildren<Particle_PlamCharge>() != null)
                     {
                         cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
                         cube.GetComponentInChildren<ParticleSystem>().Stop();

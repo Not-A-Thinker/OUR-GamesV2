@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     [Header("從boss身上吸取的時候打開")]
     public bool bossToSuck = false;
 
-    public GameObject tailParticle;
+    //public GameObject tailParticle;
     private Quaternion dir; //face direction
 
     [Header("攻擊目標(Boss)")]
@@ -20,8 +20,8 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         dir = dir == null ? Quaternion.identity : dir;
-        tailParticle.transform.rotation = dir;
-        tailParticle.SetActive(false);
+        //tailParticle.transform.rotation = dir;
+        //tailParticle.SetActive(false);
 
     }
 
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
     {
         if (isAttacking)
         {
-            tailParticle.SetActive(true);
+            //tailParticle.SetActive(true);
             if(!particle_palm.isPlaying)
               particle_palm.Play();
             //  Destroy(particle_palm, 1);

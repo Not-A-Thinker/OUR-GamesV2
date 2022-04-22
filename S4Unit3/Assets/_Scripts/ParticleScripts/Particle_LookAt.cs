@@ -30,7 +30,6 @@ public class Particle_LookAt : MonoBehaviour
         if (target == null)
         {
             target = GameObject.Find(targetStr).gameObject.transform;
-
         }
         gameObject.transform.LookAt(target);
 

@@ -260,7 +260,7 @@ public class ForceCast_TopDown : MonoBehaviour
         {
             if(CargeObj!=null)
             {
-                if (CargeObj.transform.childCount != 0)
+                if (CargeObj.GetComponentInChildren<Particle_PlamCharge>() != null)
                 {
                     CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
                     IsCargeEffectPlay = true;
