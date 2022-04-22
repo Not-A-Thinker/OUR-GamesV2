@@ -25,15 +25,14 @@ public class Particle_LookAt : MonoBehaviour
     void Update()
     {
     }
-    private void Awake()
-    {
-        if (target == null)
-        {
-            target = GameObject.Find(targetStr).gameObject.transform;
-        }
-        gameObject.transform.LookAt(target);
-
-    }
+    //private void Awake()
+    //{
+    //    if (target == null)
+    //    {
+    //        target = GameObject.Find(targetStr).gameObject.transform;
+    //    }
+    //    gameObject.transform.LookAt(target);
+    //}
 
     public void ParticleLookAt()
     {
