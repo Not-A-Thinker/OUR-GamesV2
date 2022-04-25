@@ -10,7 +10,7 @@ public class ForceCast_TopDown : MonoBehaviour
     public GameObject rangeObj;
     [SerializeField] GameObject RangeBigObj;
     //[SerializeField] private Renderer Renderer;
-
+    public bool IsDead;
     UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
     [Header("P1 Push State")]
@@ -35,7 +35,7 @@ public class ForceCast_TopDown : MonoBehaviour
 
     public bool isAttackWithAim;
     public GameObject CargeObj;
-
+    
     [SerializeField] ParticleSystem DogCarge;
 
     void Start()
@@ -111,11 +111,13 @@ public class ForceCast_TopDown : MonoBehaviour
         UIcontrol.PushingCDBar(Timer / PushMaxCD);
 
         //OldInput備案 如果New Input手把不能用的時候打開
-        if (isAttackWithAim)
-            AttackWithAim();
-        else
-            AttackWithOutAim();
-
+        if(!IsDead)
+        {
+            if (isAttackWithAim)
+                AttackWithAim();
+            else
+                AttackWithOutAim();
+        }    
         //Attack Without Aim
     }
   

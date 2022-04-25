@@ -219,8 +219,8 @@ public class PlayerState : MonoBehaviour
         StartInvincible(1);
         if (isPlayer1)
         {
-            ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();                      
-            forceCast_TopDown.enabled = true;
+            ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+            forceCast_TopDown.IsDead = false;
         }
         else
         {
