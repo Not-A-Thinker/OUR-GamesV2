@@ -14,6 +14,9 @@ public class Particle_PlamCharge : MonoBehaviour
     float[] segment = { 0, 0.33f, 0.67f, 1 }; //1切3
     [Range(0, 1)]
     public float LerpSpeed = 0.1f;
+    public Color OColor;
+    [Header("過渡顏色變化")]
+    public List<Color> ParticleTransitionColor = new List<Color>(); 
 
 
 
@@ -55,7 +58,7 @@ public class Particle_PlamCharge : MonoBehaviour
                                 transform.localScale = Vector3.Lerp(transform.localScale, OSize, LerpSpeed);
                             }
                             ExSize = transform.localScale;
-                            StartCoroutine(biggerEffect(3.75f));
+                            StartCoroutine(biggerEffect(1.5f, ParticleTransitionColor[0]==null? OColor : ParticleTransitionColor[0]));
                         }
                         else if (ExState >= Charge(value))//is smaller
                         {
@@ -78,7 +81,7 @@ public class Particle_PlamCharge : MonoBehaviour
                                 transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 1.5f), LerpSpeed);
                             }
                             ExSize = transform.localScale;
-                            StartCoroutine(biggerEffect(3.75f));
+                            StartCoroutine(biggerEffect(2.5f, ParticleTransitionColor[1] == null ? OColor : ParticleTransitionColor[1]));
                         }
                         else if (ExState >= Charge(value))//is smaller
                         {
@@ -102,7 +105,7 @@ public class Particle_PlamCharge : MonoBehaviour
                                 transform.localScale = Vector3.Lerp(transform.localScale, Vector3amplifier(OSize, 2.5f), LerpSpeed);
                             }
                             ExSize = transform.localScale;
-                            StartCoroutine(biggerEffect(3.75f));
+                            StartCoroutine(biggerEffect(3.75f, ParticleTransitionColor[2] == null ? OColor : ParticleTransitionColor[2]));
                         }
                         else if (ExState >= Charge(value))//is smaller
                         {
@@ -128,7 +131,7 @@ public class Particle_PlamCharge : MonoBehaviour
 
                             }
                             ExSize = transform.localScale;
-                            StartCoroutine(biggerEffect(3.75f));
+                           // StartCoroutine(biggerEffect(3.75f));
                         }
                         else if (ExState > Charge(value))//is smaller
                         {
@@ -185,12 +188,13 @@ public class Particle_PlamCharge : MonoBehaviour
         return new Vector3(O.x * magnification, O.y * magnification, O.z * magnification);
     }
 
-    IEnumerator biggerEffect(float size)
+    IEnumerator biggerEffect(float size , Color TransitionColor)
     {
         if (BiggerEffect != null)
         {
             yield return new WaitForSeconds(.3f);
             ParticleSystem newvfx = Instantiate(BiggerEffect, transform.position,transform.rotation, transform);
+            newvfx.startColor = TransitionColor;
             newvfx.gameObject.transform.localScale = Vector3amplifier(OSize, size);
             var vfxLookAt =  newvfx.gameObject.AddComponent<Particle_LookAt>();
             vfxLookAt.GetComponent<Particle_LookAt>().targetStr = "Boss";

@@ -60,6 +60,7 @@ public class PlayerAnimator : MonoBehaviour
     public ParticleSystem Smoke;
     public ParticleSystem SpeedLine;
     public ParticleSystem Afterimage;
+    public ParticleSystem[] GhostFires;
     public void PlayerSomke()
     {
         if (Smoke != null)
@@ -80,4 +81,21 @@ public class PlayerAnimator : MonoBehaviour
             SpeedLine.Play();
     }
 
-}
+    public void GhostFiresPlay()
+    {
+        foreach (ParticleSystem ps in GhostFires)
+        {
+            ps.Play();
+        }
+    }
+    public void GhostFiresStop()
+    {
+        foreach (ParticleSystem ps in GhostFires)
+        {
+            if(ps.isPlaying)
+                ps.Stop();
+
+        }
+    }
+
+    }

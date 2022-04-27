@@ -94,6 +94,8 @@ public class Bullet : MonoBehaviour
                 print("trigger // !toBoss");
 
                 GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
+                if(particle_palm.gameObject!=null)
+                 particleobj.transform.localScale = particle_palm.transform.localScale;
                 Destroy(particleobj, 5);
             }
             Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
