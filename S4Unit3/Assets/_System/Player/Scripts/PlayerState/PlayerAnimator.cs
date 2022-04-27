@@ -61,6 +61,7 @@ public class PlayerAnimator : MonoBehaviour
     public ParticleSystem SpeedLine;
     public ParticleSystem Afterimage;
     public ParticleSystem[] GhostFires;
+    public ParticleSystem RespawnEvent;
     public void PlayerSomke()
     {
         if (Smoke != null)
@@ -94,8 +95,17 @@ public class PlayerAnimator : MonoBehaviour
         {
             if(ps.isPlaying)
                 ps.Stop();
-
         }
     }
 
+    public void RespawnEffectPlay()
+    {
+        if (RespawnEvent != null)
+            RespawnEvent.Play();
     }
+    public void RespawnEffectStop()
+    {
+        if (RespawnEvent != null)
+            RespawnEvent.Stop();
+    }
+}

@@ -14,13 +14,12 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] Move Move;
 
     [SerializeField] PlayerSoundEffect soundEffect;
-
+    [SerializeField] PlayerAnimator animator;
     public bool isPlayer1;
     public bool isPlayer2;
 
     public bool Respawning;
 
-    public ParticleSystem RespawnEvent;
 
     private void Start()
     {
@@ -65,18 +64,14 @@ public class PlayerRespawn : MonoBehaviour
                     if(Input.GetButton("HelpFriendP2") || Respawning)
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
-                        //soundEffect.OnRespawnPlay();
-                        if (RespawnEvent != null)
-                            RespawnEvent.Play();
-
+                        animator.RespawnEffectPlay();
                         if (RespawnCount >= 9)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCount = 0;
-                            if (RespawnEvent != null)
-                                RespawnEvent.Stop();
+                            animator.RespawnEffectStop();
                             return;
                         }
                     }
@@ -84,6 +79,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("HelpFriendP2") || !Respawning)
                     {
                         Respawning = false;
+                        animator.RespawnEffectStop();
                         //soundEffect.OnResetSound();
                         //RespawnCount = 0;
                         //UIcontrol.PlayerRespawnStop();
@@ -111,17 +107,15 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButton("HelpFriendP1"))
                     {
                         UIcontrol.PlayerRespawn(RespawnCount);
-                        //soundEffect.OnRespawnPlay();
-                        if (RespawnEvent != null)
-                            RespawnEvent.Play();
+                        animator.RespawnEffectPlay();
+                        //soundEffect.OnRespawnPlay();                     
                         if (RespawnCount >= 9)
                         {
                             PlayerState.PlayerRespawn();
                             UIcontrol.PlayerRespawnStop();
                             UIcontrol.PlayerHpRefew(transform.parent.name);
                             RespawnCount = 0;
-                            if (RespawnEvent != null)
-                                RespawnEvent.Stop();
+                            animator.RespawnEffectStop();
                             return;
                         }
                     }
@@ -129,6 +123,7 @@ public class PlayerRespawn : MonoBehaviour
                     if (Input.GetButtonUp("HelpFriendP1") || !Respawning)
                     {
                         Respawning = false;
+                        animator.RespawnEffectStop();
                         //soundEffect.OnResetSound();
                         //RespawnCountRange = 0;
                         //RespawnCount = 0;

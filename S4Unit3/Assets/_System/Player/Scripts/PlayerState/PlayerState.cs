@@ -208,6 +208,7 @@ public class PlayerState : MonoBehaviour
         ///重置玩家成初始狀態
         isDead = false;
         Resurrect_range.SetActive(false);
+        _animation.GhostFiresStop();
         Hula.color = hula_color;
         Arrow.color = ArrowColor;
         //Resurrect_range.GetComponent<PlayerRespawn>().RespawnRangeTrigger(false);
@@ -244,6 +245,7 @@ public class PlayerState : MonoBehaviour
         //死亡設置
         isDead = true;
         Resurrect_range.SetActive(true);
+        _animation.GhostFiresPlay();
         Hula.GetComponent<SpriteRenderer>().color = DeadColor;
         Arrow.GetComponent<SpriteRenderer>().color = DeadColor;
         _renderer.material.SetColor("_MainColor", DeadColor);
