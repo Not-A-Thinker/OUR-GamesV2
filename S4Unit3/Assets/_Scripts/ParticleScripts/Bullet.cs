@@ -44,6 +44,10 @@ public class Bullet : MonoBehaviour
             {
                 particle_palm.GetComponent<Particle_LookAt>().ParticleLookAt();
             }
+           if( particle_palm.gameObject.GetComponent<Particle_LookAt>()!=null)
+           {
+                particle_palm.gameObject.GetComponent<Particle_LookAt>().ParticleLookAt();
+           }
         }
         if(specialParticle!=null&& !specialParticle.isPlaying)
         {
