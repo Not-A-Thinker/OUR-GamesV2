@@ -249,10 +249,10 @@ MonoBehaviour:
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
   soundEffect: {fileID: 0}
+  animator: {fileID: 0}
   isPlayer1: 0
   isPlayer2: 1
   Respawning: 0
-  RespawnEvent: {fileID: 7002034356996947832}
 --- !u!1 &1860544261278244872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,6 +2151,7 @@ MonoBehaviour:
   GhostFires:
   - {fileID: 5654012306100024059}
   - {fileID: 4058403555676148958}
+  RespawnEvent: {fileID: 7002034356996947832}
 --- !u!4 &6734195116091602768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f844eaa9eadd4f4889091b9d3ab4586, type: 3}

@@ -114,10 +114,10 @@ MonoBehaviour:
   UIcontrol: {fileID: 0}
   Move: {fileID: 500052818044258939}
   soundEffect: {fileID: 0}
+  animator: {fileID: 0}
   isPlayer1: 1
   isPlayer2: 0
   Respawning: 0
-  RespawnEvent: {fileID: 7844672017111855872}
 --- !u!1 &500052817746688516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +1969,7 @@ MonoBehaviour:
   GhostFires:
   - {fileID: 5250103687544439168}
   - {fileID: 7894390983867771361}
+  RespawnEvent: {fileID: 7844672017111855872}
 --- !u!137 &5983910854311786690 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1541540555798731560, guid: 54234ceb5af984e44a1d9c11252ea7cd, type: 3}
