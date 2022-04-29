@@ -28,8 +28,13 @@ public class ObjectDamage : MonoBehaviour
 
         Speed = 50;
 
-        if (this.gameObject.name.Contains("SpecialAttack"))
+        if (gameObject.name.Contains("SpecialAttack"))
+        {
             isSpcecialAttack = true;
+            Damage = Damage + 55;
+            Debug.Log("SpecialAttack Damage Done");
+        }
+           
         ///到指定時間會自己消失
         StartCoroutine(DestroyTimer());
 
@@ -50,14 +55,11 @@ public class ObjectDamage : MonoBehaviour
     public void SetDamage(int DamageType)
     {
         ///特殊攻擊基本傷害90
-        if (isSpcecialAttack)
-            Damage = Damage + 75;
-
         switch (DamageType)
         {
             ///蓄力成功傷害*2
             case 2:
-                Damage = Damage * 2;
+                Damage = (int)(Damage * 1.8f);
                 break;
             default:
                 Damage = Damage * 1;

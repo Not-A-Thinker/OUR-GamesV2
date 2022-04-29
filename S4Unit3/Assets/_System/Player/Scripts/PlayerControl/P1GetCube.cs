@@ -83,16 +83,21 @@ public class P1GetCube : MonoBehaviour
         //    Destroy(cube.GetComponent<ObjectDestroy>());
     }
 
-    ///射擊方塊前置設置
+    ///射擊方塊前置判斷
     public void PlayerSpawnCube(float force)
     {
         int parentMax = objectParent.transform.childCount;
         //Debug.Log(force);
         int newForce = (int)force;
-        newForce++;
-        ///根據力度調整射擊方法（在蓄力那邊已經除最大值所以最大是一或者大於一）
-        if (force>=1 && parentMax>1)
-            StartCoroutine(TheBigOne(parentMax, newForce));        
+        if (force >= 1.4f)
+        {
+            newForce = 3;
+        }
+        else
+            newForce++;
+        ///根據力度調整射擊方法
+        if (newForce > 1 && parentMax>1)
+            StartCoroutine(TheBigOne(parentMax, newForce)); 
         else
             PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);   
     }
@@ -108,6 +113,7 @@ public class P1GetCube : MonoBehaviour
             {
                 move = GetComponent<Move>();
                 move.SpeedReset();
+
                 for (int i = 0; i < parentMax; i++)
                 {
                     GameObject cube = objectParent.transform.GetChild(objectParent.transform.childCount - 1).gameObject;
