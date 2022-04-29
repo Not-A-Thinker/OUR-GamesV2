@@ -18,15 +18,13 @@ public class ObjectDamage : MonoBehaviour
     [Header("Cube Attact State")]
     public Vector3 Direction;
     public int Damage = 15;
-    public float Speed ;
+    float Speed = 50;
 
     private void Start()
     {
         chip = Resources.Load("Prefabs/Clip") as GameObject;
         if (GameObject.Find("Boss Health Bar") != null)
             bossHealth = GameObject.Find("Boss Health Bar").GetComponent<BossHealthBar>();
-
-        Speed = 50;
 
         if (gameObject.name.Contains("SpecialAttack"))
         {
