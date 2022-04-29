@@ -8,6 +8,7 @@ public class Skill_WindHole : MonoBehaviour
     [SerializeField] float ActiveTime = 1f;
 
     PlayerState playerState;
+    Move playerMove;
 
     void Start()
     {
@@ -37,6 +38,9 @@ public class Skill_WindHole : MonoBehaviour
             {
                 playerState = other.GetComponent<PlayerState>();
                 playerState.hp_decrease();
+                //While isKnockUp is true,Player will start getting knockup
+                playerMove = other.GetComponent<Move>();
+                playerMove.isKnockUp = true;
                 //Debug.Log(other.gameObject.name);
             }
         }
