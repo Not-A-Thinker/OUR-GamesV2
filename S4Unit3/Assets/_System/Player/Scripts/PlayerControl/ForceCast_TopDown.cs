@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ForceCast_TopDown : MonoBehaviour
 {
-    [Header("Component")]
+    [Header("Player Component")]
     public GameObject objectParent;
     Move move;
     public GameObject rangeObj;
@@ -13,15 +13,21 @@ public class ForceCast_TopDown : MonoBehaviour
     public bool IsDead;
     UIcontrol UIcontrol;
     [SerializeField] GameObject Charitor;
+
     [Header("P1 Push State")]
     public float _force = 500f;
     public float _range = 20f;
     public bool isfriendPushed, Charge, isShooted,isAim ;//控制器觸發用的
     public bool friendPushed, ShootInCD;//檢查用
     [SerializeField] bool IsCargeEffectPlay;
-
     public bool _attackTrigger = false;
     Quaternion OldQuate;
+
+    [Header("P1 RangeColor State")]
+    Renderer rangeHeadRenderer;
+    Renderer rangeRenderer;
+    Color OldRangeObjColor;
+    public Color NewRangeObjColor;
 
     [Header("P1 Carge State")]
     [SerializeField] float countFloat = 0;
@@ -42,6 +48,9 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         move = GetComponent<Move>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
+        rangeRenderer = rangeObj.GetComponent<Renderer>();
+        OldRangeObjColor = rangeRenderer.material.color;
+        rangeHeadRenderer = rangeObj.GetComponentInChildren<Renderer>();
     }
     /// <summary>
     /// 記得如果要用new input要在設定一次新按鈕
@@ -120,7 +129,31 @@ public class ForceCast_TopDown : MonoBehaviour
         }    
         //Attack Without Aim
     }
-  
+
+    private void FixedUpdate()
+    {
+        //rangeObj Color Change
+        if (rangeObj.activeInHierarchy)
+        {
+            Vector3 startPos = RangeBigObj.transform.position;
+            Vector3 endPos = RangeBigObj.transform.up;
+            RaycastHit Hit;
+            if (Physics.Raycast(startPos, endPos, out Hit, _range))
+            {
+                if (Hit.transform.tag == "Boss")
+                {
+                    rangeHeadRenderer.material.color = NewRangeObjColor;
+                    rangeRenderer.material.color = NewRangeObjColor;
+                }       
+                else
+                {
+                    rangeRenderer.material.color = OldRangeObjColor;
+                    rangeHeadRenderer.material.color = OldRangeObjColor;
+                }
+                    
+            }
+        }
+    }
     private void AttackWithAim()
     {
         if (Input.GetButtonDown("AimP1"))

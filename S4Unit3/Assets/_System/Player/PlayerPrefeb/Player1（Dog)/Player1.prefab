@@ -261,7 +261,7 @@ MonoBehaviour:
   IsDead: 0
   Charitor: {fileID: 5381467380246077115}
   _force: 400
-  _range: 20
+  _range: 23
   isfriendPushed: 0
   Charge: 0
   isShooted: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   ShootInCD: 0
   IsCargeEffectPlay: 0
   _attackTrigger: 0
+  NewRangeObjColor: {r: 0, g: 1, b: 0, a: 1}
   countFloat: 0
   CountMax: 2
   Timer: 1.5

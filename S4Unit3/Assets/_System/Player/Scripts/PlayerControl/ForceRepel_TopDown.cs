@@ -12,18 +12,20 @@ public class ForceRepel_TopDown : MonoBehaviour
     float _OldForce = 5f;
     public float _range = 15f;
 
+
+    [Header("P2 RangeColor State")]
+    Renderer rangeHeadRenderer;
+    Renderer rangeRenderer;
+    Color OldRangeObjColor;
+    public Color NewRangeObjColor;
+
     [Header("Suck OBJ")]
     [SerializeField] GameObject savedObject;
-    //[SerializeField] GameObject S_Tonado;
-    //public GameObject CubeCount;
-    //int CubeConter=0;
     [SerializeField] GameObject Range;
     [SerializeField] GameObject clipParent;
     [SerializeField] Move move;
     [SerializeField] GameObject Mother;
-    //[SerializeField] private Renderer Renderer;
     [SerializeField] ParticleSystem _Suck_Effect;
-    //[SerializeField] private AnimationCurve curve;
     UIcontrol uIcontrol;
     bool IsAiming;
     public bool IsDead;
@@ -54,6 +56,9 @@ public class ForceRepel_TopDown : MonoBehaviour
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         _OldForce = _force;
+        rangeRenderer = Range.GetComponent<Renderer>();
+        rangeHeadRenderer = Range.GetComponentInChildren<Renderer>();
+        OldRangeObjColor = rangeRenderer.material.color;
     }
 
     void Update()
@@ -249,33 +254,22 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (hit.transform.gameObject.layer == 6 &&  SuckCount <= 3 && (int)SuckCount > 0 && !SuckInCD)
             {
                 //Debug.Log(hit.transform.tag);
-               
                 if (hit.transform.tag != "Boss" && hit.transform.tag != "Player"&& hit.transform.tag != "DummyBoss")
                 {
-                    //if (hit.transform.name.Contains("Tornado SForm"))
-                    //{
-                    //    if (_Suck_Effect != null)
-                    //        _Suck_Effect.Play();
-                    //    soundEffect.OnAttackPlay();
-                    //    //Renderer.material.color = Color.green;
-                    //    hit.transform.GetComponent<Skill_TornadoAttack_SForm>().CanMove = false;
-                    //    S_Tonado = hit.transform.gameObject;
-                    //}
-                    //else
-                    //{
-                        if (_Suck_Effect != null)
-                            _Suck_Effect.Play();
-                        //soundEffect.OnAttackPlay();
-                        //Renderer.material.color = Color.green;
-                        savedObject = hit.transform.gameObject;
+                    if (_Suck_Effect != null)
+                        _Suck_Effect.Play();
+                    savedObject = hit.transform.gameObject;
+                    rangeHeadRenderer.material.color = NewRangeObjColor;
+                    rangeRenderer.material.color = NewRangeObjColor;
                     //}
                 }
                 //rb.useGravity = !rb.useGravity;       
                else if (hit.transform.tag == "Boss"|| hit.transform.tag == "DummyBoss")
                 {
                     if (_Suck_Effect != null)
-                        _Suck_Effect.Play();               
-
+                        _Suck_Effect.Play();
+                    rangeHeadRenderer.material.color = NewRangeObjColor;
+                    rangeRenderer.material.color = NewRangeObjColor;                        
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
@@ -302,18 +296,17 @@ public class ForceRepel_TopDown : MonoBehaviour
                         }                      
                     }                    
                 }
-                else if (hit.transform.tag == "Objcet")
-                {
-                    //Renderer.material.color = Color.green;
-                }
-                //    hit.transform.rotation = new Quaternion(0, 0, 0, 0);
-                //    hit.transform.position = Vector3.MoveTowards(hit.transform.position, transform.position, curve.Evaluate(0.15f));                
-
                 else
                 {
                     //Renderer.material.color = Color.white;
                 }
             }
+            else //如果沒打中或者現在不能吸
+            {
+                rangeRenderer.material.color = OldRangeObjColor;
+                rangeHeadRenderer.material.color = OldRangeObjColor;
+            }
+
             if (SuckCount <= 0)
             {
                 onSucking = false;
