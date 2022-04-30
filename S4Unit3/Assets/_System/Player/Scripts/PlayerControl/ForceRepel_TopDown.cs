@@ -267,12 +267,12 @@ public class ForceRepel_TopDown : MonoBehaviour
                else if (hit.transform.tag == "Boss"|| hit.transform.tag == "DummyBoss")
                 {
                     if (_Suck_Effect != null)
-                        _Suck_Effect.Play();
-                    rangeHeadRenderer.material.color = NewRangeObjColor;
-                    rangeRenderer.material.color = NewRangeObjColor;                        
+                        _Suck_Effect.Play();                                   
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
+                        rangeHeadRenderer.material.color = NewRangeObjColor;
+                        rangeRenderer.material.color = NewRangeObjColor;
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);
@@ -289,16 +289,14 @@ public class ForceRepel_TopDown : MonoBehaviour
                     }
                     else
                     {
-                        if(!TextSpawning)
+                        rangeRenderer.material.color = OldRangeObjColor;
+                        rangeHeadRenderer.material.color = OldRangeObjColor;
+                        if (!TextSpawning)
                         {
                             uIcontrol.flyText(2, Color.red, "Full!!!!");
                             TextSpawning = true;
                         }                      
                     }                    
-                }
-                else
-                {
-                    //Renderer.material.color = Color.white;
                 }
             }
             else //如果沒打中或者現在不能吸
