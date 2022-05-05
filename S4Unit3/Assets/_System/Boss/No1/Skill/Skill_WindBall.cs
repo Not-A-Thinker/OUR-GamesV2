@@ -50,7 +50,7 @@ public class Skill_WindBall : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Destroy(hitPointObj);
+        //Destroy(hitPointObj);
     }
 
     private Vector3 collsion = Vector3.zero;
