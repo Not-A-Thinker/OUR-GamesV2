@@ -24,10 +24,10 @@ public class ForceCast_TopDown : MonoBehaviour
     Quaternion OldQuate;
 
     [Header("P1 RangeColor State")]
+    public Color NewRangeObjColor;
     Renderer rangeHeadRenderer;
     Renderer rangeRenderer;
-    Color OldRangeObjColor;
-    public Color NewRangeObjColor;
+    Color OldRangeObjColor;  
 
     [Header("P1 Carge State")]
     [SerializeField] float countFloat = 0;

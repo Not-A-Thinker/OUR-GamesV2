@@ -14,11 +14,11 @@ public class ForceRepel_TopDown : MonoBehaviour
 
 
     [Header("P2 RangeColor State")]
+    public Color NewRangeObjColor;
     Renderer rangeHeadRenderer;
     Renderer rangeRenderer;
     Color OldRangeObjColor;
-    public Color NewRangeObjColor;
-
+ 
     [Header("Suck OBJ")]
     [SerializeField] GameObject savedObject;
     [SerializeField] GameObject Range;
@@ -44,9 +44,8 @@ public class ForceRepel_TopDown : MonoBehaviour
     public float SuckCount;
     int SuckTotal;
     public float _SpeedSlow;
-    bool onSucking;
+    public bool onSucking;
    
-
     public bool isAttackWithAim;
     //clip
 

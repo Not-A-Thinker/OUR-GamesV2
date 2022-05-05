@@ -15,8 +15,6 @@ public class Move : MonoBehaviour
     private float oldTempSpeed;//記錄變更前速度
     private float tempSpeed; //記錄用最大速度
 
-
-
     [SerializeField] private float rotationSpeed;
 
     [SerializeField] CharacterController characterController;
@@ -41,6 +39,7 @@ public class Move : MonoBehaviour
     public bool isDashed;
     public bool isKnockUp;
     public bool isDashClose;
+    public bool isMove;
 
     public bool inCC = false;
     public bool autoLockBoss = true;
@@ -99,7 +98,7 @@ public class Move : MonoBehaviour
     }
 
     void Update()
-    {          
+    {             
         if(isKnockUp)
         {
             if (!inCC)
@@ -162,13 +161,13 @@ public class Move : MonoBehaviour
                     Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
                     if (!isShoot)
                         Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-                    _animation.PlayerWalk(true);
+                    isMove = true;
                     PlayerSoundEffect.PlaySound("Dog_Move");
                 }
 
                 if (movementDirection == Vector3.zero)
                 {
-                    _animation.PlayerWalk(false);
+                    isMove = false;
                     PlayerSoundEffect.PlaySound("Dog_StopMove");
                 }
 
@@ -223,13 +222,9 @@ public class Move : MonoBehaviour
                         Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
                 }
                 if (movementDirection != Vector3.zero)
-                {
-                    _animation.PlayerWalk(true);
-                }
+                    isMove = true;
                 if (movementDirection == Vector3.zero)
-                {
-                    _animation.PlayerWalk(false);
-                }
+                    isMove = false;
                 //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
                 //Debug.Log(angle);
 
@@ -289,6 +284,11 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isMove)
+        {
+            _animation.PlayerWalk(isMove);
+        }
+
         if (isPlayer1)
         {
             //Rotate Trash
