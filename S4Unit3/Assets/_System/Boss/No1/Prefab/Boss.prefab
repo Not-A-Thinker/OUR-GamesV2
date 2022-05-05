@@ -62889,7 +62889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHealthMerge: 1
-  _maxHealth: 500
+  _maxHealth: 600
   _currentHealth: 0
   _speed: 10
   _rotateSpeed: 10
@@ -62935,9 +62935,9 @@ MonoBehaviour:
   isMoveFinished: 0
   _aiEnable: 1
   aiStartTime: 1
-  aiReactTimeStage1: 1.3
-  aiReactTimeStage2: 1.8
-  aiReactTimeStandoMode: 2
+  aiReactTimeStage1: 1
+  aiReactTimeStage2: 1.3
+  aiReactTimeStandoMode: 1.6
   IsStage1: 1
   IsStage2: 0
   IsAfter33: 0
