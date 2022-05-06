@@ -11,6 +11,7 @@ public class ParticleCollision : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents=new List<ParticleCollisionEvent>();
 
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class ParticleCollision : MonoBehaviour
 
         while (i < numCollisionEvents)
         {
+
             if (rb)
             {
                 //Vector3 pos = collisionEvents[i].intersection;
