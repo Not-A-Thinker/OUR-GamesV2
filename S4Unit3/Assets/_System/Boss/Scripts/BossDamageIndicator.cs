@@ -7,6 +7,7 @@ using Cinemachine;
 public class BossDamageIndicator : MonoBehaviour
 {
     private CinemachineImpulseSource CIS;
+    private BossHitStop hitStop;
 
     public Material material;
     [SerializeField] Color colorTemp;
@@ -27,6 +28,7 @@ public class BossDamageIndicator : MonoBehaviour
     void Start()
     {
         CIS = GetComponent<CinemachineImpulseSource>();
+        hitStop = GetComponent<BossHitStop>();
 
         material.SetColor("_MainColor", new Color(1,1,1));
         colorTemp = material.GetColor("_MainColor");
@@ -41,6 +43,7 @@ public class BossDamageIndicator : MonoBehaviour
             CameraShake();
         }
 
+        //This is for making the color back to normal after get damage.
         if (colorTemp != colorNormal)
         {
             elapsedTime += Time.deltaTime;
@@ -59,6 +62,8 @@ public class BossDamageIndicator : MonoBehaviour
     {
         material.SetColor("_MainColor", colorDamage);
         colorTemp = material.GetColor("_MainColor");
+
+        hitStop.Stop(0.1f);
 
         elapsedTime = 0;
     }
