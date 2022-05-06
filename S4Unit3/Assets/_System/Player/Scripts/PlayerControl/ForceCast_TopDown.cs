@@ -263,13 +263,12 @@ public class ForceCast_TopDown : MonoBehaviour
         Timer = 0; 
         //設置方塊
          gameObject.GetComponent<P1GetCube>().PlayerSpawnCube(countFloat);  
-
-        ///重置狀態
-        isShooted = false;
+        ///重置狀態   
         Charge = false;
         DogCarge.gameObject.SetActive(false);
         CargeObj = null;
         StopCoroutine(CargeEffectPlay(0.6f));
+        isShooted = false;
     }
 
     ///蓄力

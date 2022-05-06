@@ -46,8 +46,7 @@ public class FakePlayerRespawn : MonoBehaviour
                 Debug.Log(RespawnCount);
             }
             if (Input.GetButton("HelpFriendP1") || Input.GetButton("HelpFriendP2") )
-            {
-                //soundEffect.OnRespawnPlay();                     
+            {                              
                 if (RespawnCount >= 15)
                 {
                     RespawnCount = 0;

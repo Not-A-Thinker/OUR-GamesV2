@@ -39,57 +39,55 @@ public class LearningLevelScripts : MonoBehaviour
             {
                 isRespawn = true;
             }
-        }
-
-        if (isP1Move == isP2Move && isP1Move ==true && isMove == false)
-        {
-            isMove = true;
-            _LarningTextAnim.SetBool("isMoveDone", true);
-            StartCoroutine(RotateCounter());
-        }  
-        if (isP1Dash == isP2Dash && isP1Dash == true && isDash == false)
-        {
-            isDash = true;
-            _LarningTextAnim.SetBool("isDashDone", true);
-            StartCoroutine(RotateCounter());
-        }          
-        if (isP1Attack == isP2Attack && isP1Attack == true && isAttack == false)
-        {
-            isAttack = true;
-            StartCoroutine(CDbar());
-        }          
-        if(isRespawn)
-        {
-            _LarningTextAnim.SetBool("isRespawnDone", true);
-            _Portal.SetActive(true);
-        }
-    }
-    private void FixedUpdate()
-    {
+        }     
+        //Player State Check
         if (P1Move.isMove == true)
             isP1Move = true;
         if (P2Move.isMove == true)
             isP2Move = true;
-
-        if(isMove)
+        if (isMove)
         {
             if (P1Move.isDashed == true)
                 isP1Dash = true;
             if (P2Move.isDashed == true)
                 isP2Dash = true;
-        }       
-
-        if(isDash)
+        }
+        if (isDash)
         {
             if (P1AttackState.isShooted == true)
                 isP1Attack = true;
             if (P2AttackState.onSucking == true)
                 isP2Attack = true;
         }
-        
-        if(isCD)
+        if (isCD)
         {
             SpawnRespawnObjcet();
+        }
+    }
+    private void LateUpdate()
+    {
+        //StageControl
+        if (isP1Move == isP2Move && isP1Move == true && isMove == false)
+        {
+            isMove = true;
+            _LarningTextAnim.SetBool("isMoveDone", true);
+            StartCoroutine(RotateCounter());
+        }
+        if (isP1Dash == isP2Dash && isP1Dash == true && isDash == false)
+        {
+            isDash = true;
+            _LarningTextAnim.SetBool("isDashDone", true);
+            StartCoroutine(RotateCounter());
+        }
+        if (isP1Attack == isP2Attack && isP1Attack == true && isAttack == false)
+        {
+            isAttack = true;
+            StartCoroutine(CDbar());
+        }
+        if (isRespawn)
+        {
+            _LarningTextAnim.SetBool("isRespawnDone", true);
+            _Portal.SetActive(true);
         }
     }
 
@@ -97,12 +95,10 @@ public class LearningLevelScripts : MonoBehaviour
     {
         isRespawn = true;
     }
-
     void SpawnRespawnObjcet()
     {
         RespawnFakeSheep.SetActive(true);
     }
-
     IEnumerator RotateCounter()
     {
         _LarningTextRotateAnim.SetBool("isChangeText", true);
@@ -113,7 +109,7 @@ public class LearningLevelScripts : MonoBehaviour
     {
         _LarningTextAnim.SetBool("isAttackDone", isMove);     
         StartCoroutine(RotateCounter());
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         _LarningTextAnim.SetBool("isCDDone", isMove);
         SpawnRespawnObjcet();
     }
