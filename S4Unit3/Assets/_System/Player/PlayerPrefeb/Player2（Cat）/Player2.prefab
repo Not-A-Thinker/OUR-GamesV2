@@ -119,6 +119,7 @@ MonoBehaviour:
   SuckInCD: 0
   SuckCount: 3
   _SpeedSlow: 0.5
+  onSucking: 0
   isAttackWithAim: 0
 --- !u!114 &18583013816442373
 MonoBehaviour:
@@ -776,8 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
-  soundEffect: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 317406783}
   isPlayer1: 0
   isPlayer2: 1
   Respawning: 0
@@ -903,7 +903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 16
+  maximumSpeed: 14
   rotationSpeed: 50
   characterController: {fileID: 1860544261278244877}
   _animation: {fileID: 317406783}
@@ -918,6 +918,7 @@ MonoBehaviour:
   isDashed: 0
   isKnockUp: 0
   isDashClose: 0
+  isMove: 0
   inCC: 0
   autoLockBoss: 1
   dashSpeed: 24

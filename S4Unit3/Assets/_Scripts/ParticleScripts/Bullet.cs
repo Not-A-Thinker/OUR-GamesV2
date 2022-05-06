@@ -92,10 +92,10 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag== "Boss" || other.gameObject== Traget || other.transform.gameObject.tag == "DummyBoss")
         {
-            print("trigger");
+            //print("trigger");
             if (!bossToSuck)// 2022 / 04 / 18
             {
-                print("trigger // !toBoss");
+                //print("trigger // !toBoss");
 
                 GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
                 if(particle_palm.gameObject!=null)

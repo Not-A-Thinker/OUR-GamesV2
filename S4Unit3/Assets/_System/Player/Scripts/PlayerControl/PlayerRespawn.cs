@@ -13,7 +13,7 @@ public class PlayerRespawn : MonoBehaviour
 
     [SerializeField] Move Move;
 
-    [SerializeField] PlayerSoundEffect soundEffect;
+     PlayerSoundEffect soundEffect;
     [SerializeField] PlayerAnimator animator;
     public bool isPlayer1;
     public bool isPlayer2;
@@ -25,6 +25,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         PlayerState = transform.parent.gameObject.GetComponent<PlayerState>();
+        soundEffect = GameObject.Find("SFXAudioManager").GetComponent<PlayerSoundEffect>();
     }
 
     private void Update()
