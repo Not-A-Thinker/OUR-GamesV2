@@ -1976,6 +1976,7 @@ GameObject:
   - component: {fileID: 316069065}
   - component: {fileID: 316069064}
   - component: {fileID: 316069063}
+  - component: {fileID: 316069067}
   m_Layer: 5
   m_Name: Pause
   m_TagString: Untagged
@@ -2058,6 +2059,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1016, y: 729}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &316069067
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316069062}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &318098146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334020982}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.03676047, y: 59.47948, z: -96.0186}
+  m_LocalPosition: {x: 0.036760293, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3707,7 +3720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608999907}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.03676047, y: 59.47948, z: -96.0186}
+  m_LocalPosition: {x: 0.036760293, y: 59.47948, z: -96.018585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

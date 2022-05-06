@@ -13,7 +13,7 @@ public class PlayerRespawn : MonoBehaviour
 
     [SerializeField] Move Move;
 
-     PlayerSoundEffect soundEffect;
+    PlayerSoundEffect soundEffect;
     [SerializeField] PlayerAnimator animator;
     public bool isPlayer1;
     public bool isPlayer2;
