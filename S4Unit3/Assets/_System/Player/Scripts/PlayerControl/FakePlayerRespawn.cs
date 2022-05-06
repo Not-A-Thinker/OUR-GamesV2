@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class FakePlayerRespawn : MonoBehaviour
 {
-    float RespawnCountRange = 0;
     int RespawnCount = 0;
     [SerializeField] LearningLevelScripts learningLevelScripts;
     [SerializeField] PlayerSoundEffect soundEffect;
     [SerializeField] GameObject HelpText, RespawnHeart;
+    Animator RespawnHeartAnim;
 
     bool PlayerIsClose;
     // Start is called before the first frame update
 
     // Update is called once per frame
+
+    private void Start()
+    {
+        RespawnHeartAnim = RespawnHeart.GetComponent<Animator>();
+    }
     void Update()
     {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.parent.transform.position);
@@ -41,13 +46,13 @@ public class FakePlayerRespawn : MonoBehaviour
             if (Input.GetButtonDown("HelpFriendP1") || Input.GetButtonDown("HelpFriendP2") )
             {
                 RespawnCount++;
-                RespawnCountRange = RespawnCount;
                 PlayerSoundEffect.PlaySound("Player_Respawn");
+                RespawnHeartAnim.SetInteger("ClickedCount", RespawnCount);
                 Debug.Log(RespawnCount);
             }
             if (Input.GetButton("HelpFriendP1") || Input.GetButton("HelpFriendP2") )
             {                              
-                if (RespawnCount >= 15)
+                if (RespawnCount >= 10)
                 {
                     RespawnCount = 0;
                     learningLevelScripts.isRespawnDone();

@@ -28,10 +28,7 @@ public class UIcontrol : MonoBehaviour
     public bool PlayerIsClose;
     //[SerializeField] Text DeadCount;
 
-    [Header("Push Bar")]
-    //[SerializeField] GameObject pushing;
-    //[SerializeField] Slider push_slider;
-    
+    [Header("Push Bar")]  
     [SerializeField] GameObject pushingCD;
     [SerializeField] Slider pushCD_slider;
 
