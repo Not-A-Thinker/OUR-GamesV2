@@ -17,6 +17,7 @@ public class FakePlayerRespawn : MonoBehaviour
 
     private void Start()
     {
+        RespawnCount = 0;
         RespawnHeartAnim = RespawnHeart.GetComponent<Animator>();
     }
     void Update()
@@ -37,7 +38,7 @@ public class FakePlayerRespawn : MonoBehaviour
             HelpText.transform.position = pos;
         }
     }
-    private void OnTriggerEnter(Collider obj)
+    private void OnTriggerStay(Collider obj)
     {
         if (obj.tag == "Player")
         {
@@ -47,15 +48,17 @@ public class FakePlayerRespawn : MonoBehaviour
             {
                 RespawnCount++;
                 PlayerSoundEffect.PlaySound("Player_Respawn");
-                RespawnHeartAnim.SetInteger("ClickedCount", RespawnCount);
-                Debug.Log(RespawnCount);
+                int newRespawnCount = RespawnCount / 2;
+                RespawnHeartAnim.SetInteger("ClickedCount", newRespawnCount);
             }
             if (Input.GetButton("HelpFriendP1") || Input.GetButton("HelpFriendP2") )
             {                              
-                if (RespawnCount >= 10)
-                {
-                    RespawnCount = 0;
+                if (RespawnCount >= 15)
+                {                 
                     learningLevelScripts.isRespawnDone();
+                    RespawnCount = 0;
+                    HelpText.SetActive(false);
+                    RespawnHeart.SetActive(false);
                     return;
                 }
             }

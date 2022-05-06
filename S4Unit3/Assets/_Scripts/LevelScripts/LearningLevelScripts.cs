@@ -84,16 +84,15 @@ public class LearningLevelScripts : MonoBehaviour
             isAttack = true;
             StartCoroutine(CDbar());
         }
-        if (isRespawn)
-        {
-            _LarningTextAnim.SetBool("isRespawnDone", true);
-            _Portal.SetActive(true);
-        }
     }
 
     public void isRespawnDone()
     {
         isRespawn = true;
+        RespawnFakeSheep.SetActive(false);
+        _LarningTextAnim.SetBool("isRespawnDone", true);
+        _Portal.SetActive(true);
+        Debug.Log("Respawned!");
     }
     void SpawnRespawnObjcet()
     {
