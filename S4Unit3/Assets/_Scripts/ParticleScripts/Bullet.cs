@@ -105,6 +105,10 @@ public class Bullet : MonoBehaviour
             Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         }
+        if(other.gameObject.tag=="")
+        {
+
+        }
 
         //Destroy(gameObject);
 
