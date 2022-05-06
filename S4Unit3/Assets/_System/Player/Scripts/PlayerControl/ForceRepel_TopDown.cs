@@ -13,11 +13,11 @@ public class ForceRepel_TopDown : MonoBehaviour
     public float _range = 15f;
 
 
-    [Header("P2 RangeColor State")]
-    public Color NewRangeObjColor;
-    Renderer rangeHeadRenderer;
-    Renderer rangeRenderer;
-    Color OldRangeObjColor;
+    //[Header("P2 RangeColor State")]
+    //public Color NewRangeObjColor;
+    //Renderer rangeHeadRenderer;
+    //Renderer rangeRenderer;
+    //Color OldRangeObjColor;
  
     [Header("Suck OBJ")]
     [SerializeField] GameObject savedObject;
@@ -55,9 +55,9 @@ public class ForceRepel_TopDown : MonoBehaviour
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         _OldForce = _force;
-        rangeRenderer = Range.GetComponent<Renderer>();
-        rangeHeadRenderer = Range.GetComponentInChildren<Renderer>();
-        OldRangeObjColor = rangeRenderer.material.color;
+        //rangeRenderer = Range.GetComponent<Renderer>();
+        //rangeHeadRenderer = Range.GetComponentInChildren<Renderer>();
+        //OldRangeObjColor = rangeRenderer.material.color;
     }
 
     void Update()
@@ -258,8 +258,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                     if (_Suck_Effect != null)
                         _Suck_Effect.Play();
                     savedObject = hit.transform.gameObject;
-                    rangeHeadRenderer.material.color = NewRangeObjColor;
-                    rangeRenderer.material.color = NewRangeObjColor;
+                    //rangeHeadRenderer.material.color = NewRangeObjColor;
+                    //rangeRenderer.material.color = NewRangeObjColor;
                     //}
                 }
                 //rb.useGravity = !rb.useGravity;       
@@ -270,8 +270,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                     //Renderer.material.color = Color.green;
                     if (BossSpwO.SpawnedCount < BossSpwO.SpawnendMax)
                     {
-                        rangeHeadRenderer.material.color = NewRangeObjColor;
-                        rangeRenderer.material.color = NewRangeObjColor;
+                        //rangeHeadRenderer.material.color = NewRangeObjColor;
+                        //rangeRenderer.material.color = NewRangeObjColor;
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                         //Debug.Log(hitpoint);
                         BossSpwO.ObjectSpawn(hit.point, spawnRotation);
@@ -288,8 +288,8 @@ public class ForceRepel_TopDown : MonoBehaviour
                     }
                     else
                     {
-                        rangeRenderer.material.color = OldRangeObjColor;
-                        rangeHeadRenderer.material.color = OldRangeObjColor;
+                        //rangeRenderer.material.color = OldRangeObjColor;
+                        //rangeHeadRenderer.material.color = OldRangeObjColor;
                         if (!TextSpawning)
                         {
                             uIcontrol.flyText(2, Color.red, "Full!!!!");
@@ -300,8 +300,8 @@ public class ForceRepel_TopDown : MonoBehaviour
             }
             else //如果沒打中或者現在不能吸
             {
-                rangeRenderer.material.color = OldRangeObjColor;
-                rangeHeadRenderer.material.color = OldRangeObjColor;
+                //rangeRenderer.material.color = OldRangeObjColor;
+                //rangeHeadRenderer.material.color = OldRangeObjColor;
             }
 
             if (SuckCount <= 0)

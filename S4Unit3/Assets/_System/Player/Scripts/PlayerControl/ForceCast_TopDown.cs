@@ -23,11 +23,11 @@ public class ForceCast_TopDown : MonoBehaviour
     public bool _attackTrigger = false;
     Quaternion OldQuate;
 
-    [Header("P1 RangeColor State")]
-    public Color NewRangeObjColor;
-    Renderer rangeHeadRenderer;
-    Renderer rangeRenderer;
-    Color OldRangeObjColor;  
+    //[Header("P1 RangeColor State")]
+    //public Color NewRangeObjColor;
+    //Renderer rangeHeadRenderer;
+    //Renderer rangeRenderer;
+    //Color OldRangeObjColor;  
 
     [Header("P1 Carge State")]
     [SerializeField] float countFloat = 0;
@@ -48,9 +48,9 @@ public class ForceCast_TopDown : MonoBehaviour
     {
         move = GetComponent<Move>();
         UIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
-        rangeRenderer = rangeObj.GetComponent<Renderer>();
-        OldRangeObjColor = rangeRenderer.material.color;
-        rangeHeadRenderer = rangeObj.GetComponentInChildren<Renderer>();
+        //rangeRenderer = rangeObj.GetComponent<Renderer>();
+        //OldRangeObjColor = rangeRenderer.material.color;
+        //rangeHeadRenderer = rangeObj.GetComponentInChildren<Renderer>();
     }
     /// <summary>
     /// 記得如果要用new input要在設定一次新按鈕
@@ -130,30 +130,30 @@ public class ForceCast_TopDown : MonoBehaviour
         //Attack Without Aim
     }
 
-    private void FixedUpdate()
-    {
-        //rangeObj Color Change
-        if (rangeObj.activeInHierarchy)
-        {
-            Vector3 startPos = RangeBigObj.transform.position;
-            Vector3 endPos = RangeBigObj.transform.up;
-            RaycastHit Hit;
-            if (Physics.Raycast(startPos, endPos, out Hit, _range))
-            {
-                if (Hit.transform.tag == "Boss")
-                {
-                    rangeHeadRenderer.material.color = NewRangeObjColor;
-                    rangeRenderer.material.color = NewRangeObjColor;
-                }       
-                else
-                {
-                    rangeRenderer.material.color = OldRangeObjColor;
-                    rangeHeadRenderer.material.color = OldRangeObjColor;
-                }
+    //private void FixedUpdate()
+    //{
+    //    //rangeObj Color Change
+    //    if (rangeObj.activeInHierarchy)
+    //    {
+    //        Vector3 startPos = RangeBigObj.transform.position;
+    //        Vector3 endPos = RangeBigObj.transform.up;
+    //        RaycastHit Hit;
+    //        if (Physics.Raycast(startPos, endPos, out Hit, _range))
+    //        {
+    //            if (Hit.transform.tag == "Boss")
+    //            {
+    //                rangeHeadRenderer.material.color = NewRangeObjColor;
+    //                rangeRenderer.material.color = NewRangeObjColor;
+    //            }       
+    //            else
+    //            {
+    //                rangeRenderer.material.color = OldRangeObjColor;
+    //                rangeHeadRenderer.material.color = OldRangeObjColor;
+    //            }
                     
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
     private void AttackWithAim()
     {
         if (Input.GetButtonDown("AimP1"))
