@@ -114,7 +114,7 @@ MonoBehaviour:
   UIcontrol: {fileID: 0}
   Move: {fileID: 500052818044258939}
   soundEffect: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 628926013}
   isPlayer1: 1
   isPlayer2: 0
   Respawning: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   isDashed: 0
   isKnockUp: 0
   isDashClose: 0
+  isMove: 0
   inCC: 0
   autoLockBoss: 1
   dashSpeed: 24
