@@ -250,7 +250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
   Move: {fileID: 1860544261278244878}
-  soundEffect: {fileID: 0}
   animator: {fileID: 317406783}
   isPlayer1: 0
   isPlayer2: 1
@@ -376,7 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
-  maximumSpeed: 16
+  maximumSpeed: 14
   rotationSpeed: 50
   characterController: {fileID: 1860544261278244877}
   _animation: {fileID: 317406783}
