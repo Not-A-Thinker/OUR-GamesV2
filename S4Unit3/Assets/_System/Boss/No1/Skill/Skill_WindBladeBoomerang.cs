@@ -27,6 +27,8 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) { Destroy(gameObject, 0.3f);}
+
         transform.Rotate(new Vector3(0, 1, 0) * -1 * rotateSpeed * Time.deltaTime);
 
 

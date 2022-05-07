@@ -24,14 +24,14 @@ public class BossSkillDemo : MonoBehaviour
     public GameObject outerWindBlade;
     public GameObject[] outerWindBladePoint;
     public GameObject outerWindBladeGenerateVfx;
-    public GameObject vacuumArea;
-    public GameObject bubbleAttack;
+    public GameObject vacuumArea; //no use 
+    public GameObject bubbleAttack; //no use
     public GameObject tornadoLinear;
     public GameObject tornadoSForm;
     public GameObject tornadoSmall;
     public GameObject TornadoBigOne;
     public GameObject windBladeBoomerang;
-    public GameObject tornadoSpecialAttack;
+    public GameObject tornadoSpecialAttack; //no use
     public GameObject mistObj;
     public GameObject windBall;
 

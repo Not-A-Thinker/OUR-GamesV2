@@ -18,6 +18,7 @@ public class Skill_WindHole : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene) { Destroy(gameObject, 0.5f);}
         Destroy(gameObject, secondToDie);
     }
 
