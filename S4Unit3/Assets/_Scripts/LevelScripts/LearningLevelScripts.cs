@@ -37,7 +37,7 @@ public class LearningLevelScripts : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isRespawn = true;
+                isRespawnDone();
             }
         }     
         //Player State Check
