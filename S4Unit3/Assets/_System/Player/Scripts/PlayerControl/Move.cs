@@ -284,10 +284,7 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isMove)
-        {
-            _animation.PlayerWalk(isMove);
-        }
+         _animation.PlayerWalk(isMove);
 
         if (isPlayer1)
         {
