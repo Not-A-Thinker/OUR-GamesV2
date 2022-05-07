@@ -15220,67 +15220,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1001 &1058906954
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 213671919}
-    m_Modifications:
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3624211712593255502, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4041483261831969065, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: AimLine
-      value: 
-      objectReference: {fileID: 1860544260629513289}
-    - target: {fileID: 7553759799481894542, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
-      propertyPath: m_Name
-      value: Particle_CatSuck_InBoss
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a62f6ee3a951dc54d9bff0907ab95484, type: 3}
 --- !u!1 &1066739286
 GameObject:
   m_ObjectHideFlags: 0
@@ -17789,6 +17728,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 4041483262329494256, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
+      propertyPath: AimLine
+      value: 
+      objectReference: {fileID: 1860544260629513289}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c56b6a85c348744789602e23b7f1ac8, type: 3}
 --- !u!4 &1558560916 stripped
