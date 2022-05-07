@@ -67,6 +67,8 @@ public class Skill_TornadoBigOne : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) { Destroy(gameObject, 0.5f); }
+
         //This is for detect who to chase for.
         if (playerSelect == 1)
         {
