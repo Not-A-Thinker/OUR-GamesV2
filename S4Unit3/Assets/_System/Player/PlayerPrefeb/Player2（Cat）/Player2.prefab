@@ -107,7 +107,6 @@ MonoBehaviour:
   ChaRot: {fileID: 6214820614071332330}
   _force: 20
   _range: 23
-  NewRangeObjColor: {r: 0.3443396, g: 1, b: 0.3443396, a: 1}
   savedObject: {fileID: 0}
   Range: {fileID: 2623803787403837290}
   clipParent: {fileID: 749153411712952852}
@@ -1829,7 +1828,7 @@ GameObject:
   - component: {fileID: 7236998354512998416}
   - component: {fileID: 3335113051214522903}
   m_Layer: 13
-  m_Name: Particle System
+  m_Name: Particle_PlayerGetCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
