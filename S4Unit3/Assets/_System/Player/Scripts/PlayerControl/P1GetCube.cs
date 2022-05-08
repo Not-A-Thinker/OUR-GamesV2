@@ -196,8 +196,10 @@ public class P1GetCube : MonoBehaviour
             GameObject cube;
             if (GetComponent<ForceCast_TopDown>().CargeObj != null)
                 cube = GetComponent<ForceCast_TopDown>().CargeObj;
-            else
+            else if (objectParent.transform.GetChild(0) != null)
                 cube = objectParent.transform.GetChild(0).gameObject;
+            else
+                break;
             PlayerSetCube(parentMax, force, cube);
             yield return new WaitForSeconds(0.3f);
         }     
