@@ -144,6 +144,7 @@ public class GetTriggerObject : MonoBehaviour
         }
         ///¥Í¦¨¯S®í§ðÀ»
         GameObject NewSpcAtk = Instantiate(SpcAttack);
+        NewSpcAtk.GetComponent<ObjectDestroy>().isSucked = true;
         getCube.PlayerGetCube(NewSpcAtk);
     }
 }

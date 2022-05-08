@@ -7,6 +7,8 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     [SerializeField] float returnSpeed = 12f;
 
     [SerializeField] float rotateSpeed = 3;
+    [SerializeField] float beforeReturnRotateSpeed = 3;
+    float tempRotateSpeed;
 
     PlayerState playerState;
     BossCameraControl cameraControl;
@@ -22,11 +24,15 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     {
         orgPos = transform.position;
         cameraControl = GameObject.Find("TargetGroup1").GetComponent<BossCameraControl>();
+
+        tempRotateSpeed = rotateSpeed;
     }
 
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) { Destroy(gameObject, 0.3f);}
+
         transform.Rotate(new Vector3(0, 1, 0) * -1 * rotateSpeed * Time.deltaTime);
 
 
@@ -75,7 +81,10 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     IEnumerator WaitingTimer()
     {
         b_Enabled = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
+        rotateSpeed = beforeReturnRotateSpeed;
+        yield return new WaitForSeconds(.5f);
+        rotateSpeed = tempRotateSpeed;
         yield return b_ShouldReturn = true;
     }
     private void OnDestroy()

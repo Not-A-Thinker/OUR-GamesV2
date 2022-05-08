@@ -48,7 +48,7 @@ public class PlayerAnimator : MonoBehaviour
         PlayerAn.SetTrigger("Respawn");
     }
     public IEnumerator PlayerDamaged()
-    {
+    {       
         CCIS.enabled = false;
         PlayerAn.SetBool("Dammagerd", true);
 

@@ -14,6 +14,11 @@ public class Skill_WindBall : MonoBehaviour
         //rb = GetComponent<Rigidbody>();
     }
 
+    void Update()
+    {
+        if (Level1GameData.b_isBossDeathCutScene) { Destroy(gameObject); }
+    }
+
     void FixedUpdate()
     {
 

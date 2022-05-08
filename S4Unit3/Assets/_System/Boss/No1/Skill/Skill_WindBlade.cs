@@ -11,6 +11,8 @@ public class Skill_WindBlade : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene) { Destroy(gameObject, 0.5f); }
+
         transform.position +=  transform.forward * speed * Time.deltaTime;
         Destroy(gameObject, secondToDie);
     }

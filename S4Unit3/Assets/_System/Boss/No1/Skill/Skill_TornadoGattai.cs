@@ -59,6 +59,8 @@ public class Skill_TornadoGattai : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) { Destroy(gameObject, 0.5f); }
+
         if (!b_ISLocked)
         {
             if (playerSelect == 1)

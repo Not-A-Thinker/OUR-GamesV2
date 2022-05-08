@@ -176,9 +176,9 @@ public class BossAI_Wind : MonoBehaviour
             //Test2();
         }
 
-        if (isStando && Level1GameData.b_isCutScene) { Destroy(gameObject, .5f);}
+        if (isStando && Level1GameData.b_isBossDeathCutScene) { Destroy(gameObject, .5f);}
         if (isStando){ Destroy(gameObject, 20);}
-        if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f); }
+        if (isStando && healthBar.health <= 0 && basicState.isHealthMerge) { Destroy(gameObject, .5f);}
 
         if (isStando && basicState._currentHealth <= 0)
         {
@@ -191,6 +191,7 @@ public class BossAI_Wind : MonoBehaviour
         if (healthBar.health <= 0 && basicState.isHealthMerge && !isDead)
         {
             Level1GameData.b_isCutScene = true;
+            Level1GameData.b_isBossDeathCutScene = true;
 
             isDead = true;
             isMoveFinished = true;

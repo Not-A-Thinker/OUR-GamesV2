@@ -8,6 +8,8 @@ public class Level1GameData : MonoBehaviour
 {
     //用於控制Boss過場時玩家不會吃到傷害,以及清除場上其他應該消失的物件
     static public bool b_isCutScene = false;
+    //用於控制Boss死亡動畫過場時玩家不會吃到傷害,以及清除場上其他應該消失的物件
+    static public bool b_isBossDeathCutScene = false;
     //檢查Boss是否死掉了
     static public bool b_isBoss1Defeated = false;
 
@@ -24,6 +26,7 @@ public class Level1GameData : MonoBehaviour
     {
         b_isCutScene = false;
         b_isBoss1Defeated = false;
+        b_isBossDeathCutScene = false;
 
         f_timerS = 0f;
         f_timerM = 0f;
@@ -37,6 +40,7 @@ public class Level1GameData : MonoBehaviour
     static public void ResetData()
     {
         b_isCutScene = false;
+        b_isBossDeathCutScene = false;
         b_isBoss1Defeated = false;
     }
 

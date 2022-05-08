@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -4238192290571343564}
   - component: {fileID: 3388308997203518133}
   - component: {fileID: 4394739062317035498}
+
   m_Layer: 6
   m_Name: SpecialAttack
   m_TagString: Object
@@ -110,13 +111,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6023778763630715703}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 20
+  m_Drag: 10
+  m_AngularDrag: 10
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &3388308997203518133
 MonoBehaviour:
@@ -138,7 +139,8 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
   hitParticle: {fileID: 386241461176020601, guid: 2bf6f427ce3e63f439523c95361c64f4, type: 3}
   CollisionParticle: {fileID: 7069681098808393521, guid: 355c06310d99f394893e21850e701f4f, type: 3}
---- !u!114 &4394739062317035498
+
+--- !u!114 &3142183007884342240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,12 +149,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6023778763630715703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d20f831f5846aed448912c1989d3e973, type: 3}
+  m_Script: {fileID: 11500000, guid: 7718c9059a5842c41b5551435ab8fc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetStr: Boss
-  anyTime: 1
+  isSucked: 0
+  DestroyTime: 10
 --- !u!1001 &268519968493718932
 PrefabInstance:
   m_ObjectHideFlags: 0

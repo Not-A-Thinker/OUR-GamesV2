@@ -206,6 +206,7 @@ public class ForceRepel_TopDown : MonoBehaviour
             if (!SuckInCD)
             {
                 Range.SetActive(true);
+                GetComponent<BoxCollider>().isTrigger = true;
                 Repel();
             }
         }
@@ -232,8 +233,7 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         OldQuate = ChaRot.transform.rotation;
         move.SpeedSlow(_SpeedSlow);
-        move.isDashClose = true;
-        GetComponent<BoxCollider>().isTrigger = true;
+        move.isDashClose = true;      
         //uIcontrol.SuckingCDBar(false);
     }
     public void Repel()
@@ -320,8 +320,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     public void SuckFriend()
     {
         ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
-
-        Range.SetActive(true);
 
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.forward;
