@@ -181,7 +181,10 @@ public class Skill_TornadoBigOne : MonoBehaviour
         cameraControl.ChangeTargetWeight(3, 2);
 
         bossSkill.tornadoGattaiIsExisted = false;
+        var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+
     }
+
 
     IEnumerator Timer()
     {

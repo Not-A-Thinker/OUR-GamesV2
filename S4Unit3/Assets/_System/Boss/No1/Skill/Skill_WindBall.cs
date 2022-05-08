@@ -50,7 +50,7 @@ public class Skill_WindBall : MonoBehaviour
     }
     private void OnDestroy()
     {
-        //Destroy(hitPointObj);
+       var odp =  Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
     }
 
     private Vector3 collsion = Vector3.zero;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8692612827942639294}
   - component: {fileID: -4238192290571343564}
   - component: {fileID: 3388308997203518133}
+  - component: {fileID: 4394739062317035498}
   m_Layer: 6
   m_Name: SpecialAttack
   m_TagString: Object
@@ -137,6 +138,21 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
   hitParticle: {fileID: 386241461176020601, guid: 2bf6f427ce3e63f439523c95361c64f4, type: 3}
   CollisionParticle: {fileID: 7069681098808393521, guid: 355c06310d99f394893e21850e701f4f, type: 3}
+--- !u!114 &4394739062317035498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023778763630715703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20f831f5846aed448912c1989d3e973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  targetStr: Boss
+  anyTime: 1
 --- !u!1001 &268519968493718932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,6 +167,18 @@ PrefabInstance:
     - target: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -217,8 +245,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.24313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.92921007
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -253,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetStr: Boss
+  anyTime: 0
 --- !u!4 &497029752151237614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 386241461176020602, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
@@ -344,7 +377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: playOnAwake
@@ -395,6 +428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 2
       objectReference: {fileID: 0}
@@ -419,8 +456,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.24313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.92921007
+      value: 0.92941177
       objectReference: {fileID: 0}
     - target: {fileID: 386241461176020603, guid: b875eab3faeaf9a4c808af2793a7adc0, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -493,3 +534,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetStr: Boss
+  anyTime: 0

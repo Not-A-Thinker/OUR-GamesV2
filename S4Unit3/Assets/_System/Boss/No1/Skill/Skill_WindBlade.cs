@@ -28,4 +28,9 @@ public class Skill_WindBlade : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+    }
 }

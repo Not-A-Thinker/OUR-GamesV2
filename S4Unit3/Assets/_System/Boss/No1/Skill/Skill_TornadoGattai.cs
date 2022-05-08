@@ -104,6 +104,8 @@ public class Skill_TornadoGattai : MonoBehaviour
     private void OnDestroy()
     {
         LastDetect();
+        var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+
     }
 
     private void OnTriggerEnter(Collider other)

@@ -44,5 +44,10 @@ public class Skill_TornadoAttack : MonoBehaviour
         }
 
     }
+    private void OnDestroy()
+    {
+        var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+
+    }
 
 }

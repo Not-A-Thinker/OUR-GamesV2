@@ -78,5 +78,9 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
         yield return new WaitForSeconds(2);
         yield return b_ShouldReturn = true;
     }
+    private void OnDestroy()
+    {
+        var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
 
+    }
 }
