@@ -27,16 +27,20 @@ public class BossSpawnObject : MonoBehaviour
 
     public void ObjectSpawn(Vector3 P2Pos,Quaternion SpawnQuat)
     {
-        lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
-        //Debug.Log(lastSpawned.gameObject.name);
-        bossHealth.TakeDamage(5);
-        SpawnedCount++;
-        //Debug.Log(P2Pos);
+        if(SpawnedCount< SpawnendMax)
+        {
+            lastSpawned = Instantiate(Object, P2Pos, SpawnQuat);
+            //Debug.Log(lastSpawned.gameObject.name);
+            bossHealth.TakeDamage(5);
+            SpawnedCount++;
+            //Debug.Log(P2Pos);
+        }
     }
 
     public void SpawnedCountDecrease()
     {
-        SpawnedCount--;
+        if(SpawnedCount>0)
+            SpawnedCount--;
         //Debug.Log("SpawnGone");
     }
 

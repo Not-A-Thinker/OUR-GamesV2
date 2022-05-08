@@ -134,7 +134,7 @@ public class Move : MonoBehaviour
             //Debug.Log(_DashNowFloat);                   
         }
 
-        if (inCC == false)
+        if (inCC == false && !Level1GameData.b_isBossDeathCutScene)
         {
             if (isPlayer1)
             {
