@@ -83,6 +83,11 @@ public class BossHealthBar : MonoBehaviour
                 _isChanged = false;
             }
         }
+
+        if (health == 0)
+        {
+            backSlider.value = 0;
+        }
     }
 
     public void TakeDamage(float value)//Should Improve
