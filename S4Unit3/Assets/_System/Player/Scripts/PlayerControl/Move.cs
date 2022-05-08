@@ -437,7 +437,7 @@ public class Move : MonoBehaviour
     //}
     public IEnumerator GetFriendlyControl(Vector3 velocity)
     {
-        if (isPlayer1)
+        if (isPlayer1 && playerState.isDead == false)
         {
             inCC = true;
             velocity.y = 0;
@@ -457,10 +457,9 @@ public class Move : MonoBehaviour
 
                 inCC = false;
             }
-            //yield return new WaitForSeconds(10);
         }
 
-        if (isPlayer2)
+        if (isPlayer2 && playerState.isDead == false)
         {
             inCC = true;
             velocity.y = 0;
@@ -479,7 +478,6 @@ public class Move : MonoBehaviour
                 yield return null;
                 inCC = false;
             }
-            //yield return new WaitForSeconds(10);
         }
     }
 

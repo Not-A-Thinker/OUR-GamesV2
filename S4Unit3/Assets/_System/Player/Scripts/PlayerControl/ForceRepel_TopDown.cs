@@ -321,8 +321,6 @@ public class ForceRepel_TopDown : MonoBehaviour
     {
         ChaRot.transform.rotation = Quaternion.Slerp(ChaRot.transform.rotation, transform.parent.transform.rotation, 15f * Time.deltaTime);
 
-        Range.SetActive(true);
-
         Vector3 startPos = transform.position;
         Vector3 endPos = transform.forward;
         //Debug.DrawRay(startPos, endPos);
