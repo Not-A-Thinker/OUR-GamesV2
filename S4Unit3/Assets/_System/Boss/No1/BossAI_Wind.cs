@@ -803,6 +803,8 @@ public class BossAI_Wind : MonoBehaviour
                     ///STA 龍龍彈珠台(現在為過埸動畫)
                     isMoveFinished = true;
                     isMeleeAttacking = true;
+
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
                     BossSkill.TornadoSpecialAttack();
 
                     yield return new WaitForSeconds(7.5f);
