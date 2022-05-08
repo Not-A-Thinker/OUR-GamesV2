@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 4553675}
   - component: {fileID: 4553674}
   - component: {fileID: 4553678}
+  - component: {fileID: 4553679}
   m_Layer: 5
   m_Name: GUI
   m_TagString: Untagged
@@ -268,6 +269,18 @@ MonoBehaviour:
   smoothing: 5
   Pause_UI: {fileID: 483758859}
   HelpText: {fileID: 1214313054}
+--- !u!225 &4553679
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4553673}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &11841643
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,7 +1010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.000000059604645, y: 74.42727, z: -71.472496}
+  m_LocalPosition: {x: 0.03068482, y: 74.87001, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8013,7 +8026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620949370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.58636373, y: 2.4027274, z: -16.087273}
+  m_LocalPosition: {x: 0, y: 2.4027274, z: -23.17818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14948,7 +14961,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.001
   far clip plane: 400
   field of view: 50
   orthographic: 0
@@ -14976,7 +14989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685507, y: 74.87001, z: -73.30847}
+  m_LocalPosition: {x: 0.03068482, y: 74.87001, z: -73.30848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16718,6 +16731,7 @@ GameObject:
   - component: {fileID: 1307868149}
   - component: {fileID: 1307868148}
   - component: {fileID: 1307868147}
+  - component: {fileID: 1307868150}
   m_Layer: 5
   m_Name: GUI-Boss
   m_TagString: Untagged
@@ -16807,6 +16821,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &1307868150
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307868145}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1319309538
 GameObject:
   m_ObjectHideFlags: 0
@@ -17554,6 +17580,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathScene: {fileID: 2027975263}
   Boss: {fileID: 1831824200}
+  UICanvasGroup:
+  - {fileID: 4553679}
+  - {fileID: 1600678433}
+  - {fileID: 1307868150}
 --- !u!1 &1430162429
 GameObject:
   m_ObjectHideFlags: 0
@@ -18552,6 +18582,7 @@ GameObject:
   - component: {fileID: 1600678432}
   - component: {fileID: 1600678431}
   - component: {fileID: 1600678430}
+  - component: {fileID: 1600678433}
   m_Layer: 0
   m_Name: GUI-Player
   m_TagString: Untagged
@@ -18642,6 +18673,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &1600678433
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600678428}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1611886342
 PrefabInstance:
   m_ObjectHideFlags: 0
