@@ -98,7 +98,7 @@ public class BossHealthBar : MonoBehaviour
         //    Debug.Log("No Damage!");
         //    return;
         //}
-        if (_animator)
+        if (_animator&&value>20)
             _animator.SetBool("IsDamaged", true);
 
         if (health - value <= 0 )

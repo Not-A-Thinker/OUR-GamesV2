@@ -113,7 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIcontrol: {fileID: 0}
   Move: {fileID: 500052818044258939}
-  soundEffect: {fileID: 0}
   animator: {fileID: 628926013}
   isPlayer1: 1
   isPlayer2: 0
@@ -271,7 +270,6 @@ MonoBehaviour:
   ShootInCD: 0
   IsCargeEffectPlay: 0
   _attackTrigger: 0
-  NewRangeObjColor: {r: 0, g: 1, b: 0, a: 1}
   countFloat: 0
   CountMax: 2
   Timer: 1.5
@@ -871,7 +869,7 @@ GameObject:
   - component: {fileID: 46150375902554730}
   - component: {fileID: 3175318478216603983}
   m_Layer: 13
-  m_Name: Particle System
+  m_Name: Particle_PlayerGetCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
