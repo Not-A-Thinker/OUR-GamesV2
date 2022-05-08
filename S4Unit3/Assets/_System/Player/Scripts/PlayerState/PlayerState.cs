@@ -26,6 +26,7 @@ public class PlayerState : MonoBehaviour
     private bool isMeleeHited = false;
 
     [Header("Player GetComponent")]
+    [SerializeField] GameObject ShootingComponent;
     CapsuleCollider _Collider;
     UIcontrol UIcontrol ;
     [SerializeField] GameObject Resurrect_range;
@@ -105,6 +106,11 @@ public class PlayerState : MonoBehaviour
                 ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
                 forceRepel_TopDown.enabled = true;
             }
+        }
+
+        if(Level1GameData.b_isBossDeathCutScene)
+        {
+            ShootingComponent.SetActive(false);
         }
         //isColliding = false;
 
