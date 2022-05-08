@@ -30,5 +30,6 @@ public class Level1TimeLine : MonoBehaviour
             Boss.transform.position = BossOrgPoint;
             DeathScene.SetActive(true);
         }
+        
     }
 }
