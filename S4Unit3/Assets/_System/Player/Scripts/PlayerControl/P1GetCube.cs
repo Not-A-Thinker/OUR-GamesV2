@@ -146,13 +146,8 @@ public class P1GetCube : MonoBehaviour
         //每個方塊射擊前都要設置一次         
         int caseNum = 0;
         //Debug.Log(parentMax);
-        cube.GetComponent<ObjectRotation>()._isInCount = false;
 
-        if (parentMax == 1)
-            move.SpeedReset();
-        else
-            move.CubeSpeedDown(parentMax, SpeedToSlowDown);
-        
+        cube.GetComponent<ObjectRotation>()._isInCount = false;
 
         if (force >= 3)
             caseNum = 2;     
@@ -170,6 +165,11 @@ public class P1GetCube : MonoBehaviour
 
         cube.transform.position = SpawnPoint.position;
         cube.transform.parent = null;
+
+        if(objectParent.transform.childCount==0)
+            move.SpeedReset();
+        else if(objectParent.transform.childCount >=1)
+            move.CubeSpeedDown(parentMax, SpeedToSlowDown);
 
         if (cube.GetComponent<Bullet>())
             cube.GetComponent<Bullet>().isAttacking = true;
@@ -196,14 +196,14 @@ public class P1GetCube : MonoBehaviour
             GameObject cube;
             if (GetComponent<ForceCast_TopDown>().CargeObj != null)
                 cube = GetComponent<ForceCast_TopDown>().CargeObj;
-            else if (objectParent.transform.GetChild(0) != null)
+            else if (objectParent.transform.childCount > 0)
                 cube = objectParent.transform.GetChild(0).gameObject;
             else
                 break;
             PlayerSetCube(parentMax, force, cube);
             yield return new WaitForSeconds(0.3f);
         }     
-        if (force==2)
+        if (force==2&& objectParent.transform.childCount > 0)
             objectParent.transform.GetChild(0).gameObject.GetComponent<ObjectRotation>()._isInCount=true;
     }
 }
