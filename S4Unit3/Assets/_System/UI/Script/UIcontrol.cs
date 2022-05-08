@@ -121,7 +121,7 @@ public class UIcontrol : MonoBehaviour
             SuckingCD.transform.position = P2pos;
         }
 
-        if (Input.GetButtonDown("Restart"))
+        if (Input.GetButtonDown("Restart")&&!Level1GameData.b_isBossDeathCutScene)
         {
             //_isPause = !_isPause;
             Pause();
