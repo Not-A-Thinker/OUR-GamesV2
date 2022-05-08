@@ -65,16 +65,10 @@ public class PlayerState : MonoBehaviour
         {
             _maxHealth = 4;
             OthePlayerState = GameObject.Find("Player2").GetComponent<PlayerState>();
-            Physics.IgnoreLayerCollision(12, 6, false);
-            Physics.IgnoreLayerCollision(12, 7, false);
-            Physics.IgnoreLayerCollision(12, 9, false);
         }
         if(isPlayer2)
         {
             OthePlayerState = GameObject.Find("Player1").GetComponent<PlayerState>();
-            Physics.IgnoreLayerCollision(13, 6, false);
-            Physics.IgnoreLayerCollision(13, 7, false);
-            Physics.IgnoreLayerCollision(13, 9, false);
         }
 
         ///_currentHealth當前血量 _maxHealth最大血量
@@ -148,16 +142,8 @@ public class PlayerState : MonoBehaviour
     {      
         if(!Level1GameData.b_isCutScene)
         {
-            if (_currentHealth > 0)
-            {
-                ///受攻擊無敵
-                StartInvincible(3);
-            }
-            //StartCoroutine(Vibration(0.5f, 0.1f));
-            _currentHealth--;
             PlayerSoundEffect.PlaySound("Player_GetDamage");
-
-
+            //StartCoroutine(Vibration(0.5f, 0.1f));
             if (!CamShakeOff) CIS.GenerateImpulse(); //This is use to create a impulase when get hit by a car.JK
 
             if (isPlayer1)
@@ -169,22 +155,31 @@ public class PlayerState : MonoBehaviour
                 _TopDown.ResetOldQue();
                 _TopDown.StartCoroutine("ShootCD");
             }
-                //Debug.Log(_currentHealth);     
-            
-            if (_currentHealth == 0)
-            {
-                PlayerIsDead();
-            }
-            if (_currentHealth < 0)
-                _currentHealth = 0;
+            //Debug.Log(_currentHealth);     
+            //扣血
+            _currentHealth--;
             int playerCount = 1;
             if (isPlayer1)
                 playerCount = 1;
             if (isPlayer2)
                 playerCount = 2;
-            ///UI
             UIcontrol.hp_decrease(_currentHealth, playerCount);
-            _renderer.material.SetColor("_MainColor", DamageColor);
+
+            if (_currentHealth < 0)
+                _currentHealth = 0;
+
+            if (_currentHealth > 0)
+            {
+                ///受攻擊無敵
+                _renderer.material.SetColor("_MainColor", DamageColor);
+                StartInvincible(2);
+            }
+            else if (_currentHealth == 0)
+            {
+                _renderer.material.SetColor("_MainColor", DamageColor);
+                PlayerIsDead();
+            }    
+            ///UI                 
             StartCoroutine(_animation.PlayerDamaged());
         }          
     }
@@ -254,11 +249,12 @@ public class PlayerState : MonoBehaviour
         GetComponent<CapsuleCollider>().enabled = false;
         UIcontrol.RespawnText(true);
         //rb.useGravity = false;
-        StartCoroutine(Invincible(999999));
+        StartInvincible(99999);
         if (isPlayer1)
         {
             ForceCast_TopDown forceCast_TopDown = this.GetComponent<ForceCast_TopDown>();
             forceCast_TopDown.ResetOldQue();
+            forceCast_TopDown.IsDead = true;
             PlayerSoundEffect.PlaySound("Dog_Dead");
         }
         else
@@ -314,9 +310,8 @@ public class PlayerState : MonoBehaviour
     //Hyper Muteki Gamer
     IEnumerator Invincible(float time)
     {
-        Debug.Log("Is Fucking Invincible");
+        //Debug.Log("Is Fucking Invincible");
         _Collider.enabled = false;
-        _renderer.enabled = false;
         if (isPlayer1)
         {
             Physics.IgnoreLayerCollision(12, 6, true);
@@ -329,9 +324,15 @@ public class PlayerState : MonoBehaviour
             Physics.IgnoreLayerCollision(13, 7, true);
             Physics.IgnoreLayerCollision(13, 9, true);
         }       
-        InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
-        yield return new WaitForSeconds(0.6f);
-        _renderer.material.SetColor("_MainColor", color);
+
+        yield return new WaitForSeconds(0.05f);
+        if(!isDead)
+        {
+            _renderer.material.SetColor("_MainColor", color);
+            _Collider.enabled = false;
+            InvokeRepeating("InvincibleRend", 0.2f, 0.2f);
+        }           
+
         yield return new WaitForSeconds(time);
         CancelInvoke();
         _renderer.enabled = true;

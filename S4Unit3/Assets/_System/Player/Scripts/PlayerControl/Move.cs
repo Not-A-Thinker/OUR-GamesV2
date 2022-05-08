@@ -526,7 +526,7 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(3);
         inCC = false;
         isKnockUp = false;
-        playerState.StartInvincible(1.5f);
+        playerState.StartInvincible(2);
     }
 
     ///Only For P1 While Getting New Cube
