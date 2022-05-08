@@ -47,7 +47,7 @@ public class Move : MonoBehaviour
     //demo1 used
     private GameObject Boss;
 
-    float gravity= 20f;
+    float gravity = 20f;
     float vSpeed = 0f;
     //dash
     [Header("Player Dash")]
@@ -61,7 +61,7 @@ public class Move : MonoBehaviour
 
     float friendControlTime = 0.25f;
 
-    float _DashNowFloat=0;
+    float _DashNowFloat = 0;
     int DashBar = 100;
     //public int DashUsed;
     public int _DashRestore;
@@ -98,17 +98,17 @@ public class Move : MonoBehaviour
     }
 
     void Update()
-    {             
-        if(isKnockUp)
+    {
+        if (isKnockUp)
         {
             if (!inCC)
             {
                 StartCoroutine(KnockUp());
-            }          
-            characterController.Move(transform.up * 3 *Time.deltaTime);
-            characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0,0);
+            }
+            characterController.Move(transform.up * 3 * Time.deltaTime);
+            characterController.transform.rotation = new Quaternion(0, 90 * Time.deltaTime, 0, 0);
         }
-        
+
         if (characterController.isGrounded)
         {
             vSpeed = 0; // grounded character has vSpeed = 0...
@@ -134,157 +134,22 @@ public class Move : MonoBehaviour
             //Debug.Log(_DashNowFloat);                   
         }
 
-        if (isPlayer1)//wasd
-        {         
-            if (inCC == false)
-            {              
-                isKnockUp = false;
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
-                //Move
-                float horizontalInput = Input.GetAxis("HorizontalP1");
-                float verticalInput = Input.GetAxis("VerticalP1");
-
-                Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
-
-                Vector3 velocity = movementDirection * maximumSpeed;
-
-                // apply gravity acceleration to vertical speed:
-                vSpeed -= gravity * Time.deltaTime;
-                velocity.y = vSpeed;
-                // include vertical speed in vel
-                // convert vel to displacement and Move the character:
-                characterController.Move(velocity * Time.deltaTime);
-                //characterController.transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime);
-
-                if (movementDirection != Vector3.zero)
-                {
-                    Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                    if (!isShoot)
-                        Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-                    isMove = true;
-                    PlayerSoundEffect.PlaySound("Dog_Move");
-                }
-
-                if (movementDirection == Vector3.zero)
-                {
-                    isMove = false;
-                    PlayerSoundEffect.PlaySound("Dog_StopMove");
-                }
-
-                if(!isDashClose)
-                {
-                    if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
-                    {
-                       
-                        isDashed = true;
-                        StartCoroutine(DashDelay()) ;
-                        //Debug.Log("P1 Dashed");
-                        StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
-                        //DashV2(movementDirection, horizontalInput, -verticalInput);
-                        //StartCoroutine(DashRestore());
-                        _DashNow = _DashNow - 1;
-                    }
-                    else if (Input.GetButtonUp("JumpP1"))
-                    {
-                        isDashed = false;
-                    }
-                }          
-            }
-            else
+        if (inCC == false)
+        {
+            if (isPlayer1)
             {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
-            }          
-        }
-
-        if (isPlayer2)//arrows
-        {      
-            if (inCC == false)
-            {
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
-                float horizontalInput = Input.GetAxis("HorizontalP2");
-                float verticalInput = Input.GetAxis("VerticalP2");
-
-                Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
-
-                Vector3 velocity = movementDirection * maximumSpeed;
-
-                // apply gravity acceleration to vertical speed:
-                vSpeed -= gravity * Time.deltaTime;
-                velocity.y = vSpeed;
-                // include vertical speed in vel
-                // convert vel to displacement and Move the character:
-                characterController.Move(velocity * Time.deltaTime);
-
-                if (movementDirection != Vector3.zero)
-                {
-                    Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-                    if(!isShoot)
-                        Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
-                }
-                if (movementDirection != Vector3.zero)
-                    isMove = true;
-                if (movementDirection == Vector3.zero)
-                    isMove = false;
-                //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
-                //Debug.Log(angle);
-
-                //Vector3 v_movement = characterController.transform.forward * verticalInput;
-                //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
-                //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
-
-                if (!isDashClose)
-                {
-                    if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
-                    {
-                        //UIcontrol.EnergyBarChange(2, _DashNow, true);
-                        isDashed = true;
-                        //Debug.Log("P2 Dashed");
-                        StartCoroutine(DashDelay());
-                        StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
-                        //DashV2(movementDirection, horizontalInput, -verticalInput);
-                        //StartCoroutine(DashRestore());
-                        _animation.PlayerDodge();
-                        _DashNow = _DashNow - 1;
-                    }
-
-                    else if (Input.GetButtonUp("JumpP2"))
-                    {
-                        isDashed = false;
-                    }                      
-                }           
-                //float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
-                //float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
-                //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);
+                Player1Move();
             }
-
-            else
+            if (isPlayer2)
             {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
+                Player2Move();
             }
-           
-            //else
-            //{
-            //    //Aim
-            //    Plane plane = new Plane(Vector3.up, ShootRot.transform.position);
-            //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //    float hitDist = 0;
-
-            //    if (plane.Raycast(ray, out hitDist))
-            //    {
-            //        Vector3 targetPoint = ray.GetPoint(hitDist);
-            //        Quaternion targetRotation = Quaternion.LookRotation(targetPoint - ShootRot.transform.position);
-            //        targetRotation.x = 0;
-            //        targetRotation.z = 0;
-            //        ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 7f * Time.deltaTime);
-            //    }
-            //}
-            //BossLockOn();
         }
     }
 
     private void FixedUpdate()
     {
-         _animation.PlayerWalk(isMove);
+        _animation.PlayerWalk(isMove);
 
         if (isPlayer1)
         {
@@ -302,7 +167,7 @@ public class Move : MonoBehaviour
             }
 
             if (autoLockBoss)
-            { BossLockOn();}
+            {BossLockOn();}
             else
             {
                 if (RothorizontalInput != 0 && RotverticalInput != 0)
@@ -323,7 +188,7 @@ public class Move : MonoBehaviour
             {
                 float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP2");
                 float RotverticalInput = Input.GetAxisRaw("RotVerticalP2");
-                if (Input.GetButtonDown ("LockOnP2"))
+                if (Input.GetButtonDown("LockOnP2"))
                 {
                     autoLockBoss = !autoLockBoss;
                     if (autoLockBoss)
@@ -333,9 +198,7 @@ public class Move : MonoBehaviour
                 }
 
                 if (autoLockBoss)
-                {
-                    BossLockOn();
-                }
+                {BossLockOn();}
                 else
                 {
                     if (RothorizontalInput != 0 && RotverticalInput != 0)
@@ -348,12 +211,6 @@ public class Move : MonoBehaviour
                         //Debug.Log(angle);
                     }
                 }
-                //if (Input.GetButtonDown("LockOnP2"))
-                //else
-                //{
-                //    //Debug.Log("locked Boss!");
-
-                //}
             }
         }
     }
@@ -361,7 +218,7 @@ public class Move : MonoBehaviour
     IEnumerator DashDelay()
     {
         playerState.DashColorChange(true);
-        yield return new WaitForSeconds(0.05f);  
+        yield return new WaitForSeconds(0.05f);
         StartCoroutine(_animation.PlayerDash(dashTime));
         yield return new WaitForSeconds(0.1f);
         playerState._renderer.enabled = false;
@@ -396,7 +253,7 @@ public class Move : MonoBehaviour
         //Debug.Log("Dashed");
         float startTime = Time.time;
 
-        velocity = velocity.normalized;      
+        velocity = velocity.normalized;
 
         if (horizontalInput == 0 && verticalInput == 0)
         {
@@ -410,16 +267,127 @@ public class Move : MonoBehaviour
             yield return null;
         }
 
-        while(Time.time>=startTime+dashTime)
+        while (Time.time >= startTime + dashTime)
         {
             //_Collider.enabled = true;
             //playerState.DashColorChange(false);
             yield return null;
         }
     }
-    
+
+    void Player1Move()
+    {
+        isKnockUp = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //Move
+        float horizontalInput = Input.GetAxis("HorizontalP1");
+        float verticalInput = Input.GetAxis("VerticalP1");
+
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
+
+        Vector3 velocity = movementDirection * maximumSpeed;
+
+        // apply gravity acceleration to vertical speed:
+        vSpeed -= gravity * Time.deltaTime;
+        velocity.y = vSpeed;
+        // include vertical speed in vel
+        // convert vel to displacement and Move the character:
+        characterController.Move(velocity * Time.deltaTime);
+        //characterController.transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime);
+
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            if (!isShoot)
+                Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
+            isMove = true;
+            PlayerSoundEffect.PlaySound("Dog_Move");
+        }
+
+        if (movementDirection == Vector3.zero)
+        {
+            isMove = false;
+            PlayerSoundEffect.PlaySound("Dog_StopMove");
+        }
+
+        if (!playerState.isDead)
+        {
+            if (Input.GetButtonDown("JumpP1") && _DashNow > 0)
+            {
+                isDashed = true;
+                StartCoroutine(DashDelay());
+                //Debug.Log("P1 Dashed");
+                StartCoroutine(Dash(movementDirection, horizontalInput, -verticalInput));
+                //DashV2(movementDirection, horizontalInput, -verticalInput);
+                //StartCoroutine(DashRestore());
+                _DashNow = _DashNow - 1;
+            }
+            else if (Input.GetButtonUp("JumpP1"))
+            {
+                isDashed = false;
+            }
+        }
+    }
+    void Player2Move()
+    {
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        float horizontalInput = Input.GetAxis("HorizontalP2");
+        float verticalInput = Input.GetAxis("VerticalP2");
+
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, -verticalInput);
+
+        Vector3 velocity = movementDirection * maximumSpeed;
+
+        // apply gravity acceleration to vertical speed:
+        vSpeed -= gravity * Time.deltaTime;
+        velocity.y = vSpeed;
+        // include vertical speed in vel
+        // convert vel to displacement and Move the character:
+        characterController.Move(velocity * Time.deltaTime);
+
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
+            if (!isShoot)
+                Cha.transform.rotation = Quaternion.RotateTowards(Cha.transform.rotation, toRotation, rotationSpeed * 100f * Time.deltaTime);
+        }
+        if (movementDirection != Vector3.zero)
+            isMove = true;
+        if (movementDirection == Vector3.zero)
+            isMove = false;
+        //float angle = Mathf.Atan2(horizontalInput, verticalInput) * Mathf.Rad2Deg;
+        //Debug.Log(angle);
+
+        //Vector3 v_movement = characterController.transform.forward * verticalInput;
+        //characterController.transform.Rotate(Vector3.up * horizontalInput * (100f * Time.deltaTime));
+        //characterController.Move(v_movement * maximumSpeed * Time.deltaTime);
+
+        if (!playerState.isDead)
+        {
+            if (Input.GetButtonDown("JumpP2") && _DashNow > 0)
+            {
+                //UIcontrol.EnergyBarChange(2, _DashNow, true);
+                isDashed = true;
+                //Debug.Log("P2 Dashed");
+                StartCoroutine(DashDelay());
+                StartCoroutine(Dash(movementDirection, horizontalInput, verticalInput));
+                //DashV2(movementDirection, horizontalInput, -verticalInput);
+                //StartCoroutine(DashRestore());
+                _animation.PlayerDodge();
+                _DashNow = _DashNow - 1;
+            }
+
+            else if (Input.GetButtonUp("JumpP2"))
+            {
+                isDashed = false;
+            }
+        }
+        //float RothorizontalInput = Input.GetAxisRaw("RotHorizontalP1");
+        //float RotverticalInput = Input.GetAxisRaw("RotVerticalP1");
+        //Debug.Log(RothorizontalInput.ToString("0.00000") + "+" + RotverticalInput);      
+    }
     void DashV2(Vector3 velocity, float horizontalInput, float verticalInput)
-    {      
+    {
         if (!isDash)
         {
             if (Input.GetButton(dashButtonName))
@@ -432,7 +400,6 @@ public class Move : MonoBehaviour
                 {
                     velocity = -transform.forward * 0.1f * maximumSpeed;
                 }
-
                 //directionXOZ = transform.forward;// forward 指向物体?前的前方
                 //directionXOZ.y = 0f;// 只做平面的上下移?和水平移?，不做高度上的上下移?
                 directionXOZ = velocity;
@@ -444,7 +411,6 @@ public class Move : MonoBehaviour
             if (dashTimeV2 <= 0)// reset
             {
                 isDash = false;
-
                 dashTimeV2 = dashDuration;
             }
             else
@@ -547,17 +513,17 @@ public class Move : MonoBehaviour
         oldTempSpeed = tempSpeed;
     }
 
-    public void CubeSpeedDown(int cubeCount,float speedToDecrease)
+    public void CubeSpeedDown(int cubeCount, float speedToDecrease)
     {
         float speed = tempSpeed;
 
-        for(int i=0;i<cubeCount;i++)
+        for (int i = 0; i < cubeCount; i++)
         {
             speed = speed * speedToDecrease;
             //Debug.Log(speed);
         }
-       maximumSpeed = speed;
-       oldTempSpeed = maximumSpeed;
+        maximumSpeed = speed;
+        oldTempSpeed = maximumSpeed;
     }
 
     //demo1Used look at boss
@@ -568,6 +534,6 @@ public class Move : MonoBehaviour
         targetRotation.x = 0;
         targetRotation.z = 0;
         ShootRot.transform.rotation = Quaternion.Slerp(ShootRot.transform.rotation, targetRotation, 5 * Time.fixedDeltaTime);
-    }  
+    }
 }
 
