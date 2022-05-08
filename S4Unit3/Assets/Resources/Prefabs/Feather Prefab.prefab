@@ -4913,7 +4913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   targetStr: Boss
-  anyTime: 0
+  anyTime: 1
 --- !u!114 &8666037719496285142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4934,8 +4934,8 @@ MonoBehaviour:
   OColor: {r: 0.9607843, g: 0.6039216, b: 0.24313726, a: 1}
   ParticleTransitionColor:
   - {r: 0.9607843, g: 0.6039216, b: 0.24313726, a: 1}
-  - {r: 0.9607843, g: 0.40392157, b: 0.24313726, a: 1}
-  - {r: 0.9607843, g: 0.015686275, b: 0, a: 1}
+  - {r: 0.9607843, g: 0.7201968, b: 0.24313727, a: 1}
+  - {r: 0.9607843, g: 0.8603917, b: 0.24313727, a: 1}
   OSize: {x: 0, y: 0, z: 0}
   ExSize: {x: 0, y: 0, z: 0}
   ExState: 0
