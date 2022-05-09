@@ -106,6 +106,7 @@ public class Skill_TornadoGattai : MonoBehaviour
     private void OnDestroy()
     {
         LastDetect();
+        if (!this.gameObject.scene.isLoaded) return;
         var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
 
     }

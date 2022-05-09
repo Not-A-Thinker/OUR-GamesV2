@@ -55,7 +55,9 @@ public class Skill_WindBall : MonoBehaviour
     }
     private void OnDestroy()
     {
-       var odp =  Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+        if (!this.gameObject.scene.isLoaded) return;
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) return;
+        var odp =  Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
     }
 
     private Vector3 collsion = Vector3.zero;

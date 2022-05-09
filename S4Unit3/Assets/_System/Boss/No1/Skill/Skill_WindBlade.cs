@@ -11,7 +11,7 @@ public class Skill_WindBlade : MonoBehaviour
 
     void Update()
     {
-        if (Level1GameData.b_isBossDeathCutScene) { Destroy(gameObject, 0.5f); }
+        if (Level1GameData.b_isBossDeathCutScene||Level1GameData.b_isCutScene) { Destroy(gameObject, 0.5f); }
 
         transform.position +=  transform.forward * speed * Time.deltaTime;
         Destroy(gameObject, secondToDie);
@@ -33,6 +33,8 @@ public class Skill_WindBlade : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!this.gameObject.scene.isLoaded) return;
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) return;
         var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
     }
 }
