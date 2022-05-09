@@ -994,7 +994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116990509}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685332, y: 74.87001, z: -73.30848}
+  m_LocalPosition: {x: -0.0000004172325, y: 74.37804, z: -71.45642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14946,11 +14946,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.001
   far clip plane: 400
   field of view: 50
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 6.3983912
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14974,7 +14974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973905503}
   m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0.030685332, y: 74.87001, z: -73.30848}
+  m_LocalPosition: {x: -0.0000004172325, y: 74.37804, z: -71.45642}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17529,6 +17529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1421878835}
   - component: {fileID: 1421878836}
+  - component: {fileID: 1421878837}
   m_Layer: 0
   m_Name: TimeLineManager
   m_TagString: Untagged
@@ -17569,6 +17570,36 @@ MonoBehaviour:
   - {fileID: 4553679}
   - {fileID: 1600678433}
   - {fileID: 1307868150}
+--- !u!114 &1421878837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421878834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 4e37df6a22e83dd4a99a2b5bc9522c05, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1421878836}
+          m_TargetAssemblyTypeName: Level1TimeLine, Assembly-CSharp
+          m_MethodName: BossDeathTrigger
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1430162429
 GameObject:
   m_ObjectHideFlags: 0
@@ -21273,6 +21304,8 @@ PlayableDirector:
     value: {fileID: 1507288142}
   - key: {fileID: 3689206713411566174, guid: 6859bfcc06ab11f4bad1273032f98836, type: 2}
     value: {fileID: 1128180198}
+  - key: {fileID: -86663914308776880, guid: 6859bfcc06ab11f4bad1273032f98836, type: 2}
+    value: {fileID: 1421878837}
   m_ExposedReferences:
     m_References:
     - 7feff2fb95f8f3c46bd55667d91a88f6: {fileID: 1790246546}
