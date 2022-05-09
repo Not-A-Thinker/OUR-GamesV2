@@ -317,7 +317,14 @@ public class UIcontrol : MonoBehaviour
         go.transform.SetParent(GameObject.Find("GUI").transform);
         UI_FlyText ft = go.GetComponent<UI_FlyText>();
         ft.color = color;
-        ft.content = content;
+        if (content == "No Cube")
+        {
+            go.transform.GetChild(0).gameObject.SetActive(true);
+            ft.content = "";
+        }            
+        else
+            ft.content = content;
+
     }
     //PlayerSuckPushCD
     public void PushingCDBar(float load)
