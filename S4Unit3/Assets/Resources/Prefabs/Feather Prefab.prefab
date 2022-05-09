@@ -118,7 +118,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4933,9 +4933,9 @@ MonoBehaviour:
   LerpSpeed: 0.1
   OColor: {r: 0.9607843, g: 0.6039216, b: 0.24313726, a: 1}
   ParticleTransitionColor:
-  - {r: 0.9607843, g: 0.6039216, b: 0.24313726, a: 1}
-  - {r: 0.9607843, g: 0.7201968, b: 0.24313727, a: 1}
-  - {r: 0.9607843, g: 0.8603917, b: 0.24313727, a: 1}
+  - {r: 0.99607843, g: 0.6039216, b: 0.23921569, a: 1}
+  - {r: 1, g: 0.44313726, b: 0.0627451, a: 1}
+  - {r: 1, g: 0.3372549, b: 0.043137256, a: 1}
   OSize: {x: 0, y: 0, z: 0}
   ExSize: {x: 0, y: 0, z: 0}
   ExState: 0

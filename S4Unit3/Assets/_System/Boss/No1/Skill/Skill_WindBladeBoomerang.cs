@@ -89,6 +89,7 @@ public class Skill_WindBladeBoomerang : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (!this.gameObject.scene.isLoaded) return;
         var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
 
     }

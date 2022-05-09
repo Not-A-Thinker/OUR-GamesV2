@@ -100,6 +100,8 @@ public class Bullet : MonoBehaviour
                 GameObject particleobj = Instantiate(hitParticle, transform.position, Quaternion.identity);
                 if(particle_palm.gameObject!=null)
                  particleobj.transform.localScale = particle_palm.transform.localScale;
+                if (transform.GetChild(0).gameObject.GetComponent<Particle_PlamCharge>() != null)
+                    particleobj.GetComponent<ParticleSystem>().startColor = transform.GetChild(0).gameObject.GetComponent<Particle_PlamCharge>().NowColor;
                 Destroy(particleobj, 5);
             }
             Vector3 pos = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);

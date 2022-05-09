@@ -33,7 +33,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Main_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 13008a0c3945be549b44e2f120b555e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -95,7 +95,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Fresnel_Power: 1
-    - VertexOffsetFreq: 0.5
+    - VertexOffsetFreq: 1.21
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -119,15 +119,19 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 2.19
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _overlay: 0.03
     m_Colors:
-    - Fresnel_Color: {r: 0.2781061, g: 0.6792453, b: 0.34336108, a: 0}
+    - Fresnel_Color: {r: 1, g: 1, b: 1, a: 0}
     - VertexOffsetDirection: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.2784314, g: 0.6282582, b: 0.6784314, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Speed: {r: 5, g: 0, b: 0, a: 0}
+    - _tilling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

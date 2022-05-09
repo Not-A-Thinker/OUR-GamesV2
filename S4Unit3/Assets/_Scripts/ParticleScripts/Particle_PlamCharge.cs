@@ -15,6 +15,7 @@ public class Particle_PlamCharge : MonoBehaviour
     [Range(0, 1)]
     public float LerpSpeed = 0.1f;
     public Color OColor;
+    public Color NowColor;
     [Header("過渡顏色變化")]
     public List<Color> ParticleTransitionColor = new List<Color>(); 
 
@@ -33,6 +34,7 @@ public class Particle_PlamCharge : MonoBehaviour
     {
         vfx = (vfx == null ? gameObject.GetComponent<ParticleSystem>() : vfx);
         OSize = transform.localScale;
+
     }
 
 
@@ -41,6 +43,7 @@ public class Particle_PlamCharge : MonoBehaviour
 
     private void Update()
     {
+        NowColor = vfx.startColor;
         if (vfx != null&& IsCollecting)
         {
             if (!vfx.isPlaying)
@@ -50,6 +53,7 @@ public class Particle_PlamCharge : MonoBehaviour
             {
                 case 1:
                     {
+                        vfx.startColor = ParticleTransitionColor[0] == null ? OColor : ParticleTransitionColor[0];
                         ExSize = transform.localScale;
                         if (ExState < Charge(value))//is bigger
                         {
@@ -74,6 +78,7 @@ public class Particle_PlamCharge : MonoBehaviour
                     break;
                 case 2:
                     {
+                        vfx.startColor = ParticleTransitionColor[1] == null ? OColor : ParticleTransitionColor[1];
                         if (ExState < Charge(value))//is bigger
                         {
                             for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
@@ -82,6 +87,7 @@ public class Particle_PlamCharge : MonoBehaviour
                             }
                             ExSize = transform.localScale;
                             StartCoroutine(biggerEffect(2.5f, ParticleTransitionColor[1] == null ? OColor : ParticleTransitionColor[1]));
+
                         }
                         else if (ExState >= Charge(value))//is smaller
                         {
@@ -98,6 +104,7 @@ public class Particle_PlamCharge : MonoBehaviour
 
                 case 3:
                     {
+                        vfx.startColor = ParticleTransitionColor[2] == null ? OColor : ParticleTransitionColor[2];
                         if (ExState < Charge(value))//is bigger
                         {
                             for (int i = 0; i <= Mathf.FloorToInt(1 / LerpSpeed); i++)
@@ -106,6 +113,7 @@ public class Particle_PlamCharge : MonoBehaviour
                             }
                             ExSize = transform.localScale;
                             StartCoroutine(biggerEffect(3.75f, ParticleTransitionColor[2] == null ? OColor : ParticleTransitionColor[2]));
+
                         }
                         else if (ExState >= Charge(value))//is smaller
                         {
