@@ -40,6 +40,7 @@ public class UIcontrol : MonoBehaviour
     //bool IsGameOver, IsWinGame;
     [Header("Other")]
     [SerializeField] float smoothing = 5;
+    bool isFlyTextDone;
     //[SerializeField] TextMeshProUGUI DeadCounter;
     //[SerializeField] GameObject DeadCounterGobj;
     GameObject P1,P2;
@@ -307,24 +308,27 @@ public class UIcontrol : MonoBehaviour
     //Warnning Text(¼È®É©Ê)
     public void flyText(int PlayerNum, Color color, string content)
     {
-        Vector3 Player_pos;
-        if (PlayerNum==1)       
-            Player_pos = Camera.main.WorldToScreenPoint(P1.transform.position);     
-        else
-            Player_pos = Camera.main.WorldToScreenPoint(P2.transform.position);
-
-        GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
-        go.transform.SetParent(GameObject.Find("GUI").transform);
-        UI_FlyText ft = go.GetComponent<UI_FlyText>();
-        ft.color = color;
-        if (content == "No Cube")
+        if(!isFlyTextDone)
         {
-            go.transform.GetChild(0).gameObject.SetActive(true);
-            ft.content = "";
-        }            
-        else
-            ft.content = content;
+            Vector3 Player_pos;
+            if (PlayerNum == 1)
+                Player_pos = Camera.main.WorldToScreenPoint(P1.transform.position);
+            else
+                Player_pos = Camera.main.WorldToScreenPoint(P2.transform.position);
 
+            GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
+            go.transform.SetParent(GameObject.Find("GUI").transform);
+            UI_FlyText ft = go.GetComponent<UI_FlyText>();
+            ft.color = color;
+            if (content == "No Cube")
+            {
+                go.transform.GetChild(0).gameObject.SetActive(true);
+                ft.content = "";
+            }
+            else
+                ft.content = content;
+            StartCoroutine(FlyTextSpawnCD());
+        }      
     }
     //PlayerSuckPushCD
     public void PushingCDBar(float load)
@@ -398,6 +402,12 @@ public class UIcontrol : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _DelayUi.SetActive(false) ;
+    }
+    IEnumerator FlyTextSpawnCD()
+    {
+        isFlyTextDone = true;
+        yield return new WaitForSeconds(1);
+        isFlyTextDone = false;
     }
 
     #endregion
