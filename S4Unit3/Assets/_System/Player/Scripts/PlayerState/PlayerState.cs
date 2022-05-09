@@ -26,6 +26,7 @@ public class PlayerState : MonoBehaviour
     private bool isMeleeHited = false;
 
     [Header("Player GetComponent")]
+    [SerializeField] GameObject ShootingComponent;
     CapsuleCollider _Collider;
     UIcontrol UIcontrol ;
     [SerializeField] GameObject Resurrect_range;
@@ -106,6 +107,11 @@ public class PlayerState : MonoBehaviour
                 forceRepel_TopDown.enabled = true;
             }
         }
+
+        if(Level1GameData.b_isBossDeathCutScene)
+        {
+            ShootingComponent.SetActive(false);
+        }
         //isColliding = false;
 
         //if(isPlayer2)
@@ -157,19 +163,19 @@ public class PlayerState : MonoBehaviour
             }
             //Debug.Log(_currentHealth);     
             //扣血
-            _currentHealth--;
-            int playerCount = 1;
-            if (isPlayer1)
-                playerCount = 1;
-            if (isPlayer2)
-                playerCount = 2;
-            UIcontrol.hp_decrease(_currentHealth, playerCount);
-
+            _currentHealth--;         
+            
             if (_currentHealth < 0)
                 _currentHealth = 0;
 
             if (_currentHealth > 0)
             {
+                int playerCount = 1;
+                if (isPlayer1)
+                    playerCount = 1;
+                if (isPlayer2)
+                    playerCount = 2;
+                UIcontrol.hp_decrease(_currentHealth, playerCount);
                 ///受攻擊無敵
                 _renderer.material.SetColor("_MainColor", DamageColor);
                 StartInvincible(2);
