@@ -48,12 +48,12 @@ public class FakePlayerRespawn : MonoBehaviour
             {
                 RespawnCount++;
                 PlayerSoundEffect.PlaySound("Player_Respawn");
-                int newRespawnCount = RespawnCount / 2;
+                int newRespawnCount = RespawnCount / 3;
                 RespawnHeartAnim.SetInteger("ClickedCount", newRespawnCount);
             }
             if (Input.GetButton("HelpFriendP1") || Input.GetButton("HelpFriendP2") )
             {                              
-                if (RespawnCount >= 15)
+                if (RespawnCount >= 30)
                 {                 
                     learningLevelScripts.isRespawnDone();
                     RespawnCount = 0;

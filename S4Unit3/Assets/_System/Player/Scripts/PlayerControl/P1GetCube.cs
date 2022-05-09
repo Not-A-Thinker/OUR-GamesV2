@@ -13,6 +13,7 @@ public class P1GetCube : MonoBehaviour
     public float SpeedToSlowDown;
 
     public bool OneOnCarge;
+    public ParticleSystem _GetCubeEffect;
 
     Move move;
 
@@ -78,6 +79,9 @@ public class P1GetCube : MonoBehaviour
             cube.GetComponent<Bullet>().bossToSuck = false;
 
         move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
+
+        if (_GetCubeEffect != null)
+            _GetCubeEffect.Play();
         //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         //if (!cube.gameObject.GetComponent<ObjectDestroy>())
         //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -99,7 +103,7 @@ public class P1GetCube : MonoBehaviour
         if (newForce > 1 && parentMax>1)
             StartCoroutine(TheBigOne(parentMax, newForce)); 
         else
-            PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);   
+            PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);
     }
 
     // 狗狗被擊中時會觸發

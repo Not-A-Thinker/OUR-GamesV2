@@ -12,6 +12,7 @@ public class GetTriggerObject : MonoBehaviour
     [SerializeField] GameObject SpcAttack;
     GameObject chip;
     P1GetCube getCube;
+    [SerializeField] ParticleSystem _GetCubeEffect;
 
     public int ClipMax;
 
@@ -59,6 +60,8 @@ public class GetTriggerObject : MonoBehaviour
                 getedObject.GetComponent<ObjectRotation>()._isInCount = true;
                 getedObject.GetComponent<ObjectRotation>()._isClip = true;
                 PlayerSoundEffect.PlaySound("Cat_Attack");
+                if(_GetCubeEffect!=null)
+                    _GetCubeEffect.Play();
                 //getedObject.tag = "Object";
 
             }
@@ -89,6 +92,8 @@ public class GetTriggerObject : MonoBehaviour
                     Obj_rb.useGravity = true;
                 }
                 PlayerSoundEffect.PlaySound("Cat_Attack");
+                if (_GetCubeEffect != null)
+                    _GetCubeEffect.Play();
                 //gameObject.GetComponent<ForceRepel_TopDown>().CantSucc();
             }
             ///不應該吸到boss
@@ -124,6 +129,8 @@ public class GetTriggerObject : MonoBehaviour
                     //getedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 PlayerSoundEffect.PlaySound("Cat_Attack");
+                if (_GetCubeEffect != null)
+                    _GetCubeEffect.Play();
                 Destroy(Obj.transform.gameObject);
             }
         }     
