@@ -54,8 +54,7 @@ public class P1GetCube : MonoBehaviour
                     {
                         cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
                         cube.GetComponentInChildren<ParticleSystem>().Pause();
-                    }
-               
+                    }            
                 }              
             }
         }       

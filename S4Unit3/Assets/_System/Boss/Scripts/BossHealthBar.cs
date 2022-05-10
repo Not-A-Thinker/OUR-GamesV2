@@ -88,6 +88,9 @@ public class BossHealthBar : MonoBehaviour
         {
             backSlider.value = 0;
         }
+
+        if (Level1GameData.b_isCutScene)
+            _animator.SetBool("IsDamaged", false);
     }
 
     public void TakeDamage(float value)//Should Improve

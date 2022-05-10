@@ -85,6 +85,7 @@ public class PlayerState : MonoBehaviour
             if (isPlayer1)
             {
                 ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+                forceCast_TopDown.ResetOldQue();
                 forceCast_TopDown.enabled = false;
             }
 
@@ -93,6 +94,7 @@ public class PlayerState : MonoBehaviour
                 if (!Level1GameData.b_isBossDeathCutScene)
                 {
                     ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                    forceRepel_TopDown.resetObject();
                     forceRepel_TopDown.enabled = false;
                 }              
             }
@@ -119,6 +121,7 @@ public class PlayerState : MonoBehaviour
         if(Level1GameData.b_isBossDeathCutScene)
         {
             ShootingComponent.SetActive(false);
+            _renderer.material.SetColor("_MainColor", color);
         }
         //isColliding = false;
 
