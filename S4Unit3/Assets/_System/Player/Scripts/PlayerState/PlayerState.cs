@@ -89,10 +89,11 @@ public class PlayerState : MonoBehaviour
             }
             else
             {
-                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
-                if (forceRepel_TopDown != null)
-                    return;
-                forceRepel_TopDown.enabled = false;
+                if (!Level1GameData.b_isBossDeathCutScene)
+                {
+                    ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                    forceRepel_TopDown.enabled = false;
+                }              
             }
         }
         else if (!Level1GameData.b_isCutScene)
@@ -104,10 +105,12 @@ public class PlayerState : MonoBehaviour
             }
             else
             {
-                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
-                if (forceRepel_TopDown != null)
-                    return;
-                forceRepel_TopDown.enabled = true;
+                if(!Level1GameData.b_isBossDeathCutScene)
+                {
+                    ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                    if(forceRepel_TopDown!=null)
+                       forceRepel_TopDown.enabled = true;
+                }            
             }
         }
 
