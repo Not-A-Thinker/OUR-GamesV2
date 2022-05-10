@@ -162,7 +162,6 @@ public class P1GetCube : MonoBehaviour
         else
         {
             caseNum = 1;
-            force = 2;
         }
         //Debug.Log(force);
 
