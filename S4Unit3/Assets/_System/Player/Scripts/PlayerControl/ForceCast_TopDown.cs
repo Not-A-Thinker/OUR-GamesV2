@@ -277,9 +277,8 @@ public class ForceCast_TopDown : MonoBehaviour
         countFloat += Time.deltaTime;
         if (countFloat > CountMax+0.5f)
             countFloat = 0;
-        int CountInt = (int)(countFloat * 2);
 
-        gameObject.GetComponent<P1GetCube>().StartCarge(CountInt);
+        gameObject.GetComponent<P1GetCube>().StartCarge(countFloat);
         //rangeObjRed = rangeObj.GetComponent<Renderer>();
         ////Call SetColor using the shader property name "_Color" and setting the color to red
         //rangeObjRed.material.SetColor("_Color", Color.green);
@@ -296,7 +295,7 @@ public class ForceCast_TopDown : MonoBehaviour
             {
                 if (CargeObj.GetComponentInChildren<Particle_PlamCharge>() != null)
                 {
-                    CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.5f;
+                    CargeObj.GetComponentInChildren<Particle_PlamCharge>().value = countFloat / 1.3f;
                     IsCargeEffectPlay = true;
                 }
             }         
