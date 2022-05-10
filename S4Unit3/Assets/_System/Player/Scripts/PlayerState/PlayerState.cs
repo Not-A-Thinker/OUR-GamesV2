@@ -76,7 +76,7 @@ public class PlayerState : MonoBehaviour
         _currentHealth = _maxHealth;
 
         StopCoroutine(Invincible(0));
-        StartInvincible(0.5f);
+        StartInvincible(0.1f);
 
         //Resurrect_range.SetActive(false);
     }
