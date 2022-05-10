@@ -87,7 +87,8 @@ public class PlayerState : MonoBehaviour
                 ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
                 forceCast_TopDown.enabled = false;
             }
-            else
+
+            if(isPlayer2)
             {
                 if (!Level1GameData.b_isBossDeathCutScene)
                 {
@@ -103,7 +104,8 @@ public class PlayerState : MonoBehaviour
                 ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
                 forceCast_TopDown.enabled = true;
             }
-            else
+
+            if (isPlayer2)
             {
                 if(!Level1GameData.b_isBossDeathCutScene)
                 {
