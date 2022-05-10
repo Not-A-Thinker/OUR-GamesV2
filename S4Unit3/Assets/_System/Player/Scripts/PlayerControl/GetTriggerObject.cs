@@ -75,6 +75,7 @@ public class GetTriggerObject : MonoBehaviour
                 ForceRepel_TopDown forceRepel_TopDown = GetComponent<ForceRepel_TopDown>();
                 forceRepel_TopDown.resetObject();
                 forceRepel_TopDown.SuckCount--;
+                forceRepel_TopDown.ClearBossSpawnObj();
 
                 //Obj_rb.useGravity = false;
                 //Debug.Log(Obj.name + "Trigger");             

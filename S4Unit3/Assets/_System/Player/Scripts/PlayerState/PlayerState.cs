@@ -75,6 +75,9 @@ public class PlayerState : MonoBehaviour
         ///_currentHealth當前血量 _maxHealth最大血量
         _currentHealth = _maxHealth;
 
+        StopCoroutine(Invincible(0));
+        StartInvincible(0.5f);
+
         //Resurrect_range.SetActive(false);
     }
 
