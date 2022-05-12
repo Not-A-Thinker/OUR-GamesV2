@@ -34,6 +34,12 @@ public class Boss1Animator : MonoBehaviour
         {
             impulseSource.GenerateImpulse();
         }
+        if(Level1GameData.b_isBossDeathCutScene)
+        {
+            bossAngryEnd_ani();
+            Boss_WingSpeedLineEnd_ani();
+            Boss_EyesLightEnd_ani();
+        }
     }
 
     public void Animation_Death()
