@@ -175,6 +175,12 @@ public class PlayerState : MonoBehaviour
                 _TopDown.ResetOldQue();
                 _TopDown.StartCoroutine("ShootCD");
             }
+            if(isPlayer2)
+            {
+                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                forceRepel_TopDown.resetObject();
+                forceRepel_TopDown.ClearBossSpawnObj();
+            }
             //Debug.Log(_currentHealth);     
             //扣血
             _currentHealth--;         
@@ -182,14 +188,15 @@ public class PlayerState : MonoBehaviour
             if (_currentHealth < 0)
                 _currentHealth = 0;
 
+            int playerCount = 1;
+            if (isPlayer1)
+                playerCount = 1;
+            if (isPlayer2)
+                playerCount = 2;
+            UIcontrol.hp_decrease(_currentHealth, playerCount);
+
             if (_currentHealth > 0)
-            {
-                int playerCount = 1;
-                if (isPlayer1)
-                    playerCount = 1;
-                if (isPlayer2)
-                    playerCount = 2;
-                UIcontrol.hp_decrease(_currentHealth, playerCount);
+            {            
                 ///受攻擊無敵
                 _renderer.material.SetColor("_MainColor", DamageColor);
                 StartInvincible(2);
