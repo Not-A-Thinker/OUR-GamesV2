@@ -18,7 +18,7 @@ public class UI_FlyText : MonoBehaviour
         t.rectTransform.anchoredPosition = new Vector2(t.rectTransform.anchoredPosition.x, t.rectTransform.anchoredPosition.y + 30);
     }
 
-    public float fadeTimer = 1;
+    public float fadeTimer = 0.5f;
     void Update()
     {
         fadeTimer -= Time.deltaTime;

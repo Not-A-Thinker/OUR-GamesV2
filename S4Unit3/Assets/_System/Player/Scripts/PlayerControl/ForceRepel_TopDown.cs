@@ -55,6 +55,7 @@ public class ForceRepel_TopDown : MonoBehaviour
         uIcontrol = GameObject.Find("GUI").GetComponent<UIcontrol>();
         BossSpwO = GameObject.Find("Boss").GetComponent<BossSpawnObject>();
         _OldForce = _force;
+        GetComponent<BoxCollider>().isTrigger = false;
         //rangeRenderer = Range.GetComponent<Renderer>();
         //rangeHeadRenderer = Range.GetComponentInChildren<Renderer>();
         //OldRangeObjColor = rangeRenderer.material.color;
@@ -273,15 +274,14 @@ public class ForceRepel_TopDown : MonoBehaviour
                         //rangeHeadRenderer.material.color = NewRangeObjColor;
                         //rangeRenderer.material.color = NewRangeObjColor;
                         Quaternion spawnRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                        //Debug.Log(hitpoint);
-                        BossSpwO.ObjectSpawn(hit.point, spawnRotation);
-                        if (BossSpwO.lastSpawned != null)
+                        //Debug.Log(hitpoint);                      
+                        if (BossSpwO.lastSpawned == null)
                         {
+                            BossSpwO.ObjectSpawn(hit.point, spawnRotation);
                             //soundEffect.OnAttackPlay();
                             savedObject = BossSpwO.lastSpawned;
                             savedObject.GetComponent<ObjectDestroy>().isSucked = true;
-                            savedObject.GetComponent<Bullet>().bossToSuck = true;
-                            BossSpwO.lastSpawned = null;
+                            savedObject.GetComponent<Bullet>().bossToSuck = true;                                             
                             //Rigidbody rb = savedObject.GetComponent<Rigidbody>();
                             //rb.useGravity = false;
                         }
@@ -368,6 +368,11 @@ public class ForceRepel_TopDown : MonoBehaviour
            //savedObject.transform.parent = null;
            //savedObject.GetComponent<Rigidbody>().velocity = Vector3.zero;                       
     }   
+
+    public void ClearBossSpawnObj()
+    {
+        BossSpwO.lastSpawned = null;
+    }
     //void ObjectTransform(GameObject obj)
     //{
     //    direction = savedObject.transform.position - transform.position;

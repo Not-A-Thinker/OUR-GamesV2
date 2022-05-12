@@ -41,4 +41,10 @@ public class Level1TimeLine : MonoBehaviour
         }
         
     }
+
+    public void BossDeathTrigger()
+    {
+        Level1GameData.b_isBoss1Defeated = true;
+        Debug.Log("Death Trigger");
+    }
 }

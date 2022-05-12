@@ -75,6 +75,9 @@ public class PlayerState : MonoBehaviour
         ///_currentHealth當前血量 _maxHealth最大血量
         _currentHealth = _maxHealth;
 
+        StopCoroutine(Invincible(0));
+        StartInvincible(0.1f);
+
         //Resurrect_range.SetActive(false);
     }
 
@@ -85,32 +88,43 @@ public class PlayerState : MonoBehaviour
             if (isPlayer1)
             {
                 ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
+                forceCast_TopDown.ResetOldQue();
                 forceCast_TopDown.enabled = false;
             }
-            else
+
+            if(isPlayer2)
             {
-                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
-                forceRepel_TopDown.enabled = false;
+                if (!Level1GameData.b_isBossDeathCutScene)
+                {
+                    ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                    forceRepel_TopDown.resetObject();
+                    forceRepel_TopDown.enabled = false;
+                }              
             }
         }
-
-        if (Level1GameData.b_isCutScene==false)
+        else if (!Level1GameData.b_isCutScene)
         {
             if (isPlayer1)
             {
                 ForceCast_TopDown forceCast_TopDown = GetComponent<ForceCast_TopDown>();
                 forceCast_TopDown.enabled = true;
             }
-            else
+
+            if (isPlayer2)
             {
-                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
-                forceRepel_TopDown.enabled = true;
+                if(!Level1GameData.b_isBossDeathCutScene)
+                {
+                    ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                    if(forceRepel_TopDown!=null)
+                       forceRepel_TopDown.enabled = true;
+                }            
             }
         }
 
         if(Level1GameData.b_isBossDeathCutScene)
         {
             ShootingComponent.SetActive(false);
+            _renderer.material.SetColor("_MainColor", color);
         }
         //isColliding = false;
 
@@ -161,6 +175,12 @@ public class PlayerState : MonoBehaviour
                 _TopDown.ResetOldQue();
                 _TopDown.StartCoroutine("ShootCD");
             }
+            if(isPlayer2)
+            {
+                ForceRepel_TopDown forceRepel_TopDown = GetComponentInChildren<ForceRepel_TopDown>();
+                forceRepel_TopDown.resetObject();
+                forceRepel_TopDown.ClearBossSpawnObj();
+            }
             //Debug.Log(_currentHealth);     
             //扣血
             _currentHealth--;         
@@ -168,14 +188,15 @@ public class PlayerState : MonoBehaviour
             if (_currentHealth < 0)
                 _currentHealth = 0;
 
+            int playerCount = 1;
+            if (isPlayer1)
+                playerCount = 1;
+            if (isPlayer2)
+                playerCount = 2;
+            UIcontrol.hp_decrease(_currentHealth, playerCount);
+
             if (_currentHealth > 0)
-            {
-                int playerCount = 1;
-                if (isPlayer1)
-                    playerCount = 1;
-                if (isPlayer2)
-                    playerCount = 2;
-                UIcontrol.hp_decrease(_currentHealth, playerCount);
+            {            
                 ///受攻擊無敵
                 _renderer.material.SetColor("_MainColor", DamageColor);
                 StartInvincible(2);

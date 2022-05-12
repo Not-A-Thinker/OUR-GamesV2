@@ -13,6 +13,7 @@ public class P1GetCube : MonoBehaviour
     public float SpeedToSlowDown;
 
     public bool OneOnCarge;
+    public ParticleSystem _GetCubeEffect;
 
     Move move;
 
@@ -21,15 +22,20 @@ public class P1GetCube : MonoBehaviour
         move = GetComponent<Move>();
     }
 
-    public void StartCarge(int Carge)
+    public void StartCarge(float Carge)
     {
         int parentMax = objectParent.transform.childCount;
-        if (Carge > 3)
-            Carge = Carge - 1;
+        int newForce = (int)Carge;
+        if (Carge >= 1.4f)
+        {
+            newForce = 3;
+        }
+        else
+            newForce++;
         for (int i = 0; i< parentMax; i++)
         {
             GameObject cube = objectParent.transform.GetChild(i).gameObject;
-            if (i <= Carge)
+            if (i <= newForce)
             {
                 cube.transform.position = SpawnPoint.position;
                 cube.GetComponent<ObjectRotation>()._isInCount = false;                
@@ -53,8 +59,7 @@ public class P1GetCube : MonoBehaviour
                     {
                         cube.GetComponentInChildren<Particle_PlamCharge>().IsCollecting = false;
                         cube.GetComponentInChildren<ParticleSystem>().Pause();
-                    }
-               
+                    }            
                 }              
             }
         }       
@@ -78,6 +83,9 @@ public class P1GetCube : MonoBehaviour
             cube.GetComponent<Bullet>().bossToSuck = false;
 
         move.CubeSpeedDown(objectParent.transform.childCount, SpeedToSlowDown);
+
+        if (_GetCubeEffect != null)
+            _GetCubeEffect.Play();
         //cube.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         //if (!cube.gameObject.GetComponent<ObjectDestroy>())
         //    Destroy(cube.GetComponent<ObjectDestroy>());
@@ -99,7 +107,7 @@ public class P1GetCube : MonoBehaviour
         if (newForce > 1 && parentMax>1)
             StartCoroutine(TheBigOne(parentMax, newForce)); 
         else
-            PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);   
+            PlayerSetCube(parentMax, newForce, GetComponent<ForceCast_TopDown>().CargeObj);
     }
 
     // 狗狗被擊中時會觸發
@@ -154,7 +162,6 @@ public class P1GetCube : MonoBehaviour
         else
         {
             caseNum = 1;
-            force = 2;
         }
         //Debug.Log(force);
 
@@ -202,8 +209,15 @@ public class P1GetCube : MonoBehaviour
                 break;
             PlayerSetCube(parentMax, force, cube);
             yield return new WaitForSeconds(0.3f);
-        }     
+        }
+
         if (force==2&& objectParent.transform.childCount > 0)
             objectParent.transform.GetChild(0).gameObject.GetComponent<ObjectRotation>()._isInCount=true;
+
+        yield return null;
+        for (int i = 0; i < objectParent.transform.childCount; i++)
+        {
+            objectParent.transform.GetChild(i).GetComponent<ObjectRotation>()._isInCount = true;
+        }
     }
 }

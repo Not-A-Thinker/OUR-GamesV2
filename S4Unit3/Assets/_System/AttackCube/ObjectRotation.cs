@@ -41,7 +41,7 @@ public class ObjectRotation : MonoBehaviour
 
             //transform.localScale = vector * 0.75f;
 
-            //Debug.Log(distance);
+            //Debug.Log(distance);           
 
             transform.position = target.transform.position + dir.normalized * distance;
 
@@ -51,10 +51,22 @@ public class ObjectRotation : MonoBehaviour
 
             dir = transform.position - target.transform.position;
 
+            if (gameObject.name.Contains("Feather Prefab"))
+            {
+                GetComponent<Renderer>().material = Resources.Load<Material>("Mat/obj_SuckedColor");
+            }
             //¦ÛÂà
             //transform.Rotate(new Vector3(0, -own * Time.deltaTime, 0));
         }
         else
+        {         
             transform.localScale = vector;
+
+            if (gameObject.name.Contains("Feather Prefab"))
+            {
+                GetComponent<Renderer>().material = Resources.Load<Material>("Mat/obj");
+            }
+        }
+           
     }
 }

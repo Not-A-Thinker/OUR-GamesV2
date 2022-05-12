@@ -17,6 +17,8 @@ public class Skill_TornadoAttack : MonoBehaviour
 
     void Update()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) { Destroy(gameObject, 0.5f); }
+
         transform.position += transform.forward * speed * Time.deltaTime;
         Destroy(gameObject, secondToDie);
     }
@@ -46,6 +48,7 @@ public class Skill_TornadoAttack : MonoBehaviour
     }
     private void OnDestroy()
     {
+        if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) return;
         if (!this.gameObject.scene.isLoaded) return;
         var odp = Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
 
