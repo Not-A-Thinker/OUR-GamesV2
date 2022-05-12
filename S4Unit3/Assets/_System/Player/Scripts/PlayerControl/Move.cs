@@ -487,10 +487,10 @@ public class Move : MonoBehaviour
         isKnockUp = true;
         Debug.Log("KnockUp!");
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         inCC = false;
         isKnockUp = false;
-        playerState.StartInvincible(2);
+        playerState.StartInvincible(3);
     }
 
     ///Only For P1 While Getting New Cube
