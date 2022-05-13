@@ -117,7 +117,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4884,4 +4884,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSucked: 0
-  DestroyTime: 1.5
+  DestroyTime: 3

@@ -58,6 +58,7 @@ public class Skill_WindBall : MonoBehaviour
         if (!this.gameObject.scene.isLoaded) return;
         if (Level1GameData.b_isBossDeathCutScene || Level1GameData.b_isCutScene) return;
         var odp =  Instantiate(Resources.Load("Prefabs/Particle_OnDestroy"), transform.position, Quaternion.identity);
+        Destroy(hitGameObj.gameObject);
     }
 
     private Vector3 collsion = Vector3.zero;
@@ -89,4 +90,5 @@ public class Skill_WindBall : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(collsion, 0.2f);
     }
+
 }
