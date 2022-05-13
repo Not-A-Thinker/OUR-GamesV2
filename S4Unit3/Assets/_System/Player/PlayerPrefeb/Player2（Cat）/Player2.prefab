@@ -6728,6 +6728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5725573354669825204}
+  - component: {fileID: 760204833303633383}
   m_Layer: 12
   m_Name: Particle_GhostFires
   m_TagString: Untagged
@@ -6752,6 +6753,20 @@ Transform:
   m_Father: {fileID: 6734195116091602768}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &760204833303633383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7159167681282670558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e264caa1a693d443b190449cd5fe3de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateRange: {x: 0, y: 30, z: 0}
+  rotateSpeed: 1
 --- !u!1001 &1433722972776161335
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6759,6 +6774,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5725573354669825204}
     m_Modifications:
+    - target: {fileID: 3150201945057244392, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: looping
       value: 0
@@ -6771,29 +6790,49 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.y.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.z.minScalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.0000005
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6828,6 +6867,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_Name
       value: Particle_GhostFire_v02 _Blue (1)
       objectReference: {fileID: 0}
@@ -6838,7 +6881,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
   m_PrefabInstance: {fileID: 1433722972776161335}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1860544260629513295
+--- !u!114 &797797371105251901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6847,12 +6890,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4058403555676148928}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e284de9d18d55946a51dfdd33f0e4c0, type: 3}
+  m_Script: {fileID: 11500000, guid: acf9e766d495c4340acd5374c9bb4bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInCount: 1
-  _isClip: 0
-  target: {fileID: 7159167681282670558}
+  radian: 0
+  preRadian: 0.03
+  radius: 2
 --- !u!4 &4058403555676148957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
@@ -7713,6 +7756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5725573354669825204}
     m_Modifications:
+    - target: {fileID: 3150201945057244392, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: m_RenderAlignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: looping
       value: 0
@@ -7725,29 +7772,49 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.y.minScalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3150201945057244393, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: VelocityModule.z.minScalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5000002
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7782,6 +7849,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
       propertyPath: m_Name
       value: Particle_GhostFire_v02 _Blue
       objectReference: {fileID: 0}
@@ -7792,7 +7863,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3150201945057244407, guid: bacc16cec8d50034193712363fb1704f, type: 3}
   m_PrefabInstance: {fileID: 7332095243852367378}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1860544260629513296
+--- !u!114 &9118391624325187118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7801,12 +7872,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5654012306100024037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e284de9d18d55946a51dfdd33f0e4c0, type: 3}
+  m_Script: {fileID: 11500000, guid: acf9e766d495c4340acd5374c9bb4bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isInCount: 1
-  _isClip: 0
-  target: {fileID: 7159167681282670558}
+  radian: 6.28
+  preRadian: 0.03
+  radius: 2
 --- !u!4 &5654012306100024056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3150201945057244394, guid: bacc16cec8d50034193712363fb1704f, type: 3}
