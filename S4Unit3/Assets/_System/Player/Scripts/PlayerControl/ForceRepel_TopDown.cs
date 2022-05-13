@@ -314,7 +314,6 @@ public class ForceRepel_TopDown : MonoBehaviour
                 //Range.SetActive(false);
                 //Timer = 0;
             }
-
         }
     }
     public void SuckFriend()

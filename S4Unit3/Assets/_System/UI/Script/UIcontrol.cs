@@ -318,6 +318,7 @@ public class UIcontrol : MonoBehaviour
 
             GameObject go = Instantiate(Resources.Load<GameObject>("FlyText/Text_FlyText"), Player_pos, Quaternion.identity) as GameObject;
             go.transform.SetParent(GameObject.Find("GUI").transform);
+            go.transform.SetSiblingIndex(0);
             UI_FlyText ft = go.GetComponent<UI_FlyText>();
             ft.color = color;
             if (content == "No Cube")
