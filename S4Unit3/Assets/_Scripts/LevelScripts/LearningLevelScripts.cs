@@ -28,6 +28,8 @@ public class LearningLevelScripts : MonoBehaviour
         isP2Move = isP2Dash = isP2Attack = false;
         RespawnFakeSheep.SetActive(false);
         _Portal.SetActive(false);
+
+        StartCoroutine(TimerDoor());
     }
 
     // Update is called once per frame
@@ -111,5 +113,11 @@ public class LearningLevelScripts : MonoBehaviour
         yield return new WaitForSeconds(3f);
         _LarningTextAnim.SetBool("isCDDone", isMove);
         SpawnRespawnObjcet();
+    }
+
+    IEnumerator TimerDoor()
+    {
+        yield return new WaitForSeconds(10f);
+        _Portal.SetActive(true);
     }
 }
