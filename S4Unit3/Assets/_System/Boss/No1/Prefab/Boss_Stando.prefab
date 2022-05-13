@@ -1175,6 +1175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wind Boomerang Alert Set
       objectReference: {fileID: 0}
+    - target: {fileID: 2584471537247200283, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df36e065838a0eb42a0392af6d3c368f, type: 3}
 --- !u!95 &666437681515073794 stripped
