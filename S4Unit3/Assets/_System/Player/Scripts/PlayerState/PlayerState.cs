@@ -125,6 +125,7 @@ public class PlayerState : MonoBehaviour
         {
             ShootingComponent.SetActive(false);
             _renderer.material.SetColor("_MainColor", color);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         //isColliding = false;
 
