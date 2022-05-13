@@ -53,6 +53,10 @@ public class Bullet : MonoBehaviour
         {
             specialParticle.Play();
         }
+        if(Level1GameData.b_isBossDeathCutScene)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Transform explosionPrefab;

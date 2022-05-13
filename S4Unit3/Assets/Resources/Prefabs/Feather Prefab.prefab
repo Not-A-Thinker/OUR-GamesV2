@@ -4932,6 +4932,7 @@ MonoBehaviour:
   value: 0
   LerpSpeed: 0.1
   OColor: {r: 0.9607843, g: 0.6039216, b: 0.24313726, a: 1}
+  NowColor: {r: 0, g: 0, b: 0, a: 0}
   ParticleTransitionColor:
   - {r: 0.99607843, g: 0.6039216, b: 0.23921569, a: 1}
   - {r: 1, g: 0.44313726, b: 0.0627451, a: 1}
@@ -4954,7 +4955,6 @@ GameObject:
   - component: {fileID: 2774420081290986433}
   - component: {fileID: 4990321219065718082}
   - component: {fileID: 2531604878096118453}
-  - component: {fileID: 7007680486506180597}
   m_Layer: 6
   m_Name: Feather Prefab
   m_TagString: Object
@@ -5091,16 +5091,3 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7778751112654327726, guid: 2be77c5095b45b24e9d235ed92c6ac41, type: 3}
   hitParticle: {fileID: 2014514623642134502, guid: 84058d052abdd8f4ab1d87f60881a690, type: 3}
   CollisionParticle: {fileID: 7069681098808393521, guid: 355c06310d99f394893e21850e701f4f, type: 3}
---- !u!114 &7007680486506180597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2774420081290986442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7525872430e0ccc4db1091f8f5f12629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GetCubeParticle: {fileID: 0}
