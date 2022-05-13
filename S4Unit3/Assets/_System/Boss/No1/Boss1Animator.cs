@@ -87,7 +87,7 @@ public class Boss1Animator : MonoBehaviour
         //BossSkill.TornadoSpecialAttackAnimation();
         //bossVC.m_Priority = orgPriority;
         
-        impulseSource.GenerateImpulse(2f);
+        impulseSource.GenerateImpulse(2.5f);
         Boss1SoundManager.PlaySound("Boss_TransDown");
         BossAI.IsAfter33 = true;
         Level1GameData.b_isCutScene = false;

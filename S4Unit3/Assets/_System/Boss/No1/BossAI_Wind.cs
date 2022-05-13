@@ -193,6 +193,7 @@ public class BossAI_Wind : MonoBehaviour
             Level1GameData.b_isCutScene = true;
             Level1GameData.b_isBossDeathCutScene = true;
 
+            transform.rotation = Quaternion.Euler(0, 180, 0);
             isDead = true;
             isMoveFinished = true;
             isMeleeAttacking = true;
