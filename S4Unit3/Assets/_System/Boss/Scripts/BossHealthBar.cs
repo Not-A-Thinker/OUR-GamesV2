@@ -47,7 +47,7 @@ public class BossHealthBar : MonoBehaviour
     void Update()
     {
         //Hot keys for testing
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetButtonDown("Cheat"))
         {
             TakeDamage(100);
         }
