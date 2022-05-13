@@ -192,6 +192,9 @@ public class P1GetCube : MonoBehaviour
    
         OneOnCarge = false;
         PlayerSoundEffect.PlaySound("Dog_Attack");
+
+        for (int i = 0; i < objectParent.transform.childCount; i++)
+            objectParent.transform.GetChild(i).GetComponent<ObjectRotation>()._isInCount = true;
         //Rb.AddForceAtPosition(direction.transform.forward * 3500f * 100 * Time.deltaTime, cube.transform.position, ForceMode.Impulse);
     }
 
@@ -211,13 +214,7 @@ public class P1GetCube : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
 
-        if (force==2&& objectParent.transform.childCount > 0)
-            objectParent.transform.GetChild(0).gameObject.GetComponent<ObjectRotation>()._isInCount=true;
-
-        yield return null;
-        for (int i = 0; i < objectParent.transform.childCount; i++)
-        {
-            objectParent.transform.GetChild(i).GetComponent<ObjectRotation>()._isInCount = true;
-        }
+        if (force == 2 && objectParent.transform.childCount > 0)
+            objectParent.transform.GetChild(0).gameObject.GetComponent<ObjectRotation>()._isInCount = true;
     }
 }

@@ -15,6 +15,11 @@ public class ObjectDestroy : MonoBehaviour
             Invoke("DestroyThis", DestroyTime);
         else
             CancelInvoke("DestroyThis");
+
+        if (Level1GameData.b_isBossDeathCutScene)
+        {
+            DestroyThis();
+        }
     }
 
     private void OnCollisionEnter(Collision col)
